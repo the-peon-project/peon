@@ -36,3 +36,8 @@ Deploy app in Detached mode
 ```bash
 docker-compose up -d
 ```
+
+## Implemented so far
+
+1.**Docker Image** Can build/deploy flask app into custom docker image
+2.**Docker Compose** Can deploy webui.webapp and webui.db using ``docker-compose up -d``, with app only starting after db has started.
