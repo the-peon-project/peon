@@ -19,3 +19,8 @@ Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
 - Recipe checker
 - Timers
 - Persistent saves (UI managed)
+
+
+#### Notes
+
+[Flask app example](https://ianlondon.github.io/blog/deploy-flask-docker-nginx/)
