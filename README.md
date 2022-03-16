@@ -2,14 +2,20 @@
 
 A project to assist gamers in self deploying/managing game servers.
 
-## Plans:
-### WebUI
+## Architecture
+
+WebUI (FedererUI) built into docker image using flask as base.
+Docker compose to deploy all app components (FederUI, PostgreSQL)
+
+Flask provided by [tiangolo/uwsgi-nginx-flask](https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask/)
+Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
+
+### Features
+
 - Deploy and delete games from a recipe catalgue (hosted here)
-- Start/stop servers with timeouts
+- Start/stop servers with timeouts (e.g. specify a game session to run for 6 hours (with option to extend))
 - Access control
 - API control (for discord bots)
-
-### Server Manager
 - Recipe checker
 - Timers
 - Persistent saves (UI managed)
