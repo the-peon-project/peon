@@ -24,3 +24,8 @@ Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
 #### Notes
 
 [Flask app example](https://ianlondon.github.io/blog/deploy-flask-docker-nginx/)
+
+Quick Download
+```bash
+wget https://github.com/nox-noctua-consulting/federer/archive/main.zip
+```
