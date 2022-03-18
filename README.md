@@ -4,8 +4,8 @@ A project to assist gamers in self deploying/managing game servers.
 
 ## Architecture
 
-WebUI (FedererUI) built into docker image using flask as base.\
-Docker compose to deploy all app components (FederUI, PostgreSQL)
+WebUI (PeonUI) built into docker image using flask as base.\
+Docker compose to deploy all app components (PeonUI, PostgreSQL)
 
 Flask provided by [tiangolo/uwsgi-nginx-flask](https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask/)\
 Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
@@ -28,7 +28,7 @@ Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
 Quick Project Download
 
 ```bash
-wget https://github.com/nox-noctua-consulting/federer/archive/main.zip
+wget https://github.com/nox-noctua-consulting/peon/archive/main.zip
 ```
 
 Deploy app in Detached mode
