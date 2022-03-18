@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t umlatt/federer-ui .
+docker build -t umlatt/peon-ui .
