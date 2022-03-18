@@ -1,5 +1,3 @@
-logging
-json
 flask_sqlalchemy 
 flask_migrate 
 flask_login
