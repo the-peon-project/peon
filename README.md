@@ -6,10 +6,10 @@ Architected to minimise total cloud costs (easy schedule/manage uptime vs downti
 
 ## Architecture
 
-WebUI (PeonUI) built into docker image using flask as base.\
+WebUI (PeonUI) built into docker image using flask as base.
 Docker compose to deploy all app components (PeonUI, PostgreSQL)
 
-Flask provided by [tiangolo/uwsgi-nginx-flask](https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask/)\
+Flask provided by [tiangolo/uwsgi-nginx-flask](https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask/)
 Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
 
 ### Feature Plan
@@ -47,5 +47,5 @@ docker-compose up -d
 
 ## Implemented so far
 
-1.**Docker Image** Can build/deploy flask app into custom docker image\
-2.**Docker Compose** Can deploy webui.webapp and webui.db using ``docker-compose up -d``, with app only starting after db has started.\
+1. **Docker Image** Can build/deploy flask app into custom docker image
+2. **Docker Compose** Can deploy webui.webapp and webui.db using ``docker-compose up -d``, with app only starting after db has started.
