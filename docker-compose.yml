@@ -1,24 +1,31 @@
 version: '3.8'
+networks:
+  peonnet:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
 services:
   db:
     image: postgres:14-alpine
     container_name: peon.db
-    restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=S3CR3TP4$$W0RD
-    ports:
-      - '5432:5432'
+      - POSTGRES_USER=peonadmin
+      - POSTGRES_PASSWORD=Zu88Zu88
     volumes:
       - $PWD/peon/db/data:/var/lib/postgresql/data
       - /var/log/peon:/var/log/peon
+    peonnet:
+      ipv4_address: 172.20.0.2
+    restart: always
   webapp:
     container_name: peon.webui
     image: umlatt/peon-ui
     depends_on:
       - db
-    restart: always
     ports:
       - '80:80'
     volumes:
       - /var/log/peon:/var/log/peon
+    peonnet:
+        ipv4_address: 172.20.0.3
+    restart: unless-stopped
