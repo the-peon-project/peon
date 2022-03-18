@@ -11,6 +11,7 @@ services:
       - '5432:5432'
     volumes:
       - $PWD/peon/db/data:/var/lib/postgresql/data
+      - /var/log/peon:/var/log/peon
   webapp:
     container_name: peon.webui
     image: umlatt/peon-ui
@@ -19,3 +20,5 @@ services:
     restart: always
     ports:
       - '80:80'
+    volumes:
+      - /var/log/peon:/var/log/peon
