@@ -1,8 +1,8 @@
 {
     "db" : {
       "hostname" : "172.20.0.2",
-      "username" : "peonadmin",
       "database" : "postgres",
+      "username" : "gromhellscream",
       "password" : "Zu88Zu88"
     } 
   }
