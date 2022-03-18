@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block main_heading %}HOME{% endblock %} {% block instruction %}Please make a selection.{% endblock %} {% block content %}
+{% extends "base.html" %} {% block title %}Servers{% endblock %} {% block main_heading %}Server List{% endblock %} {% block instruction %}Deployed servers{% endblock %} {% block content %}
 
 <table border="0" style="border-collapse: collapse; width: 80%; background:transparent; margin:0 auto;">
     <tbody>
@@ -11,19 +11,6 @@
                     <div class="card-body">
                         <p class="card-text">All services and tools required to support the Oxide Cloud services can be found here.</p>
                         <form action="jobs" method="post"><input class="btn btn-success" type="submit" value="Job Dashboard" /></form>
-                    </div>
-                </div>
-            </td>
-            <td style="width: 50%; text-align: center;background:transparent;">
-                <div class="card text-white bg-secondary mb-3" style="max-width: 25rem; margin:0 auto;">
-                    <div class="card-header">
-                        <h4>Financial Tools</h4>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">All tools for monitoring and managing the financial aspects of the Oxide Cloud services.</p>
-                        <form action="monthlyspend" method="post"><input class="btn btn-success" type="submit" value="Post Billing Customers" /></form>
-                        <br>
-                        <form action="productmap" method="post"><input class="btn btn-success" type="submit" value="Registered Products" /></form>
                     </div>
                 </div>
             </td>
