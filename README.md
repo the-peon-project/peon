@@ -1,6 +1,8 @@
-# Peon (Game Server Manager)
+# Peon (Simple Game Server Manager)
 
-A project to assist gamers in self deploying/managing game servers.
+An **OpenSource** project to assist gamers in self deploying/managing game servers.
+Intended to be a one-stop-shop for game server deployment/management.
+Architected to minimise total cloud costs (easy schedule/manage uptime vs downtime)
 
 ## Architecture
 
@@ -10,16 +12,22 @@ Docker compose to deploy all app components (PeonUI, PostgreSQL)
 Flask provided by [tiangolo/uwsgi-nginx-flask](https://hub.docker.com/r/tiangolo/uwsgi-nginx-flask/)\
 Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
 
-### Features
+### Feature Plan
 
-- Deploy and delete games from a recipe catalgue (hosted here)
-- Start/stop servers with timeouts (e.g. specify a game session to run for 6 hours (with option to extend))
-- Access control
-- API control (for discord bots)
-- Recipe checker
-- Timers
-- Persistent saves (UI managed)
+#### *sprint 1*
 
+- [ ] WebUI - Access controlled webpage for management
+- [ ] Deploy and delete games from a recipe catalgue (hosted here)
+- [ ] Start/stop servers with timeouts (e.g. specify a game session to run for 6 hours (with option to extend))
+
+#### *sprint 2*
+
+- [ ] Recipes - Autodetect newly added recipies.
+- [ ] Persistent server data - Keep server data for updates & future releases.
+
+#### *sprint 3*
+
+- [ ] RESTful API control (for things like discord bots)
 
 #### Notes
 
