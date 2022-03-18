@@ -1,6 +1,6 @@
 version: '3.8'
 networks:
-  peonnet:
+  peon.zugnet:
     ipam:
       config:
         - subnet: 172.20.0.0/24
@@ -14,8 +14,9 @@ services:
     volumes:
       - $PWD/peon/db/data:/var/lib/postgresql/data
       - /var/log/peon:/var/log/peon
-    peonnet:
-      ipv4_address: 172.20.0.2
+    networks:
+      peon.zugnet:
+        ipv4_address: 172.20.0.2
     restart: always
   webapp:
     container_name: peon.webui
@@ -26,6 +27,7 @@ services:
       - '80:80'
     volumes:
       - /var/log/peon:/var/log/peon
-    peonnet:
+    networks:
+      peon.zugnet:
         ipv4_address: 172.20.0.3
     restart: unless-stopped
