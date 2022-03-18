@@ -1,4 +1,4 @@
-# Federer (Game Server Manager)
+# Peon (Game Server Manager)
 
 A project to assist gamers in self deploying/managing game servers.
 
