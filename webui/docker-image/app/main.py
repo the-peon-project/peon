@@ -1,13 +1,12 @@
-from flask import Flask
+#!/usr/bin/python3
+# IMPORTS
 import logging
+from website import create_app
 
-# the all-important app variable:
-app = Flask(__name__)
+# VARIABLES
+app = create_app()
 
-@app.route("/")
-def hello():
-    return "Welcome to PEON. The game server manager."
-
-if __name__ == "__main__":
-    logging.basicConfig(filename='/var/log/peon/webui.log', filemode='a', format='%(asctime)s %(thread)d [%(levelname)s] - %(message)s', level=logging.DEBUG)
-    app.run(host='0.0.0.0', debug=True, port=80)
+# MAIN
+if __name__ == '__main__':
+    logging.basicConfig(filename='/var/log/peon/webui.log', filemode='a', format='%(asctime)s %(thread)d [%(levelname)s] - %(message)s', level=logging.INFO)
+    app.run(host='0.0.0.0',port=80, debug=True)
