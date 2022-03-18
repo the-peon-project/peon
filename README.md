@@ -9,7 +9,7 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 WebUI (PeonUI) built into docker image using flask as base.
 Docker compose to deploy all app components (PeonUI, PostgreSQL)
 
-Flask provided by [tiangolo/meinheld-gunicorn-flask-docker](https://github.com/tiangolo/meinheld-gunicorn-flask-docker)\
+Flask provided by [tiangolo/uvicorn-gunicorn-fastapi-docker](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker)\
 Bootstrap provided by [bootswatch/darkly](https://bootswatch.com/darkly/)\
 Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
 
