@@ -20,7 +20,7 @@ services:
     restart: always
   webapp:
     container_name: peon.webui
-    image: umlatt/peon-ui
+    image: umlatt/peon.webui:0.1.1
     depends_on:
       - db
     ports:
