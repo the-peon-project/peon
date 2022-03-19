@@ -3,7 +3,7 @@
 
 # PEON [Orchestrator]
 
-This is the server orchestration for the PEON project. Managed via REST API\
+This is the server orchestration for the PEON project. Managed via REST API
 
 ## What is the PEON project?
 
