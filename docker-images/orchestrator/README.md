@@ -13,11 +13,11 @@ More info at [PEON Project](https://github.com/nox-noctua-consulting/peon)
 
 ## State
 
-> **PLANNING PHASE**
+> **EARLY DEVELOPMENT**
 
 ## Version Info
 
-### 0.0.0-dev
+### 0.1.0-dev
 
 #### Known Bugs
 
