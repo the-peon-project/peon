@@ -37,3 +37,4 @@ More info at [PEON Project](https://github.com/nox-noctua-consulting/peon)
 ### Guide
 
 [Python - API guide](https://dev.to/swarnimwalavalkar/build-and-deploy-a-rest-api-microservice-with-python-flask-and-docker-5c2d)
+[Rest API Documentation](https://www.sitepoint.com/rest-api/)
