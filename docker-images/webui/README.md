@@ -39,4 +39,5 @@ Completely useless at this point
 
 #### *sprint 3.0.0*
 
-- [ ] RESTful API control [provided by the orchestrator] (for things like discord bots)
+- [ ] Multi orchestrator control
+- [ ] Public RESTful API control [provided by the orchestrator] (for things like discord bots)
