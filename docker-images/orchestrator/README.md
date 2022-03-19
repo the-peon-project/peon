@@ -2,7 +2,7 @@
 
 # PEON project [Orchestrator]
 
-This is the server orchestration for the PEON project.\
+This is the server orchestration for the PEON project. Managed via REST API\
 
 ## What is the PEON project?
 
@@ -11,4 +11,22 @@ A simple open-source self-hosted game server automation tool.
 More info at [PEON Project](https://github.com/nox-noctua-consulting/peon)
 
 ## State
-> **ToDo**
+
+> **PLANNING PHASE**
+
+## Version Info
+
+### 0.0.0-dev
+
+#### Known Bugs
+
+## Feature Plan
+
+#### *sprint 1.0.0*
+
+- [ ] RESTful API 
+- [ ] Rescipe handler - Tooling to deploy/manage servers based on REST commands
+
+#### *sprint 2.0.0*
+
+- [ ] Persistent server data - Keep server data for updates & future releases.

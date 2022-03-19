@@ -15,20 +15,20 @@ Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
 
 ### Feature Plan
 
-#### *sprint 1*
+#### *sprint 1.0.0*
 
 - [ ] WebUI - Access controlled webpage for management
 - [ ] Deploy and delete games from a recipe catalgue (hosted here)
 - [ ] Start/stop servers with timeouts (e.g. specify a game session to run for 6 hours (with option to extend))
 
-#### *sprint 2*
+#### *sprint 2.0.0*
 
 - [ ] Recipes - Autodetect newly added recipies.
 - [ ] Persistent server data - Keep server data for updates & future releases.
 
-#### *sprint 3*
+#### *sprint 3.0.0*
 
-- [ ] RESTful API control (for things like discord bots)
+- [ ] Public RESTful API control (for things like discord bots)
 
 #### Notes
 
