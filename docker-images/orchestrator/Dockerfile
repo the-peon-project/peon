@@ -9,3 +9,5 @@ RUN pip3 install --no-cache-dir --upgrade -r /app/requirements.txt
 RUN apt-get update && apt-get install procps -y
 # Copy application files into container
 COPY ./app /app
+# Start the app called api
+CMD ["pipenv", "run", "python", "/app/api.py"]
