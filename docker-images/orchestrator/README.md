@@ -26,7 +26,7 @@ More info at [PEON Project](https://github.com/nox-noctua-consulting/peon)
 #### *sprint 1.0.0*
 
 - [ ] RESTful API 
-- [ ] Rescipe handler - Tooling to deploy/manage servers based on REST commands
+- [ ] Recipe handler - Tooling to deploy/manage servers based on REST commands
 
 #### *sprint 2.0.0*
 
