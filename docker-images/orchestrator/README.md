@@ -17,7 +17,7 @@ More info at [PEON Project](https://github.com/nox-noctua-consulting/peon)
 
 ## Version Info
 
-### 0.1.0-dev
+### 0.1.1-dev
 
 #### Known Bugs
 
