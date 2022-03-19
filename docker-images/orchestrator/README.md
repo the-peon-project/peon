@@ -31,3 +31,9 @@ More info at [PEON Project](https://github.com/nox-noctua-consulting/peon)
 #### *sprint 2.0.0*
 
 - [ ] Persistent server data - Keep server data for updates & future releases.
+
+## Notes
+
+### Guide
+
+[Python - API guide](https://dev.to/swarnimwalavalkar/build-and-deploy-a-rest-api-microservice-with-python-flask-and-docker-5c2d)
