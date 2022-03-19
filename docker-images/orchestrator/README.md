@@ -1,7 +1,7 @@
 <!-- ![PEON mascot](https://imgs.search.brave.com/ZoK5waLFsNp1-xE7_vK2RXFoYa5rNuS6rTzsPQC-4MM/rs:fit:247:204:1/g:ce/aHR0cHM6Ly9pLnJl/ZGQuaXQvNWszdnRn/MTNxc2ozMS5qcGc)
 -->
 
-# PEON project [Orchestrator]
+# PEON [Orchestrator]
 
 This is the server orchestration for the PEON project. Managed via REST API\
 
