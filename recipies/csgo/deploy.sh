@@ -50,10 +50,12 @@ fi
 logfile="/var/log/peon/$game/$servername/$script.log"
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
-exec 1>$logfile 2>&1
+exec 1>>$logfile 2>&1
 # Logging config end
 mkdir -p /var/log/peon/$game/$servername
 chown -R 1000:1000 /var/log/peon
+chown -R 1000:1000 .
+chmod +x run_steamcmd.sh
 server_path="$rootpath/$game/$servername"
 container="peon.$game.$servername"
 containers=`docker ps -a | grep -i $container`
