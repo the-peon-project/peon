@@ -1,7 +1,7 @@
 {
     "csgo" : {
         "title" : "Counterstrike GO",
-        "source" : "",
+        "source" : "https://github.com/nox-noctua-consulting/peon/tree/main/recipies/csgo",
         "logo" : "https://seeklogo.com/images/C/csgo-logo-CAA0A4D48A-seeklogo.com.png"
     }
 }
