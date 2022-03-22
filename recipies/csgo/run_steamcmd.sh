@@ -7,7 +7,7 @@ logfile="/var/log/peon/$script.log"
 # Logging config start - Create logfile and capture all stdout to it
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
-exec 1>$logfile 2>&1
+exec 1>>$logfile 2>&1
 # Logging config end
 echo "Updating steamcmd."
 stdbuf -oL ./steamcmd.sh +app_update +quit
