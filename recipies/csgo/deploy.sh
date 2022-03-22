@@ -4,6 +4,7 @@ script="${0##*/}"
 rootpath=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 # Get parameters
 PARAMS=""
+overwrite=false
 while (( "$#" )); do
   case "$1" in
     -g|--game)
@@ -24,6 +25,10 @@ while (( "$#" )); do
         exit 1
       fi
       ;;
+    -o|--overwrite)
+      overwrite=true
+      shift
+      ;;
     -*|--*=) # unsupported flags
       echo "Error: Unsupported flag $1" >&2
       exit 1
@@ -41,16 +46,29 @@ if [ -z ${game+x} ] || [ -z ${servername+x} ] ; then
     echo "Not all parameters were passed."
     exit
 fi
-
-
 logfile="/var/log/peon/deploy-$game-$servername.log"
 server_path="$rootpath/$game/$servername"
 container="peon.$game.$servername"
-mkdir -p $server_path
-#chown -R docker:docker $servername
-echo "Created data path: [$server_path]" >> $logfile
-echo "Starting container/s..." >> $logfile
-docker run -t -v "$server_path":/data --name "$container" cm2network/steamcmd
-docker exec $container mkdir serverdata
-docker exec $container  ./steamcmd +login anonymous +force_install_dir /data +app_update 740 +quit
-echo "Process complete" >> $logfile
+containers=`docker ps -a | grep -i $container`
+if [ "$containers" ] && $overwrite ; then
+    echo "Container exists, but overwrite configured. Removing containers before proceeding." >> $logfile
+    docker stop $container
+    docker rm $container
+fi
+containers=`docker ps -a | grep -i $container`
+if [ -z "$containers" ]; then
+    echo "Creating data paths: [$server_path]" >> $logfile
+    mkdir -p $server_path
+    chown -R docker. $server_path
+    #chown -R docker:docker $servername
+    echo "Starting container/s..." >> $logfile
+    docker run -dit -v $server_path:/data --name $container cm2network/steamcmd >> $logfile
+    echo "Adding deploy code to container." >> $logfile
+    docker cp run_steamcmd.sh $container:/home/steam/steamcmd/.
+    echo "Run 'run_steamcmd.sh in container.'" >> $logfile
+else
+    echo "Container already exists. Exiting." >> $logfile
+fi
+echo "Script comeplete." >> $logfile
+
+# Docker container recommmended in - https://developer.valvesoftware.com/wiki/SteamCMD#Docker
