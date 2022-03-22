@@ -56,6 +56,7 @@ if [ "$containers" ] && $overwrite ; then
     echo "Container exists, but overwrite configured. Removing containers before proceeding." >> $logfile
     docker stop $container
     docker rm $container
+    rm -rf $server_path/server.state
 fi
 containers=`docker ps -a | grep -i $container`
 if [ -z "$containers" ]; then
