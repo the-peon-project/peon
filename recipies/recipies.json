@@ -1,7 +1,10 @@
 {
     "csgo" : {
         "title" : "Counterstrike Global Offensive (CS:GO)",
-        "source" : "https://github.com/nox-noctua-consulting/peon/tree/main/recipies/csgo",
-        "logo" : "https://seeklogo.com/images/C/csgo-logo-CAA0A4D48A-seeklogo.com.png"
+        "logo" : "https://seeklogo.com/images/C/csgo-logo-CAA0A4D48A-seeklogo.com.png",
+        "files" : [
+            "https://raw.githubusercontent.com/nox-noctua-consulting/peon/main/recipies/csgo/deploy.sh",
+            "https://raw.githubusercontent.com/nox-noctua-consulting/peon/main/recipies/csgo/run_steamcmd.sh"
+        ]
     }
 }
