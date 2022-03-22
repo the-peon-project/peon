@@ -46,7 +46,9 @@ if [ -z ${game+x} ] || [ -z ${servername+x} ] ; then
     echo "Not all parameters were passed."
     exit
 fi
-logfile="/var/log/peon/deploy-$game-$servername.log"
+mkdir -p /var/log/peon/$game/$servername
+chown -R 1000:1000 /var/log/peon
+logfile="/var/log/peon/$game/$servername/$script.log"
 server_path="$rootpath/$game/$servername"
 container="peon.$game.$servername"
 containers=`docker ps -a | grep -i $container`
@@ -59,13 +61,13 @@ containers=`docker ps -a | grep -i $container`
 if [ -z "$containers" ]; then
     echo "Creating data paths: [$server_path]" >> $logfile
     mkdir -p $server_path
-    chown -R docker. $server_path
-    #chown -R docker:docker $servername
+    chown -R 1000:1000 $server_path
     echo "Starting container/s..." >> $logfile
-    docker run -dit -v $server_path:/data --name $container cm2network/steamcmd >> $logfile
+    docker run -dit -v $server_path:/home/steam/steamcmd/data -v /var/log/peon/$game/$servername:/var/log/peon --name $container --user steam cm2network/steamcmd >> $logfile
     echo "Adding deploy code to container." >> $logfile
     docker cp run_steamcmd.sh $container:/home/steam/steamcmd/.
     echo "Run 'run_steamcmd.sh in container.'" >> $logfile
+    docker exec -d --workdir /home/steam/steamcmd --user steam $container bash run_steamcmd.sh
 else
     echo "Container already exists. Exiting." >> $logfile
 fi
