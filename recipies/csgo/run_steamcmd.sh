@@ -1,9 +1,8 @@
 #!/bin/bash
 script="${0##*/}"
-mkdir -p data/docker/logs
-logfile="./data/docker/logs/$script.log"
+logfile="/var/log/peon/$script.log"
 echo "Updating steamcmd." >> $logfile
-./steamcmd.sh +app_update +quit
+./steamcmd.sh +app_update +quit >> $logfile
 echo "Installing/configuring the game server." >> $logfile
 ./steamcmd.sh +force_install_dir /data +login anonymous +app_update 740 +quit >> $logfile
 echo "Adding server ready file, for hand back"
