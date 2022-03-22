@@ -46,32 +46,37 @@ if [ -z ${game+x} ] || [ -z ${servername+x} ] ; then
     echo "Not all parameters were passed."
     exit
 fi
+# Logging config start - Create logfile and capture all stdout to it
+logfile="/var/log/peon/$game/$servername/$script.log"
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1>$logfile 2>&1
+# Logging config end
 mkdir -p /var/log/peon/$game/$servername
 chown -R 1000:1000 /var/log/peon
-logfile="/var/log/peon/$game/$servername/$script.log"
 server_path="$rootpath/$game/$servername"
 container="peon.$game.$servername"
 containers=`docker ps -a | grep -i $container`
 if [ "$containers" ] && $overwrite ; then
-    echo "Container exists, but overwrite configured. Removing containers before proceeding." >> $logfile
-    docker stop $container
+    echo "Container exists, but overwrite configured. Removing containers before proceeding."
+    docker stop $container 
     docker rm $container
     rm -rf $server_path/server.state
 fi
 containers=`docker ps -a | grep -i $container`
 if [ -z "$containers" ]; then
-    echo "Creating data paths: [$server_path]" >> $logfile
+    echo "Creating data paths: [$server_path]"
     mkdir -p $server_path
     chown -R 1000:1000 $server_path
-    echo "Starting container/s..." >> $logfile
-    docker run -dit -v $server_path:/home/steam/steamcmd/data -v /var/log/peon/$game/$servername:/var/log/peon --name $container --user steam cm2network/steamcmd >> $logfile
-    echo "Adding deploy code to container." >> $logfile
+    echo "Starting container/s..."
+    docker run -dit -v $server_path:/home/steam/steamcmd/data -v /var/log/peon/$game/$servername:/var/log/peon --name $container --user steam cm2network/steamcmd
+    echo "Adding deploy code to container."
     docker cp run_steamcmd.sh $container:/home/steam/steamcmd/.
-    echo "Run 'run_steamcmd.sh in container.'" >> $logfile
+    echo "Run 'run_steamcmd.sh in container.'"
     docker exec -d --workdir /home/steam/steamcmd --user steam $container bash run_steamcmd.sh
 else
-    echo "Container already exists. Exiting." >> $logfile
+    echo "Container already exists. Exiting."
 fi
-echo "Script comeplete." >> $logfile
+echo "Script comeplete."
 
 # Docker container recommmended in - https://developer.valvesoftware.com/wiki/SteamCMD#Docker
