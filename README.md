@@ -6,12 +6,9 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 
 ## Architecture
 
-WebUI (PeonUI) built into docker image using flask as base.
-Docker compose to deploy all app components (PeonUI, PostgreSQL)
-
-Flask provided by [tiangolo/uvicorn-gunicorn-fastapi-docker](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker)\
-Bootstrap provided by [bootswatch/darkly](https://bootswatch.com/darkly/)\
-Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
+[Peon WebUI (peon.ui)](https://github.com/nox-noctua-consulting/peon-ui) - WebUI for automation
+[Peon Orchestrator (peon.orc)](https://github.com/nox-noctua-consulting/peon-orc) - REST controlled server automation
+[Peon Recipies](https://github.com/nox-noctua-consulting/peon-recipies) - Game server recipies
 
 ### Feature Plan
 
@@ -29,7 +26,7 @@ Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
 #### *sprint 3.0.0*
 
 - [ ] Public RESTful API control (for things like discord bots)
-
+- [ ] Server file backups
 #### Notes
 
 [Flask app example](https://ianlondon.github.io/blog/deploy-flask-docker-nginx/)
@@ -45,8 +42,3 @@ Deploy app in Detached mode
 ```bash
 docker-compose up -d
 ```
-
-## Implemented so far
-
-1. **Docker Image** Can build/deploy flask app into custom docker image
-2. **Docker Compose** Can deploy webui.webapp and webui.db using ``docker-compose up -d``, with app only starting after db has started.
