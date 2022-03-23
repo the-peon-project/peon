@@ -37,7 +37,7 @@ services:
     depends_on:
       - db
     ports:
-      - '443:443'
+      - '5000:5000'
     volumes:
       - /var/log/peon:/var/log/peon
       - $PWD/servers:/servers
