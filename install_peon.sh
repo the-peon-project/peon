@@ -12,6 +12,6 @@ mkdir recipies
 wget https://github.com/nox-noctua-consulting/peon-recipies/archive/master.tar.gz
 tar -xvf master.tar.gz --strip-components=1 --directory recipies
 rm -rf master.tar.gz
-docker-compose up -d
+# docker-compose up -d
 # Set permissions for docker containers
 chown -R 1000:1000 .
