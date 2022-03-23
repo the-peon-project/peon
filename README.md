@@ -15,8 +15,8 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 #### *sprint 1.0.0*
 
 - [ ] WebUI - Access controlled webpage for management
-- [ ] Deploy and delete games from a recipe catalgue (hosted here)
-- [ ] Start/stop servers with timeouts (e.g. specify a game session to run for 6 hours (with option to extend))
+- [ ] Deploy and delete games from a recipe catalgue (hosted at [Peon Recipies](https://github.com/nox-noctua-consulting/peon-recipies))
+- [ ] REST controlled deploy/start/stop servers
 
 #### *sprint 2.0.0*
 
