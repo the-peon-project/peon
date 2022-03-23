@@ -6,9 +6,9 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 
 ## Architecture
 
-[Peon WebUI (peon.ui)](https://github.com/nox-noctua-consulting/peon-ui) - WebUI for automation
-[Peon Orchestrator (peon.orc)](https://github.com/nox-noctua-consulting/peon-orc) - REST controlled server automation
-[Peon Recipies](https://github.com/nox-noctua-consulting/peon-recipies) - Game server recipies
+- [Peon WebUI (peon.ui)](https://github.com/nox-noctua-consulting/peon-ui) - WebUI for automation
+- [Peon Orchestrator (peon.orc)](https://github.com/nox-noctua-consulting/peon-orc) - REST controlled server automation
+- [Peon Recipies](https://github.com/nox-noctua-consulting/peon-recipies) - Game server recipies
 
 ### Feature Plan
 
