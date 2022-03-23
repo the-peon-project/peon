@@ -12,7 +12,7 @@ services:
       - POSTGRES_USER=gromhellscream
       - POSTGRES_PASSWORD=Zu88Zu88
     volumes:
-      - $PWD/peon/db/data:/var/lib/postgresql/data
+      - $PWD/db:/var/lib/postgresql/data
       - /var/log/peon:/var/log/peon
     networks:
       zugnet:
@@ -41,6 +41,7 @@ services:
     volumes:
       - /var/log/peon:/var/log/peon
       - $PWD/servers:/servers
+      - $PWD/recipies/recipies
     networks:
       zugnet:
         ipv4_address: 172.20.0.4
