@@ -1,12 +1,7 @@
 #!/bin/bash
 
 menu_game (){
-    clear
-    printf "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n"
-    printf "┃          P E O N - C L I          ┃\n"
-    printf "┗━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━┛\n"
-    printf "  │ G A M E   C O N T A I N E R S │\n"
-    printf "  └───────────────────────────────┘\n"
+draw_menu_header $menu_size "$app_name" "G A M E   C O N T A I N E R S"
     printf " 1. Connect to Container\n"
     printf " 2. Start Container\n"
     printf " 3. Restart Container\n"

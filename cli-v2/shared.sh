@@ -5,6 +5,8 @@ GREEN_HL='\033[0;41;30m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+menu_size=40
+app_name="P E O N - C L I"
 
 pause() {
     printf "\n"
@@ -12,6 +14,7 @@ pause() {
 }
 
 draw_menu_header() {
+    clear
     width=$1 title=$2 heading=$3 bar_heavy="" bar_light=""
     if (( ${#title} % 2 )) ; then title+=" "; fi
     if (( ${#heading} % 2 )) ; then heading+=" "; fi
@@ -26,16 +29,10 @@ draw_menu_header() {
     title_gap=$(printf "%*s%s" $((($width - $title_size) / 2)) '' "$line")
     heading_gap=$(printf "%*s%s" $((($width - $heading_size - 4) / 2)) '' "$line")
     printf "┏$bar_heavy┓\n┃$title_gap$title$title_gap┃\n┗$mid_bar┛\n  │$heading_gap$heading$heading_gap│\n  └$bar_light┘\n"
-    pause
 }
 
 list_all_containers() {
-    clear
-    printf "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n"
-    printf "┃          P E O N - C L I          ┃\n"
-    printf "┗━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━┛\n"
-    printf "  │  A L L   C O N T A I N E R S  │\n"
-    printf "  └───────────────────────────────┘\n"
+    draw_menu_header $menu_size "$app_name" "A L L   C O N T A I N E R S"
     docker ps -a --format "table {{.Names}}\t{{.State}}"
     pause
 }
