@@ -5,7 +5,8 @@ GREEN_HL='\033[0;41;30m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-menu_size=25
+ORANGE='\033[0;33m'
+menu_size=35
 app_name="P E O N - C L I"
 
 pause() {
