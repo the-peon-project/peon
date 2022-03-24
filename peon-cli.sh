@@ -6,7 +6,7 @@ source cli/game.sh
 menu_main() {
     draw_menu_header $menu_size "$app_name" "M A I N - M E N U"
     printf " 1. List All Containers\n"
-    printf " 2. Peon Containers\n"
+    printf " 2. Peon Application Containers\n"
     printf " 3. Game Containers\n"
     printf " 0. Exit\n\n"
 }

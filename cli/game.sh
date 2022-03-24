@@ -61,7 +61,7 @@ menu_game() {
     local choice
     while $game_incomplete; do
         draw_menu_header $menu_size "$app_name" "G A M E   C O N T A I N E R S"
-        PS3="Select a game container to manage: "
+        PS3="Enter selection: "
         container_list=$(docker ps -a --format "{{.Names}}" | grep -i 'peon.warcamp')
         select container in $container_list; do
             case $REPLY in
