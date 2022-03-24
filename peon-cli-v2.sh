@@ -11,7 +11,7 @@ menu_main() {
     printf " 0. Exit\n\n"
 }
 
-main_menu_read_options() {
+menu_main_read_options() {
     local choice
     read -p "Enter selection: " choice
     case $choice in
@@ -29,5 +29,5 @@ main_menu_read_options() {
 trap '' SIGINT SIGQUIT SIGTSTP
 while true; do
     menu_main
-    main_menu_read_options
+    menu_main_read_options
 done
