@@ -5,7 +5,7 @@ GREEN_HL='\033[0;41;30m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-menu_size=40
+menu_size=25
 app_name="P E O N - C L I"
 
 pause() {
@@ -16,6 +16,7 @@ pause() {
 draw_menu_header() {
     clear
     width=$1 title=$2 heading=$3 bar_heavy="" bar_light="" # Collect passed parameters and create empty strings
+    if (( $width % 2 )) ; then width=$(($width + 1)); fi # Make sure that width is even
     if (( ${#title} % 2 )) ; then title+=" "; fi # Make sure that title has an even amount of characters (for formatting purposes)
     if (( ${#heading} % 2 )) ; then heading+=" "; fi # Make sure that heading has an even amount of characters (for formatting purposes)
     title_size=${#title} heading_size=${#heading} # Get the sizes of the title and the heading strings
