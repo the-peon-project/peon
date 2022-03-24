@@ -49,4 +49,4 @@ A management tui which runs on the docker host and is used to streamline peon su
 ```bash
 peon-cli
 ```
-It needs to be manually deployed for now.
+
