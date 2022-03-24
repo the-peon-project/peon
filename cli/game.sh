@@ -25,6 +25,30 @@ game_stop_container() {
     sleep 0.75
 }
 
+game_container_logs(){
+    docker logs $i
+}
+
+game_server_logs() {
+    docker_go_data=($(docker inspect -f '{{.Mounts}}' $1))
+    for chunk in "${docker_go_data[@]}"; do
+        if [[ $chunk == *"/var/log/peon/"* ]]; then log_path="$chunk"; fi
+    done
+    select log in `ls $log_path`; do
+        case $REPLY in
+        [1-${#log_files[@]}])
+            "${EDITOR:-vi}" "$log_path/$log"
+            break
+            ;;
+        0)
+            break
+            ;;
+        *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
+        esac
+    done
+    pause
+}
+
 game_action() {
     container=$1
     local action_incomplete=true
@@ -33,7 +57,11 @@ game_action() {
         draw_menu_header $menu_size "$app_name" "G A M E  S E R V E R  A C T I O N S"
         container_state=$(docker container inspect -f '{{.State.Status}}' $container)
         case $container_state in
+        "created") STATE=$BLUE ;;
         "running") STATE=$GREEN ;;
+        "paused") STATE=$STD ;;
+        "restarting") STATE=$ORANGE ;;
+        "dead") STATE=$RED_HL ;;
         "exited") STATE=$RED ;;
         *) STATE=$ORANGE ;;
         esac
@@ -43,6 +71,8 @@ game_action() {
         printf " 2. Start Container\n"
         printf " 3. Restart Container\n"
         printf " 4. Stop Container\n"
+        printf " 5. Container logs\n"
+        printf " 6. Server logs\n"
         printf " 0. Back\n\n"
         read -p "Enter selection: " choice
         case $choice in
@@ -51,6 +81,8 @@ game_action() {
         2) game_start_container $container ;;
         3) game_restart_container $container ;;
         4) game_stop_container $container ;;
+        5) game_container_logs $container ;;
+        6) game_server_logs $container ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
