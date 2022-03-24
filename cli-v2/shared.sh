@@ -33,7 +33,7 @@ draw_menu_header() {
     printf "┏$bar_heavy┓\n┃$title_gap$title$title_gap┃\n┗$mid_bar┛\n  │$heading_gap$heading$heading_gap│\n  └$bar_light┘\n" # Print out menu
 }
 
-centre_align_to_menu(){
+centre_align_to_menu() {
     width=$1 text=$2
     text_size=${#text}
     spaces=""

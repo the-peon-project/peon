@@ -10,7 +10,7 @@ peon_connect_container() {
             docker exec -it $container bash
             ;;
         0) break ;;
-            *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
+        *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
 }
