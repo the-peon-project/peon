@@ -1,5 +1,5 @@
 #!/bin/bash
-# Configure logginf
+# Configure logging
 logfile="/var/log/peon/${0##*/}.log"
 echo "Progress log in $logfile"
 exec 3>&1 4>&2
