@@ -14,6 +14,7 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 
 #### *sprint 1.0.0*
 
+- [x] peon-cli - A cli component for backend server support, which runs on the host.
 - [ ] WebUI - Access controlled webpage for management
 - [ ] Deploy and delete games from a recipe catalgue (hosted at [Peon Recipies](https://github.com/nox-noctua-consulting/peon-recipies))
 - [ ] REST controlled deploy/start/stop servers
@@ -31,14 +32,21 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 
 [Flask app example](https://ianlondon.github.io/blog/deploy-flask-docker-nginx/)
 
-Quick Project Download
+##### Quick Project Download
 
 ```bash
 wget https://github.com/nox-noctua-consulting/peon/archive/main.zip
 ```
 
-Deploy app in Detached mode
+##### Deploy app in Detached mode
 
 ```bash
 docker-compose up -d
 ```
+
+##### peon-cli
+A management tui which runs on the docker host and is used to streamline peon support.
+```bash
+peon-cli
+```
+It needs to be manually deployed for now.
