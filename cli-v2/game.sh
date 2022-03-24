@@ -1,7 +1,7 @@
 #!/bin/bash
 
 game_connect_container(){
-    echo -e "Connecting to ${BLUE}$container${STD}"
+    echo -e "Connecting to ${BLUE}$1${STD}"
     docker exec -it $1 bash
 }
 
@@ -31,11 +31,14 @@ game_action(){
     local choice
     while $action_incomplete; do
         draw_menu_header $menu_size "$app_name" "G A M E  S E R V E R  A C T I O N S"
-        case $(docker container inspect -f '{{.State.Status}}' $container) in
+        container_state=$(docker container inspect -f '{{.State.Status}}' $container)
+        case $container_state in
             "running") STATE=$GREEN ;;
+            "exited") STATE=$RED ;;
             *) STATE=$ORANGE;;
         esac
-        printf "\n *${STATE} $container ${STD}*\n"
+        printf "\n$(centre_align_to_menu $menu_size $container)\n"
+        printf "${STATE}$(centre_align_to_menu $menu_size $container_state)${STD}\n\n"
         printf " 1. Connect to Container\n"
         printf " 2. Start Container\n"
         printf " 3. Restart Container\n"
