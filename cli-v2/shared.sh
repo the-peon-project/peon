@@ -33,6 +33,18 @@ draw_menu_header() {
     printf "┏$bar_heavy┓\n┃$title_gap$title$title_gap┃\n┗$mid_bar┛\n  │$heading_gap$heading$heading_gap│\n  └$bar_light┘\n" # Print out menu
 }
 
+centre_align_to_menu(){
+    width=$1 text=$2
+    text_size=${#text}
+    spaces=""
+    if (($width % 2)); then width=$(($width + 1)); fi
+    if (($width > $text_size)); then
+        width=$(($width + 8))
+        spaces=$(printf "%*s%s" $((($width - $text_size) / 2)) '' "$line")
+    fi
+    echo "$spaces$text"
+}
+
 list_all_containers() {
     draw_menu_header $menu_size "$app_name" "A L L   C O N T A I N E R S"
     docker ps -a --format "table {{.Names}}\t{{.State}}"
