@@ -26,7 +26,6 @@ game_stop_container() {
 }
 
 game_container_logs() {
-    printf "docker logs '$1'"
     docker logs "$1"
     pause
 }
