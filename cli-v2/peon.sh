@@ -10,7 +10,7 @@ peon_connect_container() {
             docker exec -it $container bash
             ;;
         0) break ;;
-        *) echo "Invalid entry. Please try again. Type '0' to exit." ;;
+            *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
 }
