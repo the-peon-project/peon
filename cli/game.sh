@@ -25,8 +25,10 @@ game_stop_container() {
     sleep 0.75
 }
 
-game_container_logs(){
-    docker logs $i
+game_container_logs() {
+    printf "docker logs '$1'"
+    docker logs "$1"
+    pause
 }
 
 game_server_logs() {
@@ -34,7 +36,8 @@ game_server_logs() {
     for chunk in "${docker_go_data[@]}"; do
         if [[ $chunk == *"/var/log/peon/"* ]]; then log_path="$chunk"; fi
     done
-    select log in `ls $log_path`; do
+    log_files=($(ls $log_path))
+    select log in $(ls $log_path); do
         case $REPLY in
         [1-${#log_files[@]}])
             "${EDITOR:-vi}" "$log_path/$log"
@@ -46,7 +49,6 @@ game_server_logs() {
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
-    pause
 }
 
 game_action() {
