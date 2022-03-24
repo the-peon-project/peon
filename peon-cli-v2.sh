@@ -1,5 +1,7 @@
 #!/bin/bash
 source cli-v2/shared.sh
+source cli-v2/peon.sh
+source cli-v2/game.sh
 
 menu_main() {
     clear
@@ -10,7 +12,7 @@ menu_main() {
     printf "        └───────────────────┘\n"
     printf " 1. List All Containers\n"
     printf " 2. Peon Containers\n"
-    printf " 2. Game Containers\n"
+    printf " 3. Game Containers\n"
     printf " 0. Exit\n\n"
 }
 
@@ -20,8 +22,9 @@ main_menu_read_options() {
     case $choice in
     0) exit 0 ;;
     1) list_all_containers ;;
-    2) two ;;
-    *) printf "${RED_HL}Error...${STD}\n" && sleep 2 ;;
+    2) menu_peon ;;
+    3) menu_game ;;
+    *) printf "${RED_HL}Invalid Option${STD}\n" && sleep 1 ;;
     esac
 }
 
