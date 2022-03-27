@@ -75,6 +75,7 @@ menu_peon() {
         printf " 3. Restart Containers\n"
         printf " 4. Stop Containers\n"
         printf " 5. Update Containers\n"
+        printf " 6. Reauthorize Orc\n"
         printf " 0. Main Menu\n\n"
         read -p "Enter selection: " choice
         case $choice in
@@ -84,6 +85,7 @@ menu_peon() {
         3) peon_restart_containers ;;
         4) peon_stop_containers ;;
         5) peon_update_containers ;;
+        6) ./configure_orc.sh ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
