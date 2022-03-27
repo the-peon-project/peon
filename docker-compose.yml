@@ -46,3 +46,4 @@ services:
       zugnet:
         ipv4_address: 172.20.0.4
     restart: unless-stopped
+    privileged: true
