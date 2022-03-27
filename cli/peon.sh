@@ -1,4 +1,23 @@
 #!/bin/bash
+
+peon_check_health() {
+    # ToDo - Centre align
+    for container in $(docker ps -a --format "{{.Names}}" | grep -i 'peon' | grep -v 'warcamp'); do
+        container_state=$(docker container inspect -f '{{.State.Status}}' $container)
+        case $container_state in
+            "created") STATE=$BLUE ;;
+            "running") STATE=$GREEN ;;
+            "paused") STATE=$ORANGE ;;
+            "restarting") STATE=$ORANGE ;;
+            "dead") STATE=$RED_HL ;;
+            "exited") STATE=$RED ;;
+        *) STATE=$ORANGE ;;
+        esac
+        printf " $container [${STATE}$container_state${STD}]\n"
+    done
+    printf "\n"
+}
+
 peon_connect_container() {
     draw_menu_header $menu_size "$app_name" "P E O N   C O N N E C T"
     PS3="Please select a container to enter: "
@@ -49,6 +68,7 @@ menu_peon() {
     local choice
     while $incomplete; do
         draw_menu_header $menu_size "$app_name" "P E O N   C O N T A I N E R S"
+        peon_check_health
         printf " 1. Connect to Container\n"
         printf " 2. Start Containers\n"
         printf " 3. Restart Containers\n"
