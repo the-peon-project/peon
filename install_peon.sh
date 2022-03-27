@@ -15,8 +15,14 @@ rm -rf master.tar.gz
 # docker-compose up -d
 # Set permissions for docker containers
 chown -R 1000:1000 .
-# Install peon-cli
+#
+# P E O N - C L I
+#
 echo "#!/bin/bash" > /usr/bin/peon-cli
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 echo "$SCRIPT_DIR/${0##*/} >> /usr/bin/."
 sudo chomd +x /usr/bin/${0##*/}
+#
+# O R C - A U T H E N T I C A T I O N
+#
+./configure_orc.sh
