@@ -60,7 +60,7 @@ game_action() {
         case $container_state in
         "created") STATE=$BLUE ;;
         "running") STATE=$GREEN ;;
-        "paused") STATE=$STD ;;
+        "paused") STATE=$ORANGE ;;
         "restarting") STATE=$ORANGE ;;
         "dead") STATE=$RED_HL ;;
         "exited") STATE=$RED ;;
