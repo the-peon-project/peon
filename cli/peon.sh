@@ -27,6 +27,7 @@ peon_connect_container() {
         [1-${#container_list[@]}])
             echo -e "Connecting to peon infrastructure container ${BLUE}$container${STD}"
             docker exec -it $container bash
+            break
             ;;
         0) break ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
