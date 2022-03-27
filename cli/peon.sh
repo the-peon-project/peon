@@ -5,12 +5,12 @@ peon_check_health() {
     for container in $(docker ps -a --format "{{.Names}}" | grep -i 'peon' | grep -v 'warcamp'); do
         container_state=$(docker container inspect -f '{{.State.Status}}' $container)
         case $container_state in
-            "created") STATE=$BLUE ;;
-            "running") STATE=$GREEN ;;
-            "paused") STATE=$ORANGE ;;
-            "restarting") STATE=$ORANGE ;;
-            "dead") STATE=$RED_HL ;;
-            "exited") STATE=$RED ;;
+        "created") STATE=$BLUE ;;
+        "running") STATE=$GREEN ;;
+        "paused") STATE=$ORANGE ;;
+        "restarting") STATE=$ORANGE ;;
+        "dead") STATE=$RED_HL ;;
+        "exited") STATE=$RED ;;
         *) STATE=$ORANGE ;;
         esac
         printf " $container [${STATE}$container_state${STD}]\n"
@@ -22,9 +22,10 @@ peon_connect_container() {
     draw_menu_header $menu_size "$app_name" "P E O N   C O N N E C T"
     PS3="Please select a container to enter: "
     container_list=$(docker ps --format "{{.Names}}" | grep -i 'peon' | grep -v 'warcamp')
+    container_count=`echo $container_list | wc -w`
     select container in $container_list; do
         case $REPLY in
-        [1-${#container_list[@]}])
+        [1-$container_count])
             echo -e "Connecting to peon infrastructure container ${BLUE}$container${STD}"
             docker exec -it $container bash
             break
