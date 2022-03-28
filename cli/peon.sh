@@ -40,7 +40,6 @@ peon_start_containers() {
     draw_menu_header $menu_size "$app_name" "P E O N   S T A R T"
     echo -e "[${GREEN}Starting${STD}] peon infrastructure containers"
     docker-compose up -d
-    pause
 }
 
 peon_restart_containers() {
@@ -49,14 +48,12 @@ peon_restart_containers() {
     docker-compose stop
     echo -e "[${GREEN}Starting${STD}] peon infrastructure containers"
     docker-compose up -d
-    pause
 }
 
 peon_stop_containers() {
     draw_menu_header $menu_size "$app_name" "P E O N   S T O P"
     echo -e "[${RED}Stopping${STD}] peon infrastructure containers"
     docker-compose stop
-    pause
 }
 
 peon_update_containers() {
