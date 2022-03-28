@@ -58,8 +58,10 @@ peon_stop_containers() {
 
 peon_update_containers() {
     draw_menu_header $menu_size "$app_name" "P E O N   U P D A T E"
-    echo -e " ${ORANGE}* NOT IMPLEMETNED YET *${STD}"
-    pause
+    echo -e "[${RED}Removing${STD}] peon current infrastructure containers"
+    docker-compose down
+    echo -e "[${RED}Deploying${STD}] updated peon containers"
+    docker-compose up -d 
 }
 
 menu_peon() {
