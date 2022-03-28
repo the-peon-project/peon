@@ -1,8 +1,20 @@
 #!/bin/bash
 
+peon_check_orc(){
+    # Checks of the orc container has been authorised to communicate to docker host
+    if [[ $(docker ps | grep 'peon.orc') ]]; then
+        if [[ $(docker exec -it peon.orc ls /root/.ssh | grep .pub) ]]; then
+            echo " [${GREEN}authorised${STD}]"
+        else
+            echo " [${RED}unauthorised${STD}] * Please re-authorise the container."
+        fi
+    fi
+}
+
 peon_check_health() {
     # ToDo - Centre align
     for container in $(docker ps -a --format "{{.Names}}" | grep -i 'peon' | grep -v 'warcamp'); do
+        orc_state=""
         container_state=$(docker container inspect -f '{{.State.Status}}' $container)
         case $container_state in
         "created") STATE=$BLUE ;;
@@ -13,7 +25,10 @@ peon_check_health() {
         "exited") STATE=$RED ;;
         *) STATE=$ORANGE ;;
         esac
-        printf " $container [${STATE}$container_state${STD}]\n"
+        if [[ "$container" == "peon.orc" ]]; then
+            orc_state="$(peon_check_orc)"
+        fi
+        printf " $container [${STATE}$container_state${STD}]$orc_state\n"
     done
     printf "\n"
 }
@@ -64,6 +79,8 @@ peon_update_containers() {
     docker-compose up -d 
 }
 
+
+
 menu_peon() {
     local incomplete=true
     local choice
@@ -75,7 +92,7 @@ menu_peon() {
         printf " 3. Restart Containers\n"
         printf " 4. Stop Containers\n"
         printf " 5. Update Containers\n"
-        printf " 6. Reauthorize Orc\n"
+        printf " 6. Reauthorize Orchestrator\n"
         printf " 0. Main Menu\n\n"
         read -p "Enter selection: " choice
         case $choice in
