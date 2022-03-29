@@ -26,7 +26,7 @@ menu_main_read_options() {
     esac
 }
 
-trap '' SIGINT SIGQUIT SIGTSTP
+trap 'exit 0' SIGINT SIGQUIT SIGTSTP
 while true; do
     menu_main
     menu_main_read_options
