@@ -1,4 +1,6 @@
-# PEON (Simple Game Server Manager)
+# PEON (Pretty Epic Opensource Narcolepsy)
+
+## The Easy Game Server Manager
 
 An **OpenSource** project to assist gamers in self deploying/managing game servers.\
 Intended to be a one-stop-shop for game server deployment/management.\
