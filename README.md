@@ -1,5 +1,4 @@
 # PEON (Pretty Epic Opensource Narcolepsy)
-
 ## The Easy Game Server Manager
 
 An **OpenSource** project to assist gamers in self deploying/managing game servers.\
@@ -53,7 +52,6 @@ Create a working directory for the project
 
 ```bash
 mkdir /root/peon
-cd /root/peon
 ```
 
 #### 2. Download latest release
@@ -69,7 +67,7 @@ wget https://github.com/nox-noctua-consulting/peon/archive/refs/tags/warcamp.tar
 Extract the project files into the ``peon`` directory.
 
 ```bash
-tar -xvf warcamp.tar.gz --strip-components=1 --directory peon
+tar -xvf warcamp.tar.gz --strip-components=1 --directory peon -C /root/peon/.
 ```
 
 #### 4. Deploy Peon to server
