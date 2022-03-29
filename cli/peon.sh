@@ -4,9 +4,9 @@ peon_check_orc(){
     # Checks of the orc container has been authorised to communicate to docker host
     if [[ $(docker ps | grep 'peon.orc') ]]; then
         if [[ $(docker exec -it peon.orc ls /root/.ssh | grep .pub) ]]; then
-            echo " [${GREEN}authorised${STD}]"
+            echo " [${BLUE}authorised${STD}]"
         else
-            echo " [${RED}unauthorised${STD}] * Please re-authorise the container."
+            echo " [${ORANGE}not authorised${STD}] * Please re-authorise the container."
         fi
     fi
 }
@@ -75,8 +75,10 @@ peon_update_containers() {
     draw_menu_header $menu_size "$app_name" "P E O N   U P D A T E"
     echo -e "[${RED}Removing${STD}] peon current infrastructure containers"
     docker-compose down
-    echo -e "[${RED}Deploying${STD}] updated peon containers"
+    echo -e "[${GREEN}Deploying${STD}] updated peon containers"
     docker-compose up -d 
+    echo -e "[${BLUE}Authorizing${STD}] Peon.orc for node control"
+    ./configure_orc.sh
 }
 
 
