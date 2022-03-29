@@ -30,25 +30,60 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 
 - [ ] Public RESTful API control (for things like discord bots)
 - [ ] Server file backups
+
 #### Notes
 
 [Flask app example](https://ianlondon.github.io/blog/deploy-flask-docker-nginx/)
 
-##### Quick Project Download
+## How To
+
+### Requirements
+
+Please note that the requirements will change/improve over time.
+
+- [Docker] running on a server
+- [Internet] connection to be able to reach github & docker hub.
+- [SSH Server] running on the docker host (allowing access on port ``22222``)
+
+### Deployment
+
+#### 1. Working directory
+
+Create a working directory for the project
 
 ```bash
-wget https://github.com/nox-noctua-consulting/peon/archive/main.zip
+mkdir /root/peon
+cd /root/peon
 ```
 
-##### Deploy app in Detached mode
+#### 2. Download latest release
+
+Pull the latest release from the peon repo
 
 ```bash
-docker-compose up -d
+wget https://github.com/nox-noctua-consulting/peon/archive/refs/tags/warcamp.tar.gz
 ```
 
-##### peon-cli
+#### 3. Extract the project
+
+Extract the project files into the ``peon`` directory.
+
+```bash
+tar -xvf warcamp.tar.gz --strip-components=1 --directory peon
+```
+
+#### 4. Deploy Peon to server
+
+Run download/deploy containers and configure services.
+
+```bash
+./install_peon.sh
+```
+
+#### 5. Run ``peon-cli`` to confirm health (optional)
+
 A management tui which runs on the docker host and is used to streamline peon support.
+
 ```bash
 peon-cli
 ```
-
