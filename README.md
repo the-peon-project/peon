@@ -1,10 +1,9 @@
 # PEON (Play Everything On Nodes)
-
 ## The Easy Game Server Manager
 
 An **OpenSource** project to assist gamers in self deploying/managing game servers.\
 Intended to be a one-stop-shop for game server deployment/management.\
-If run on a public/paid cloud, it is architected to try minimise costs (easy schedule/manage uptime vs downtime)\
+If run on a public/paid cloud, it is architected to try minimise costs (easy schedule/manage uptime vs downtime)
 
 ## Architecture
 
