@@ -1,5 +1,4 @@
-# PEON (Pretty Epic Opensource Network)
-
+# PEON (Play Everything On Nodes)
 
 ## The Easy Game Server Manager
 
