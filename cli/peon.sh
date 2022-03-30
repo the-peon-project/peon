@@ -108,5 +108,6 @@ menu_peon() {
         6) ./configure_orc.sh ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
+        sleep 2
     done
 }
