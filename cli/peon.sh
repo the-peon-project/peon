@@ -82,6 +82,7 @@ peon_update_containers() {
     docker-compose up -d 
     echo -e "[${BLUE}Authorizing${STD}] orchestrator for node control"
     ./configure_orc.sh
+    sleep 2 # To allow reading of process
 }
 
 menu_peon() {
@@ -108,6 +109,5 @@ menu_peon() {
         6) ./configure_orc.sh ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
-        sleep 2
     done
 }
