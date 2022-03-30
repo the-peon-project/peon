@@ -77,7 +77,7 @@ peon_update_containers() {
     echo -e "[${RED}Removing${STD}] existing infrastructure containers"
     docker-compose down
     echo -e "[${BLUE}Pulling${STD}] latest version of docker-compose."
-    curl https://raw.githubusercontent.com/nox-noctua-consulting/peon/main/docker-compose.yml > docker-compose.yml
+    curl https://gitcdn.link/cdn/nox-noctua-consulting/peon/main/docker-compose.yml > docker-compose.yml
     echo -e "[${GREEN}Deploying${STD}] latest peon containers"
     docker-compose up -d 
     echo -e "[${BLUE}Authorizing${STD}] orchestrator for node control"
