@@ -98,8 +98,9 @@ menu_peon() {
         printf " 5. Update Containers\n"
         printf " 6. Reauthorize Orchestrator\n"
         printf " 0. Main Menu\n\n"
-        read -p "Enter selection: " choice
+        read -p "Enter selection: " -t 5 choice
         case $choice in
+        "") pass ;;
         0) incomplete=false ;;
         1) peon_connect_container ;;
         2) peon_start_containers ;;

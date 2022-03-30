@@ -75,8 +75,9 @@ game_action() {
         printf " 5. Container logs\n"
         printf " 6. Server logs\n"
         printf " 0. Back\n\n"
-        read -p "Enter selection: " choice
+        read -p "Enter selection: " -t 5 choice
         case $choice in
+        "") pass ;;
         0) action_incomplete=false ;;
         1) game_connect_container $container ;;
         2) game_start_container $container ;;
@@ -96,9 +97,10 @@ menu_game() {
         draw_menu_header $menu_size "$app_name" "G A M E   C O N T A I N E R S"
         PS3="Enter selection: "
         container_list=$(docker ps -a --format "{{.Names}}" | grep -i 'peon.warcamp')
+        container_count=`echo $container_list | wc -w`
         select container in $container_list; do
             case $REPLY in
-            [1-${#container_list[@]}])
+            [1-$container_count])
                 game_action $container
                 break
                 ;;
