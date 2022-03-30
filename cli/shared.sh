@@ -46,7 +46,10 @@ centre_align_to_menu() {
 }
 
 list_all_containers() {
-    draw_menu_header $menu_size "$app_name" "A L L   C O N T A I N E R S"
-    docker ps -a --format "table {{.Names}}\t{{.State}}"
-    pause
+    result=""
+    while [ "$result" == "" ]; do
+        draw_menu_header $menu_size "$app_name" "A L L   C O N T A I N E R S"
+        docker ps -a --format "table {{.Names}}\t{{.State}}"
+        read -n 1 -s -t 5 result
+    done
 }
