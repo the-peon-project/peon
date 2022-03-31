@@ -36,6 +36,7 @@ game_server_logs() {
         if [[ $chunk == *"/var/log/peon/"* ]]; then log_path="$chunk"; fi
     done
     log_files=($(ls $log_path))
+    printf "\n━ Game Server Logs ━\n${BLUE}$log_path${STD}\n"
     select log in $(ls $log_path); do
         case $REPLY in
         [1-${#log_files[@]}])
