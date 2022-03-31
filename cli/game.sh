@@ -39,7 +39,9 @@ game_server_logs() {
     select log in $(ls $log_path); do
         case $REPLY in
         [1-${#log_files[@]}])
-            "${EDITOR:-vi}" "$log_path/$log"
+            clear
+            cat "$log_path/$log"
+            read -n 1 -s result
             break
             ;;
         0)
