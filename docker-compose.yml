@@ -8,6 +8,7 @@ services:
     image: postgres:14-alpine
     container_name: peon.db
     environment:
+      - POSTGRES_DB=durotar
       - POSTGRES_USER=gromhellscream
       - POSTGRES_PASSWORD=Zu88Zu88
     volumes:
