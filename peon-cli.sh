@@ -28,6 +28,34 @@ menu_main_read_options() {
 
 trap 'exit 0' SIGINT SIGQUIT SIGTSTP
 while true; do
-    menu_main
-    menu_main_read_options
+
+    if [ -z "$1" ]; then
+        menu_main
+        menu_main_read_options
+    else
+        case "$1" in
+        -u | --update)
+            peon_update_containers
+            exit $?
+            ;;
+        -s | --start)
+            peon_start_containers
+            exit $?
+            ;;
+        -p | --stop)
+            peon_stop_containers
+            exit $?
+            ;;
+        -r | --restart)
+            peon_restart_containers
+            exit $?
+            ;;
+        -* | --*=) # unsupported flags
+            echo "ERROR: $1 is not supported." >&2
+            printf " Supported flags are:\n\t-u|--update\tupdates peon containers\n\t-s|--start\tstarts peon conatiners\n\t-p|--stop\tstops peon containers\n\t-r|--restart\trestarts peon containers\n"
+            exit 1
+            ;;
+        esac
+    fi
+    exit 0
 done
