@@ -18,6 +18,7 @@ services:
       zugnet:
         ipv4_address: 172.20.0.2
     restart: always
+    command: bash -c cd /var/lib/postgresql/data & sed -i "$(cat -n pg_hba.conf | grep 127.0.0.1/32 | grep -v replication | awk '{print $1}') a host    all             gromhellscream  172.20.0.0/24           md5" pg_hba.conf
   webapp:
     container_name: peon.ui
     image: umlatt/peon.ui:0.1.1-dev
