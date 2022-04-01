@@ -19,7 +19,7 @@ services:
     networks:
       zugnet:
         ipv4_address: 172.20.0.2
-    restart: always
+    restart: unless-stopped
     labels:
       com.peon.description: "Peon backend DB (PostgreSQL)"
   webapp:
