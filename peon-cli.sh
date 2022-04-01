@@ -70,5 +70,4 @@ while true; do
             ;;
         esac
     fi
-    exit 0
 done
