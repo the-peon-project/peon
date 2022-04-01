@@ -1,5 +1,10 @@
 #!/bin/bash
 
+game_get_metrics() {
+    echo -e "Getting game server container ${BLUE}$container${STD} statistics"
+    docker stats $1
+}
+
 game_connect_container() {
     echo -e "Connecting to ${BLUE}$1${STD}"
     docker exec -it $1 bash
@@ -77,6 +82,7 @@ game_action() {
         printf " 4. Stop Container\n"
         printf " 5. Container logs\n"
         printf " 6. Server logs\n"
+        printf " 7. Server Metrics\n"
         printf " 0. Back\n\n"
         read -p "Enter selection: " -t 5 choice
         case $choice in
@@ -88,6 +94,7 @@ game_action() {
         4) game_stop_container $container ;;
         5) game_container_logs $container ;;
         6) game_server_logs $container ;;
+        7) game_get_metrics $container;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
