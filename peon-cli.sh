@@ -70,7 +70,7 @@ while true; do
             printf "\t-s|--start\t(S)tarts infrastrcture conatiners\n"
             printf "\t-p|--stop\tSto(p)s infrastrcture containers\n"
             printf "\t-r|--restart\t(R)estarts infrastrcture containers\n"
-            printf "\t-m|--metrics\tPerformance statistics/(M)etrics for ALL containers.\n"
+            printf "\t-m|--metrics\tPerformance statistics/(M)etrics for ALL running containers.\n"
             printf "\t-k|--kill\t(K)ill ALL running containers.\n"
             exit 1
             ;;
