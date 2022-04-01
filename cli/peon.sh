@@ -52,6 +52,24 @@ peon_connect_container() {
     done
 }
 
+peon_get_metrics() {
+    draw_menu_header $menu_size "$app_name" "P E O N   S T A T I S T I C S"
+    PS3="Please select a container to view: "
+    container_list=$(docker ps --format "{{.Names}}" | grep -i 'peon' | grep -v 'warcamp')
+    container_count=`echo $container_list | wc -w`
+    select container in $container_list; do
+        case $REPLY in
+        [1-$container_count])
+            echo -e "Getting peon infrastructure container ${BLUE}$container${STD} statistics"
+            docker stats $container
+            break
+            ;;
+        0) break ;;
+        *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
+        esac
+    done
+}
+
 peon_start_containers() {
     draw_menu_header $menu_size "$app_name" "P E O N   S T A R T"
     echo -e "[${GREEN}Starting${STD}] peon infrastructure containers"
@@ -77,12 +95,12 @@ peon_update_containers() {
     echo -e "[${RED}Removing${STD}] existing infrastructure containers"
     docker-compose down
     echo -e "[${BLUE}Pulling${STD}] latest version of docker-compose."
-    curl https://gitcdn.link/cdn/nox-noctua-consulting/peon/main/docker-compose.yml > docker-compose.yml
+    # curl https://gitcdn.link/cdn/nox-noctua-consulting/peon/main/docker-compose.yml > docker-compose.yml
     echo -e "[${GREEN}Deploying${STD}] latest peon containers"
     docker-compose up -d 
     echo -e "[${BLUE}Authorizing${STD}] orchestrator for node control"
     ./configure_orc.sh
-    sleep 2 # To allow reading of process
+    sleep 1 # To allow reading of process
 }
 
 menu_peon() {
@@ -97,6 +115,7 @@ menu_peon() {
         printf " 4. Stop Containers\n"
         printf " 5. Update Containers\n"
         printf " 6. Reauthorize Orchestrator\n"
+        printf " 7. Performance Metrics\n"
         printf " 0. Main Menu\n\n"
         read -p "Enter selection: " -t 5 choice
         case $choice in
@@ -108,6 +127,7 @@ menu_peon() {
         4) peon_stop_containers ;;
         5) peon_update_containers ;;
         6) ./configure_orc.sh ;;
+        7) peon_get_metrics ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done

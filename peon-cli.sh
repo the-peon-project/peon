@@ -50,6 +50,10 @@ while true; do
             peon_restart_containers
             exit $?
             ;;
+        -m | --metrics)
+            peon_get_metrics
+            exit $?
+            ;;       
         -* | --*=) # unsupported flags
             echo "ERROR: $1 is not supported." >&2
             printf " Supported flags are:\n\t-u|--update\tupdates peon containers\n\t-s|--start\tstarts peon conatiners\n\t-p|--stop\tstops peon containers\n\t-r|--restart\trestarts peon containers\n"
