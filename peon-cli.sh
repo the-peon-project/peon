@@ -65,7 +65,13 @@ while true; do
             ;;
         -* | --*=) # unsupported flags
             echo "ERROR: $1 is not supported." >&2
-            printf " Supported flags are:\n\t-u|--update\tupdates peon containers\n\t-s|--start\tstarts peon conatiners\n\t-p|--stop\tstops peon containers\n\t-r|--restart\trestarts peon containers\n"
+            printf " Supported flags are:\n"
+            printf "\t-u|--update\t(U)pdates infrastrcture containers\n"
+            printf "\t-s|--start\t(S)tarts infrastrcture conatiners\n"
+            printf "\t-p|--stop\tSto(p)s infrastrcture containers\n"
+            printf "\t-r|--restart\t(R)estarts infrastrcture containers\n"
+            printf "\t-m|--metrics\tPerformance statistics/(M)etrics for ALL containers.\n"
+            printf "\t-k|--kill\t(K)ill ALL running containers.\n"
             exit 1
             ;;
         esac
