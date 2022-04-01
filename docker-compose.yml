@@ -35,9 +35,6 @@ services:
       zugnet:
         ipv4_address: 172.20.0.3
     restart: unless-stopped
-    labels:
-      com.peon.description: "Peon User Interface"
-      maintainer: "Umlatt <richard@noxnoctua.com>"
   orchestrator:
     container_name: peon.orc
     image: umlatt/peon.orc:0.1.4-dev
@@ -54,6 +51,3 @@ services:
         ipv4_address: 172.20.0.4
     restart: unless-stopped
     privileged: true
-    labels:
-      com.peon.description: "Peon User Orchestration"
-      maintainer: "Umlatt <richard@noxnoctua.com>"
