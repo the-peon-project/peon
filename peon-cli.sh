@@ -51,7 +51,7 @@ while true; do
             exit $?
             ;;
         -m | --metrics)
-            peon_get_metrics
+            docker stats
             exit $?
             ;;       
         -* | --*=) # unsupported flags
