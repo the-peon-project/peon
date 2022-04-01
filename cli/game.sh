@@ -94,7 +94,7 @@ game_action() {
         4) game_stop_container $container ;;
         5) game_container_logs $container ;;
         6) game_server_logs $container ;;
-        7) game_get_metrics $container;;
+        7) game_get_metrics $container ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
@@ -107,7 +107,7 @@ menu_game() {
         draw_menu_header $menu_size "$app_name" "G A M E   C O N T A I N E R S"
         PS3="Enter selection: "
         container_list=$(docker ps -a --format "{{.Names}}" | grep -i 'peon.warcamp')
-        container_count=`echo $container_list | wc -w`
+        container_count=$(echo $container_list | wc -w)
         select container in $container_list; do
             case $REPLY in
             [1-$container_count])

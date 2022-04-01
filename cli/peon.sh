@@ -1,6 +1,6 @@
 #!/bin/bash
 
-peon_check_orc(){
+peon_check_orc() {
     # Checks of the orc container has been authorised to communicate to docker host
     if [[ $(docker ps | grep 'peon.orc') ]]; then
         hostname=$(docker container inspect -f '{{.Config.Hostname}}' peon.orc)
@@ -38,7 +38,7 @@ peon_connect_container() {
     draw_menu_header $menu_size "$app_name" "P E O N   C O N N E C T"
     PS3="Please select a container to enter: "
     container_list=$(docker ps --format "{{.Names}}" | grep -i 'peon' | grep -v 'warcamp')
-    container_count=`echo $container_list | wc -w`
+    container_count=$(echo $container_list | wc -w)
     select container in $container_list; do
         case $REPLY in
         [1-$container_count])
@@ -56,7 +56,7 @@ peon_get_metrics() {
     draw_menu_header $menu_size "$app_name" "P E O N   S T A T I S T I C S"
     PS3="Please select a container to view: "
     container_list=$(docker ps --format "{{.Names}}" | grep -i 'peon' | grep -v 'warcamp')
-    container_count=`echo $container_list | wc -w`
+    container_count=$(echo $container_list | wc -w)
     select container in $container_list; do
         case $REPLY in
         [1-$container_count])
@@ -97,7 +97,7 @@ peon_update_containers() {
     echo -e "[${BLUE}Pulling${STD}] latest version of docker-compose."
     # curl https://gitcdn.link/cdn/nox-noctua-consulting/peon/main/docker-compose.yml > docker-compose.yml
     echo -e "[${GREEN}Deploying${STD}] latest peon containers"
-    docker-compose up -d 
+    docker-compose up -d
     echo -e "[${BLUE}Authorizing${STD}] orchestrator for node control"
     ./configure_orc.sh
     sleep 1 # To allow reading of process

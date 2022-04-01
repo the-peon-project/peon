@@ -53,16 +53,16 @@ while true; do
         -m | --metrics)
             docker stats
             exit $?
-            ;; 
+            ;;
         -k | --killall)
             printf "${RED}Stopping${STD} all containers\n"
-            if [[ -z $(docker ps -q) ]]; then 
-                echo " Containers already stopped"; 
+            if [[ -z $(docker ps -q) ]]; then
+                echo " Containers already stopped"
             else
                 docker stop $(docker ps -q)
             fi
             exit $?
-            ;;      
+            ;;
         -* | --*=) # unsupported flags
             echo "ERROR: $1 is not supported." >&2
             printf " Supported flags are:\n\t-u|--update\tupdates peon containers\n\t-s|--start\tstarts peon conatiners\n\t-p|--stop\tstops peon containers\n\t-r|--restart\trestarts peon containers\n"
