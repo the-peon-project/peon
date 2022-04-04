@@ -30,6 +30,13 @@ game_stop_container() {
     sleep 0.75
 }
 
+game_delete_container() {
+    echo -e "[${RED_HL}Deleting${STD}] $1"
+    docker stop $1
+    docker rm $1
+    sleep 0.75
+}
+
 game_container_logs() {
     docker logs "$1"
     pause
@@ -83,6 +90,7 @@ game_action() {
         printf " 5. Container logs\n"
         printf " 6. Server logs\n"
         printf " 7. Server Metrics\n"
+        printf " 8. Delete Container\n"
         printf " 0. Back\n\n"
         read -p "Enter selection: " -t 5 choice
         case $choice in
@@ -95,6 +103,7 @@ game_action() {
         5) game_container_logs $container ;;
         6) game_server_logs $container ;;
         7) game_get_metrics $container ;;
+        8) game_delete_container $container; break ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
@@ -108,18 +117,24 @@ menu_game() {
         PS3="Enter selection: "
         container_list=$(docker ps -a --format "{{.Names}}" | grep -i 'peon.warcamp')
         container_count=$(echo $container_list | wc -w)
-        select container in $container_list; do
-            case $REPLY in
-            [1-$container_count])
-                game_action $container
-                break
-                ;;
-            0)
-                game_incomplete=false
-                break
-                ;;
-            *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
-            esac
-        done
+        if [ "$container_count" -gt "0" ]; then
+            select container in $container_list; do
+                case $REPLY in
+                [1-$container_count])
+                    game_action $container
+                    break
+                    ;;
+                0)
+                    game_incomplete=false
+                    break
+                    ;;
+                *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
+                esac
+            done
+        else
+            printf "\nThere are currently no game servers on this host.\n\n"
+            read -p "Press enter to continue."
+            game_incomplete=false
+        fi
     done
 }
