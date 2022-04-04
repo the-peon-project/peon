@@ -3,6 +3,17 @@ source cli/shared.sh
 source cli/peon.sh
 source cli/game.sh
 
+help_information() {
+    printf " Supported flags are:\n"
+    printf "\t-h|--help\tDisplay this (H)elp information.\n"
+    printf "\t-u|--update\t(U)pdates infrastrcture containers.\n"
+    printf "\t-s|--start\t(S)tarts infrastrcture conatiners.\n"
+    printf "\t-p|--stop\tSto(p)s infrastrcture containers.\n"
+    printf "\t-r|--restart\t(R)estarts infrastrcture containers.\n"
+    printf "\t-m|--metrics\tPerformance statistics/(M)etrics for ALL running containers.\n"
+    printf "\t-k|--kill\t(K)ill ALL running containers.\n\n"
+}
+
 menu_main() {
     draw_menu_header $menu_size "$app_name" "M A I N - M E N U"
     printf " 1. List All Containers\n"
@@ -54,6 +65,11 @@ while true; do
             docker stats
             exit $?
             ;;
+        -h | --help)
+            printf "\t\t━━ PEON CLI ━━\n Run 'peon' for a menu & extended options.\n\n"
+            help_information
+            exit $?
+            ;;
         -k | --killall)
             printf "${RED}Stopping${STD} all containers\n"
             if [[ -z $(docker ps -q) ]]; then
@@ -65,13 +81,7 @@ while true; do
             ;;
         -* | --*=) # unsupported flags
             echo "ERROR: $1 is not supported." >&2
-            printf " Supported flags are:\n"
-            printf "\t-u|--update\t(U)pdates infrastrcture containers\n"
-            printf "\t-s|--start\t(S)tarts infrastrcture conatiners\n"
-            printf "\t-p|--stop\tSto(p)s infrastrcture containers\n"
-            printf "\t-r|--restart\t(R)estarts infrastrcture containers\n"
-            printf "\t-m|--metrics\tPerformance statistics/(M)etrics for ALL running containers.\n"
-            printf "\t-k|--kill\t(K)ill ALL running containers.\n"
+            help_information
             exit 1
             ;;
         esac
