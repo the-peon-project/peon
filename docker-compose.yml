@@ -44,8 +44,8 @@ services:
       - '5000:5000'
     volumes:
       - /var/log/peon:/var/log/peon
-      - $PWD/servers:/servers
-      - $PWD/plans:/plans
+      - $PWD/servers:/root/peon/servers
+      - $PWD/plans:/root/peon/plans
     networks:
       zugnet:
         ipv4_address: 172.20.0.4
