@@ -14,19 +14,19 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 
 ### Feature Plan
 
-#### *sprint 1.0.0*
+#### *sprint 0.1.0*
 
 - [x] peon-cli - A cli component for backend server support, which runs on the host.
 - [ ] WebUI - Access controlled webpage for management
 - [ ] Deploy and delete games from a recipe catalgue (hosted at [Peon Recipies](https://github.com/nox-noctua-consulting/peon-recipies))
-- [ ] REST controlled deploy/start/stop servers
+- [x] REST controlled deploy/start/stop servers
 
-#### *sprint 2.0.0*
+#### *sprint 0.2.0*
 
 - [ ] Recipes - Autodetect newly added recipies.
 - [ ] Persistent server data - Keep server data for updates & future releases.
 
-#### *sprint 3.0.0*
+#### *sprint 0.3.0*
 
 - [ ] Public RESTful API control (for things like discord bots)
 - [ ] Server file backups
