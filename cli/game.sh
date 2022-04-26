@@ -45,7 +45,7 @@ game_container_logs() {
 game_server_logs() {
     docker_go_data=($(docker inspect -f '{{.Mounts}}' $1))
     for chunk in "${docker_go_data[@]}"; do
-        if [[ $chunk == *"/var/log/peon/"* ]]; then log_path="$chunk"; fi
+        if [[ $chunk == *"/root/peon/servers/"* ]]; then log_path="$chunk"; fi
     done
     log_files=($(ls $log_path))
     printf "\n━ Game Server Logs ━\n${BLUE}$log_path${STD}\n"
