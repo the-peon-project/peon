@@ -6,6 +6,7 @@ source cli/game.sh
 help_information() {
     printf " Supported flags are:\n"
     printf "\t-h|--help\tDisplay this (H)elp information.\n"
+    printf "\t-l|--list\t(L)ist running game containers/servers.\n\n"
     printf "\t-u|--update\t(U)pdates infrastrcture containers.\n"
     printf "\t-s|--start\t(S)tarts infrastrcture conatiners.\n"
     printf "\t-p|--stop\tSto(p)s infrastrcture containers.\n"
@@ -47,6 +48,10 @@ while true; do
         case "$1" in
         -u | --update)
             peon_update_containers
+            exit $?
+            ;;
+        -l | --list)
+            menu_game
             exit $?
             ;;
         -s | --start)
