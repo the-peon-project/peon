@@ -23,7 +23,12 @@ docker-compose up -d
 #
 # P E O N - C L I
 #
-echo "#!/bin/bash" > /usr/bin/peon-cli
+echo "#!/bin/bash" > /usr/bin/peon
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-echo "$SCRIPT_DIR/${0##*/} >> /usr/bin/."
-sudo chomd +x /usr/bin/${0##*/}
+echo "$SCRIPT_DIR/peon-cli.sh \"\$@\"" >> /usr/bin/peon
+sudo chomd +x /usr/bin/peon
+
+
+##!/bin/bash
+#cd /root/peon/
+#./peon-cli.sh "$@"
