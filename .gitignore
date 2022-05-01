@@ -1,3 +1,6 @@
+*.crt 
+*.csr 
+*.key
 db/
 server.state
 servers/
