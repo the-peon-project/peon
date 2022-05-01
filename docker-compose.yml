@@ -46,6 +46,7 @@ services:
       - /var/log/peon:/var/log/peon
       - $PWD/servers:/root/peon/servers
       - $PWD/plans:/root/peon/plans
+      - $PWD/certs:/root/peon/certs
     networks:
       zugnet:
         ipv4_address: 172.20.0.4
