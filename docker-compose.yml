@@ -52,7 +52,7 @@ services:
     restart: unless-stopped
     privileged: true
   rest_api:
-    container_name: peon.rest.api
+    container_name: peon.dev.api.docs
     image: swaggerapi/swagger-ui
     environment:
       - SWAGGER_JSON=/mnt/peon-api-v1.0.json
