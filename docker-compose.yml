@@ -51,3 +51,18 @@ services:
         ipv4_address: 172.20.0.4
     restart: unless-stopped
     privileged: true
+  rest_api:
+    container_name: peon.rest.api
+    image: swaggerapi/swagger-ui
+    environment:
+      - SWAGGER_JSON=/mnt/peon-api-v1.0.json
+    depends_on:
+      - orchestrator
+    ports:
+      - '8080:8080'
+    volumes:
+      - $PWD/documentation/api/1.0:/mnt
+    networks:
+      zugnet:
+        ipv4_address: 172.20.0.5
+    restart: unless-stopped
