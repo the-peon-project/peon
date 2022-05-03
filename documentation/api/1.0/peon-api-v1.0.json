@@ -308,7 +308,7 @@
                     "Server"
                 ],
                 "summary": "Disband a PEON Warcamp, with the option to eradicate it.",
-                "description": "Remove a PEON game server. Add eradicate switch to remove config files.",
+                "description": "Remove a PEON game server. Add eradicate switch to remove data & config files.",
                 "operationId": "destroyServer",
                 "parameters": [{
                         "name": "game_uid",
