@@ -5,14 +5,15 @@ source cli/game.sh
 
 help_information() {
     printf " Supported flags are:\n"
-    printf "\t-h|--help\tDisplay this (H)elp information.\n"
-    printf "\t-l|--list\t(L)ist running game containers/servers.\n\n"
+    printf "\t-h|--help\tDisplay this (H)elp information.\n\n"
+    printf "\t-t|--status\tS(t)atus of all containers\n"
+    printf "\t-l|--list\t(L)ist running GAME containers.\n"
+    printf "\t-m|--metrics\tPerformance statistics/(M)etrics for ALL running containers.\n\n"
     printf "\t-u|--update\t(U)pdates infrastrcture containers.\n"
-    printf "\t-d|--redeploy\tRe(D)eploy the infrastructure containers. \n"
+    printf "\t-d|--redeploy\tRe(d)eploy the infrastructure containers. \n"
     printf "\t-s|--start\t(S)tarts infrastrcture conatiners.\n"
     printf "\t-p|--stop\tSto(p)s infrastrcture containers.\n"
     printf "\t-r|--restart\t(R)estarts infrastrcture containers.\n"
-    printf "\t-m|--metrics\tPerformance statistics/(M)etrics for ALL running containers.\n"
     printf "\t-k|--kill\t(K)ill ALL running containers.\n\n"
 }
 
@@ -53,6 +54,10 @@ while true; do
             ;;
         -l | --list)
             menu_game
+            exit $?
+            ;;
+        -t | --status)
+            list_all_containers
             exit $?
             ;;
         -s | --start)
