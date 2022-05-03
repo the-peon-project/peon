@@ -8,6 +8,7 @@ help_information() {
     printf "\t-h|--help\tDisplay this (H)elp information.\n"
     printf "\t-l|--list\t(L)ist running game containers/servers.\n\n"
     printf "\t-u|--update\t(U)pdates infrastrcture containers.\n"
+    printf "\t-d|--redeploy\tRe(D)eploy the infrastructure containers. \n"
     printf "\t-s|--start\t(S)tarts infrastrcture conatiners.\n"
     printf "\t-p|--stop\tSto(p)s infrastrcture containers.\n"
     printf "\t-r|--restart\t(R)estarts infrastrcture containers.\n"
@@ -64,6 +65,10 @@ while true; do
             ;;
         -r | --restart)
             peon_restart_containers
+            exit $?
+            ;;
+        -d | --redeploy)
+            peon_redploy_containers
             exit $?
             ;;
         -m | --metrics)
