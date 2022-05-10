@@ -139,8 +139,8 @@ menu_peon() {
         4) peon_stop_containers ;;
         5) peon_update_containers ;;
         6) peon_redploy_containers ;;
-        6) ./configure_orc.sh ;;
-        7) peon_get_metrics ;;
+        7) ./configure_orc.sh ;;
+        8) peon_get_metrics ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
