@@ -7,6 +7,7 @@ services:
   db:
     image: postgres:14-alpine
     container_name: peon.db
+    hostname: peon.db
     environment:
       - POSTGRES_DB=durotar
       - POSTGRES_USER=gromhellscream
@@ -24,6 +25,7 @@ services:
       com.peon.description: "Peon backend DB (PostgreSQL)"
   webapp:
     container_name: peon.ui
+    hostname: peon.ui
     image: umlatt/peon.ui:0.1.4-dev
     depends_on:
       - db
@@ -37,6 +39,7 @@ services:
     restart: unless-stopped
   orchestrator:
     container_name: peon.orc
+    hostname: peon.orc
     image: umlatt/peon.orc:0.2.9-dev
     depends_on:
       - db
@@ -54,6 +57,7 @@ services:
     privileged: true
   rest_api:
     container_name: peon.dev.api.docs
+    hostname: peon.dev.api.docs
     image: swaggerapi/swagger-ui
     environment:
       - SWAGGER_JSON=/mnt/peon-api-v1.0.json
