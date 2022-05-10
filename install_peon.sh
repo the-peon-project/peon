@@ -19,7 +19,7 @@ docker-compose up -d
 #
 # O R C - A U T H E N T I C A T I O N
 #
-./configure_orc.sh
+cli/configure_orc.sh
 #
 # P E O N - C L I
 #
