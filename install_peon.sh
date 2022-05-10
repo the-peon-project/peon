@@ -27,7 +27,10 @@ echo "#!/bin/bash" > /usr/bin/peon
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 echo "$SCRIPT_DIR/peon-cli.sh \"\$@\"" >> /usr/bin/peon
 sudo chomd +x /usr/bin/peon
-
+#
+# MESSAGE OF THE DAY (LOGIN BANNER)
+#
+sudo cat "$SCRIPT_DIR/media/banner" > /etc/motd
 
 ##!/bin/bash
 #cd /root/peon/
