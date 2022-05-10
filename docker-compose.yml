@@ -24,7 +24,7 @@ services:
       com.peon.description: "Peon backend DB (PostgreSQL)"
   webapp:
     container_name: peon.ui
-    image: umlatt/peon.ui:0.1.3-dev
+    image: umlatt/peon.ui:0.1.4-dev
     depends_on:
       - db
     ports:
@@ -37,7 +37,7 @@ services:
     restart: unless-stopped
   orchestrator:
     container_name: peon.orc
-    image: umlatt/peon.orc:0.2.8-dev
+    image: umlatt/peon.orc:0.2.9-dev
     depends_on:
       - db
     ports:
