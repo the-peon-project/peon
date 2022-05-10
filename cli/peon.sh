@@ -97,7 +97,7 @@ peon_update_containers() {
     echo -e "[${GREEN}Deploying${STD}] latest peon containers"
     docker-compose up -d
     echo -e "[${BLUE}Authorizing${STD}] orchestrator for node control"
-    ./configure_orc.sh
+    cli/configure_orc.sh
     sleep 1 # To allow reading of process
 }
 
@@ -110,7 +110,7 @@ peon_redploy_containers() {
     echo -e "[${GREEN}Deploying${STD}] latest peon containers"
     docker-compose up -d
     echo -e "[${BLUE}Authorizing${STD}] orchestrator for node control"
-    ./configure_orc.sh
+    cli/configure_orc.sh
     sleep 1 # To allow reading of process
 }
 
