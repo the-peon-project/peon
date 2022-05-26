@@ -1,6 +1,6 @@
 # PEON (Play Everything On Nodes)
 
-<video width="320" autoplay="" class="vjs-tech" controlslist="nodownload" id="video_html5_api" loop="" muted="muted" playsinline="playsinline" poster="https://cdn-animation.artstation.com/p/thumbnails/000/006/359/thumb.jpg" tabindex="-1" preload="auto"><source media="(min-width: 0px)" src="https://cdn-animation.artstation.com/p/video_sources/000/006/703/peon-portrait.mp4" type="video/mp4"></video>
+![PEON](https://cdn-animation.artstation.com/p/video_sources/000/006/703/peon-portrait.mp4)
 
 [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
 
