@@ -1,6 +1,6 @@
 # PEON (Play Everything On Nodes)
 
-![PEON](https://cdn-animation.artstation.com/p/video_sources/000/006/703/peon-portrait.mp4)
+![PEON](https://github.com/nox-noctua-consulting/peon/blob/main/media/peon-portrait-Andre%CC%81.Kent-Artstation.mp4)
 
 [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
 
