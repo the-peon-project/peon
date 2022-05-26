@@ -1,8 +1,7 @@
 # PEON (Play Everything On Nodes)
 
-![PEON](https://github.com/nox-noctua-consulting/peon/blob/main/media/peon-portrait-Andre%CC%81.Kent-Artstation.mp4)
-
-[André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
+![PEON](https://github.com/nox-noctua-consulting/peon/blob/main/media/andre-kent-peon-turntable.jpeg)
+Art by [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ) *This project owns no rights to the image above.
 
 ## The Easy Game Server Manager
 
