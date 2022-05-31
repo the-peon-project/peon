@@ -14,7 +14,8 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 
 - [Peon WebUI (peon.ui)](https://github.com/nox-noctua-consulting/peon-ui) - WebUI for automation
 - [Peon Orchestrator (peon.orc)](https://github.com/nox-noctua-consulting/peon-orc) - REST controlled server automation
-- [Peon Plans](https://github.com/nox-noctua-consulting/peon-plans) - Game server plans & recipies
+- [Peon Plans](https://github.com/nox-noctua-consulting/peon-plans) - For generic deployment scripts for game deployment (handles things such as steamcmd and so on)
+- [Peon War Plans](https://github.com/peon-war-plans) - For game specific plans
 
 ### Feature Plan
 
