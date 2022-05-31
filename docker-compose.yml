@@ -26,7 +26,7 @@ services:
   webapp:
     container_name: peon.ui
     hostname: peon.ui
-    image: umlatt/peon.ui:0.1.4-dev
+    image: umlatt/peon.ui:0.1.5-dev
     depends_on:
       - db
     ports:
@@ -40,7 +40,7 @@ services:
   orchestrator:
     container_name: peon.orc
     hostname: peon.orc
-    image: umlatt/peon.orc:0.2.9-dev
+    image: umlatt/peon.orc:0.2.10-dev
     depends_on:
       - db
     ports:
@@ -74,7 +74,7 @@ services:
   bot.discord:
     container_name: peon.bot.discord
     hostname: peon.bot.discord
-    image: umlatt/peon.bot.discord:0.1.0-dev
+    image: umlatt/peon.bot.discord:0.1.1-dev
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
     depends_on:
