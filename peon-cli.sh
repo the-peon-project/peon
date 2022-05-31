@@ -8,7 +8,8 @@ help_information() {
     printf "\t-h|--help\tDisplay this (H)elp information.\n\n"
     printf "\t-t|--status\tS(t)atus of all containers\n"
     printf "\t-l|--list\t(L)ist running GAME containers.\n"
-    printf "\t-m|--metrics\tPerformance statistics/(M)etrics for ALL running containers.\n\n"
+    printf "\t-m|--metrics\tPerformance statistics/(M)etrics for ALL running containers.\n"
+    printf "\t-c|--capacity\tShow storage space & (C)apacity usage for all docker components.\n\n"
     printf "\t-u|--update\t(U)pdates infrastrcture containers.\n"
     printf "\t-d|--redeploy\tRe(d)eploy the infrastructure containers. \n"
     printf "\t-s|--start\t(S)tarts infrastrcture conatiners.\n"
@@ -78,6 +79,10 @@ while true; do
             ;;
         -m | --metrics)
             docker stats
+            exit $?
+            ;;
+        -c | --capacity)
+            docker system df -v
             exit $?
             ;;
         -h | --help)
