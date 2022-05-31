@@ -9,11 +9,11 @@ services:
     container_name: peon.db
     hostname: peon.db
     environment:
-      - POSTGRES_DB=durotar
-      - POSTGRES_USER=gromhellscream
-      - POSTGRES_PASSWORD=Zu88Zu88
-      - POSTGRES_HOST_AUTH_METHOD=md5
-      - POSTGRES_INITDB_ARGS="--auth-host=md5"
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST_AUTH_METHOD=${POSTGRES_HOST_AUTH_METHOD}
+      - POSTGRES_INITDB_ARGS=${POSTGRES_INITDB_ARGS}
     volumes:
       - $PWD/db:/var/lib/postgresql/data
       - /var/log/peon:/var/log/peon
@@ -60,7 +60,7 @@ services:
     hostname: peon.dev.api.docs
     image: swaggerapi/swagger-ui
     environment:
-      - SWAGGER_JSON=/mnt/peon-api-v1.0.json
+      - SWAGGER_JSON=${SWAGGER_JSON}
     depends_on:
       - orchestrator
     ports:
@@ -70,4 +70,18 @@ services:
     networks:
       zugnet:
         ipv4_address: 172.20.0.5
+    restart: unless-stopped
+  bot.discord:
+    container_name: peon.bot.discord
+    hostname: peon.bot.discord
+    image: umlatt/peon.bot.discord:0.1.0-dev
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+    depends_on:
+      - orchestrator
+    volumes:
+      - /var/log/peon:/var/log/peon
+    networks:
+      zugnet:
+        ipv4_address: 172.20.0.20
     restart: unless-stopped
