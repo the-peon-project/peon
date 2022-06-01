@@ -114,6 +114,16 @@ peon_redploy_containers() {
     sleep 1 # To allow reading of process
 }
 
+peon_repair_containers(){
+    draw_menu_header $menu_size "$app_name" "P E O N   R E P A I R"
+    echo -e "[${RED}Stopping${STD}] infrastructure container/s"
+    docker-compose stop
+    echo -e "[${RED}Hard removing${STD}] infrastructure container/s"
+    docker rm peon.orc
+    echo -e "[${GREEN}Starting removed${STD}] infrastructure container/s"
+    docker-compose up -d
+}
+
 menu_peon() {
     local incomplete=true
     local choice
@@ -128,6 +138,7 @@ menu_peon() {
         printf " 6. Redeploy containers\n"
         printf " 7. Reauthorize Orchestrator\n"
         printf " 8. Performance Metrics\n"
+        printf " 9. Repair Failed Containers\n"
         printf " 0. Main Menu\n\n"
         read -p "Enter selection: " -t 5 choice
         case $choice in
@@ -141,6 +152,7 @@ menu_peon() {
         6) peon_redploy_containers ;;
         7) cli/configure_orc.sh ;;
         8) peon_get_metrics ;;
+        9) peon_repair_containers ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
