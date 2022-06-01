@@ -34,6 +34,11 @@ game_delete_container() {
     echo -e "[${RED_HL}Deleting${STD}] $1"
     docker stop $1
     docker rm $1
+    read -p "Delete all container content & config files? y/[n]" -t 5 choice
+    if [[ "${choice,,}" == "y" ]]; then 
+        echo "Files are being removed."
+        rm -rf $(echo "/root/peon/servers/$1" | sed "s/peon.warcamp.//g" | sed "s/\./\//g")
+    fi
     sleep 0.75
 }
 
