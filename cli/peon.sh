@@ -128,7 +128,6 @@ menu_peon() {
         printf " 6. Redeploy containers\n"
         printf " 7. Reauthorize Orchestrator\n"
         printf " 8. Performance Metrics\n"
-        printf " 9. Repair Failed Containers\n"
         printf " 0. Main Menu\n\n"
         read -p "Enter selection: " -t 5 choice
         case $choice in
