@@ -92,10 +92,11 @@ game_action() {
         printf " 2. Start Container\n"
         printf " 3. Restart Container\n"
         printf " 4. Stop Container\n"
-        printf " 5. Container logs\n"
-        printf " 6. Server logs\n"
-        printf " 7. Server Metrics\n"
-        printf " 8. Delete Container\n"
+        printf " 5. Run command in container\n"
+        printf " 6. Container logs\n"
+        printf " 7. Server logs\n"
+        printf " 8. Server Metrics\n"
+        printf " 9. Delete Container\n"
         printf " 0. Back\n\n"
         read -p "Enter selection: " -t 5 choice
         case $choice in
@@ -105,10 +106,11 @@ game_action() {
         2) game_start_container $container ;;
         3) game_restart_container $container ;;
         4) game_stop_container $container ;;
-        5) game_container_logs $container ;;
-        6) game_server_logs $container ;;
-        7) game_get_metrics $container ;;
-        8) game_delete_container $container; break ;;
+        5) run_command_as_root $container ;;
+        6) game_container_logs $container ;;
+        7) game_server_logs $container ;;
+        8) game_get_metrics $container ;;
+        9) game_delete_container $container; break ;;
         *) printf "\n ${RED_HL}*Invalid Option*${STD}\n" && sleep 0.75 ;;
         esac
     done
