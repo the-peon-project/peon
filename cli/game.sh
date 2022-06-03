@@ -92,7 +92,7 @@ game_action() {
         printf " 2. Start Container\n"
         printf " 3. Restart Container\n"
         printf " 4. Stop Container\n"
-        printf " 5. Run command in container\n"
+        printf " 5. Run command\n"
         printf " 6. Container logs\n"
         printf " 7. Server logs\n"
         printf " 8. Server Metrics\n"
