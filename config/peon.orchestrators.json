@@ -1,0 +1,5 @@
+[{
+    "name": "oxide.dockerdev",
+    "url": "http://dockerdev.za.cloudlet.cloud:5000",
+    "key": "my-super-secret-api-key"
+}]

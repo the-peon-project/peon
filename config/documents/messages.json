@@ -1,0 +1,31 @@
+{
+    "type": {
+        "undefined": "Error is undefined.",
+        "parameterCount": "Invalid parameter count. Explain more clearly to the Orc.",
+        "none": "You do not command any war parties. You should conquer a war party!",
+        "orc.dne": "The requested war party does not exist.",
+        "srv.dne": "The requested war camp does not exist. Confirm your warcamps"
+    },
+    "sample": {
+        "undefined": "n/a",
+        "get": "!get orchestratorname gameuid.servername",
+        "getall": "!getall",
+        "register": "!register uniqueName orchestratorUrl:port apiKey",
+        "start": "!start orchestratorname gameuid.servername",
+        "stop": "!stop orchestratorname gameuid.servername",
+        "restart": "!restart orchestratorname gameuid.servername"
+    },
+    "symbol": {
+        "poke": ":point_up:",
+        "getall": ":european_castle:",
+        "get": ":tent:",
+        "start": ":white_check_mark:",
+        "stop": ":checkered_flag:",
+        "restart": ":recycle:",
+        "schedule": ":calendar:",
+        "extend": ":clock3:",
+        "register": ":wrench:",
+        "unregister": ":hammer:",
+        "usage": ":grey_question:"
+    }
+}
