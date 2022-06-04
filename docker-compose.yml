@@ -55,7 +55,7 @@ services:
         ipv4_address: 172.20.0.4
     restart: unless-stopped
     privileged: true
-  rest_api:
+  rest_api_viewer:
     container_name: peon.dev.api.docs
     hostname: peon.dev.api.docs
     image: swaggerapi/swagger-ui
