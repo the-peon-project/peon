@@ -7,7 +7,12 @@ game_get_metrics() {
 
 game_connect_container() {
     echo -e "Connecting to ${BLUE}$1${STD}"
-    docker exec -it $1 bash
+        read -p " Root user? y/[n] " -t 5 choice
+    if [[ "${choice,,}" == "y" ]]; then 
+        docker exec -it -u root $1 bash
+    else
+        docker exec -it $1 bash
+    fi
 }
 
 game_start_container() {
