@@ -57,6 +57,6 @@ list_all_containers() {
 run_command_as_root(){
     container=$1
     read -p "> " cmd
-    docker exec -it $container $cmd
+    docker exec -it -u root $container $cmd
     pause
 }
