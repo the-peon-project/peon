@@ -104,7 +104,10 @@ peon_update_containers() {
 peon_redploy_containers() {
     draw_menu_header $menu_size "$app_name" "P E O N   R E D P L O Y"
     echo -e "[${RED}Removing${STD}] existing infrastructure containers"
+    docker-compose stop
+    delay 5
     docker-compose down --remove-orphans --volumes
+    delay 5
     echo -e "[${BLUE}Pulling${STD}] latest version of docker-compose. TODO"
     # curl https://gitcdn.link/cdn/nox-noctua-consulting/peon/main/docker-compose.yml > docker-compose.yml
     echo -e "[${GREEN}Deploying${STD}] latest peon containers"

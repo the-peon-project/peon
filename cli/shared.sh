@@ -14,6 +14,10 @@ pause() {
     read -p "Press [Enter] key to continue..." fackEnterKey
 }
 
+delay(){
+    for i in $(seq 1 $1); do printf "."; sleep 1; done; echo ""
+}
+
 draw_menu_header() {
     clear
     width=$1 title=$2 heading=$3 bar_heavy="" bar_light=""                                                                  # Collect passed parameters and create empty strings
