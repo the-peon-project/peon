@@ -25,7 +25,8 @@
         }
     ],
     "schemes": [
-        "http", "https"
+        "http",
+        "https"
     ],
     "securityDefinitions": {
         "Bearer": {
@@ -37,6 +38,9 @@
     "paths": {
         "/servers": {
             "get": {
+                "security": [{
+                    "Bearer": []
+                }],
                 "tags": [
                     "Servers"
                 ],
@@ -50,12 +54,18 @@
                     "200": {
                         "description": "List of servers on node"
                     },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource"
+                    },
                     "404": {
                         "description": "Command failed."
                     }
                 }
             },
             "post": {
+                "security": [{
+                    "Bearer": []
+                }],
                 "tags": [
                     "Servers"
                 ],
@@ -78,6 +88,12 @@
                     }
                 }],
                 "responses": {
+                    "200": {
+                        "description": "List of servers on node"
+                    },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource"
+                    },
                     "405": {
                         "description": "Invalid input"
                     }
@@ -86,6 +102,9 @@
         },
         "/server/get/{game_uid}.{servername}": {
             "get": {
+                "security": [{
+                    "Bearer": []
+                }],
                 "tags": [
                     "Server"
                 ],
@@ -114,6 +133,9 @@
                     "200": {
                         "description": "Details of a specific server."
                     },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource"
+                    },
                     "404": {
                         "description": "Command failed."
                     }
@@ -122,6 +144,9 @@
         },
         "/server/stats/{game_uid}.{servername}": {
             "get": {
+                "security": [{
+                    "Bearer": []
+                }],
                 "tags": [
                     "Server"
                 ],
@@ -150,6 +175,9 @@
                     "200": {
                         "description": "Details of a specific server with container metrics/statistics."
                     },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource"
+                    },
                     "404": {
                         "description": "Command failed."
                     }
@@ -158,6 +186,9 @@
         },
         "/server/start/{game_uid}.{servername}": {
             "put": {
+                "security": [{
+                    "Bearer": []
+                }],
                 "tags": [
                     "Server"
                 ],
@@ -195,6 +226,9 @@
                     "200": {
                         "description": "JSON of basic server information."
                     },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource"
+                    },
                     "404": {
                         "description": "Command failed."
                     }
@@ -203,6 +237,9 @@
         },
         "/server/stop/{game_uid}.{servername}": {
             "put": {
+                "security": [{
+                    "Bearer": []
+                }],
                 "tags": [
                     "Server"
                 ],
@@ -240,6 +277,9 @@
                     "200": {
                         "description": "JSON of basic server information."
                     },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource"
+                    },
                     "404": {
                         "description": "Command failed."
                     }
@@ -248,6 +288,9 @@
         },
         "/server/restart/{game_uid}.{servername}": {
             "put": {
+                "security": [{
+                    "Bearer": []
+                }],
                 "tags": [
                     "Server"
                 ],
@@ -276,6 +319,9 @@
                     "200": {
                         "description": "JSON of basic server information."
                     },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource"
+                    },
                     "404": {
                         "description": "Command failed."
                     }
@@ -284,6 +330,9 @@
         },
         "/server/description/{game_uid}.{servername}": {
             "put": {
+                "security": [{
+                    "Bearer": []
+                }],
                 "tags": [
                     "Server"
                 ],
@@ -321,6 +370,9 @@
                     "200": {
                         "description": "JSON of basic server information."
                     },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource"
+                    },
                     "404": {
                         "description": "Command failed."
                     }
@@ -329,6 +381,9 @@
         },
         "/server/destroy/{game_uid}.{servername}": {
             "delete": {
+                "security": [{
+                    "Bearer": []
+                }],
                 "tags": [
                     "Server"
                 ],
@@ -366,6 +421,9 @@
                     "200": {
                         "description": "JSON of basic server information."
                     },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource"
+                    },
                     "404": {
                         "description": "Command failed."
                     }
@@ -374,6 +432,9 @@
         },
         "/server/eradicate/{game_uid}.{servername}": {
             "delete": {
+                "security": [{
+                    "Bearer": []
+                }],
                 "tags": [
                     "Server"
                 ],
@@ -410,6 +471,9 @@
                 "responses": {
                     "200": {
                         "description": "JSON of basic server information."
+                    },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource"
                     },
                     "404": {
                         "description": "Command failed."
