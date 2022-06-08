@@ -25,8 +25,15 @@
         }
     ],
     "schemes": [
-        "http"
+        "http", "https"
     ],
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "X-Api-Key",
+            "in": "header"
+        }
+    },
     "paths": {
         "/servers": {
             "get": {
