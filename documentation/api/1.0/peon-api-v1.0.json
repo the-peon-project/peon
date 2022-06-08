@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "description": "The API ",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "title": "PEON (Play Everything on Nodes)",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
