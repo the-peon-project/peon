@@ -170,6 +170,15 @@
                         "description": "The unqiue name for the server.",
                         "required": true,
                         "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "*Optional* Auto Server Shutdown. Either add an expected session duration ``interval``, **OR** set a specific shutdown date-time with ``epoch_time`` notation.",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/servers.autostop"
+                        }
                     }
                 ],
                 "produces": [
@@ -206,6 +215,15 @@
                         "description": "The unqiue name for the server.",
                         "required": true,
                         "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "*Optional* Delayed Auto Server Shutdown. Either add an expected session duration ``interval``, **OR** set a specific shutdown date-time with ``epoch_time`` notation.",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/servers.autostop"
+                        }
                     }
                 ],
                 "produces": [
@@ -424,6 +442,22 @@
                     "items": {
                         "$ref": "#/definitions/servers.settings.environment-variables"
                     }
+                }
+            }
+        },
+        "servers.autostop": {
+            "description": "The PEON Orchestrator container settings.",
+            "type": "object",
+            "properties": {
+                "interval": {
+                    "type": "string",
+                    "format": "string",
+                    "example": "5h"
+                },
+                "epoch_time": {
+                    "type": "string",
+                    "format": "string",
+                    "example": "1638230400"
                 }
             }
         },
