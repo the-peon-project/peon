@@ -17,6 +17,8 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 - [Peon Plans](https://github.com/nox-noctua-consulting/peon-plans) - For generic deployment scripts for game deployment (handles things such as steamcmd and so on)
 - [Peon War Plans](https://github.com/peon-war-plans) - For game specific plans
 
+![High Level Infrastructure Architecture](/media/architecture.png "Infrastructure Architecture")
+
 ### Feature Plan
 
 #### *sprint 0.1.0*
