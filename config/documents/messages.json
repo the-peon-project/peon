@@ -1,10 +1,13 @@
 {
     "type": {
         "undefined": "Error is undefined.",
-        "parameterCount": "Bad instructions... Explain more clearly to Peon.",
+        "parameterCount": "Instructions no good.... Explain more clearly to Peon.",
         "orc.none": "You do not command any warparties. You should conquer a war party!",
+        "orc.notavailable": "Peon cannot get to any warparties in the wargroup. Have they been raised to the ground?",
         "orc.dne": "There is no warparty by that name in your wargroup.",
-        "srv.dne": "The requested warcamp does not exist. Confirm your warcamps"
+        "srv.dne": "The requested warcamp does not exist. Confirm your warcamps.",
+        "srv.action.error": "Something bad happened when Peon tried to communicate the warcamp.",
+        "bad.code": "Me not sure what happened. The maker didn prepare Peon for this."
     },
     "sample": {
         "undefined": "n/a",
@@ -13,7 +16,8 @@
         "register": "!register uniqueName orchestratorUrl:port apiKey",
         "start": "!start orchestratorname gameuid.servername",
         "stop": "!stop orchestratorname gameuid.servername",
-        "restart": "!restart orchestratorname gameuid.servername"
+        "restart": "!restart orchestratorname gameuid.servername",
+        "badcode": "Please consider logging ticket with developer and explain what you tried to do."
     },
     "symbol": {
         "poke": ":point_up:",
