@@ -1,10 +1,10 @@
 {
     "type": {
         "undefined": "Error is undefined.",
-        "parameterCount": "Invalid parameter count. Explain more clearly to the Orc.",
-        "none": "You do not command any war parties. You should conquer a war party!",
-        "orc.dne": "The requested war party does not exist.",
-        "srv.dne": "The requested war camp does not exist. Confirm your warcamps"
+        "parameterCount": "Bad instructions... Explain more clearly to Peon.",
+        "orc.none": "You do not command any warparties. You should conquer a war party!",
+        "orc.dne": "There is no warparty by that name in your wargroup.",
+        "srv.dne": "The requested warcamp does not exist. Confirm your warcamps"
     },
     "sample": {
         "undefined": "n/a",
