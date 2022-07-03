@@ -11,12 +11,12 @@
     },
     "sample": {
         "undefined": "n/a",
-        "get": "!get orchestratorname gameuid.servername",
+        "get": "!get orchestratorname* gameuid* servername",
         "getall": "!getall",
         "register": "!register uniqueName orchestratorUrl:port apiKey",
-        "start": "!start orchestratorname gameuid.servername",
-        "stop": "!stop orchestratorname gameuid.servername",
-        "restart": "!restart orchestratorname gameuid.servername",
+        "start": "!start orchestratorname* gameuid* servername",
+        "stop": "!stop orchestratorname* gameuid* servername",
+        "restart": "!restart orchestratorname* gameuid* servername",
         "badcode": "Please consider logging ticket with developer and explain what you tried to do."
     },
     "symbol": {
