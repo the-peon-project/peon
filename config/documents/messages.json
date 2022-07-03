@@ -7,16 +7,17 @@
         "orc.dne": "There is no warparty by that name in your wargroup.",
         "srv.dne": "The requested warcamp does not exist. Confirm your warcamps.",
         "srv.action.error": "Something bad happened when Peon tried to communicate the warcamp.",
+        "schedule.past": "Can't being doing that. The shutdown event cannot happen in the past.",
         "bad.code": "Me not sure what happened. The maker didn prepare Peon for this."
     },
     "sample": {
         "undefined": "n/a",
-        "get": "!get orchestratorname* gameuid* servername",
+        "get": "!get servername gameuid* orchestrator*",
         "getall": "!getall",
         "register": "!register uniqueName orchestratorUrl:port apiKey",
-        "start": "!start orchestratorname* gameuid* servername",
-        "stop": "!stop orchestratorname* gameuid* servername",
-        "restart": "!restart orchestratorname* gameuid* servername",
+        "start": "!start servername gameuid* orchestrator* autostop_time*",
+        "stop": "!stop servername gameuid* orchestrator* autostop_time*",
+        "restart": "!restart servername gameuid* orchestrator*",
         "badcode": "Please consider logging ticket with developer and explain what you tried to do."
     },
     "symbol": {
