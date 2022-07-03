@@ -74,7 +74,7 @@ services:
   bot.discord:
     container_name: peon.bot.discord
     hostname: peon.bot.discord
-    image: umlatt/peon.bot.discord:0.2.6-dev
+    image: umlatt/peon.bot.discord:0.2.7-dev
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
     depends_on:
