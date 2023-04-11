@@ -1,5 +1,5 @@
 [{
     "name": "durotar",
-    "url": "http://dockerdev.za.cloudlet.cloud:5000",
+    "url": "http://peon-project.za.cloudlet.cloud:5000",
     "key": "my-super-secret-api-key"
 }]
