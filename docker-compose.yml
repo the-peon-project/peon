@@ -71,6 +71,18 @@ services:
       zugnet:
         ipv4_address: 172.20.0.5
     restart: unless-stopped
+  docs:
+    container_name: peon.docs
+    hostname: peon.docs
+    image: squidfunk/mkdocs-material
+    ports:
+      - "8000:8000"
+    volumes:
+      - ${PWD}/documentation/manual:/docs
+    networks:
+      zugnet:
+        ipv4_address: 172.20.0.6
+    restart: unless-stopped
   bot.discord:
     container_name: peon.bot.discord
     hostname: peon.bot.discord
