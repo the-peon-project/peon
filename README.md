@@ -1,41 +1,27 @@
 # PEON (Play Everything On Nodes)
 
-![PEON](https://github.com/nox-noctua-consulting/peon/blob/main/media/andre-kent-peon-turntable.jpeg)
+![PEON](https://github.com/the-peon-project/peon/blob/main/media/andre-kent-peon-turntable.jpeg)
 Art by [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
 **This project owns no rights to the image above. Please link to the site and request them accordingly.**
-
-**PEON Orchestrator**
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/umlatt/peon.orc.svg)](https://hub.docker.com/r/umlatt/peon.orc)
-[![Docker Stars](https://img.shields.io/docker/stars/umlatt/peon.orc.svg)](https://hub.docker.com/r/umlatt/peon.orc)
-
-**PEON Web UI**
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/umlatt/peon.ui.svg)](https://hub.docker.com/r/umlatt/peon.ui)
-[![Docker Stars](https://img.shields.io/docker/stars/umlatt/peon.ui.svg)](https://hub.docker.com/r/umlatt/peon.ui)
-
-**PEON Bot for Discord**
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/umlatt/peon.bot.discord.svg)](https://hub.docker.com/r/umlatt/peon.bot.discord)
-[![Docker Stars](https://img.shields.io/docker/stars/umlatt/peon.bot.discord.svg)](https://hub.docker.com/r/umlatt/peon.bot.discord)
-
-**SteamCMD with Wine**
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/umlatt/steamcmd-winehq.svg)](https://hub.docker.com/r/umlatt/steamcmd-winehq)
-[![Docker Stars](https://img.shields.io/docker/stars/umlatt/steamcmd-winehq.svg)](https://hub.docker.com/r/umlatt/steamcmd-winehq)
 
 ## The Easy Game Server Manager
 
 An **OpenSource** project to assist gamers in self deploying/managing game servers.\
 Intended to be a one-stop-shop for game server deployment/management.\
-If run on a public/paid cloud, it is architected to try minimise costs (easy schhttps://hub.docker.com/r/umlatt/peon.orchttps://hub.docker.com/r/umlatt/peon.orcedule/manage uptime vs downtime)
+If run on a public/paid cloud, it is architected to try minimise costs (easy to schedule uptime vs downtime, and to run as efficiently as possible)
 
 ## Architecture
 
-- [Peon WebUI (peon.ui)](https://github.com/nox-noctua-consulting/peon-ui) - WebUI for automation
-- [Peon Orchestrator (peon.orc)](https://github.com/nox-noctua-consulting/peon-orc) - REST controlled server automation
-- [Peon Plans](https://github.com/nox-noctua-consulting/peon-plans) - For generic deployment scripts for game deployment (handles things such as steamcmd and so on)
-- [Peon War Plans](https://github.com/peon-war-plans) - For game specific plans
+### Core application (minimal deployment)
+
+- [Peon Orchestrator (peon.orc)](https://github.com/the-peon-project/peon-orc) - Server preperation and deployment. Managed with simple REST API.
+- [Peon War Table](https://github.com/the-peon-project/peon-plans) - For shared game server resources (handles things such as steamcmd and so on)
+- [Peon War Plans](https://github.com/peon-war-plans) - For game specific recipes
+
+### Additional Services
+
+- [Peon WebUI (peon.webui)](https://github.com/the-peon-project/peon-webui) - WebUI to manage PEON servers
+- [Peon Discord BOT (peon.bot.discord)](https://github.com/the-peon-project/peon-bot-discord) - A Discrod botto manage servers.
 
 ![High Level Infrastructure Architecture](/media/architecture.png "Infrastructure Architecture")
 
@@ -45,7 +31,7 @@ If run on a public/paid cloud, it is architected to try minimise costs (easy sch
 
 - [x] peon-cli - A cli component for backend server support, which runs on the host.
 - [ ] WebUI - Access controlled webpage for management
-- [ ] Deploy and delete games from a recipe catalgue (hosted at [Peon Recipies](https://github.com/nox-noctua-consulting/peon-recipies))
+- [ ] Deploy and delete games from a recipe catalgue (hosted at [Peon Recipies](https://github.com/peon-war-plans))
 - [x] REST controlled deploy/start/stop servers
 
 #### *sprint 0.2.0*
@@ -87,7 +73,7 @@ mkdir /root/peon
 Pull the latest release from the peon repo
 
 ```bash
-wget https://github.com/nox-noctua-consulting/peon/archive/refs/tags/warcamp.tar.gz
+wget https://github.com/the-peon-project/peon/archive/refs/tags/warcamp.tar.gz
 ```
 
 #### 3. Extract the project
