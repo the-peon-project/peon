@@ -9,7 +9,7 @@ exec 1>>$logfile 2>&1
 mkdir servers
 mkdir plans
 # Pull latest plans from github project and stage to folder
-wget https://github.com/nox-noctua-consulting/peon-plans/archive/master.tar.gz
+wget https://github.com/the-peon-project/peon-warplans/archive/master.tar.gz
 tar -xvf master.tar.gz --strip-components=1 --directory plans
 rm -rf master.tar.gz
 # Set permissions for docker containers
