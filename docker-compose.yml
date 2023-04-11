@@ -24,9 +24,9 @@ services:
     labels:
       com.peon.description: "Peon backend DB (PostgreSQL)"
   webapp:
-    container_name: peon.ui
-    hostname: peon.ui
-    image: umlatt/peon.ui:0.1.6-dev
+    container_name: peon.webui
+    hostname: peon.webui
+    image: umlatt/peon.webui:0.1.6-dev
     depends_on:
       - db
     ports:
@@ -40,7 +40,7 @@ services:
   orchestrator:
     container_name: peon.orc
     hostname: peon.orc
-    image: umlatt/peon.orc:0.2.18-dev
+    image: umlatt/peon.orc:0.2.19-dev
     depends_on:
       - db
     ports:
@@ -74,7 +74,7 @@ services:
   bot.discord:
     container_name: peon.bot.discord
     hostname: peon.bot.discord
-    image: umlatt/peon.bot.discord:0.2.8-dev
+    image: umlatt/peon.bot.discord:0.2.9-dev
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
     depends_on:
