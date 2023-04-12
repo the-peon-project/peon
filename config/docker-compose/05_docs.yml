@@ -1,0 +1,28 @@
+  docs_rest:
+    container_name: peon.dev.api.docs
+    hostname: peon.dev.api.docs
+    image: swaggerapi/swagger-ui
+    environment:
+      - SWAGGER_JSON=${SWAGGER_JSON}
+    depends_on:
+      - orchestrator
+    ports:
+      - '8080:8080'
+    volumes:
+      - $PWD/documentation/api/1.0:/mnt
+    networks:
+      zugnet:
+        ipv4_address: 172.20.0.5
+    restart: unless-stopped
+  docs_project:
+    container_name: peon.docs
+    hostname: peon.docs
+    image: squidfunk/mkdocs-material
+    ports:
+      - "8000:8000"
+    volumes:
+      - ${PWD}/documentation/manual:/docs
+    networks:
+      zugnet:
+        ipv4_address: 172.20.0.6
+    restart: unless-stopped

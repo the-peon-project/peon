@@ -1,0 +1,15 @@
+  bot.discord:
+    container_name: peon.bot.discord
+    hostname: peon.bot.discord
+    image: umlatt/peon.bot.discord
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+    volumes:
+      - /var/log/peon:/var/log/peon
+      - $PWD/config:/app/config
+    networks:
+      zugnet:
+        ipv4_address: 172.20.0.20
+    restart: unless-stopped
+    depends_on:
+      - orchestrator

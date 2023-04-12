@@ -1,0 +1,17 @@
+  orchestrator:
+    container_name: peon.orc
+    hostname: peon.orc
+    image: umlatt/peon.orc:latest
+    ports:
+      - '5000:5000'
+    volumes:
+      - /var/log/peon:/var/log/peon
+      - $PWD/servers:/root/peon/servers
+      - $PWD/plans:/root/peon/plans
+      - $PWD/certs:/root/peon/certs
+      - /run/docker.sock:/var/run/docker.sock
+    networks:
+      zugnet:
+        ipv4_address: 172.20.0.2
+    restart: unless-stopped
+    privileged: true
