@@ -4,6 +4,23 @@ networks:
       config:
         - subnet: 172.20.0.0/24
 services:
+  orchestrator:
+    container_name: peon.orc
+    hostname: peon.orc
+    image: umlatt/peon.orc:latest
+    ports:
+      - '5000:5000'
+    volumes:
+      - /var/log/peon:/var/log/peon
+      - $PWD/servers:/root/peon/servers
+      - $PWD/plans:/root/peon/plans
+      - $PWD/certs:/root/peon/certs
+      - /run/docker.sock:/var/run/docker.sock
+    networks:
+      zugnet:
+        ipv4_address: 172.20.0.2
+    restart: unless-stopped
+    privileged: true
   db:
     image: postgres:14-alpine
     container_name: peon.db
@@ -19,7 +36,7 @@ services:
       - /var/log/peon:/var/log/peon
     networks:
       zugnet:
-        ipv4_address: 172.20.0.2
+        ipv4_address: 172.20.0.3
     restart: unless-stopped
     labels:
       com.peon.description: "Peon backend DB (PostgreSQL)"
@@ -35,28 +52,9 @@ services:
       - /var/log/peon:/var/log/peon
     networks:
       zugnet:
-        ipv4_address: 172.20.0.3
-    restart: unless-stopped
-  orchestrator:
-    container_name: peon.orc
-    hostname: peon.orc
-    image: umlatt/peon.orc:latest
-    depends_on:
-      - db
-    ports:
-      - '5000:5000'
-    volumes:
-      - /var/log/peon:/var/log/peon
-      - $PWD/servers:/root/peon/servers
-      - $PWD/plans:/root/peon/plans
-      - $PWD/certs:/root/peon/certs
-      - /run/docker.sock:/var/run/docker.sock
-    networks:
-      zugnet:
         ipv4_address: 172.20.0.4
     restart: unless-stopped
-    privileged: true
-  rest_api_viewer:
+  docs_rest:
     container_name: peon.dev.api.docs
     hostname: peon.dev.api.docs
     image: swaggerapi/swagger-ui
@@ -72,7 +70,7 @@ services:
       zugnet:
         ipv4_address: 172.20.0.5
     restart: unless-stopped
-  docs:
+  docs_project:
     container_name: peon.docs
     hostname: peon.docs
     image: squidfunk/mkdocs-material
@@ -90,8 +88,6 @@ services:
     image: umlatt/peon.bot.discord
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
-    depends_on:
-      - orchestrator
     volumes:
       - /var/log/peon:/var/log/peon
       - $PWD/config:/app/config
@@ -99,3 +95,5 @@ services:
       zugnet:
         ipv4_address: 172.20.0.20
     restart: unless-stopped
+    depends_on:
+      - orchestrator
