@@ -14,10 +14,9 @@ with Diagram("Peon Orchestrator Flow", filename="../documentation/manual/docs/ar
     # Nodes
     user = User("User")
     client_rest = Client("REST Client")
-    peon_web = Docker("PEON WebApp*")
-    bot_discord = Docker("PEON Discord Bot*")
+    
     client_discord = Discord("Discord")
-    client_web = Client("WebUI Portal")
+    client_web = Client("PEON Website")
     # Clusters
     with Cluster("Container Host"):
         # Cluster - Nodes
@@ -30,13 +29,15 @@ with Diagram("Peon Orchestrator Flow", filename="../documentation/manual/docs/ar
         # Cluster - Connectivity
         container_orc >> Edge(label="docker.sock",color=comms_container_service) << server
         server - Edge(color=comms_container, style="dotted") - servers
-    # Connectivity
-    client_rest >> Edge(color=comms_http) << container_orc
-    # Web
+        
+    with Cluster("Management Container Host"):
+        peon_web = Docker("PEON WebApp*")
+        peon_web >> Edge(color=comms_http) << container_orc
+        peon_bot_discord = Docker("PEON Discord Bot*")
+        peon_bot_discord >> Edge(color=comms_http) << container_orc
+    
+    client_rest >> Edge(color=comms_http) << container_orc # DIRECT TO ORCHESTRATOR
     client_web - peon_web
-    peon_web >> Edge(color=comms_http) << container_orc
-    # Discord
-    client_discord - bot_discord
-    bot_discord >> Edge(color=comms_http) << container_orc
-    # User
+    client_discord - peon_bot_discord
+
     user >> [client_rest, client_discord, client_web]
