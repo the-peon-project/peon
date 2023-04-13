@@ -1,5 +1,9 @@
 # Commandline Interface (CLI)
 
-## v0.0.0
+## v1.0.0
 
-- Moved CLI to own project
+- [x] TESTED :pencil: Tested that CLI is working as required.
+
+## v0.0.1
+
+- [x] INITIALISED :airplane: Extracted from master project and created as stand-alone project.
