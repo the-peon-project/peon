@@ -1,4 +1,4 @@
-# Orchestrator Architecture
+# Orchestrator
 
 ## Communications Architecture Diagram
 
