@@ -72,19 +72,15 @@ else
         case "$1" in
             -o|--orc)
             orc=true
-            shift
             ;;
             -w|--webui)
             web=true
-            shift
             ;;
             -d|--docs)
             docs=true
-            shift
             ;;
             -1|--dbot)
             bot_discord=true
-            shift
             ;;
             -h|--help)
             help_information
