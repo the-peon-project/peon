@@ -23,8 +23,11 @@ theme:
       toggle:
         icon: material/toggle-switch-off-outline 
         name: light mode
-      primary: green
+      primary: green 
       accent: black
+  icon:
+    repo:
+      fontawesome/brands/github
 
 extra:
   social:
@@ -51,6 +54,6 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.tasklist:
       custom_checkbox: true
-
+repo_url: https://github.com/the-peon-project
 copyright: |
   &copy; 2023 <a href="https://github.com/the-peon-project"  target="_blank" rel="noopener">The PEON Project</a>
