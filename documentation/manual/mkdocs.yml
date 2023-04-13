@@ -31,6 +31,10 @@ theme:
 
 extra:
   social:
+    - icon: simple/kofi
+      link: https://ko-fi.com/umlatt
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/daREMykNRm
     - icon: fontawesome/brands/github
       link: https://github.com/the-peon-project
     - icon: fontawesome/brands/docker
