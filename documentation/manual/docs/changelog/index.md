@@ -1,4 +1,10 @@
-# Symbol Lookup
+# Introduction
+
+Here you can follow the development of the project.
+
+## Symbol Lookup
+
+Below are the symbols that are typically found throughout the various change logs and thier meanings.
 
 | Key | Symbol | Description |
 |-|-|-|

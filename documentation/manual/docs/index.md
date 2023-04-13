@@ -1,4 +1,4 @@
-# The *PEON* project (FOSS)
+# Home
 
 Welcome to the PEON project.
 
@@ -10,7 +10,7 @@ Here you will find all of the official repositories for the PEON project's compo
 
 ![PEON Logo](./images/logo/PEON_small_square.png)
 
-## A story behind the name
+## Story behind the name
 
 We love all kinds of games (and want to support them all).
 
@@ -64,10 +64,10 @@ If you'd like to financially support the project, please feel free to make a don
 
 ## References
 
-### Cover Image
+### Logo
 
-The art is by [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
-**This project owns no rights to the image above. Please follow the link to his site and support him.**
+The logo is a derrivative of the art by [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
+*Please follow the link to his site and support him.*
 
 ## Scoreboard
 

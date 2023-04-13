@@ -1,4 +1,4 @@
-# Commandline Interface (CLI)
+# Commandline (CLI)
 
 ## v1.0.0
 
