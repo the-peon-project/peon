@@ -9,11 +9,11 @@ comms_http = "darkgreen"
 comms_container_service = "darkblue"
 comms_container = "darkblue"
 
-with Diagram("Peon Orchestrator", filename="/comms_orchestrator", show=False):
+with Diagram("Peon Orchestrator", filename="../documentation/manual/docs/architecture/comms_orchestrator", show=False):
     # Nodes
     client_user = User("User")
     client_bot_discord = Discord("Discord Bot*")
-    peon_web = Client("PEON WebApp")
+    peon_web = Client("PEON WebApp*")
     # Clusters
     with Cluster("Container Host"):
         # Cluster - Nodes
