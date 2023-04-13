@@ -16,15 +16,15 @@ theme:
     - scheme: default 
       toggle:
         icon: material/toggle-switch
-        name: Switch to dark mode    
-      primary: orange
+        name: dark mode    
+      primary: green
       accent: gray
     - scheme: slate
       toggle:
         icon: material/toggle-switch-off-outline 
-        name: Switch to light mode
-      primary: orange
-      accent: black 
+        name: light mode
+      primary: green
+      accent: black
 
 extra:
   social:
