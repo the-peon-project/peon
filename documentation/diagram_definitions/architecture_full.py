@@ -4,7 +4,7 @@ from diagrams.onprem.container import Docker
 from diagrams.onprem.client import User, Client
 from diagrams.saas.chat import Discord
 from diagrams.oci.compute import OKE
-from diagrams.custom import Custom
+#from diagrams.custom import Custom
 
 # COLOURS
 comms_http = "orange"
