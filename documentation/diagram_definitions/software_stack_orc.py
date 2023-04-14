@@ -14,7 +14,7 @@ comms_container = "darkgray"
 
 
 
-with Diagram("Peon Orchestrator Software Stack", filename="../documentation/manual/docs/development/orchestrator/diagram", show=False):
+with Diagram("Peon Orchestrator Software Stack", filename="../documentation/manual/docs/development/diagram_orc", show=False):
     with Cluster("*Container Runtime*"):
         runtime = Docker("Docker Socket")
         with Cluster("Container: umlatt/peon.orc"):
