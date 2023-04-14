@@ -1,5 +1,10 @@
 # Introduction
 
+Welcome to the **DEVELOPMENT** documentation.
+
+Here you can get an overview of how the PEON project is architected, where to go and how to use all of the various tools and code that has been built thus far.
+*Please note that documentation may lag behind the development status, but the general rules/intent should still be valid.*
+
 ## Architecture
 
 This diagram shows off the basic architecture of the PEON project.
