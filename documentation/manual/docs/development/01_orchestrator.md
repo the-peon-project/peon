@@ -19,7 +19,7 @@ It is what manages the process of game server deployment for users.
 
 *\*This may change is technologies & skills evolve.*
 
-![Software Stack](./diagram.png)
+![Software Stack](./diagram_orc.png)
 
 ---
 
