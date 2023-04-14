@@ -8,8 +8,9 @@ This diagram shows off the basic architecture of the PEON project.
 
 ![diagram_comms](./architecture_master.png)
 
-- REST API - The orchestrator can be managed by a REST API. The connections shown in GREEN are indicate REST communications.
-- DOCKER SOCKET - The orchestrator manages the underlying docker host using docer sockets (at the moment). The connections shown in ORANGE are indicate SOCKET communications.
+- <font color="orange">REST API</font> - The orchestrator can be managed by a REST API, with is represented with orange connection/s.
+- <font color="red">DOCKER SOCKET</font> - The orchestrator manages the underlying docker host using docer sockets (at the moment), which is represented with red connection/s.
+- \*Optional Feature - These are not *required* in order to leverage the automation services of the PEON project.
 
 ## Terms & Symbols
 
