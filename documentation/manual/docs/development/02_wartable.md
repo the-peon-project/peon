@@ -1,14 +1,20 @@
 # War Table
 
-The War Table module works in conjunction with the Orchestrator to provide the relevant tools for the game containers.
+The **War Table** module works in conjunction with the Orchestrator to provide the relevant tools for the game containers.
 
 This project handles the tools that are shared between game containers.
+
+## Projects
+
+1. [*Uncontained SteamCMD*](https://github.com/the-peon-project/peon-wartable/tree/master/shared) are scripts to automate/update `steamcmd` and the game server files (within a steamcmd based docker container), as part of the PEON automation services.
+2. [*Steamed Wine*](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmd-wine) is a custom container to facilitate game servers that are only built for windows OS, within the PEON toolsuite.
 
 ---
 
 ## Design Objectives
 
-- Generic build tools
+- As generic as possible
+- Only build what does not already exist
 
 ---
 
@@ -16,7 +22,7 @@ This project handles the tools that are shared between game containers.
 
 *\*This may change as technologies & skills evolve.*
 
-![Software Stack](./diagram_orc.png)
+![Software Stack](./diagram_wartable.png)
 
 ---
 
