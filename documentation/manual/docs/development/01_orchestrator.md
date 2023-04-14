@@ -8,7 +8,7 @@ It is what manages the process of game server deployment for users.
 
 ## Design Objectives
 
-- Extremely light weight.
+- Extremely lightweight.
 - REST API managed
 - Deploys/controls the game containers.
 - Abstracted from the game server/container platform to allow stack evolution.
@@ -17,17 +17,20 @@ It is what manages the process of game server deployment for users.
 
 ## Software Stack Diagram
 
-*\*This may change is technologies & skills evolve.*
+*\*This may change as technologies & skills evolve.*
 
 ![Software Stack](./diagram_orc.png)
 
 ---
 
-## Links
+## Navigation
 
-[![github](../../images/buttons/button_github.svg)](https://github.com/the-peon-project/peon-orc)
+Links to various project-related resources.
+
+[![github](../../images/buttons/button_changelog.svg)](./changelog/01_orchestrator.md)
 [![github](../../images/buttons/button_docker.svg)](https://hub.docker.com/repository/docker/umlatt/peon.orc/general)
-[![github](../../images/buttons/button_docker.svg)](./changelog/01_orchestrator.md)
+[![github](../../images/buttons/button_github.svg)](https://github.com/the-peon-project/peon-orc)
+[![github](../../images/buttons/button_bug.svg)](https://github.com/the-peon-project/peon-orc/issues/new/choose)
 
 ---
 
