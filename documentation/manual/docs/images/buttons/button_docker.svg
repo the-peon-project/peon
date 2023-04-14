@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="223px"
-   height="30px"
-   viewBox="0 0 223 30"
+   width="170"
+   height="30"
+   viewBox="0 0 170 30"
    version="1.1"
    id="svg12"
    sodipodi:docname="button_docker.svg"
@@ -59,24 +59,24 @@
      fill="#ff5e5b"
      x="0"
      y="0"
-     width="223"
+     width="170"
      height="30"
-     rx="8"
-     style="fill-rule:evenodd;stroke:none;stroke-width:1;fill:#3466d4;fill-opacity:1" />
+     rx="6.0986547"
+     style="fill:#3466d4;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.873116" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.706px;line-height:1.25;font-family:X-Files;-inkscape-font-specification:X-Files;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.776473"
-     x="70.165176"
-     y="21.612217"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6672px;line-height:1.25;font-family:X-Files;-inkscape-font-specification:X-Files;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.700016"
+     x="42.976837"
+     y="21.326445"
      id="text870"
      transform="scale(1.0341354,0.96699136)"><tspan
        sodipodi:role="line"
        id="tspan868"
-       x="70.165176"
-       y="21.612217"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.706px;font-family:Tahoma;-inkscape-font-specification:Tahoma;fill:#ffffff;fill-opacity:1;stroke-width:0.776473">docker repo</tspan></text>
+       x="42.976837"
+       y="21.326445"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6672px;font-family:Tahoma;-inkscape-font-specification:Tahoma;fill:#ffffff;fill-opacity:1;stroke-width:0.700016">docker repo</tspan></text>
   <path
-     d="m 34.331984,14.238069 h -3.586469 v -3.392128 h 3.586469 z m 0,-11.6668679 h -3.586469 v 3.4663685 h 3.586469 z m 4.24299,8.2690279 h -3.586469 v 3.392128 h 3.586469 z M 30.094417,6.7228471 h -3.586465 v 3.4321039 h 3.586465 z m 4.237567,0 h -3.586469 v 3.4321039 h 3.586469 z M 49.350648,12.433499 C 48.56933,11.879568 46.76796,11.679693 45.384374,11.953804 45.205325,10.58325 44.478263,9.3897209 43.154362,8.3161178 L 42.394747,7.7850301 41.890149,8.5845212 c -0.998351,1.5875628 -1.269644,4.2030388 -0.200756,5.9276588 -0.472046,0.2684 -1.39986,0.633881 -2.626097,0.611041 H 15.47726 c -0.472044,2.901013 0.314697,6.670042 2.387362,9.25697 2.012979,2.506975 5.029735,3.780453 8.974306,3.780453 8.540236,0 14.861315,-4.140226 17.818388,-11.661156 1.161124,0.02285 3.667855,0.0057 4.953771,-2.581216 0.0814,-0.142766 0.358106,-0.753806 0.461196,-0.976522 z m -27.731362,-1.59327 h -3.581037 v 3.392128 h 3.586464 v -3.392128 z m 4.237568,0 h -3.586469 v 3.392128 h 3.586469 z m 4.237563,0 h -3.586465 v 3.392128 h 3.586465 z M 25.856854,6.7228471 h -3.586469 v 3.4321039 h 3.586469 z"
+     d="M 28.121993,14.073521 H 25.64341 v -2.344275 h 2.478583 z m 0,-8.062889 H 25.64341 v 2.3955826 h 2.478583 z m 2.9323,5.714666 H 28.57571 v 2.344275 h 2.478583 z M 25.193442,8.8798049 h -2.478581 v 2.3719021 h 2.478581 z m 2.928551,0 H 25.64341 v 2.3719021 h 2.478583 z M 38.501285,12.826396 C 37.96132,12.443579 36.716407,12.305446 35.76022,12.494881 35.636482,11.547702 35.134014,10.722862 34.219074,9.980903 L 33.694111,9.6138719 33.345387,10.166395 c -0.689954,1.097154 -0.877443,2.90469 -0.138742,4.096562 -0.326226,0.18549 -0.967432,0.438071 -1.814876,0.422285 h -16.30014 c -0.326228,2.004872 0.217484,4.60962 1.649888,6.397427 1.391155,1.732552 3.476013,2.612645 6.202078,2.612645 5.902097,0 10.270549,-2.861282 12.314161,-8.058942 0.802444,0.01579 2.534829,0.004 3.423516,-1.783861 C 38.737527,13.753847 38.928756,13.331562 39,13.177645 Z M 19.336338,11.725298 H 16.86151 v 2.344275 h 2.478578 v -2.344275 z m 2.928553,0 h -2.478583 v 2.344275 h 2.478583 z m 2.928551,0 h -2.478581 v 2.344275 h 2.478581 z M 22.264891,8.8798049 h -2.478583 v 2.3719021 h 2.478583 z"
      id="path835"
-     style="stroke-width:0.0556642;fill:#ffffff" />
+     style="fill:#ffffff;stroke-width:0.0384692" />
 </svg>
