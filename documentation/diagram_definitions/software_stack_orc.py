@@ -6,7 +6,6 @@ from diagrams.onprem.vcs import Github
 from diagrams.generic.os import Debian
 from diagrams.programming.flowchart import Inspection
 from diagrams.oci.compute import OKE
-
 # COLOURS
 comms_http = "orange"
 comms_container_service = "red"
@@ -27,8 +26,14 @@ with Diagram("Peon Orchestrator Software Stack", filename="../documentation/manu
                 application - Edge(color=comms_container, style="dotted") - shell
         shell >> runtime
         application >> runtime
+    with Cluster("Docker Hub"):
+        image_n = Docker("Image.N")
+        image_2 = Docker("Image.2")
+        image_1 = Docker("Image.1")
+    runtime << [image_n,image_2,image_1]
     svc = Github("Plan Repository")
+    svc << application
     endpoint = Inspection("REST API")
     endpoint >>  framework
-    svc << application
+
 
