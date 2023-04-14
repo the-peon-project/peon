@@ -13,8 +13,9 @@ This project handles the tools that are shared between game containers.
 
 ## Design Objectives
 
-- As generic as possible
-- Only build what does not already exist
+1. Only scripts/code to be store here. Large file pulls should be done from other sources.
+2. Attempt to keep the code pool as generic as possible to maximize code re-use/supportability.
+3. If something already exists and is open source don't rewrite needlessly.
 
 ---
 
