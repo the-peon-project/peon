@@ -40,11 +40,11 @@ We have some documentation to help you on your way.
 
 ### Installation/Deployment
 
-How to [deploy](./guides/index.md#deployment) PEON for gaming server automation.
+How to [deploy](./guides/01_deployment.md) PEON for gaming server automation.
 
 ### Using PEON
 
-How to [use](./guides/index.md) PEON gaming server automation services.
+How to [use](./guides/02_usage.md) PEON gaming server automation services.
 
 ### Development
 
