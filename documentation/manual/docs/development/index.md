@@ -20,8 +20,10 @@ This diagram shows off the basic architecture of the PEON project.
 |-|-|
 | Orc | The orchestration component of the PEON project. |
 | War Table | The PEON component responsible for shared services around the game servers. |
-| War Plan | These are the game recipies. |
-| WebUI | A website client built for the sole purpose of managing instances of *orcs* |
+| War Plan | These are the game server recipies. |
+| WebUI | A website client built for the sole purpose of managing instances of *Orc*s |
+| War Camp | A name for a container host that is running an *Orc* |
+| War Chief | A name for a module that manages multiple *War Camps* |
 
 ### Symbols
 
