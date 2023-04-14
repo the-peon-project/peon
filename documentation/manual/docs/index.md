@@ -34,13 +34,21 @@ That informs most of our project objectives:
 4. **Fast** - The servers must deploy/start/stop in as small a timeframe as possible. We want to game now, not later.
 `Battles do not wait`
 
-## Usage
+## Documentaion
 
-TODO - *Steps to deploy/install*
+We have some documentation to help you on your way.
 
-## Resources/Documentation
+### Installation/Deployment
 
-TODO - *Links to the PEON documentaion*
+How to [deploy](./guides/index.md) PEON for gaming server automation.
+
+### Using PEON
+
+How to [use](./guides/index.md) PEON gaming server automation services.
+
+### Development
+
+If you want to develop your own recipies (or modify the source code for your own objectives) go [here](./development/index.md)
 
 ## License Information
 
