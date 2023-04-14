@@ -18,6 +18,5 @@ with Diagram("Peon War Table Software Stack", filename="../documentation/manual/
             wine = Custom("WINE",f"{current_path}/diagram_definitions/logos/wine.png")
             with Cluster("Base Image"):
                 steam = Custom("SteamCMD",f"{current_path}/diagram_definitions/logos/steam.png")
-            #wine  - Edge(color=comms_container, style="dotted") - steam
         Docker("umlatt/steamcmd-winehq")
     Bash("Automation Scripts")
