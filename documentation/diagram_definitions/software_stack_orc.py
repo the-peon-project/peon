@@ -5,6 +5,7 @@ from diagrams.onprem.container import Docker
 from diagrams.onprem.vcs import Github
 from diagrams.generic.os import Debian
 from diagrams.programming.flowchart import Inspection
+from diagrams.oci.compute import OKE
 
 # COLOURS
 comms_http = "orange"
@@ -13,8 +14,9 @@ comms_container = "darkgray"
 
 with Diagram("Peon Orchestrator Software Stack", filename="../documentation/manual/docs/development/diagram_orc", show=False):
     with Cluster("Docker Host"):
-        runtime = Docker("Container Runtime")
-        with Cluster("Container: umlatt/peon.orc"):
+        runtime = OKE("Container Runtime")
+        with Cluster("Container"):
+            Docker("umlatt/peon.orc")
             with Cluster("Application"):
                 framework = Flask()
                 application = Python("Peon Codebase")
