@@ -1,9 +1,5 @@
 # PEON (Play Everything On Nodes)
 
-![PEON](https://github.com/the-peon-project/peon/blob/main/media/andre-kent-peon-turntable.jpeg)
-Art by [André Kent - Artstation](https://www.artstation.com/artwork/W2E0RQ)
-**This project owns no rights to the image above. Please link to the site and request them accordingly.**
-
 ## The Easy Game Server Manager
 
 An **OpenSource** project to assist gamers in self deploying/managing game servers.\
