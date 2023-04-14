@@ -6,11 +6,12 @@ from diagrams.saas.chat import Discord
 from diagrams.oci.compute import OKE
 from diagrams.custom import Custom
 
-comms_http = "darkgreen"
-comms_container_service = "darkblue"
-comms_container = "darkblue"
+# COLOURS
+comms_http = "orange"
+comms_container_service = "red"
+comms_container = "darkgray"
 
-with Diagram("Peon Orchestrator Flow", filename="../documentation/manual/docs/architecture/full", show=False):
+with Diagram("Peon Orchestrator Flow", filename="../documentation/manual/docs/development/architecture_master", show=False):
     # Nodes
     user = User("User")
     client_rest = Client("REST Client")
