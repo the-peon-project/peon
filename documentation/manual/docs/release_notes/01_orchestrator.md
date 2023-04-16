@@ -1,6 +1,11 @@
 # Orchestrator
 
-- [ ] CHANGE :tools: Make API key configurable
+- [ ] CHANGE :tools: Change to svn download for directory (plans)
+
+## v.0.3.2
+
+- [x] ADDED :new: Added `/app/bin` to path and added `peon` cli module into orc.
+- [x] CHANGE :tools: Make API key configurable
 
 ## v0.3.1
 
