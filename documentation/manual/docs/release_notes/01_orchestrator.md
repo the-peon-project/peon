@@ -1,6 +1,14 @@
 # Orchestrator
 
-- [ ] CHANGE :tools: Rework Orcestrator app to leverage the `docker.sock`
+- [ ] CHANGE :tools: Make API key configurable
+
+## v0.3.1
+
+- [x] CHANGE :tools: Rework Orcestrator app to leverage the `docker.sock`
+- [x] CHANGE :tools: Moving to init script `init/peon.orc`, for pre-flight checks.
+- [x] REMOVED :scissors: Removed SSH check on boot from `python3 main.py`
+- [x] ADDED :new: Configurable docker socket path.
+- [x] ADDED :new: Added `VERSION` environment variable into container.
 
 ## v0.3.0
 
