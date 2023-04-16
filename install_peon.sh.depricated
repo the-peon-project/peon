@@ -17,10 +17,6 @@ chown -R 1000:1000 .
 # Deploy peon infrastructure
 docker-compose up -d
 #
-# O R C - A U T H E N T I C A T I O N
-#
-cli/configure_orc.sh
-#
 # P E O N - C L I
 #
 echo "#!/bin/bash" > /usr/bin/peon
@@ -31,7 +27,3 @@ sudo chomd +x /usr/bin/peon
 # MESSAGE OF THE DAY (LOGIN BANNER)
 #
 sudo cat "$SCRIPT_DIR/media/banner" > /etc/motd
-
-##!/bin/bash
-#cd /root/peon/
-#./peon-cli.sh "$@"
