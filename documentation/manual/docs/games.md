@@ -6,5 +6,5 @@ This list will grow over time (as requests come in, or other people contribute r
 
 - [x] [CSGO](./guides/games/csgo.md)
 - [ ] [Starbound](https://github.com/the-peon-project/peon-warplans/tree/main/starbound)
-- [x] [Valhiem](https://github.com/the-peon-project/peon-warplans/tree/main/valhiem)
-- [x] [VRising](https://github.com/the-peon-project/peon-warplans/tree/main/vrising)
+- [ ] [Valhiem](https://github.com/the-peon-project/peon-warplans/tree/main/valhiem)
+- [ ] [VRising](https://github.com/the-peon-project/peon-warplans/tree/main/vrising)
