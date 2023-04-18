@@ -6,8 +6,9 @@ This project handles the tools that are shared between game containers.
 
 ## Projects
 
-1. [*Uncontained SteamCMD*](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmd) are scripts to automate/update `steamcmd` and the game server files (within a steamcmd based docker container), as part of the PEON automation services.
-2. [*Steamed Wine*](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmd-wine) is a custom container to facilitate game servers that are only built for windows OS, within the PEON toolsuite.
+[*Contained Steam*](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmd) (steamcmd) are scripts to automate/update `steamcmd` and the game server files (within a steamcmd based docker container), as part of the PEON automation services.
+
+[*Steamed Wine*](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmd-wine) (steamcmd+winhq) is a custom container to facilitate game servers that are only built for windows OS, within the PEON toolsuite.
 
 ---
 
