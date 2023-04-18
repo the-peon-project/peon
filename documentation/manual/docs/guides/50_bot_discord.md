@@ -2,6 +2,8 @@
 
 ## Commands
 
+Below are the commands that can be run against the bot.
+
 |symbol|command|description|
 |-|-|-|
 :point_up: | ``!poke``  |to check if there is an available peon to do some work.
