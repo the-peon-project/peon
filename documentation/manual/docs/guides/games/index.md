@@ -16,4 +16,4 @@ Fill in the boxes below and click create. You will get a `login token` which is 
 
 You can then set this in the `.env` file for the server, in the `./peon/servers/[game_uid]/[server_name]/` directory.
 
-![Game Server Login Token - Example](./steam_gslt.png)
+![Game Server Login Token - Example](../../development/games/steam_gslt.png)
