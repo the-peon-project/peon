@@ -14,7 +14,7 @@ If you wish to run this server outside of your private network (required by Stea
 
 [Offical Guide](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive/Dedicated_Servers#Advanced_Configuration)
 
-All of these files can be found and edited in the servers local storage path. 
+All of these files can be found and edited in the servers local storage path.
 
 `./peon/servers/[game_uid]/[server_name]/`
 
