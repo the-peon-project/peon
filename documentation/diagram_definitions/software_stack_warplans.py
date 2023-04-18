@@ -19,6 +19,7 @@ with Diagram("Peon War Plan Software Stack", filename="../documentation/manual/d
             steam = Custom("SteamCMD",f"{current_path}/diagram_definitions/logos/steam.png")
             scripts >> steam
         container = Docker("steamcmd/steamcmd")
-    definition = Custom("Definition  (JSON)",f"{current_path}/diagram_definitions/logos/json.png")
-    definition - Edge(style="dotted") - scripts
+    definition = Custom("docker-compose.yml",f"{current_path}/diagram_definitions/logos/docker-compose.png")
+    conf_file = Custom(".env",f"{current_path}/diagram_definitions/logos/env.png")
+    [ definition, conf_file ] - Edge(style="dotted") - scripts
     
