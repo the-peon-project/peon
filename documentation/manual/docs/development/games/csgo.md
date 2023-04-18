@@ -15,3 +15,7 @@ The PEON war plan that Peon uses to deploy your game server.
 ### Game Server Login Token (GSLT)
 
 CSGO required a `GSLT` to run on thier public network
+
+### Code Repo
+
+- [Github Project](https://github.com/the-peon-project/peon-warplans/tree/main/csgo)
