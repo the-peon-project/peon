@@ -1,10 +1,10 @@
-# War Table Changelog
-
-## PEON War Table - Overall
+# War Table
 
 ---
 
-## PEON SHARED SERVICE - STEAMCMD
+## Contained Steam
+
+**SteamCMD**
 
 ### 1.0.3
 
@@ -21,7 +21,9 @@
 
 ---
 
-## PEON SHARED SERVICE - STEAMCMD&WINEHQ
+## Steamed Wine
+
+**SteamCMD+WINEHQ**
 
 ### 1.0.1
 
