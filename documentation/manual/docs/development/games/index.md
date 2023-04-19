@@ -22,3 +22,62 @@ sever_start         # FILE: This file defines what command and how to run it, in
 ```
 
 *\*These are not always used.*
+
+### Settings File
+
+The settings file is required for all recipies (when being used by PEON) as it provides the relevant directive to PEON, in order to handle the container appropriately.
+
+#### metadata
+
+The information about the plan as well as indicating to PEON which deployment paradym must be followed
+
+- **gid** - the PEON game id
+- **version** - the current release based on the flag in release notes
+- **mode** - defines which deployment paradym to use for the container
+
+#### env_vars
+
+These are environment variables that are supplied to the relevant container. (They are pushed into the `.env` file for the server)
+
+The environment variable name is provided as a key, with its value being a collection of settings.
+
+Each environment variable is made up of three component settings.
+
+- **default** - This is the default setting, as defined by the plan (and will not be changed)
+- **value** - This is the new setting (it will override what is in default within the container)
+- **optional** - This indicates whether or not this value must be provided.
+
+#### files
+
+These are for locating the game server's specific config files. This should allow fine grained controll over the server's functioning for more advanced users.
+
+The key, in files, is the filename, with the values containing file metadata.
+
+- **path** - this indicates the path, within the container, where the file should/does reside.
+- **sample** - this indicates that there is a default file in that location (which can then be retrieved for the user to configure)
+- **default** - this indicates to PEON whether the server is running a user modified file.
+
+#### Example *settings.json*
+
+```json
+{
+    "metadata" : {
+        "gid" : "csgo",
+        "version" : "1.0.0",
+        "mode" : "steamcmd"
+    },
+    "env_vars" : {
+        "STEAM_GSLT"     : { "default" : 0,             "value" : null, "optional" : true },
+        "CSGO_GAME_TYPE" : { "default" : 0,             "value" : null, "optional" : true },
+        "CSGO_GAME_MODE" : { "default" : 0,             "value" : null, "optional" : true },
+        "CSGO_MAP_GROUP" : { "default" : "mg_active",   "value" : null, "optional" : true },
+        "CSGO_MAP"       : { "default" : "de_dust2",    "value" : null, "optional" : true }
+    },
+    "files" : {
+        "autoexec.cfg"          : { "path" : "/home/steam/server_files/csgo/cfg/autoexec.cfg", "sample" : null, "default" : true},
+        "server.cfg"            : { "path" : "/home/steam/server_files/csgo/cfg/server.cfg", "sample" : null,  "default" : true},
+        "gamemodes.txt"         : { "path" : "/home/steam/server_files/csgo/gamemodes.txt", "sample" : "/home/steam/server_files/csgo/gamemodes.txt",  "default" : true},
+        "gamemodes_server.txt"  : { "path" : "/home/steam/server_files/csgo/gamemodes_server.txt", "sample" : "gamemodes_server.txt.example",  "default" : true}
+    }
+}
+```
