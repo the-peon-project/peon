@@ -17,45 +17,14 @@ services:
       - $PWD/servers:/root/peon/servers
       - $PWD/plans:/root/peon/plans
       - $PWD/certs:/root/peon/certs
-      - /run/docker.sock:/var/run/docker.sock
+      - ${DOCKER_SOCKET_PATH}:/var/run/docker.sock
+      # DEV MOUNTS
+      - /root/peon-project/peon-orc/app:/app
     networks:
       zugnet:
         ipv4_address: 172.20.0.2
     restart: unless-stopped
     privileged: true
-  db:
-    image: postgres:14-alpine
-    container_name: peon.db
-    hostname: peon.db
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_HOST_AUTH_METHOD=${POSTGRES_HOST_AUTH_METHOD}
-      - POSTGRES_INITDB_ARGS=${POSTGRES_INITDB_ARGS}
-    volumes:
-      - $PWD/db:/var/lib/postgresql/data
-      - /var/log/peon:/var/log/peon
-    networks:
-      zugnet:
-        ipv4_address: 172.20.0.3
-    restart: unless-stopped
-    labels:
-      com.peon.description: "Peon backend DB (PostgreSQL)"
-  webapp:
-    container_name: peon.webui
-    hostname: peon.webui
-    image: umlatt/peon.webui:latest
-    depends_on:
-      - db
-    ports:
-      - '80:80'
-    volumes:
-      - /var/log/peon:/var/log/peon
-    networks:
-      zugnet:
-        ipv4_address: 172.20.0.4
-    restart: unless-stopped
   docs_rest:
     container_name: peon.dev.api.docs
     hostname: peon.dev.api.docs
@@ -77,25 +46,10 @@ services:
     hostname: peon.docs
     image: squidfunk/mkdocs-material
     ports:
-      - "8000:8000"
+      - "80:8000"
     volumes:
       - ${PWD}/documentation/manual:/docs
     networks:
       zugnet:
         ipv4_address: 172.20.0.6
     restart: unless-stopped
-  bot.discord:
-    container_name: peon.bot.discord
-    hostname: peon.bot.discord
-    image: umlatt/peon.bot.discord
-    environment:
-      - DISCORD_TOKEN=${DISCORD_TOKEN}
-    volumes:
-      - /var/log/peon:/var/log/peon
-      - $PWD/config:/app/config
-    networks:
-      zugnet:
-        ipv4_address: 172.20.0.20
-    restart: unless-stopped
-    depends_on:
-      - orchestrator
