@@ -25,7 +25,7 @@ sever_start         # FILE: This file defines what command and how to run it, in
 
 ### Settings File
 
-The settings file is required for all recipies (when being used by PEON) as it provides the relevant directive to PEON, in order to handle the container appropriately.
+:warning: The `settings.json` file is required for all recipies (when being used by PEON) as it provides the relevant directive to PEON, in order to handle the container appropriately.
 
 #### metadata
 
@@ -47,6 +47,8 @@ Each environment variable is made up of three component settings.
 - **value** - This is the new setting (it will override what is in default within the container)
 - **optional** - This indicates whether or not this value must be provided.
 
+*If there are no special `env_vars` to provide, you may leave this section out.*
+
 #### files
 
 These are for locating the game server's specific config files. This should allow fine grained controll over the server's functioning for more advanced users.
@@ -57,7 +59,9 @@ The key, in files, is the filename, with the values containing file metadata.
 - **sample** - this indicates that there is a default file in that location (which can then be retrieved for the user to configure)
 - **default** - this indicates to PEON whether the server is running a user modified file.
 
-#### Example *settings.json*
+*If there are no special `config_files` to provide, you may leave this section out.*
+
+#### Example
 
 ```json
 {
