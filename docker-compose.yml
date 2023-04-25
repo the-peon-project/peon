@@ -6,7 +6,7 @@ networks:
       config:
         - subnet: 172.20.0.0/24
 services:
-  orchestrator:
+  orc:
     container_name: peon.orc
     hostname: peon.orc
     image: umlatt/peon.orc:latest
@@ -32,7 +32,7 @@ services:
     environment:
       - SWAGGER_JSON=${SWAGGER_JSON}
     depends_on:
-      - orchestrator
+      - orc
     ports:
       - '8080:8080'
     volumes:
@@ -41,7 +41,7 @@ services:
       zugnet:
         ipv4_address: 172.20.0.5
     restart: unless-stopped
-  docs_project:
+  docs:
     container_name: peon.docs
     hostname: peon.docs
     image: squidfunk/mkdocs-material

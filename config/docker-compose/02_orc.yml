@@ -1,4 +1,4 @@
-  orchestrator:
+  orc:
     container_name: peon.orc
     hostname: peon.orc
     image: umlatt/peon.orc:latest

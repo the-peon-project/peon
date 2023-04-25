@@ -5,7 +5,7 @@
     environment:
       - SWAGGER_JSON=${SWAGGER_JSON}
     depends_on:
-      - orchestrator
+      - orc
     ports:
       - '8080:8080'
     volumes:
@@ -14,7 +14,7 @@
       zugnet:
         ipv4_address: 172.20.0.5
     restart: unless-stopped
-  docs_project:
+  docs:
     container_name: peon.docs
     hostname: peon.docs
     image: squidfunk/mkdocs-material
