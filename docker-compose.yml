@@ -14,9 +14,9 @@ services:
       - '5000:5000'
     volumes:
       - /var/log/peon:/var/log/peon
-      - $PWD/servers:/root/peon/servers
-      - $PWD/plans:/root/peon/plans
-      - $PWD/certs:/root/peon/certs
+      - $PWD/servers:/home/peon/servers
+      - $PWD/plans:/home/peon/plans
+      - $PWD/certs:/home/peon/certs
       - ${DOCKER_SOCKET_PATH}:/var/run/docker.sock
     networks:
       zugnet:
