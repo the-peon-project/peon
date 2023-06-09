@@ -3,12 +3,13 @@
         "undefined": "Error is undefined.",
         "parameterCount": "Instructions no good.... Explain more clearly to Peon.",
         "orc.none": "You do not command any warparties. You should conquer a war party!",
-        "orc.notavailable": "Peon cannot get to any warparties in the wargroup. Have they been raised to the ground?",
+        "orc.notavailable": "Peon unable to get to any war parties.",
         "orc.dne": "There is no warparty by that name in your wargroup.",
         "srv.dne": "The requested warcamp does not exist. Confirm your warcamps.",
         "srv.action.error": "Something bad happened when Peon tried to communicate the warcamp.",
         "schedule.past": "Can't being doing that. The shutdown event cannot happen in the past.",
-        "bad.code": "Me not sure what happened. The maker didn prepare Peon for this."
+        "bad.code": "Me not sure what happened. The horde didn prepare Peon for this.",
+        "unauthorized" : "You are not allowed give commands to Peon."
     },
     "sample": {
         "undefined": "n/a",
@@ -18,7 +19,8 @@
         "start": "!start servername gameuid* orchestrator* autostop_time*",
         "stop": "!stop servername gameuid* orchestrator* autostop_time*",
         "restart": "!restart servername gameuid* orchestrator*",
-        "badcode": "Please consider logging ticket with developer and explain what you tried to do."
+        "auth" : "*This command can only be run from the bot master channel.",
+        "badcode": "*Please consider logging ticket with developer and explain what you tried to do."
     },
     "symbol": {
         "poke": ":point_up:",
