@@ -1,6 +1,8 @@
   orc:
     container_name: peon.orc
     hostname: peon.orc
+    environment:
+      - HOST_DIR=${PEON_DIRECTORY}
     image: umlatt/peon.orc:latest
     ports:
       - '5000:5000'
