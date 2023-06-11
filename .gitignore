@@ -1,3 +1,7 @@
+## TEMP IGNORES
+docker-compose.yml
+peon.orchestrators.json
+##
 documentation
 .env
 *.crt 
