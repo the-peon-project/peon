@@ -3,6 +3,7 @@
     container_name: peon.db
     hostname: peon.db
     environment:
+      - DEV_MODE=${DEV_MODE}
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -25,8 +26,6 @@
       - db
     ports:
       - '80:80'
-    volumes:
-      - /var/log/peon:/var/log/peon
     networks:
       zugnet:
         ipv4_address: 172.20.0.4

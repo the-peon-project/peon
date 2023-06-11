@@ -3,9 +3,9 @@
     hostname: peon.bot.discord
     image: umlatt/peon.bot.discord
     environment:
+      - DEV_MODE=${DEV_MODE}
       - DISCORD_TOKEN=${DISCORD_TOKEN}
     volumes:
-      - /var/log/peon:/var/log/peon
       - $PWD/config:/app/config
     networks:
       zugnet:
