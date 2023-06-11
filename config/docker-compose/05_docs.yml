@@ -9,7 +9,7 @@
     ports:
       - '8080:8080'
     volumes:
-      - $PWD/documentation/api/1.0:/mnt
+      - $PWD/documentation/api/v1:/mnt
     networks:
       zugnet:
         ipv4_address: 172.20.0.5
