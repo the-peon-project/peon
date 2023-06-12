@@ -1,10 +1,10 @@
 {
     "undefined": "Me have no idea what to do?!?.",
-    "param_count": "You not give Orc enough information.",
     "orc.none": "You not command any Warparties. You should conquer Warparty.",
     "orc.notavailable": "Orc cannot get to War-party.",
     "orc.dne": "There is no Warparty by that name, Warchief.",
     "srv.dne": "Orc cannot find that Warcamp, Warchief. Does it exist?",
+    "srv.param": "You not give Orc enough information.",
     "plan.dne": "Orc cannot find a Warplan for that kind of Warcamp. Maybe Wachief check his Wartable for which Warcamps he has.",
     "plan.param": "But you did not tell Orc which Warplan you wanted!?!",
     "srv.action.error": "Something bad happened when Orc tried to communicate with the Warcamp.",
