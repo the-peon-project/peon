@@ -54,7 +54,7 @@
         "symbol": ":recycle:"
     },
     "usage": {
-        "note": "How to use Peon Bot.",
+        "note": "How to use the Peon Discord bot.",
         "user": "!usage",
         "admin": "!usage",
         "symbol": ":information_source:"
