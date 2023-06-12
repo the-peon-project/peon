@@ -1,52 +1,27 @@
 {
     "getall": [
-        "Getall",
-        "scout",
-        "Scout",
-        "warparty",
-        "Warparty"
+        "Getall"
     ],
     "get": [
-        "Get",
-        "show",
-        "Show",
-        "warcamp",
-        "Warcamp"
+        "Get"
     ],
     "set": [
-        "Set",
-        "configure",
-        "Configure"
+        "Set"
     ],
     "start": [
-        "Start",
-        "launch",
-        "Launch",
-        "deploy",
-        "Deploy",
-        "attack",
-        "Attack"
+        "Start"
     ],
     "stop": [
-        "Stop",
-        "kill",
-        "Kill",
-        "retreat",
-        "Retreat"
+        "Stop"
     ],
     "restart": [
-        "Restart",
-        "regroup",
-        "Regroup"
+        "Restart"
     ],
     "register": [
         "Register"
     ],
     "usage": [
-        "Usage",
-        "info",
-        "Info",
-        "howto"
+        "Usage"
     ],
     "clear": [
         "Clear",
