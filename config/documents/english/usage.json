@@ -57,7 +57,7 @@
         "note": "How to use Peon Bot.",
         "user": "!usage",
         "admin": "!usage",
-        "symbol": ":information_source:" 
+        "symbol": ":information_source:"
     },
     "baduser": {
         "note": "Please consider logging ticket with developer",
