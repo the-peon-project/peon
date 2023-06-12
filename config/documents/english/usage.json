@@ -1,0 +1,68 @@
+{
+    "poke": {
+        "note": "Test that Peon discord bot is available.",
+        "user": "!poke",
+        "admin": "!poke",
+        "symbol": ":point_up:"
+    },
+    "get": {
+        "note": "Get a specifc game server's detailas.",
+        "user": "!get",
+        "admin": "!get servername gameuid* orchestrator*",
+        "symbol": ":tent:"
+    },
+    "getall": {
+        "note": "Get a list of all hosts & servers on those hosts.",
+        "user": null,
+        "admin": "!getall",
+        "symbol": ":european_castle:"
+    },
+    "plan": {
+        "note": "Get the requirements for a specific game plan.",
+        "user": null,
+        "admin": "!plan gameuid",
+        "symbol": ":scroll:"
+    },
+    "plans": {
+        "note": "Get a list of available game server recipes.",
+        "user": "!plans",
+        "admin": "!plans",
+        "symbol": ":books:"
+    },
+    "register": {
+        "note": "Register an Orchestrator as a useable host.",
+        "user": null,
+        "admin": "!register uniqueName orchestratorUrl:port apiKey",
+        "symbol": ":pick:"
+    },
+    "start": {
+        "note": "Start a game server. (Optionally adding a duration/shutdown time for the game session).",
+        "user": "!start session_duration* autostop_time*",
+        "admin": "!start servername gameuid* orchestrator* session_duration* autostop_time*",
+        "symbol": ":white_check_mark:"
+    },
+    "stop": {
+        "note": "Stop a game server (Optionally, delay the stop by a specific duration/to a specific time).",
+        "user": "!start session_duration* shutoff_time*",
+        "admin": "!stop servername gameuid* orchestrator* session_duration* autostop_time*",
+        "symbol": ":stop_sign:"
+    },
+    "restart": {
+        "note": "Restart a game server.",
+        "user": "!restart",
+        "admin": "!restart servername gameuid* orchestrator*",
+        "symbol": ":recycle:"
+    },
+    "usage": {
+        "note": "How to use Peon Bot.",
+        "user": "!usage",
+        "admin": "!usage",
+        "symbol": ":information_source:" 
+    },
+    "baduser": {
+        "note": "Please consider logging ticket with developer",
+        "user": null,
+        "admin": null,
+        "symbol": ":pirate_flag:"
+    }
+}

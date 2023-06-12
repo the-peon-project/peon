@@ -1,0 +1,13 @@
+{
+    "poke":         ":point_up:",
+    "getall":       ":european_castle:",
+    "get":          ":tent:",
+    "start":        ":white_check_mark:",
+    "stop":         ":checkered_flag:",
+    "restart":      ":recycle:",
+    "schedule":     ":calendar:",
+    "extend":       ":clock3:",
+    "register":     ":wrench:",
+    "unregister":   ":hammer:",
+    "usage":        ":grey_question:"
+}

@@ -1,0 +1,56 @@
+{
+    "getall": [
+        "Getall",
+        "scout",
+        "Scout",
+        "warparty",
+        "Warparty"
+    ],
+    "get": [
+        "Get",
+        "show",
+        "Show",
+        "warcamp",
+        "Warcamp"
+    ],
+    "set": [
+        "Set",
+        "configure",
+        "Configure"
+    ],
+    "start": [
+        "Start",
+        "launch",
+        "Launch",
+        "deploy",
+        "Deploy",
+        "attack",
+        "Attack"
+    ],
+    "stop": [
+        "Stop",
+        "kill",
+        "Kill",
+        "retreat",
+        "Retreat"
+    ],
+    "restart": [
+        "Restart",
+        "regroup",
+        "Regroup"
+    ],
+    "register": [
+        "Register"
+    ],
+    "usage": [
+        "Usage",
+        "info",
+        "Info",
+        "howto"
+    ],
+    "clear": [
+        "Clear",
+        "remove",
+        "Remove"
+    ]
+}
