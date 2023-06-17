@@ -1,18 +1,18 @@
 {
     "poke": {
-        "note": "Test that Peon discord bot is available.",
+        "note": "Test that Peon Discord bot is available.",
         "user": "!poke",
         "admin": "!poke",
         "symbol": ":point_up:"
     },
     "get": {
-        "note": "Get a specifc game server's detailas.",
+        "note": "Get a specific game server's details.",
         "user": "!get",
         "admin": "!get servername gameuid* orchestrator*",
         "symbol": ":tent:"
     },
     "getall": {
-        "note": "Get a list of all hosts & servers on those hosts.",
+        "note": "Get a list of all hosts and servers on those hosts.",
         "user": null,
         "admin": "!getall",
         "symbol": ":european_castle:"
@@ -30,13 +30,13 @@
         "symbol": ":books:"
     },
     "register": {
-        "note": "Register an Orchestrator as a useable host.",
+        "note": "Register an Orchestrator as a usable host.",
         "user": null,
         "admin": "!register uniqueName orchestratorUrl:port apiKey",
         "symbol": ":pick:"
     },
     "start": {
-        "note": "Start a game server. (Optionally adding a duration/shutdown time for the game session).",
+        "note": "Start a game server (Optionally adding a duration/shutdown time for the game session).",
         "user": "!start session_duration* autostop_time*",
         "admin": "!start servername gameuid* orchestrator* session_duration* autostop_time*",
         "symbol": ":white_check_mark:"
@@ -60,13 +60,13 @@
         "symbol": ":information_source:"
     },
     "bad.code": {
-        "note": "Please consider logging ticket with developer. https://github.com/the-peon-project/peon-bot-discord/issues/new/choose",
+        "note": "Please consider logging a ticket with the developer. Visit: https://github.com/the-peon-project/peon-bot-discord/issues/new/choose",
         "user": null,
         "admin": null,
         "symbol": ":pirate_flag:"
     },
     "auth" : {
-        "note": "This channel is not authorised to run this command.",
+        "note": "This channel is not authorized to run this command.",
         "user": null,
         "admin": null,
         "symbol": ":no_entry_sign:"
