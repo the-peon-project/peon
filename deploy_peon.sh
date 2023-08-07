@@ -1,4 +1,5 @@
 #!/bin/bash
+
 draw_menu_header() {
     clear
     width=$1 title=$2 heading=$3 bar_heavy="" bar_light=""                                                                  # Collect passed parameters and create empty strings
@@ -20,11 +21,12 @@ draw_menu_header() {
 
 help_information() {
     echo "Usage: $0 [OPTIONS]"
-    echo "  -o, --orchestrator  Enable PEON Orchestrator"
-    echo "  -w, --webui         Enable PEON Web User Interface"
-    echo "  -d, --documentation Enable PEON documentaion"
-    echo "  -1, --dbot          Enable PEON Discord bot"
-    echo "  -h, --help          Show help"
+    echo "  -o, --orchestrator   Enable PEON Orchestrator"
+    echo "  -k, --apikey <key>   Configure custom PEON Orchestrator API key (defaults to 'Zu88Zu88')"
+    echo "  -w, --webui          Enable PEON Web User Interface"
+    echo "  -d, --documentation  Enable PEON documentation"
+    echo "  -1, --dbot           Enable PEON Discord bot"
+    echo "  -h, --help           Show help"
     exit 0
 }
 
@@ -34,10 +36,10 @@ orc=false
 web=false
 docs=false
 bot_discord=false
+apikey=""
 invalid="Invalid choice. Please try again.\n"
 
-
-if [ -z "$1" ]; then
+if [ "$#" -eq 0 ]; then
     draw_menu_header 35 "P E O N" "RE/CONFIGURE"
     read -n 1 -p "Enable Orchestrator (orc)? [y]/n: " choice
     printf "\n"
@@ -46,6 +48,10 @@ if [ -z "$1" ]; then
         n|N     ) orc=false ;;
         *       ) printf "$invalid"; exit 1;;
     esac
+    read -p "Set Orchestrator API key (enter for default): " apikey_input
+    if [ ! -z "$apikey_input" ]; then
+        apikey=$apikey_input
+    fi
     read -n 1 -p "Enable Web Managament (webui)? [y]/n: " choice
     printf "\n"
     case "$choice" in
@@ -63,36 +69,52 @@ if [ -z "$1" ]; then
     read -n 1 -p "Enable Bot - Discord (bot.discord)? [y]/n: " choice
     printf "\n"
     case "$choice" in
-        y|Y|""  ) bot_discord=true ;;
+        y|Y|""  ) bot_discord=true 
+                read -p "Configure Discord token: " discord_bot
+                if [ ! -z "$discord_bot" ]; then
+                    discord_key=$discord_bot
+                else
+                    echo " [x] A Discord bot Token must be provided."
+                    exit 1
+                fi;;
         n|N     ) bot_discord=false ;;
         *       ) printf "$invalid"; exit 1;;
     esac
 else
-    while [[ $# -gt 0 ]]; do
-        case "$1" in
-            -o|--orc)
-            orc=true
-            ;;
-            -w|--webui)
-            web=true
-            ;;
-            -d|--docs)
-            docs=true
-            ;;
-            -1|--dbot)
-            bot_discord=true
-            ;;
-            -h|--help)
-            help_information
-            exit 0
-            ;;
-            *)
-            echo "Unknown parameter: $1"
-            help_information
-            exit 1
-            ;;
+    while getopts ":owd1k:h-:" opt; do
+        case ${opt} in
+            o ) orc=true ;;
+            w ) web=true ;;
+            d ) docs=true ;;
+            1 ) bot_discord=true ;;
+            k )
+                apikey=$OPTARG
+                ;;
+            h ) help_information; exit 0 ;;
+            - )
+                case ${OPTARG} in
+                    orchestrator ) orc=true ;;
+                    webui ) web=true ;;
+                    documentation ) docs=true ;;
+                    dbot ) bot_discord=true ;;
+                    apikey )
+                        apikey="${!OPTIND}"
+                        OPTIND=$(($OPTIND+1))
+                        ;;
+                    help ) help_information; exit 0 ;;
+                    * )
+                        echo "Unknown parameter: --$OPTARG"
+                        help_information
+                        exit 1
+                        ;;
+                esac
+                ;;
+            * )
+                echo "Unknown parameter: -$OPTARG"
+                help_information
+                exit 1
+                ;;
         esac
-        shift
     done
 fi
 
@@ -112,4 +134,17 @@ if [[ "$bot_discord" = "true" ]]; then
 fi
 mv docker-compose.yml.tmp docker-compose.yml
 rm -rf docker-compose.yml.tmp
-docker-compose up --remove-orphans -d
+
+
+cp .env.sample .env
+if [ ! -z "$apikey" ]; then
+    sed -i "/API_KEY/s/.*/API_KEY=$apikey/" .env
+fi
+if [ ! -z "$discord_key" ]; then
+    sed -i "/DISCORD_TOKEN/s/.*/DISCORD_TOKEN=$discord_key/" .env
+fi
+
+echo " - Settings - "
+cat .env
+
+# docker-compose up --remove-orphans -d
