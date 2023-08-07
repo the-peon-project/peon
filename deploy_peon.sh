@@ -81,12 +81,14 @@ if [ "$#" -eq 0 ]; then
         *       ) printf "$invalid"; exit 1;;
     esac
 else
-    while getopts ":owd1k:h-:" opt; do
+    while getopts ":owd1:k:h-:" opt; do
         case ${opt} in
             o ) orc=true ;;
             w ) web=true ;;
             d ) docs=true ;;
-            1 ) bot_discord=true ;;
+            1 ) bot_discord=true 
+                discord_key=$OPTARG
+                ;;
             k )
                 apikey=$OPTARG
                 ;;
