@@ -140,7 +140,7 @@ rm -rf docker-compose.yml.tmp
 
 cp .env.sample .env
 if [ ! -z "$apikey" ]; then
-    sed -i "/API_KEY/s/.*/API_KEY=$apikey/" .env
+    sed -i "/PEON_API_KEY/s/.*/PEON_API_KEY=$apikey/" .env
 fi
 if [ ! -z "$discord_key" ]; then
     sed -i "/DISCORD_TOKEN/s/.*/DISCORD_TOKEN=$discord_key/" .env
