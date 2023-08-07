@@ -12,6 +12,7 @@ services:
     environment:
       - DEV_MODE=${DEV_MODE}
       - HOST_DIR=${PEON_DIRECTORY}
+      - API_KEY=${PEON_API_KEY}
     image: umlatt/peon.orc:latest
     ports:
       - '5000:5000'
@@ -20,43 +21,12 @@ services:
       - $PWD/plans:/home/peon/plans
       - $PWD/certs:/home/peon/certs
       - ${DOCKER_SOCKET_PATH}:/var/run/docker.sock
+      - /root/peon-project/peon-orc/app:/app
     networks:
       zugnet:
         ipv4_address: 172.20.0.2
     restart: unless-stopped
     privileged: true
-  db:
-    image: postgres:14-alpine
-    container_name: peon.db
-    hostname: peon.db
-    environment:
-      - DEV_MODE=${DEV_MODE}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_HOST_AUTH_METHOD=${POSTGRES_HOST_AUTH_METHOD}
-      - POSTGRES_INITDB_ARGS=${POSTGRES_INITDB_ARGS}
-    volumes:
-      - $PWD/db:/var/lib/postgresql/data
-      - /var/log/peon:/var/log/peon
-    networks:
-      zugnet:
-        ipv4_address: 172.20.0.3
-    restart: unless-stopped
-    labels:
-      com.peon.description: "Peon backend DB (PostgreSQL)"
-  webapp:
-    container_name: peon.webui
-    hostname: peon.webui
-    image: umlatt/peon.webui:latest
-    depends_on:
-      - db
-    ports:
-      - '80:80'
-    networks:
-      zugnet:
-        ipv4_address: 172.20.0.4
-    restart: unless-stopped
   docs_rest:
     container_name: peon.dev.api.docs
     hostname: peon.dev.api.docs
@@ -93,6 +63,7 @@ services:
       - DEV_MODE=${DEV_MODE}
       - DISCORD_TOKEN=${DISCORD_TOKEN}
     volumes:
+      - /root/peon-project/peon-bot-discord/app:/app
       - $PWD/config:/app/config
     networks:
       zugnet:
