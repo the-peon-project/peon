@@ -146,7 +146,7 @@ if [ ! -z "$discord_key" ]; then
     sed -i "/DISCORD_TOKEN/s/.*/DISCORD_TOKEN=$discord_key/" .env
 fi
 
-echo " - Settings - "
+printf "\n\n - Settings - "
 cat .env
 
-# docker-compose up --remove-orphans -d
+docker-compose up --remove-orphans -d
