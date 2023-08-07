@@ -134,9 +134,9 @@ fi
 if [[ "$bot_discord" = "true" ]]; then
     cat "$config_file_location/20_bots.yml"      >> docker-compose.yml.tmp
 fi
+
 mv docker-compose.yml.tmp docker-compose.yml
 rm -rf docker-compose.yml.tmp
-
 
 cp .env.sample .env
 if [ ! -z "$apikey" ]; then
