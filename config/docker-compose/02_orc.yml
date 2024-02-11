@@ -11,6 +11,7 @@
     volumes:
       - $PWD/servers:/home/peon/servers
       - $PWD/plans:/home/peon/plans
+      - $PWD/backup:/home/peon/backup
       - $PWD/certs:/home/peon/certs
       - ${DOCKER_SOCKET_PATH}:/var/run/docker.sock
     networks:
