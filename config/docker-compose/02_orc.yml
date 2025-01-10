@@ -4,7 +4,7 @@
     environment:
       - DEV_MODE=${DEV_MODE}
       - HOST_DIR=${PEON_DIRECTORY}
-      - API_KEY='${PEON_API_KEY}'
+      - API_KEY=${PEON_API_KEY}
     image: umlatt/peon.orc:latest
     ports:
       - '5000:5000'

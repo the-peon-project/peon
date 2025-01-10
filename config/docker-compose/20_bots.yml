@@ -5,7 +5,7 @@
     environment:
       - DEV_MODE=${DEV_MODE}
       - DISCORD_TOKEN=${DISCORD_TOKEN}
-      - LOCAL_API_KEY='${PEON_API_KEY:-}'
+      - LOCAL_API_KEY=${PEON_API_KEY:-}
     volumes:
       - $PWD/config:/app/config
     networks:
