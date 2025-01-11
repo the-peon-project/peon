@@ -4,8 +4,12 @@
     image: umlatt/peon.bot.discord
     environment:
       - DEV_MODE=${DEV_MODE}
+      - TIMEZONE=${TIMEZONE}
+      - LANGUAGE=${LANGUAGE}
       - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - COMMAND_PREFIX=${COMMAND_PREFIX}
       - LOCAL_API_KEY=${PEON_API_KEY:-}
+      - CONTROL_CHANNEL=${CONTROL_CHANNEL}
     volumes:
       - $PWD/config:/app/config
     networks:
