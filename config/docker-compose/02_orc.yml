@@ -4,8 +4,6 @@
     environment:
       - DEV_MODE=${DEV_MODE}
       - HOST_DIR=${PEON_DIRECTORY}
-      - CONTROL_CHANNEL=${CONTROL_CHANNEL}
-      - LANGUAGE=${LANGUAGE}
       - API_KEY=${PEON_API_KEY}
     image: umlatt/peon.orc:latest
     ports:
