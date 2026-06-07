@@ -5,6 +5,9 @@
       - DEV_MODE=${DEV_MODE}
       - HOST_DIR=${PEON_DIRECTORY}
       - API_KEY=${PEON_API_KEY}
+      - PEON_CACHE_ENABLED=${PEON_CACHE_ENABLED}
+      - PEON_CACHE_URL=${PEON_CACHE_URL}
+      - PEON_CACHE_BYPASS=${PEON_CACHE_BYPASS}
     image: umlatt/peon.orc:latest
     ports:
       - '5000:5000'

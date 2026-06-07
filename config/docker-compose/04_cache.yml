@@ -1,0 +1,13 @@
+  cache:
+    container_name: peon.cache
+    hostname: peon.cache
+    image: ubuntu/squid:latest
+    ports:
+      - '3128:3128'
+    volumes:
+      - ${PWD}/config/squid/squid.conf:/etc/squid/squid.conf:ro
+      - peon-cache-squid:/var/spool/squid
+    networks:
+      zugnet:
+        ipv4_address: 172.20.0.7
+    restart: unless-stopped

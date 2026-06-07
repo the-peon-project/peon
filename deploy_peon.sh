@@ -1,5 +1,17 @@
 #!/bin/bash
 
+get_compose_command() {
+    if command -v docker-compose >/dev/null 2>&1; then
+        echo "docker-compose"
+        return 0
+    fi
+    if command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then
+        echo "docker compose"
+        return 0
+    fi
+    return 1
+}
+
 draw_menu_header() {
     clear
     width=$1 title=$2 heading=$3 bar_heavy="" bar_light=""                                                                  # Collect passed parameters and create empty strings
@@ -24,6 +36,7 @@ help_information() {
     echo "  -o, --orchestrator   Enable PEON Orchestrator"
     echo "  -k, --apikey <key>   Configure custom PEON Orchestrator API key (defaults to 'Zu88Zu88')"
     echo "  -w, --webui          Enable PEON Web User Interface"
+    echo "  -c, --cache          Enable shared download cache proxy"
     echo "  -d, --documentation  Enable PEON documentation"
     echo "  -1, --dbot           Enable PEON Discord bot"
     echo "  -h, --help           Show help"
@@ -34,10 +47,17 @@ help_information() {
 config_file_location="./config/docker-compose"
 orc=false
 web=false
+cache=false
 docs=false
 bot_discord=false
 apikey=""
 invalid="Invalid choice. Please try again.\n"
+compose_command=$(get_compose_command)
+
+if [ -z "$compose_command" ]; then
+    echo "Docker Compose is not available. Install either 'docker compose' or 'docker-compose'."
+    exit 1
+fi
 
 if [ "$#" -eq 0 ]; then
     draw_menu_header 35 "P E O N" "RE/CONFIGURE"
@@ -57,6 +77,13 @@ if [ "$#" -eq 0 ]; then
     case "$choice" in
         y|Y|""  ) web=true ;;
         n|N     ) web=false ;;
+        *       ) printf "$invalid"; exit 1;;
+    esac
+    read -n 1 -p "Enable shared download cache proxy? [y]/n: " choice
+    printf "\n"
+    case "$choice" in
+        y|Y|""  ) cache=true ;;
+        n|N     ) cache=false ;;
         *       ) printf "$invalid"; exit 1;;
     esac
     read -n 1 -p "Enable Development Documentation (docs)? y/[n]: " choice
@@ -81,10 +108,11 @@ if [ "$#" -eq 0 ]; then
         *       ) printf "$invalid"; exit 1;;
     esac
 else
-    while getopts ":owd1:k:h-:" opt; do
+    while getopts ":owcd1:k:h-:" opt; do
         case ${opt} in
             o ) orc=true ;;
             w ) web=true ;;
+            c ) cache=true ;;
             d ) docs=true ;;
             1 ) bot_discord=true 
                 discord_key=$OPTARG
@@ -97,6 +125,7 @@ else
                 case ${OPTARG} in
                     orchestrator ) orc=true ;;
                     webui ) web=true ;;
+                    cache ) cache=true ;;
                     documentation ) docs=true ;;
                     dbot ) bot_discord=true ;;
                     apikey )
@@ -128,16 +157,31 @@ fi
 if [[ "$web" = "true" ]]; then
     cat "$config_file_location/03_webui.yml"     >> docker-compose.yml.tmp
 fi
+if [[ "$cache" = "true" ]]; then
+    cat "$config_file_location/04_cache.yml"     >> docker-compose.yml.tmp
+fi
 if [[ "$docs" = "true" ]]; then
     cat "$config_file_location/05_docs.yml"      >> docker-compose.yml.tmp
 fi
 if [[ "$bot_discord" = "true" ]]; then
     cat "$config_file_location/20_bots.yml"      >> docker-compose.yml.tmp
 fi
+if [[ "$cache" = "true" ]]; then
+    printf "\n" >> docker-compose.yml.tmp
+    cat <<'EOF' >> docker-compose.yml.tmp
+volumes:
+  peon-cache-squid:
+EOF
+fi
 mv docker-compose.yml.tmp docker-compose.yml
 rm -rf docker-compose.yml.tmp
 # SETTINGS
 cp .env.sample .env
+if [[ "$cache" = "true" ]]; then
+    sed -i "/PEON_CACHE_ENABLED/s/.*/PEON_CACHE_ENABLED=true/" .env
+else
+    sed -i "/PEON_CACHE_ENABLED/s/.*/PEON_CACHE_ENABLED=false/" .env
+fi
 if [ ! -z "$apikey" ]; then
     sed -i "/PEON_API_KEY/s/.*/PEON_API_KEY='$apikey'/" .env
 fi
@@ -147,10 +191,16 @@ fi
 printf "\n\n - Settings - "
 cat .env
 # CONFIGURE BANNER
-sudo cat "./media/banner" > /etc/motd
+if [ -w /etc/motd ]; then
+    cat "./media/banner" > /etc/motd
+elif command -v sudo >/dev/null 2>&1 && sudo -n true >/dev/null 2>&1; then
+    sudo tee /etc/motd >/dev/null < "./media/banner"
+else
+    echo " [!] Skipping /etc/motd update; elevated write access is not available."
+fi
 # ADD PEON ENV
 echo "alias peon='docker exec -it peon.orc peon'" >> ~/.bashrc
 source ~/.bashrc
 # START UP APPLICATION
-docker-compose up --remove-orphans -d
+$compose_command up --remove-orphans -d
 
