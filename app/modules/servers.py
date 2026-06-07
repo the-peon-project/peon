@@ -166,10 +166,22 @@ def docker_compose_do(action,server_uid):
         logging.error(f"docker_compose_do.nok. {e}")
         return {"status" : "error", "info" : f"Could not complete the requested action for [{server_uid}].", "exception" : f"{e}"}
 
+def server_refresh_manifest(server_uid):
+    working_dir = f"{server_root_path}/{server_uid.replace('.','/')}"
+    config_file = f"{working_dir}/config.json"
+    try:
+        with open(config_file, 'r') as json_file:
+            server_config = json.load(json_file)
+        return update_build_file(server_path=working_dir, config_warcamp=server_config)
+    except Exception as e:
+        logging.error(f"server_refresh_manifest.nok. {e}")
+        return {"status" : "error", "info" : f"Could not refresh the server manifest for [{server_uid}].", "exception" : f"{e}"}
+
 def server_create(server_uid):
     logging.info("Creating server [{0}]".format(server_uid))
     working_dir = f"{server_root_path}/{server_uid.replace('.','/')}"
     execute_shell(f'[ -d "{working_dir}" ] || mkdir -p "{working_dir}"')
+    if (result := server_refresh_manifest(server_uid))['status'] != 'success': return result
     return docker_compose_do(action='create',server_uid=server_uid)
 
 def server_update(server_uid,mode='full'):
@@ -188,12 +200,14 @@ def server_update(server_uid,mode='full'):
         if os.path.exists(update_flag):
             os.remove(update_flag)
             logging.debug(".update flag file removed successfully.")
+    if (result := server_refresh_manifest(server_uid))['status'] != 'success': return result
     if (result := server_port_check(server_uid))['status'] != 'success': return result
     logging.debug("Starting server")
     return docker_compose_do(action="up -d",server_uid=server_uid)
 
 def server_start(server_uid):
     logging.info("Starting server [{0}]".format(server_uid))
+    if (result := server_refresh_manifest(server_uid))['status'] != 'success': return result
     if (result := server_port_check(server_uid))['status'] != 'success': return result
     return docker_compose_do(action="up -d",server_uid=server_uid)
 

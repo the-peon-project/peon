@@ -142,6 +142,22 @@ def consolidate_settings(config_peon,user_settings,plan): # Check exisiting conf
             plan['environment'][key] = user_settings[key]
     return { "status" : "success", "plan" : plan}
 
+def get_proxy_environment():
+    if str(os.environ.get('PEON_CACHE_ENABLED', 'false')).lower() not in ['1', 'true', 'yes', 'on']:
+        return {}
+    proxy_url = os.environ.get('PEON_CACHE_URL', '').strip()
+    if not proxy_url:
+        return {}
+    no_proxy = os.environ.get('PEON_CACHE_BYPASS', 'localhost,127.0.0.1,host.docker.internal')
+    return {
+        'HTTP_PROXY': proxy_url,
+        'HTTPS_PROXY': proxy_url,
+        'http_proxy': proxy_url,
+        'https_proxy': proxy_url,
+        'NO_PROXY': no_proxy,
+        'no_proxy': no_proxy,
+    }
+
 def update_build_file(server_path,config_warcamp): # Take a config and create a docker-compose.yml file
     manifest = {}
     port_list = []
@@ -170,6 +186,9 @@ def update_build_file(server_path,config_warcamp): # Take a config and create a 
     # Environment Variables
     for env_var, value in config_warcamp['environment'].items(): 
         env_var_list.append(f"{env_var}={value}")
+    proxy_environment = get_proxy_environment()
+    for env_var, value in proxy_environment.items():
+        env_var_list.append(f"{env_var}={value}")
     manifest['services']['server']['environment']=env_var_list
     # Volumes
     docker_host_path = os.environ.get('HOST_DIR')
@@ -189,6 +208,8 @@ def update_build_file(server_path,config_warcamp): # Take a config and create a 
     manifest['services']['server']['volumes']=mount_list
     # User
     manifest['services']['server']['user']="1000:1000"
+    if proxy_environment:
+        manifest['services']['server']['extra_hosts']=["host.docker.internal:host-gateway"]
     manifest['services']['server']['networks']=["zugnet"]
     manifest['networks']={"zugnet":{"name":f"{server_path.split('/')[-2]}_{server_path.split('/')[-1]}"}}
     try:
