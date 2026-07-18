@@ -37,8 +37,22 @@ For API documentation:
 
 - WebUI backend docs are available at `http://<webui-host>/docs`.
 - Selected orchestrator Swagger docs are available through the WebUI proxy at `/api/proxy/{orchestrator_id}/docs`.
+- When opened from the dashboard, selected orchestrator Swagger links include the current JWT in the query string so the new tab can authenticate without weakening route security.
 
 This proxy-based docs path replaces the old standalone swagger-ui container in default deployments.
+
+Theme controls are admin-only and live in the Admin panel.
+
+Theme modes:
+
+- `clean`: flat slate and light-blue UI with minimal gradients.
+- `horde`: a classic warcamp look with iron, bone, leather, and battle-green accents.
+- `alliance`: a human castle look with stone, steel, royal blue, and gold accents.
+
+Future UI elements should follow the shared brand rules in the WebUI README before introducing new styling patterns.
+
+Game logos are now served through a backend resolver at `/game-logos/<game_uid>.<ext>`.
+When a plan list is fetched or a server is deployed from a recipe, WebUI will automatically hydrate and cache missing logos (including formats like `logo.webp` from `peon-warplans`).
 
 ---
 
@@ -91,6 +105,12 @@ When WebUI and ORC are deployed in the same Docker stack, configure the orchestr
 ---
 
 ## Release Notes
+
+**0.1.9**
+
+- Added backend-driven game logo resolution and caching for `/game-logos/*` requests.
+- Added automatic logo hydration on recipe plan reads and server deployment actions.
+- Fixed missing logos for recipes that only provide non-png assets (for example `palworld/logo.webp`).
 
 **0.1.8**
 

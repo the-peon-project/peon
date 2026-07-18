@@ -1754,8 +1754,19 @@
 <ul>
 <li>WebUI backend docs are available at <code>http://&lt;webui-host&gt;/docs</code>.</li>
 <li>Selected orchestrator Swagger docs are available through the WebUI proxy at <code>/api/proxy/{orchestrator_id}/docs</code>.</li>
+<li>When opened from the dashboard, selected orchestrator Swagger links include the current JWT in the query string so the new tab can authenticate without weakening route security.</li>
 </ul>
 <p>This proxy-based docs path replaces the old standalone swagger-ui container in default deployments.</p>
+<p>Theme controls are admin-only and live in the Admin panel.</p>
+<p>Theme modes:</p>
+<ul>
+<li><code>clean</code>: flat slate and light-blue UI with minimal gradients.</li>
+<li><code>horde</code>: a classic warcamp look with iron, bone, leather, and battle-green accents.</li>
+<li><code>alliance</code>: a human castle look with stone, steel, royal blue, and gold accents.</li>
+</ul>
+<p>Future UI elements should follow the shared brand rules in the WebUI README before introducing new styling patterns.</p>
+<p>Game logos are now served through a backend resolver at <code>/game-logos/&lt;game_uid&gt;.&lt;ext&gt;</code>.
+When a plan list is fetched or a server is deployed from a recipe, WebUI will automatically hydrate and cache missing logos (including formats like <code>logo.webp</code> from <code>peon-warplans</code>).</p>
 <hr />
 <h2 id="navigation">Navigation</h2>
 <p>Links to various project-related resources.</p>
@@ -1794,6 +1805,12 @@
 </ul>
 <hr />
 <h2 id="release-notes">Release Notes</h2>
+<p><strong>0.1.9</strong></p>
+<ul>
+<li>Added backend-driven game logo resolution and caching for <code>/game-logos/*</code> requests.</li>
+<li>Added automatic logo hydration on recipe plan reads and server deployment actions.</li>
+<li>Fixed missing logos for recipes that only provide non-png assets (for example <code>palworld/logo.webp</code>).</li>
+</ul>
 <p><strong>0.1.8</strong></p>
 <ul>
 <li>Added WebUI controls to delete server instances directly from the server management views.</li>
