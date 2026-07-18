@@ -8,7 +8,11 @@
       - PEON_CACHE_ENABLED=${PEON_CACHE_ENABLED}
       - PEON_CACHE_URL=${PEON_CACHE_URL}
       - PEON_CACHE_BYPASS=${PEON_CACHE_BYPASS}
+<<<<<<< HEAD
     image: umlatt/peon.orc:latest
+=======
+    image: peon.orc:cache
+>>>>>>> c1a5c23 (Update deployment stack composition)
     ports:
       - '5000:5000'
     volumes:

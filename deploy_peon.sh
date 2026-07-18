@@ -12,6 +12,27 @@ get_compose_command() {
     return 1
 }
 
+ensure_env_defaults() {
+    local sample_file=".env.sample"
+    local env_file=".env"
+
+    if [ ! -f "$env_file" ]; then
+        cp "$sample_file" "$env_file"
+        return 0
+    fi
+
+    while IFS= read -r line || [ -n "$line" ]; do
+        case "$line" in
+            ""|\#*) continue ;;
+        esac
+
+        key="${line%%=*}"
+        if ! grep -q "^${key}=" "$env_file"; then
+            printf "\n%s\n" "$line" >> "$env_file"
+        fi
+    done < "$sample_file"
+}
+
 draw_menu_header() {
     clear
     width=$1 title=$2 heading=$3 bar_heavy="" bar_light=""                                                                  # Collect passed parameters and create empty strings
@@ -247,7 +268,11 @@ fi
 mv docker-compose.yml.tmp docker-compose.yml
 rm -rf docker-compose.yml.tmp
 # SETTINGS
+<<<<<<< HEAD
 cp .env.sample .env
+=======
+ensure_env_defaults
+>>>>>>> c1a5c23 (Update deployment stack composition)
 if [[ "$cache" = "true" ]]; then
     sed -i "/PEON_CACHE_ENABLED/s/.*/PEON_CACHE_ENABLED=true/" .env
 else

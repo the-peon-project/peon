@@ -1,11 +1,11 @@
   docs:
     container_name: peon.docs
     hostname: peon.docs
-    image: squidfunk/mkdocs-material
+    image: nginx:alpine
     ports:
-      - "8000:8000"
+      - "8000:80"
     volumes:
-      - ${PWD}/documentation/manual:/docs
+      - ${PWD}/documentation/site:/usr/share/nginx/html:ro
     networks:
       zugnet:
         ipv4_address: 172.20.0.6
