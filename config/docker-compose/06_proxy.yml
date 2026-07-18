@@ -1,0 +1,20 @@
+  proxy:
+    container_name: peon.proxy
+    hostname: peon.proxy
+    image: caddy:2-alpine
+    depends_on:
+      - webapp
+    environment:
+      - PEON_PROXY_DOMAIN=${PEON_PROXY_DOMAIN}
+      - PEON_PROXY_EMAIL=${PEON_PROXY_EMAIL}
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ${PWD}/config/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - peon-proxy-data:/data
+      - peon-proxy-config:/config
+    networks:
+      zugnet:
+        ipv4_address: 172.20.0.8
+    restart: unless-stopped

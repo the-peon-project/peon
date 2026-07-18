@@ -1,0 +1,5 @@
+{$PEON_PROXY_DOMAIN} {
+    tls {$PEON_PROXY_EMAIL}
+    encode gzip
+    reverse_proxy webapp:80
+}

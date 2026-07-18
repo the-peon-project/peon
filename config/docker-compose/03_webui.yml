@@ -25,7 +25,7 @@
     depends_on:
       - db
     ports:
-      - '80:80'
+      - '${PEON_WEBUI_HOST_PORT:-80}:80'
     networks:
       zugnet:
         ipv4_address: 172.20.0.4
