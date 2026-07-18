@@ -1,7 +1,6 @@
 pipenv
-flask
-flask-restful
-flask_cors
+fastapi
+uvicorn
 docker
 paramiko
 apscheduler

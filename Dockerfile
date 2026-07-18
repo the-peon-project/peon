@@ -18,7 +18,7 @@ COPY ./requirements.txt /app/requirements.txt
 RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip3 install --no-cache-dir --upgrade -r /app/requirements.txt
 # DEBUG: Install tools for debugging
-RUN apt-get -y install procps iputils-ping dnsutils vim
+RUN apt-get update && apt-get -y install procps iputils-ping dnsutils vim
 # APPLICATION
 COPY ./app /app
 WORKDIR /app
