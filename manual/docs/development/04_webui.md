@@ -52,7 +52,8 @@ Links to various project-related resources.
 
 ## Features
 
-- [x] Nothing yet
+- [x] Admin user lifecycle controls (create, update, reset password, delete non-self users)
+- [x] Server lifecycle controls from dashboard (start, stop, restart, update, delete)
 
 ---
 
@@ -87,6 +88,11 @@ When WebUI and ORC are deployed in the same Docker stack, configure the orchestr
 ---
 
 ## Release Notes
+
+**0.1.8**
+
+- Added WebUI controls to delete server instances directly from the server management views.
+- Updated user management to allow deleting any account except the currently logged-in user.
 
 **0.1.7**
 

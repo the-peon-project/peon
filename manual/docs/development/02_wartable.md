@@ -64,6 +64,10 @@ Here you can see what the future holds.
 
 A PEON implementation of vanilla `SteamCMD`.
 
+**1.2.17**
+
+- [x] BUGFIX :beetle: Added a generic self-healing update flow that retries once after backing up and clearing stale `steamapps` metadata (`appmanifest_<steam_id>.acf`, `downloading`, `temp`).
+
 **1.2.16**
 
 - [x] BUGFIX :beetle: Added a work around for a broken steam download cache to force a re-validate on update mode.
@@ -179,6 +183,10 @@ A PEON implementation of vanilla `SteamCMD`.
 
 A PEON implementation of vanilla `SteamCMD` with a `WINEHQ` implementation to support Windows native servers.
 
+**1.2.17**
+
+- [x] BUGFIX :beetle: Added a generic self-healing update flow that retries once after backing up and clearing stale `steamapps` metadata (`appmanifest_<steam_id>.acf`, `downloading`, `temp`).
+
 **1.2.16**
 
 - [x] BUGFIX :beetle: Added a work around for a broken steam download cache to force a re-validate on update mode.
@@ -272,6 +280,10 @@ A PEON implementation of vanilla `SteamCMD` with a `WINEHQ` implementation to su
 ### Steamed Proton
 
 A PEON implementation of vanilla `SteamCMD` with the Proton layer added to more closely mirror steams emulation layers.
+
+**1.2.17**
+
+- [x] BUGFIX :beetle: Added a generic self-healing update flow that retries once after backing up and clearing stale `steamapps` metadata (`appmanifest_<steam_id>.acf`, `downloading`, `temp`).
 
 **1.2.16**
 
