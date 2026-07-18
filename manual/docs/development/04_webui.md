@@ -27,15 +27,18 @@ This is a user frontend (website) for managing PEON War Camps.
 
 ## Dev Notes
 
-> THIS IS PROBABLY GOING TO BE DEPRECATED FOR A PROPER WEB STACK
+WebUI uses a split architecture:
 
-WebUI (PeonUI) is built into a docker image using Flask as a base.
+- Backend API: FastAPI
+- Frontend: React (CRACO)
+- Runtime packaging: Python backend + nginx static frontend in one container image
 
-- Flask provided by [tiangolo/uvicorn-gunicorn-fastapi-docker](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker)
-- Bootstrap provided by [bootswatch/darkly](https://bootswatch.com/darkly/)
-- Postgres provided by [postgres:14-alpine](https://hub.docker.com/_/postgres)
+For API documentation:
 
-[Flask app example](https://ianlondon.github.io/blog/deploy-flask-docker-nginx/)
+- WebUI backend docs are available at `http://<webui-host>/docs`.
+- Selected orchestrator Swagger docs are available through the WebUI proxy at `/api/proxy/{orchestrator_id}/docs`.
+
+This proxy-based docs path replaces the old standalone swagger-ui container in default deployments.
 
 ---
 
@@ -124,4 +127,4 @@ When WebUI and ORC are deployed in the same Docker stack, configure the orchestr
 
 **0.1.1**
 
-- [x] Initial implementation of flask-python framework
+- [x] Initial implementation of python web framework

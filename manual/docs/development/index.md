@@ -58,7 +58,7 @@ PEON uses a modular microservices architecture designed for scalability and main
 |-----------|---------|------------|
 | **[Orchestrator](01_orchestrator.md)** | Core API and server management | Python, FastAPI |
 | **[Discord Bot](50_bot_discord.md)** | User interface and notifications | Python, Discord.py v2 |
-| **[Web UI](04_webui.md)** | Browser-based management console | Python, Flask |
+| **[Web UI](04_webui.md)** | Browser-based management console | FastAPI, React, nginx |
 | **[War Table](02_wartable.md)** | Shared services and infrastructure | Docker, Docker Compose |
 | **[War Plans](../guides/games/index.md)** | Game server configurations | JSON, Shell scripts |
 

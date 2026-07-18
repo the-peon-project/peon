@@ -2,7 +2,11 @@
 
 All orchestrators are managed/controlled directly with the REST API.
 
-Please look at the [**live docs**](http://docs.warcamp.org:8080) for detailed development information.
+The orchestrator now exposes FastAPI OpenAPI docs directly. In a default PEON WebUI deployment, open the Swagger viewer through the WebUI sub-path:
+
+`/api/proxy/{orchestrator_id}/docs`
+
+This keeps API docs inside the main dashboard surface, and removes the need for a standalone Swagger UI container in default deployments.
 
 ---
 

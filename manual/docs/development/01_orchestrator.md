@@ -163,7 +163,7 @@ Here are some planned features
 **1.0.2**
 
 - [x] CHANGE :tools: Re-enabled stop scheduler.
-- [x] REMOVED :scissors: Disabled flask debug mode (as it causes issues with the scheduler)
+- [x] REMOVED :scissors: Disabled API debug mode (as it causes issues with the scheduler)
 
 **1.0.1**
 

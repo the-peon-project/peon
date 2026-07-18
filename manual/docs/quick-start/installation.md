@@ -58,7 +58,7 @@ This will start:
 - **Orchestrator**: Core API service (port 5000)
 - **Cache Proxy**: Shared HTTP cache for SteamCMD and other proxy-aware downloads (port 3128, when enabled)
 - **Discord Bot**: Slash command interface
-- **Web UI**: Browser interface (port 8080)
+- **Web UI**: Browser interface (port 80)
 
 When the cache proxy is enabled, newly generated game server manifests receive standard proxy environment variables and a `host.docker.internal` host-gateway alias. Downloads that honor `HTTP_PROXY` or `HTTPS_PROXY` will reuse cached content locally instead of fetching every update from the internet again.
 
@@ -75,8 +75,13 @@ You should see:
 NAME           SERVICE      STATUS       PORTS
 peon-orc-1     orc         running      0.0.0.0:5000->5000/tcp
 peon-bot-1     bot         running      
-peon-webui-1   webui       running      0.0.0.0:8080->8080/tcp
+peon-webui-1   webapp      running      0.0.0.0:80->80/tcp
 ```
+
+For API documentation:
+
+- WebUI API docs: `http://localhost/docs`
+- Orchestrator docs through WebUI sub-path: `http://localhost/api/proxy/{orchestrator_id}/docs`
 
 ## Discord Bot Setup
 
@@ -144,8 +149,8 @@ docker run -d \
 # Web UI
 docker run -d \
   --name peon-webui \
-  -p 8080:8080 \
-  -e API_ENDPOINT=http://localhost:5000 \
+  -p 80:80 \
+  -e REACT_APP_BACKEND_URL=http://localhost \
   umlatt/peon.webui:latest
 ```
 
