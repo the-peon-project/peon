@@ -910,6 +910,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#docker-test-seed-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Test Seed Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#roadmap" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1733,16 +1744,18 @@
 <p><img alt="Software Stack" src="../../images/diagrams/diagram_webui.png" /></p>
 <hr />
 <h2 id="dev-notes">Dev Notes</h2>
-<blockquote>
-<p>THIS IS PROBABLY GOING TO BE DEPRECATED FOR A PROPER WEB STACK</p>
-</blockquote>
-<p>WebUI (PeonUI) is built into a docker image using Flask as a base.</p>
+<p>WebUI uses a split architecture:</p>
 <ul>
-<li>Flask provided by <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker">tiangolo/uvicorn-gunicorn-fastapi-docker</a></li>
-<li>Bootstrap provided by <a href="https://bootswatch.com/darkly/">bootswatch/darkly</a></li>
-<li>Postgres provided by <a href="https://hub.docker.com/_/postgres">postgres:14-alpine</a></li>
+<li>Backend API: FastAPI</li>
+<li>Frontend: React (CRACO)</li>
+<li>Runtime packaging: Python backend + nginx static frontend in one container image</li>
 </ul>
-<p><a href="https://ianlondon.github.io/blog/deploy-flask-docker-nginx/">Flask app example</a></p>
+<p>For API documentation:</p>
+<ul>
+<li>WebUI backend docs are available at <code>http://&lt;webui-host&gt;/docs</code>.</li>
+<li>Selected orchestrator Swagger docs are available through the WebUI proxy at <code>/api/proxy/{orchestrator_id}/docs</code>.</li>
+</ul>
+<p>This proxy-based docs path replaces the old standalone swagger-ui container in default deployments.</p>
 <hr />
 <h2 id="navigation">Navigation</h2>
 <p>Links to various project-related resources.</p>
@@ -1753,8 +1766,23 @@
 <hr />
 <h2 id="features">Features</h2>
 <ul>
-<li>[x] Nothing yet</li>
+<li>[x] Admin user lifecycle controls (create, update, reset password, delete non-self users)</li>
+<li>[x] Server lifecycle controls from dashboard (start, stop, restart, update, delete)</li>
 </ul>
+<hr />
+<h2 id="docker-test-seed-mode">Docker Test Seed Mode</h2>
+<p>For containerized API test runs, WebUI can seed expected admin users at startup.</p>
+<p>Environment variables:</p>
+<ul>
+<li><code>PEON_ENABLE_TEST_SEED=true</code></li>
+<li><code>PEON_TEST_ADMIN_USERNAME</code> (default: <code>admin</code>)</li>
+<li><code>PEON_TEST_ADMIN_PASSWORD</code> (default: <code>admin123456</code>)</li>
+<li><code>PEON_TEST_DASH_USERNAME</code> (default: <code>testadmin</code>)</li>
+<li><code>PEON_TEST_DASH_PASSWORD</code> (default: <code>Test1234!</code>)</li>
+</ul>
+<p>This mode is intended for local Docker testing only, for example deployments under <code>/home/richard/peon</code>.</p>
+<p>When enabled, startup ensures both admin users exist and updates their password/role to the configured values.</p>
+<p>When WebUI and ORC are deployed in the same Docker stack, configure the orchestrator in WebUI as <code>http://peon.orc:5000</code> so backend API requests resolve through Docker service networking.</p>
 <hr />
 <h2 id="roadmap">Roadmap</h2>
 <ul>
@@ -1766,6 +1794,18 @@
 </ul>
 <hr />
 <h2 id="release-notes">Release Notes</h2>
+<p><strong>0.1.8</strong></p>
+<ul>
+<li>Added WebUI controls to delete server instances directly from the server management views.</li>
+<li>Updated user management to allow deleting any account except the currently logged-in user.</li>
+</ul>
+<p><strong>0.1.7</strong></p>
+<ul>
+<li>Orchestrator URL handling now supports retrying resolved URL candidates for Docker connectivity edge cases.</li>
+<li>WebUI proxy and background sync flows now use the same URL candidate behavior to reduce false timeouts.</li>
+<li>Docker image nginx listener now binds both IPv4 and IPv6 on port 80.</li>
+<li>Deployment guidance now recommends using <code>http://peon.orc:5000</code> for local ORC entries in Docker deployments.</li>
+</ul>
 <p><strong>0.1.6</strong></p>
 <ul>
 <li>[x] Favicon</li>
@@ -1789,7 +1829,7 @@
 </ul>
 <p><strong>0.1.1</strong></p>
 <ul>
-<li>[x] Initial implementation of flask-python framework</li>
+<li>[x] Initial implementation of python web framework</li>
 </ul>
 
 

@@ -43,6 +43,12 @@ PEON_CACHE_ENABLED=true
 PEON_CACHE_URL=http://host.docker.internal:3128
 PEON_CACHE_BYPASS=localhost,127.0.0.1,host.docker.internal,peon.orc,peon.webui,peon.db
 
+# Optional HTTPS reverse proxy (Caddy + Let's Encrypt)
+PEON_PROXY_ENABLED=false
+PEON_PROXY_DOMAIN=server.example.com
+PEON_PROXY_EMAIL=ops@example.com
+PEON_WEBUI_HOST_PORT=80
+
 # Discord Bot Configuration
 DISCORD_TOKEN=your_discord_bot_token_here
 ```
@@ -53,12 +59,21 @@ DISCORD_TOKEN=your_discord_bot_token_here
 ./deploy_peon.sh
 ```
 
+To run non-interactively with HTTPS reverse proxy enabled:
+
+```bash
+./deploy_peon.sh --orchestrator --webui --proxy \
+  --proxy-domain server.example.com \
+  --proxy-email ops@example.com
+```
+
 This will start:
 
 - **Orchestrator**: Core API service (port 5000)
 - **Cache Proxy**: Shared HTTP cache for SteamCMD and other proxy-aware downloads (port 3128, when enabled)
 - **Discord Bot**: Slash command interface
-- **Web UI**: Browser interface (port 80)
+- **Web UI**: Browser interface (port 80 by default, port 8080 when reverse proxy is enabled)
+- **Reverse Proxy**: Caddy with automatic Let's Encrypt certificates (ports 80/443, when enabled)
 
 When the cache proxy is enabled, newly generated game server manifests receive standard proxy environment variables and a `host.docker.internal` host-gateway alias. Downloads that honor `HTTP_PROXY` or `HTTPS_PROXY` will reuse cached content locally instead of fetching every update from the internet again.
 

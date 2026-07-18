@@ -1254,31 +1254,45 @@ docker<span class="w"> </span>compose<span class="w"> </span>version
 <span class="nb">cd</span><span class="w"> </span>peon
 </code></pre></div>
 <h3 id="2-configure-environment">2. Configure Environment</h3>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>.env.sample<span class="w"> </span>.env
 nano<span class="w"> </span>.env<span class="w">  </span><span class="c1"># Edit configuration</span>
 </code></pre></div>
 <p><strong>Key Environment Variables:</strong></p>
-<div class="highlight"><pre><span></span><code># Discord Bot Configuration
+<div class="highlight"><pre><span></span><code># Orchestrator Configuration
+PEON_API_KEY=your_secure_api_key_here
+PEON_DIRECTORY=/root/peon
+
+# Optional shared cache proxy for game downloads and updates
+PEON_CACHE_ENABLED=true
+PEON_CACHE_URL=http://host.docker.internal:3128
+PEON_CACHE_BYPASS=localhost,127.0.0.1,host.docker.internal,peon.orc,peon.webui,peon.db
+
+# Optional HTTPS reverse proxy (Caddy + Let&#39;s Encrypt)
+PEON_PROXY_ENABLED=false
+PEON_PROXY_DOMAIN=server.example.com
+PEON_PROXY_EMAIL=ops@example.com
+PEON_WEBUI_HOST_PORT=80
+
+# Discord Bot Configuration
 DISCORD_TOKEN=your_discord_bot_token_here
-DISCORD_GUILD_ID=your_discord_server_id
-DISCORD_ADMIN_CHANNEL_ID=your_admin_channel_id
-
-# Orchestrator Configuration
-LOCAL_API_KEY=your_secure_api_key_here
-PEON_VERSION=latest
-
-# Container Registry
-REGISTRY_URL=docker.io/umlatt
 </code></pre></div>
 <h3 id="3-start-peon-services">3. Start PEON Services</h3>
 <div class="highlight"><pre><span></span><code>./deploy_peon.sh
 </code></pre></div>
+<p>To run non-interactively with HTTPS reverse proxy enabled:</p>
+<div class="highlight"><pre><span></span><code>./deploy_peon.sh<span class="w"> </span>--orchestrator<span class="w"> </span>--webui<span class="w"> </span>--proxy<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--proxy-domain<span class="w"> </span>server.example.com<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--proxy-email<span class="w"> </span>ops@example.com
+</code></pre></div>
 <p>This will start:</p>
 <ul>
 <li><strong>Orchestrator</strong>: Core API service (port 5000)</li>
+<li><strong>Cache Proxy</strong>: Shared HTTP cache for SteamCMD and other proxy-aware downloads (port 3128, when enabled)</li>
 <li><strong>Discord Bot</strong>: Slash command interface</li>
-<li><strong>Web UI</strong>: Browser interface (port 8080)</li>
+<li><strong>Web UI</strong>: Browser interface (port 80 by default, port 8080 when reverse proxy is enabled)</li>
+<li><strong>Reverse Proxy</strong>: Caddy with automatic Let's Encrypt certificates (ports 80/443, when enabled)</li>
 </ul>
+<p>When the cache proxy is enabled, newly generated game server manifests receive standard proxy environment variables and a <code>host.docker.internal</code> host-gateway alias. Downloads that honor <code>HTTP_PROXY</code> or <code>HTTPS_PROXY</code> will reuse cached content locally instead of fetching every update from the internet again.</p>
 <h3 id="4-verify-installation">4. Verify Installation</h3>
 <p>Check that all services are running:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps
@@ -1287,8 +1301,13 @@ REGISTRY_URL=docker.io/umlatt
 <div class="highlight"><pre><span></span><code>NAME           SERVICE      STATUS       PORTS
 peon-orc-1     orc         running      0.0.0.0:5000-&gt;5000/tcp
 peon-bot-1     bot         running      
-peon-webui-1   webui       running      0.0.0.0:8080-&gt;8080/tcp
+peon-webui-1   webapp      running      0.0.0.0:80-&gt;80/tcp
 </code></pre></div></p>
+<p>For API documentation:</p>
+<ul>
+<li>WebUI API docs: <code>http://localhost/docs</code></li>
+<li>Orchestrator docs through WebUI sub-path: <code>http://localhost/api/proxy/{orchestrator_id}/docs</code></li>
+</ul>
 <h2 id="discord-bot-setup">Discord Bot Setup</h2>
 <h3 id="1-create-discord-application">1. Create Discord Application</h3>
 <ol>
@@ -1340,8 +1359,8 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 <span class="c1"># Web UI</span>
 docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--name<span class="w"> </span>peon-webui<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">API_ENDPOINT</span><span class="o">=</span>http://localhost:5000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">REACT_APP_BACKEND_URL</span><span class="o">=</span>http://localhost<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>umlatt/peon.webui:latest
 </code></pre></div>
 <h3 id="option-b-native-installation">Option B: Native Installation</h3>
