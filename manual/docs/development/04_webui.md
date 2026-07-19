@@ -45,9 +45,11 @@ Theme controls are admin-only and live in the Admin panel.
 
 Theme modes:
 
-- `clean`: flat slate and light-blue UI with minimal gradients.
+- `default`: flat slate and light-blue UI with minimal gradients.
 - `horde`: a classic warcamp look with iron, bone, leather, and battle-green accents.
 - `alliance`: a human castle look with stone, steel, royal blue, and gold accents.
+
+Server detail reads now open inside dedicated dashboard modals instead of expanding additional inline detail blocks on the server management page.
 
 Future UI elements should follow the shared brand rules in the WebUI README before introducing new styling patterns.
 
@@ -105,6 +107,14 @@ When WebUI and ORC are deployed in the same Docker stack, configure the orchestr
 ---
 
 ## Release Notes
+
+**0.1.10**
+
+- Fixed shared WebUI modal backdrops so server console and related dialogs open as viewport overlays instead of rendering inline below the server list.
+- Fixed WebUI server action proxy calls so start, stop, restart, update, and delete requests use the resolved orchestrator URL candidates and the correct delete API semantics.
+- Moved GET-driven live server stats into the info modal to keep the main server management grid compact.
+- Renamed the `clean` theme to `default`, with legacy browser-stored preferences still migrating automatically.
+- Corrected dark-mode heading contrast and aligned Horde and Alliance light-mode surfaces with the default theme's background switching.
 
 **0.1.9**
 
