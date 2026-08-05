@@ -1,138 +1,119 @@
-# 🎮 Supported Games
+# 🎮 Self-Hostable Game Servers
 
-PEON supports a growing catalog of popular game servers. Each game includes optimized configurations and dedicated management tools.
+This catalog includes only self-hostable game servers and tracks rollout stage per plan.
 
-!!! info "Game Requests"
-    New games are added regularly! [Request a game →](https://github.com/the-peon-project/peon-warplans/issues/new) or contribute your own war-plan.
+- Working: **28**
+- Untested: **72**
+- Planned: **0**
+- Total listed: **100**
 
-## 🎯 Ready to Deploy
+## Server Catalog
 
-Games with complete configurations and full Discord bot support:
+| Game | Game UID | Stage | Quick Deploy |
+|------|----------|-------|--------------|
+| 7 Days to Die | `7dtd` | `working` | `/create 7dtd` |
+| Action Half-Life | `actionhalflife` | `untested` | `/create actionhalflife` |
+| Action: Source | `actionsource` | `untested` | `/create actionsource` |
+| American Truck Simulator | `americantrucksimulator` | `untested` | `/create americantrucksimulator` |
+| Ark | `ark` | `working` | `/create ark` |
+| ARK: Survival Evolved | `arksurvivalevolved` | `untested` | `/create arksurvivalevolved` |
+| ARMA 3 | `arma3` | `untested` | `/create arma3` |
+| Arma Reforger | `armareforger` | `working` | `/create armareforger` |
+| Assetto Corsa | `assettocorsa` | `untested` | `/create assettocorsa` |
+| Avorion | `avorion` | `untested` | `/create avorion` |
+| Ballistic Overkill | `ballisticoverkill` | `untested` | `/create ballisticoverkill` |
+| Barotrauma | `barotrauma` | `untested` | `/create barotrauma` |
+| Base Defense | `basedefense` | `untested` | `/create basedefense` |
+| BATTALION: Legacy | `battalionlegacy` | `untested` | `/create battalionlegacy` |
+| Battlefield 1942 | `battlefield1942` | `untested` | `/create battlefield1942` |
+| Battlefield: Vietnam | `battlefieldvietnam` | `untested` | `/create battlefieldvietnam` |
+| Black Mesa: Deathmatch | `blackmesadeathmatch` | `untested` | `/create blackmesadeathmatch` |
+| Blade Symphony | `bladesymphony` | `untested` | `/create bladesymphony` |
+| Brainbread | `brainbread` | `untested` | `/create brainbread` |
+| BrainBread 2 | `brainbread2` | `untested` | `/create brainbread2` |
+| Call of Duty 2 | `callofduty2` | `untested` | `/create callofduty2` |
+| Call of Duty 4 | `callofduty4` | `untested` | `/create callofduty4` |
+| Call of Duty: United Offensive | `callofdutyunitedoffensive` | `untested` | `/create callofdutyunitedoffensive` |
+| Call of Duty: World at War | `callofdutyworldatwar` | `untested` | `/create callofdutyworldatwar` |
+| Call of Duty® | `callofduty` | `untested` | `/create callofduty` |
+| Chivalry: Medieval Warfare | `chivalrymedievalwarfare` | `untested` | `/create chivalrymedievalwarfare` |
+| Codename CURE | `codenamecure` | `untested` | `/create codenamecure` |
+| Colony Survival | `colonysurvival` | `untested` | `/create colonysurvival` |
+| Core Keeper | `corekeeper` | `untested` | `/create corekeeper` |
+| Counter Strike 2 | `cs2` | `working` | `/create cs2` |
+| Counter-Strike | `counterstrike` | `working` | `/create counterstrike` |
+| Counter-Strike: Condition Zero | `counterstrikeconditionzero` | `untested` | `/create counterstrikeconditionzero` |
+| Counter-Strike: Global Offensive | `counterstrikeglobaloffensive` | `untested` | `/create counterstrikeglobaloffensive` |
+| Counter-Strike: Source | `counterstrikesource` | `untested` | `/create counterstrikesource` |
+| Counterstrike Global Offensive (CS:GO) | `csgo` | `working` | `/create csgo` |
+| Craftopia | `craftopia` | `untested` | `/create craftopia` |
+| Day of Defeat | `dayofdefeat` | `untested` | `/create dayofdefeat` |
+| Day of Defeat: Source | `dayofdefeatsource` | `untested` | `/create dayofdefeatsource` |
+| Day of Dragons | `dayofdragons` | `untested` | `/create dayofdragons` |
+| Day of Infamy | `dayofinfamy` | `untested` | `/create dayofinfamy` |
+| DayZ | `dayz` | `working` | `/create dayz` |
+| Deathmatch Classic | `deathmatchclassic` | `untested` | `/create deathmatchclassic` |
+| Don't Starve Together | `dst` | `working` | `/create dst` |
+| Double Action: Boogaloo | `doubleactionboogaloo` | `untested` | `/create doubleactionboogaloo` |
+| Duke Nukem 3D | `dukenukem` | `working` | `/create dukenukem` |
+| Dystopia | `dystopia` | `untested` | `/create dystopia` |
+| Eco | `eco` | `untested` | `/create eco` |
+| Empires Mod | `empiresmod` | `untested` | `/create empiresmod` |
+| Enshrouded | `enshrouded` | `working` | `/create enshrouded` |
+| ET: Legacy | `etlegacy` | `untested` | `/create etlegacy` |
+| Euro Truck Simulator 2 | `ets2` | `working` | `/create ets2` |
+| Factorio | `factorio` | `working` | `/create factorio` |
+| Fistful of Frags | `fistfuloffrags` | `untested` | `/create fistfuloffrags` |
+| Garry's Mod | `gmod` | `working` | `/create gmod` |
+| Half-Life 2: Deathmatch | `halflife2deathmatch` | `untested` | `/create halflife2deathmatch` |
+| Half-Life Deathmatch: Source | `halflifedeathmatchsource` | `untested` | `/create halflifedeathmatchsource` |
+| Half-Life: Deathmatch | `halflifedeathmatch` | `untested` | `/create halflifedeathmatch` |
+| Humanitz | `humanitz` | `untested` | `/create humanitz` |
+| Hurtworld | `hurtworld` | `untested` | `/create hurtworld` |
+| HYPERCHARGE: Unboxed | `hyperchargeunboxed` | `untested` | `/create hyperchargeunboxed` |
+| Insurgency | `insurgency` | `untested` | `/create insurgency` |
+| Insurgency: Sandstorm | `insurgencysandstorm` | `untested` | `/create insurgencysandstorm` |
+| IOSoccer | `iosoccer` | `untested` | `/create iosoccer` |
+| Jabroni Brawl: Episode 3 | `jabronibrawlepisode3` | `untested` | `/create jabronibrawlepisode3` |
+| Jedi Knight II: Jedi Outcast | `jediknightiijedioutcast` | `untested` | `/create jediknightiijedioutcast` |
+| Just Cause 2 | `justcause2` | `untested` | `/create justcause2` |
+| Just Cause 3 | `justcause3` | `untested` | `/create justcause3` |
+| Killing Floor | `killingfloor` | `untested` | `/create killingfloor` |
+| Killing Floor 2 | `killingfloor2` | `untested` | `/create killingfloor2` |
+| Left 4 Dead | `left4dead` | `untested` | `/create left4dead` |
+| Left 4 Dead 2 | `l4d2` | `working` | `/create l4d2` |
+| Medal of Honor: Allied Assault | `medalofhonoralliedassault` | `untested` | `/create medalofhonoralliedassault` |
+| Memories of Mars | `memoriesofmars` | `untested` | `/create memoriesofmars` |
+| Military Conflict: Vietnam | `militaryconflictvietnam` | `untested` | `/create militaryconflictvietnam` |
+| Minecraft: Bedrock Edition | `minecraftbedrockedition` | `untested` | `/create minecraftbedrockedition` |
+| Minecraft: Java Edition | `minecraftjavaedition` | `untested` | `/create minecraftjavaedition` |
+| Mordhau | `mordhau` | `untested` | `/create mordhau` |
+| Multi Theft Auto | `multitheftauto` | `untested` | `/create multitheftauto` |
+| Mumble | `mumble` | `untested` | `/create mumble` |
+| Natural Selection | `naturalselection` | `untested` | `/create naturalselection` |
+| Natural Selection 2 | `naturalselection2` | `untested` | `/create naturalselection2` |
+| Necesse | `necesse` | `untested` | `/create necesse` |
+| No More Room in Hell | `nomoreroominhell` | `untested` | `/create nomoreroominhell` |
+| NS2: Combat | `ns2combat` | `untested` | `/create ns2combat` |
+| Nuclear Dawn | `nucleardawn` | `untested` | `/create nucleardawn` |
+| Palworld | `palworld` | `working` | `/create palworld` |
+| Project Zomboid | `projectzomboid` | `working` | `/create projectzomboid` |
+| Quake 3 Arena | `quake3` | `working` | `/create quake3` |
+| Rust | `rust` | `working` | `/create rust` |
+| Satisfactory | `satisfactory` | `working` | `/create satisfactory` |
+| Sons of the Forest | `sof` | `working` | `/create sof` |
+| Squad | `squad` | `working` | `/create squad` |
+| Starbound | `starbound` | `working` | `/create starbound` |
+| Team Fortress 2 | `tf2` | `working` | `/create tf2` |
+| Terraria | `terraria` | `working` | `/create terraria` |
+| The Isle | `theisle` | `untested` | `/create theisle` |
+| Unturned | `unturned` | `working` | `/create unturned` |
+| V Rising | `vrising` | `working` | `/create vrising` |
+| Valheim | `valheim` | `working` | `/create valheim` |
+| Windrose | `windrose` | `working` | `/create windrose` |
 
-### 🏕️ Survival & Crafting {#survival--crafting}
-| Game | Players | Last Updated | Quick Deploy |
-|------|---------|--------------|--------------|
-| **[Valheim](guides/games/valheim.md)** | 2-10 | ✅ Current | `/create valheim` |
-| **[Palworld](guides/games/palworld.md)** | 1-32 | ✅ Current | `/create palworld` |
-| **[Enshrouded](guides/games/enshrouded.md)** | 1-16 | ✅ Current | `/create enshrouded` |
-| **[Windrose](guides/games/windrose.md)** | 1-8 | ✅ Current | `/create windrose` |
-| **[VRising](guides/games/vrising.md)** | 1-40 | ✅ Current | `/create vrising` |
-| **[Sons of the Forest](guides/games/sof.md)** | 1-8 | ✅ Current | `/create sof` |
+## Stage definitions
 
-### Shooter Games
-| Game | Players | Last Updated | Quick Deploy |
-|------|---------|--------------|--------------|
-| **[Counter Strike 2](guides/games/cs2.md)** | 2-64 | ✅ Current | `/create cs2` |
-| **[Counter Strike: GO](guides/games/csgo.md)** | 2-64 | ✅ Current | `/create csgo` |
-| **[Duke Nukem 3D (EDuke32)](guides/games/dukenukem.md)** | 1-8 | ✅ Current | `/create dukenukem` |
-
-### Building & Strategy
-| Game | Players | Last Updated | Quick Deploy |
-|------|---------|--------------|--------------|
-| **[Satisfactory](./guides/games/satisfactory.md)** | 1-4 | ✅ Current | `/create satisfactory` |
-
-## 🚧 In Development
-
-Games with basic support - may require manual configuration:
-
-### Adventure Games
-- **[ARK: Survival Evolved](./guides/games/ark.md)** - Large-scale dinosaur survival servers
-- **[Starbound](./guides/games/starbound.md)** - 2D space exploration and building
-
-### Racing & Sports  
-- **[Assetto Corsa Competizione](./guides/games/assetto_corsa_competizione.md)** - Professional racing simulation
-
-### Classic Games
-- **[Quake 3 Arena](./guides/games/q3arena.md)** - Fast-paced arena shooter
-
-## 📝 Requested Features
-
-Community-requested games being evaluated:
-
-!!! note "Under Consideration"
-    These games are being researched for future implementation:
-    
-    - **Chivalry 2** - Medieval combat multiplayer
-    - **Factorio** - Automation and factory building
-    - **Schedule 1** - Racing management simulation
-    - **Minecraft Java Edition** - Block-building sandbox
-    - **Rust** - Hardcore survival multiplayer
-
-## 🎯 Game Selection Guide
-
-### For New Players
-**Start with these easy-to-manage games:**
-
-- **Valheim** - Cooperative Viking adventure, great for friends
-- **Palworld** - Pokémon-style creature collection with friends
-- **Satisfactory** - Relaxing factory building experience
-
-### For Communities
-**Best for larger groups and events:**
-
-- **Counter Strike 2** - Competitive matches and tournaments  
-- **VRising** - Clan-based vampire survival
-- **ARK** - Large-scale tribal warfare (in development)
-
-### For Experienced Admins
-**Advanced configuration options:**
-
-- **Sons of the Forest** - Customizable horror survival
-- **Counter Strike: GO** - Legacy competitive gaming
-- **Enshrouded** - RPG elements with server customization
-
-## ⚡ Quick Deploy
-
-All supported games can be deployed instantly via Discord:
-
-1. **Join Discord server** where PEON bot is installed
-2. **Use slash command**: `/create [game-name]`
-3. **Wait for deployment** (typically 2-5 minutes)
-4. **Receive connection details** automatically
-
-Example: `/create valheim MyViking Server`
-
-## 🔧 Advanced Configuration
-
-### Custom Settings Per Game
-Each game includes configurable options:
-
-- **Server name and password**
-- **Player limits and difficulty**  
-- **World settings and mods**
-- **Backup schedules**
-- **Resource allocation**
-
-### Batch Operations
-Manage multiple servers efficiently:
-
-- **Bulk start/stop/restart** commands
-- **Scheduled maintenance** windows  
-- **Coordinated backups** across games
-- **Resource monitoring** and alerts
-
-## 📚 Game-Specific Documentation
-
-Each supported game includes comprehensive guides:
-
-- **✅ Installation requirements** - System specs and dependencies
-- **⚙️ Configuration options** - All customizable settings explained  
-- **🎮 Player management** - Admin commands and moderation tools
-- **🔧 Troubleshooting** - Common issues and solutions
-- **📊 Performance tuning** - Optimization for better gameplay
-
-**[Browse All Game Guides →](guides/games/index.md)**
-
-## 🆘 Support & Community
-
-### Get Help
-- **[Discord Community](https://discord.gg/KJFVyayH8g)** - Real-time support
-- **[GitHub Issues](https://github.com/the-peon-project/peon/issues)** - Bug reports
-- **[Game-Specific Forums](https://github.com/the-peon-project/peon-warplans/discussions)** - Configuration sharing
-
-### Contributing
-Help expand game support:
-
-- **[Create War-Plans](https://github.com/the-peon-project/peon-warplans/blob/main/CONTRIBUTING.md)** - Add new games
-- **[Test Configurations](https://discord.gg/KJFVyayH8g)** - Validate game setups  
-- **[Submit Improvements](https://github.com/the-peon-project/peon/pulls)** - Enhance existing games
+- `working`: implemented and considered operational in PEON.
+- `untested`: plan scaffold is implemented but still needs game-specific validation.
+- `planned`: reserved for future entries not yet implemented.

@@ -17,3 +17,11 @@ Fill in the boxes below and click create. You will get a `login token` which is 
 You can then set this in the `.env` file for the server, in the `./peon/servers/[game_uid]/[server_name]/` directory.
 
 ![Game Server Login Token - Example](../../images/screenshots/steam_gslt.png)
+
+## Untested availability rollout
+
+PEON now tracks server rollout using explicit stages (`working`, `untested`, `planned`).
+
+- Full list: [Supported Games](../../games.md)
+- `untested` entries are intended for early adopters and may require per-title startup tuning before production use.
+- Public listing includes only self-hostable servers.

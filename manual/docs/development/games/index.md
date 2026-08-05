@@ -26,6 +26,14 @@ When a technical decision needs to be made, the below list indicates how the out
 
 > *Don't be afraid to discard excellent code, just because its excellent. Good code can always find another home. A poor use of good code is a poor use of time.*
 
+### Untested rollout status
+
+The game catalog now uses explicit rollout stages (`working`, `untested`, `planned`).
+
+- Product-facing list: [Supported Games](../../games.md)
+- Engineering expectation: each `untested` title needs dedicated-server app-id verification, startup command validation, and game-specific port/storage hardening before promotion to `working`.
+- Product docs intentionally list only self-hostable servers.
+
 ### Directory Structure
 
 ```bash
