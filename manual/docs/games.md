@@ -15,6 +15,7 @@ Games with complete configurations and full Discord bot support:
 | **[Valheim](guides/games/valheim.md)** | 2-10 | ✅ Current | `/create valheim` |
 | **[Palworld](guides/games/palworld.md)** | 1-32 | ✅ Current | `/create palworld` |
 | **[Enshrouded](guides/games/enshrouded.md)** | 1-16 | ✅ Current | `/create enshrouded` |
+| **[Windrose](guides/games/windrose.md)** | 1-8 | ✅ Current | `/create windrose` |
 | **[VRising](guides/games/vrising.md)** | 1-40 | ✅ Current | `/create vrising` |
 | **[Sons of the Forest](guides/games/sof.md)** | 1-8 | ✅ Current | `/create sof` |
 
