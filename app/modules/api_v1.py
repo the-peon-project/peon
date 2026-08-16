@@ -94,6 +94,8 @@ def get_server_logs(server_uid: str, request: Request, lines: int = 200, session
         log_kwargs = {
             "tail": tail_lines,
             "timestamps": False,
+            "stdout": True,
+            "stderr": True,
         }
 
         if session_only:
