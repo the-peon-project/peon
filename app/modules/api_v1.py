@@ -45,45 +45,8 @@ def _container_started_epoch(container) -> int | None:
         return None
 
 
-@router.get("/orchestrator")
-def get_orchestrator(request: Request):
-    logging.info("APIv1 [GET] Orchestrator")
-    _require_authorized(request)
-    try:
-        return {"version": os.environ.get("VERSION", "-.-.-")}
-    except Exception as e:
-        logging.error(f"Failed to get Orchestrator information. {e}")
-        raise HTTPException(
-            status_code=404,
-            detail={"status": "error", "info": "There was an issue getting the Orchestrator information."},
-        )
-
-
-@router.get("/server/{action}/{server_uid}")
-def get_server(action: str, server_uid: str, request: Request):
-    logging.info(f"APIv1 [GET] Server <{server_uid}>")
-    _require_authorized(request)
-    try:
-        server = server_get_server(client.containers.get(f"{prefix}{server_uid}"))
-        if action == "stats":
-            server["stats"] = server_get_stats(server_uid)
-        elif action == "save":
-            file_path = server_download_files(server_uid)
-            return FileResponse(path=file_path, filename=os.path.basename(file_path))
-        return server
-    except Exception as e:
-        logging.error(f"Failed to get server information. {e}")
-        raise HTTPException(
-            status_code=404,
-            detail={"status": "error", "info": "There was an issue getting the server."},
-        )
-
-
-@router.get("/server/logs/{server_uid}")
-def get_server_logs(server_uid: str, request: Request, lines: int = 200, session_only: bool = True):
-    """Return Docker container logs for a server UID."""
-    _require_authorized(request)
-
+def _server_logs_payload(server_uid: str, lines: int = 200, session_only: bool = True) -> dict[str, Any]:
+    """Return logs payload for a server container."""
     try:
         container = client.containers.get(f"{prefix}{server_uid}")
     except Exception:
@@ -91,7 +54,7 @@ def get_server_logs(server_uid: str, request: Request, lines: int = 200, session
 
     try:
         tail_lines = max(1, min(lines, 2000))
-        log_kwargs = {
+        log_kwargs: dict[str, Any] = {
             "tail": tail_lines,
             "timestamps": False,
             "stdout": True,
@@ -118,6 +81,49 @@ def get_server_logs(server_uid: str, request: Request, lines: int = 200, session
     except Exception as e:
         logging.error(f"Failed to fetch server logs for [{server_uid}]. {e}")
         raise HTTPException(status_code=500, detail=f"Failed to fetch server logs: {e}")
+
+
+@router.get("/orchestrator")
+def get_orchestrator(request: Request):
+    logging.info("APIv1 [GET] Orchestrator")
+    _require_authorized(request)
+    try:
+        return {"version": os.environ.get("VERSION", "-.-.-")}
+    except Exception as e:
+        logging.error(f"Failed to get Orchestrator information. {e}")
+        raise HTTPException(
+            status_code=404,
+            detail={"status": "error", "info": "There was an issue getting the Orchestrator information."},
+        )
+
+
+@router.get("/server/{action}/{server_uid}")
+def get_server(action: str, server_uid: str, request: Request):
+    logging.info(f"APIv1 [GET] Server <{server_uid}>")
+    _require_authorized(request)
+    try:
+        if action == "logs":
+            try:
+                lines = int(request.query_params.get("lines", 200))
+            except Exception:
+                lines = 200
+            session_raw = str(request.query_params.get("session_only", "true")).strip().lower()
+            session_only = session_raw not in {"0", "false", "no", "off"}
+            return _server_logs_payload(server_uid=server_uid, lines=lines, session_only=session_only)
+
+        server = server_get_server(client.containers.get(f"{prefix}{server_uid}"))
+        if action == "stats":
+            server["stats"] = server_get_stats(server_uid)
+        elif action == "save":
+            file_path = server_download_files(server_uid)
+            return FileResponse(path=file_path, filename=os.path.basename(file_path))
+        return server
+    except Exception as e:
+        logging.error(f"Failed to get server information. {e}")
+        raise HTTPException(
+            status_code=404,
+            detail={"status": "error", "info": "There was an issue getting the server."},
+        )
 
 
 @router.put("/server/{action}/{server_uid}")
