@@ -4,6 +4,7 @@ import logging
 import os
 import shutil
 import time
+from datetime import datetime
 from typing import Any
 
 from fastapi import APIRouter, HTTPException, Request
@@ -31,6 +32,17 @@ async def _request_payload(request: Request) -> dict[str, Any]:
     except Exception:
         pass
     return {}
+
+
+def _container_started_epoch(container) -> int | None:
+    """Return container start time as epoch seconds when available."""
+    try:
+        started_at = container.attrs.get("State", {}).get("StartedAt")
+        if not started_at or started_at.startswith("0001-01-01"):
+            return None
+        return int(datetime.fromisoformat(started_at.replace("Z", "+00:00")).timestamp())
+    except Exception:
+        return None
 
 
 @router.get("/orchestrator")
@@ -65,6 +77,45 @@ def get_server(action: str, server_uid: str, request: Request):
             status_code=404,
             detail={"status": "error", "info": "There was an issue getting the server."},
         )
+
+
+@router.get("/server/logs/{server_uid}")
+def get_server_logs(server_uid: str, request: Request, lines: int = 200, session_only: bool = True):
+    """Return Docker container logs for a server UID."""
+    _require_authorized(request)
+
+    try:
+        container = client.containers.get(f"{prefix}{server_uid}")
+    except Exception:
+        raise HTTPException(status_code=404, detail=f"Server container not found for [{server_uid}]")
+
+    try:
+        tail_lines = max(1, min(lines, 2000))
+        log_kwargs = {
+            "tail": tail_lines,
+            "timestamps": False,
+        }
+
+        if session_only:
+            started_epoch = _container_started_epoch(container)
+            if started_epoch:
+                log_kwargs["since"] = started_epoch
+
+        raw_logs = container.logs(**log_kwargs)
+        decoded_logs = raw_logs.decode("utf-8", errors="replace") if raw_logs else ""
+
+        return {
+            "server_uid": server_uid,
+            "container_state": container.status,
+            "session_only": session_only,
+            "lines": tail_lines,
+            "logs": decoded_logs.splitlines(),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Failed to fetch server logs for [{server_uid}]. {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch server logs: {e}")
 
 
 @router.put("/server/{action}/{server_uid}")
