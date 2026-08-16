@@ -69,6 +69,18 @@ Optional with description:
 /create game_type:valheim server_name:myvalheim description:My awesome server
 ```
 
+### Method C: Using the Web UI
+
+1. Open your PEON Web UI host (for example `http://<your-host>:8080` when proxy mode is enabled).
+2. Go to **Server Management** and click **Deploy**.
+3. Select a game plan tile.
+4. Fill in:
+   - **Server Name**
+   - Dynamic **Configuration** fields generated from that game's plan
+5. Click **Deploy Server**.
+
+The deploy form automatically pre-fills known defaults from each plan and validates required settings before submitting the deployment request.
+
 ## Step 5: Monitor Server Creation
 
 PEON will:

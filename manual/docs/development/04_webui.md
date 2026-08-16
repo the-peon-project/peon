@@ -49,7 +49,21 @@ Theme modes:
 - `horde`: a classic warcamp look with iron, bone, leather, and battle-green accents.
 - `alliance`: a human castle look with stone, steel, royal blue, and gold accents.
 
+Login is now always rendered in dark mode so the sign-in experience stays consistent regardless of each admin's saved dashboard theme preference.
+
 Server detail reads now open inside dedicated dashboard modals instead of expanding additional inline detail blocks on the server management page.
+
+Server management now adds two navigation improvements:
+
+- A compact running-server quick list at the top of each orchestrator section, with click-to-jump navigation to each running server card/row.
+- Server cards/rows grouped by `game_uid` in alphabetical order while preserving existing card/list presentation and lifecycle controls.
+- Within each game group, running servers are listed first, then the remaining servers in alphabetical order.
+- Grouped server cards use a standardized height so grid rows align cleanly.
+- Grouped server cards now use a fixed grid footprint, so card size stays consistent even when one game group has fewer cards than another.
+- Deploy modal plan settings now render through a dynamic configuration form that safely handles mixed plan schemas and pre-fills defaults before deployment.
+- Deploy configuration fields now support scalar plan values and object-based field metadata, including boolean toggles, select options, textareas, and required-field validation before submission.
+- Deploy plan selection is now searchable by game name/UID and auto-collapses after selecting a plan, with an explicit "Change Plan" control to reopen the catalog.
+- Plan cards now prefer human-readable recipe names (from recipe README titles), while still showing `game_uid` as secondary context.
 
 Future UI elements should follow the shared brand rules in the WebUI README before introducing new styling patterns.
 
@@ -108,6 +122,15 @@ When WebUI and ORC are deployed in the same Docker stack, configure the orchestr
 
 ## Release Notes
 
+**0.1.11**
+
+- Added a schema-tolerant deploy form generator for game plans, so selecting a plan no longer fails when `environment` entries are null/scalar values.
+- Added deploy-form default hydration and required-field validation for dynamic plan settings.
+- Added support for typed deploy controls (boolean, select, textarea, number/password/text) when plan metadata provides field hints.
+- Added searchable deploy plan selection with collapse-on-select behavior in the deploy modal.
+- Fixed deploy modal orchestrator preselection so Deploy always remains actionable when orchestrators are present.
+- Added PNG-first logo hydration for recipe catalogs, with fallback to other available formats and default branding when game-specific logos are missing.
+
 **0.1.10**
 
 - Fixed shared WebUI modal backdrops so server console and related dialogs open as viewport overlays instead of rendering inline below the server list.
@@ -115,6 +138,10 @@ When WebUI and ORC are deployed in the same Docker stack, configure the orchestr
 - Moved GET-driven live server stats into the info modal to keep the main server management grid compact.
 - Renamed the `clean` theme to `default`, with legacy browser-stored preferences still migrating automatically.
 - Corrected dark-mode heading contrast and aligned Horde and Alliance light-mode surfaces with the default theme's background switching.
+- Added running-server quick-jump links at the top of each orchestrator server section.
+- Grouped server cards/list rows by game in alphabetical order.
+- Forced the login screen to always use dark mode.
+- Hardened deploy plan selection so environment fields with null/scalar defaults no longer crash the UI, and deploy forms now auto-populate plan defaults.
 
 **0.1.9**
 
