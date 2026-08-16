@@ -60,6 +60,7 @@ Server management now adds two navigation improvements:
 - Within each game group, running servers are listed first, then the remaining servers in alphabetical order.
 - Grouped server cards use a standardized height so grid rows align cleanly.
 - Grouped server cards now use a fixed grid footprint, so card size stays consistent even when one game group has fewer cards than another.
+- Running server cards and rows now open the live console modal on click, showing logs from the current container session.
 - Deploy modal plan settings now render through a dynamic configuration form that safely handles mixed plan schemas and pre-fills defaults before deployment.
 - Deploy configuration fields now support scalar plan values and object-based field metadata, including boolean toggles, select options, textareas, and required-field validation before submission.
 - Deploy plan selection is now searchable by game name/UID and auto-collapses after selecting a plan, with an explicit "Change Plan" control to reopen the catalog.
@@ -121,6 +122,12 @@ When WebUI and ORC are deployed in the same Docker stack, configure the orchestr
 ---
 
 ## Release Notes
+
+**0.1.12**
+
+- Added orchestrator API support for direct Docker container log reads at `/api/v1/server/logs/{server_uid}` with session-scoped log output.
+- Updated WebUI console proxy to request session-scoped logs and return real backend errors when logs cannot be fetched.
+- Enabled click-to-open behavior for running server cards/rows so selecting a running server immediately opens the live console view.
 
 **0.1.11**
 
