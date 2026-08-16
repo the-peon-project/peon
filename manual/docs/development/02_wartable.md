@@ -4,6 +4,10 @@ The **War Table** module works in conjunction with the Orchestrator to provide t
 
 This project handles the tools that are shared between game containers.
 
+All wartable image builds stamp the login banner in `media/motd` and bake the requested `VERSION` into the image so downstream servers can report their build number.
+
+The WineHQ and Proton base images currently track Debian trixie package metadata, so their Dockerfiles refresh apt indexes before package installs.
+
 ## Projects
 
 [*Contained Steam*](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmd) (steamcmd) are scripts to automate/update `steamcmd` and the game server files (within a `steamcmd`-based docker container), as part of the PEON automation services.
@@ -63,6 +67,10 @@ Here you can see what the future holds.
 ### Contained Steam
 
 A PEON implementation of vanilla `SteamCMD`.
+
+**1.3.0**
+
+- [x] CHANGE :tools: Switched to debian-trixie base
 
 **1.2.17**
 
@@ -183,6 +191,12 @@ A PEON implementation of vanilla `SteamCMD`.
 
 A PEON implementation of vanilla `SteamCMD` with a `WINEHQ` implementation to support Windows native servers.
 
+Current builds track the Debian trixie package set.
+
+**1.3.0**
+
+- [x] CHANGE :tools: Switched to debian-trixie base
+
 **1.2.17**
 
 - [x] BUGFIX :beetle: Added a generic self-healing update flow that retries once after backing up and clearing stale `steamapps` metadata (`appmanifest_<steam_id>.acf`, `downloading`, `temp`).
@@ -280,6 +294,13 @@ A PEON implementation of vanilla `SteamCMD` with a `WINEHQ` implementation to su
 ### Steamed Proton
 
 A PEON implementation of vanilla `SteamCMD` with the Proton layer added to more closely mirror steams emulation layers.
+
+Current builds track the Debian trixie package set.
+
+**1.3.0**
+
+- [x] CHANGE :tools: Switched to debian-trixie base
+- [x] CHANGE :tools: Moved to proton GE 11.5
 
 **1.2.17**
 
