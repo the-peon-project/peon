@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="170"
+   height="30"
+   viewBox="0 0 170 30"
+   version="1.1"
+   id="svg12"
+   sodipodi:docname="button_docker.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Artboard</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1369"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="3.3040595"
+     inkscape:cx="148.14084"
+     inkscape:cy="101.98594"
+     inkscape:window-x="1272"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg12"
+     inkscape:document-rotation="0" />
+  <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+  <title
+     id="title2">Artboard</title>
+  <desc
+     id="desc4">Created with Sketch.</desc>
+  <rect
+     id="Rectangle"
+     fill="#ff5e5b"
+     x="0"
+     y="0"
+     width="170"
+     height="30"
+     rx="6.0986547"
+     style="fill:#3466d4;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.873116" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6672px;line-height:1.25;font-family:X-Files;-inkscape-font-specification:X-Files;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.700016"
+     x="42.976837"
+     y="21.326445"
+     id="text870"
+     transform="scale(1.0341354,0.96699136)"><tspan
+       sodipodi:role="line"
+       id="tspan868"
+       x="42.976837"
+       y="21.326445"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6672px;font-family:Tahoma;-inkscape-font-specification:Tahoma;fill:#ffffff;fill-opacity:1;stroke-width:0.700016">docker repo</tspan></text>
+  <path
+     d="M 28.121993,14.073521 H 25.64341 v -2.344275 h 2.478583 z m 0,-8.062889 H 25.64341 v 2.3955826 h 2.478583 z m 2.9323,5.714666 H 28.57571 v 2.344275 h 2.478583 z M 25.193442,8.8798049 h -2.478581 v 2.3719021 h 2.478581 z m 2.928551,0 H 25.64341 v 2.3719021 h 2.478583 z M 38.501285,12.826396 C 37.96132,12.443579 36.716407,12.305446 35.76022,12.494881 35.636482,11.547702 35.134014,10.722862 34.219074,9.980903 L 33.694111,9.6138719 33.345387,10.166395 c -0.689954,1.097154 -0.877443,2.90469 -0.138742,4.096562 -0.326226,0.18549 -0.967432,0.438071 -1.814876,0.422285 h -16.30014 c -0.326228,2.004872 0.217484,4.60962 1.649888,6.397427 1.391155,1.732552 3.476013,2.612645 6.202078,2.612645 5.902097,0 10.270549,-2.861282 12.314161,-8.058942 0.802444,0.01579 2.534829,0.004 3.423516,-1.783861 C 38.737527,13.753847 38.928756,13.331562 39,13.177645 Z M 19.336338,11.725298 H 16.86151 v 2.344275 h 2.478578 v -2.344275 z m 2.928553,0 h -2.478583 v 2.344275 h 2.478583 z m 2.928551,0 h -2.478581 v 2.344275 h 2.478581 z M 22.264891,8.8798049 h -2.478583 v 2.3719021 h 2.478583 z"
+     id="path835"
+     style="fill:#ffffff;stroke-width:0.0384692" />
+</svg>

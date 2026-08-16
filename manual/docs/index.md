@@ -434,7 +434,7 @@ Choose your path:
 ### Get Help
 
 - **📖 [User Guide](guides/index.md)** - Comprehensive documentation
-- **❓ [FAQ](about.md#faq)** - Common questions answered
+- **❓ [FAQ](faq.md)** - Common questions answered
 - **🐛 [Report Issues](https://github.com/the-peon-project/peon/issues)** - Bug reports and feature requests
 
 ### Support Development
