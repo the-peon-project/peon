@@ -31,6 +31,8 @@ For this guide, please make sure you have [Docker Compose](https://docs.docker.c
 
 You can change any of the settings according to your needs.
 
+The recipe preserves the current world/server settings by default and only updates values that are explicitly provided as environment variables.
+
 ```yml
 
 services:
@@ -48,6 +50,9 @@ services:
         # GAME SERVER VARIABLES
         - SERVER_NAME=server1
         - PASSWORD=defautpass
+        - BASECAMPWORKERMAXNUM=20
+        # Optional: pin an existing world GUID to avoid loading a newly generated world
+        - DEDICATEDSERVERNAME=30150D3A49D193B5DA5B81A78BD25DDC
         volumes:
         - ./actions:/actions
         - ./data:/home/steam/steamcmd/data
@@ -55,3 +60,5 @@ services:
         - ./user:/home/steam/steamcmd/data/Pal/Saved
         user: 1000:1000
 ```
+
+    All supported environment overrides are listed in [plan.json](./plan.json) under `environment`.

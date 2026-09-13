@@ -1,5 +1,109 @@
 #!/bin/bash
 config_file="/home/steam/steamcmd/data/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
+game_user_settings_file="/home/steam/steamcmd/data/Pal/Saved/Config/LinuxServer/GameUserSettings.ini"
+savegames_root="/home/steam/steamcmd/data/Pal/Saved/SaveGames/0"
+dedicated_name_state_file="/home/steam/config/dedicated_server_name"
+
+resolve_dedicated_server_name(){
+    local desired_name=""
+    local current_name=""
+
+    if [[ -n $DEDICATEDSERVERNAME ]]; then
+        desired_name="$DEDICATEDSERVERNAME"
+    elif [[ -f $dedicated_name_state_file ]]; then
+        current_name=$(tr -d '\r\n' < "$dedicated_name_state_file")
+        [[ -n $current_name ]] && desired_name="$current_name"
+    fi
+
+    if [[ -z $desired_name && -d $savegames_root ]]; then
+        # Prefer the largest existing world directory to avoid switching to a new empty world.
+        desired_name=$(find "$savegames_root" -mindepth 1 -maxdepth 1 -type d -printf '%s %f\n' | sort -nr | head -n1 | awk '{print $2}')
+    fi
+
+    if [[ -z $desired_name && -f $game_user_settings_file ]]; then
+        current_name=$(grep -E '^DedicatedServerName=' "$game_user_settings_file" | head -n1 | cut -d'=' -f2-)
+        [[ -n $current_name ]] && desired_name="$current_name"
+    fi
+
+    if [[ -n $desired_name ]]; then
+        echo -n "$desired_name" > "$dedicated_name_state_file"
+    fi
+
+    echo "$desired_name"
+}
+
+pin_dedicated_server_name(){
+    local dedicated_name="$1"
+
+    [[ -z $dedicated_name ]] && return 0
+    [[ ! -f $game_user_settings_file ]] && return 0
+
+    if grep -q -E '^DedicatedServerName=' "$game_user_settings_file"; then
+        sed -i "s/^DedicatedServerName=.*/DedicatedServerName=${dedicated_name}/" "$game_user_settings_file"
+    else
+        printf '\nDedicatedServerName=%s\n' "$dedicated_name" >> "$game_user_settings_file"
+    fi
+}
+
+escape_sed_replacement(){
+    printf '%s' "$1" | sed -e 's/[&@]/\\&/g'
+}
+
+quote_option_value(){
+    local value="$1"
+    value=${value//\\/\\\\}
+    value=${value//\"/\\\"}
+    printf '"%s"' "$value"
+}
+
+load_current_option_settings(){
+    local option_line=""
+
+    option_line=$(grep -E '^OptionSettings=\(' "$config_file" | head -n1)
+    if [[ -z $option_line ]]; then
+        CURRENT_OPTION_SETTINGS=""
+        return 0
+    fi
+
+    CURRENT_OPTION_SETTINGS=${option_line#OptionSettings=(}
+    CURRENT_OPTION_SETTINGS=${CURRENT_OPTION_SETTINGS%)}
+}
+
+upsert_option_setting(){
+    local key="$1"
+    local raw_value="$2"
+    local escaped_value=""
+
+    escaped_value=$(escape_sed_replacement "$raw_value")
+
+    if [[ "$CURRENT_OPTION_SETTINGS" == *"${key}="* ]]; then
+        CURRENT_OPTION_SETTINGS=$(printf '%s' "$CURRENT_OPTION_SETTINGS" | sed -E "s@${key}=(\"[^\"]*\"|[^,)]*)@${key}=${escaped_value}@")
+    elif [[ -n $CURRENT_OPTION_SETTINGS ]]; then
+        CURRENT_OPTION_SETTINGS+=",${key}=${raw_value}"
+    else
+        CURRENT_OPTION_SETTINGS="${key}=${raw_value}"
+    fi
+}
+
+set_option_from_env(){
+    local env_key="$1"
+    local option_key="$2"
+    local value_type="$3"
+    local env_value=""
+    local formatted_value=""
+
+    env_value="${!env_key}"
+    [[ -z $env_value ]] && return 0
+
+    if [[ $value_type == "quoted" ]]; then
+        formatted_value=$(quote_option_value "$env_value")
+    else
+        formatted_value="$env_value"
+    fi
+
+    upsert_option_setting "$option_key" "$formatted_value"
+}
+
 check_config_file(){
     if [ ! -f "$config_file" ]; then
         echo -n "BUILDING CONFIG FILES" > $STATE_FILE
@@ -14,75 +118,79 @@ check_config_file(){
 }
 
 update_server_settings(){
-    echo "[/Script/Pal.PalGameWorldSettings]" > $config_file
-    config_string="OptionSettings=("
-    # General server settings
-    [[ -n $SERVER_NAME ]] && config_string+="ServerName=\"$SERVER_NAME\"" || config_string+="ServerName=\"PEONPAL\""
-    [[ -n $SERVERDESCRIPTION ]] && config_string+=",ServerDescription=\"$SERVERDESCRIPTION\"" || config_string+=",ServerDescription=\"A PALWORLD server built be PEON.\""
-    [[ -n $PASSWORD ]] && config_string+=",ServerPassword=\"$PASSWORD\"" || config_string+=",ServerPassword=\"zugzug\""
-    [[ -n $ADMINPASSWORD ]] && config_string+=",AdminPassword=\"$ADMINPASSWORD\"" || config_string+=",AdminPassword=\"zu88zu88\""
-    [[ -n $SERVERPLAYERMAXNUM ]] && config_string+=",ServerPlayerMaxNum=$SERVERPLAYERMAXNUM" || config_string+=",ServerPlayerMaxNum=32"
-    [[ -n $COOPLAYERMAXNUM ]] && config_string+=",CoopPlayerMaxNum=$COOPLAYERMAXNUM" || config_string+=",CoopPlayerMaxNum=4"
-    # Network settings
-    [[ -n $PORT ]] && config_string+=",PublicPort=$PORT" || config_string+=",PublicPort=8211"
-    [[ -n $SERVER_IP ]] && config_string+=",PublicIP=\"$SERVER_IP\"" || config_string+=",PublicIP=\"localhost\""
-    [[ -n $RCONENABLED ]] && config_string+=",RCONEnabled=$RCONENABLED" || config_string+=",RCONEnabled=False"
-    [[ -n $RCONPORT ]] && config_string+=",RCONPort=$RCONPORT" || config_string+=",RCONPort=25575"
-    # Region and authentication
-    [[ -n $REGION ]] && config_string+=",Region=\"$REGION\"" || config_string+=",Region=\"\""
-    [[ -n $BUSEAUTH ]] && config_string+=",bUseAuth=$BUSEAUTH" || config_string+=",bUseAuth=True"
-    [[ -n $BANLISTURL ]] && config_string+=",BanListURL=\"$BANLISTURL\"" || config_string+=",BanListURL=\"https://api.palworldgame.com/api/banlist.txt\""
+    load_current_option_settings
 
-    # Game mechanics
-    [[ -n $DIFFICULTY ]] && config_string+=",Difficulty=$DIFFICULTY" || config_string+=",Difficulty=None"
-    [[ -n $DAYTIMESPEEDRATE ]] && config_string+=",DayTimeSpeedRate=$DAYTIMESPEEDRATE" || config_string+=",DayTimeSpeedRate=1.000000"
-    [[ -n $NIGHTTIMESPEEDRATE ]] && config_string+=",NightTimeSpeedRate=$NIGHTTIMESPEEDRATE" || config_string+=",NightTimeSpeedRate=1.000000"
-    [[ -n $EXPRATE ]] && config_string+=",ExpRate=$EXPRATE" || config_string+=",ExpRate=1.000000"
-    [[ -n $PALCAPTURERATE ]] && config_string+=",PalCaptureRate=$PALCAPTURERATE" || config_string+=",PalCaptureRate=1.000000"
-    [[ -n $PALSPAWNNUMRATE ]] && config_string+=",PalSpawnNumRate=$PALSPAWNNUMRATE" || config_string+=",PalSpawnNumRate=1.000000"
-    [[ -n $PALDAMAGERATEATTACK ]] && config_string+=",PalDamageRateAttack=$PALDAMAGERATEATTACK" || config_string+=",PalDamageRateAttack=1.000000"
-    [[ -n $PALDAMAGERATEDEFENSE ]] && config_string+=",PalDamageRateDefense=$PALDAMAGERATEDEFENSE" || config_string+=",PalDamageRateDefense=1.000000"
-    [[ -n $PLAYERDAMAGERATEATTACK ]] && config_string+=",PlayerDamageRateAttack=$PLAYERDAMAGERATEATTACK" || config_string+=",PlayerDamageRateAttack=1.000000"
-    [[ -n $PLAYERDAMAGERATEDEFENSE ]] && config_string+=",PlayerDamageRateDefense=$PLAYERDAMAGERATEDEFENSE" || config_string+=",PlayerDamageRateDefense=1.000000"
-    [[ -n $PLAYERSTOMACHDECREACERATE ]] && config_string+=",PlayerStomachDecreaceRate=$PLAYERSTOMACHDECREACERATE" || config_string+=",PlayerStomachDecreaceRate=1.000000"
-    [[ -n $PLAYERSTAMINADECREACERATE ]] && config_string+=",PlayerStaminaDecreaceRate=$PLAYERSTAMINADECREACERATE" || config_string+=",PlayerStaminaDecreaceRate=1.000000"
-    [[ -n $PLAYERAUTOHPREGENERATE ]] && config_string+=",PlayerAutoHPRegeneRate=$PLAYERAUTOHPREGENERATE" || config_string+=",PlayerAutoHPRegeneRate=1.000000"
-    [[ -n $PLAYERAUTOHPREGENERATEINSLEEP ]] && config_string+=",PlayerAutoHpRegeneRateInSleep=$PLAYERAUTOHPREGENERATEINSLEEP" || config_string+=",PlayerAutoHpRegeneRateInSleep=1.000000"
-    [[ -n $PALSTOMACHDECREACERATE ]] && config_string+=",PalStomachDecreaceRate=$PALSTOMACHDECREACERATE" || config_string+=",PalStomachDecreaceRate=1.000000"
-    [[ -n $PALSTAMINADECREACERATE ]] && config_string+=",PalStaminaDecreaceRate=$PALSTAMINADECREACERATE" || config_string+=",PalStaminaDecreaceRate=1.000000"
-    [[ -n $PALAUTOHPREGENERATE ]] && config_string+=",PalAutoHPRegeneRate=$PALAUTOHPREGENERATE" || config_string+=",PalAutoHPRegeneRate=1.000000"
-    [[ -n $PALAUTOHPREGENERATEINSLEEP ]] && config_string+=",PalAutoHpRegeneRateInSleep=$PALAUTOHPREGENERATEINSLEEP" || config_string+=",PalAutoHpRegeneRateInSleep=1.000000"
-    [[ -n $BUILDOBJECTDAMAGERATE ]] && config_string+=",BuildObjectDamageRate=$BUILDOBJECTDAMAGERATE" || config_string+=",BuildObjectDamageRate=1.000000"
-    [[ -n $BUILDOBJECTDETERIORATIONDAMAGERATE ]] && config_string+=",BuildObjectDeteriorationDamageRate=$BUILDOBJECTDETERIORATIONDAMAGERATE" || config_string+=",BuildObjectDeteriorationDamageRate=1.000000"
-    [[ -n $COLLECTIONDROPRATE ]] && config_string+=",CollectionDropRate=$COLLECTIONDROPRATE" || config_string+=",CollectionDropRate=1.000000"
-    [[ -n $COLLECTIONOBJECTHPRATE ]] && config_string+=",CollectionObjectHpRate=$COLLECTIONOBJECTHPRATE" || config_string+=",CollectionObjectHpRate=1.000000"
-    [[ -n $COLLECTIONOBJECTRESPAWNSPEEDRATE ]] && config_string+=",CollectionObjectRespawnSpeedRate=$COLLECTIONOBJECTRESPAWNSPEEDRATE" || config_string+=",CollectionObjectRespawnSpeedRate=1.000000"
-    [[ -n $ENEMYDROPITEMRATE ]] && config_string+=",EnemyDropItemRate=$ENEMYDROPITEMRATE" || config_string+=",EnemyDropItemRate=1.000000"
-    [[ -n $DEATHPENALTY ]] && config_string+=",DeathPenalty=\\\"$DEATHPENALTY\\\"" || config_string+=",DeathPenalty=\"All\""
-    [[ -n $BENABLEAIMASSISTPAD ]] && config_string+=",bEnableAimAssistPad=$BENABLEAIMASSISTPAD" || config_string+=",bEnableAimAssistPad=True"
-    [[ -n $BENABLEAIMASSISTKEYBOARD ]] && config_string+=",bEnableAimAssistKeyboard=$BENABLEAIMASSISTKEYBOARD" || config_string+=",bEnableAimAssistKeyboard=False"
-    [[ -n $DROPITEMMAXNUM ]] && config_string+=",DropItemMaxNum=$DROPITEMMAXNUM" || config_string+=",DropItemMaxNum=3000"
-    [[ -n $BASECAMPMAXNUM ]] && config_string+=",BaseCampMaxNum=$BASECAMPMAXNUM" || config_string+=",BaseCampMaxNum=128"
-    [[ -n $BASECAMPWORKERMAXNUM ]] && config_string+=",BaseCampWorkerMaxNum=$BASECAMPWORKERMAXNUM" || config_string+=",BaseCampWorkerMaxNum=15"
-    [[ -n $DROPITEMALIVEMAXHOURS ]] && config_string+=",DropItemAliveMaxHours=$DROPITEMALIVEMAXHOURS" || config_string+=",DropItemAliveMaxHours=1.000000"
-    [[ -n $BAUTORESETGUILDNOONLINEPLAYERS ]] && config_string+=",bAutoResetGuildNoOnlinePlayers=$BAUTORESETGUILDNOONLINEPLAYERS" || config_string+=",bAutoResetGuildNoOnlinePlayers=False"
-    [[ -n $AUTORESETGUILDTIMENOONLINEPLAYERS ]] && config_string+=",AutoResetGuildTimeNoOnlinePlayers=$AUTORESETGUILDTIMENOONLINEPLAYERS" || config_string+=",AutoResetGuildTimeNoOnlinePlayers=72.000000"
-    [[ -n $GUILDPLAYERMAXNUM ]] && config_string+=",GuildPlayerMaxNum=$GUILDPLAYERMAXNUM" || config_string+=",GuildPlayerMaxNum=20"
-    [[ -n $PALEGGDEFAULTHATCHINGTIME ]] && config_string+=",PalEggDefaultHatchingTime=$PALEGGDEFAULTHATCHINGTIME" || config_string+=",PalEggDefaultHatchingTime=72.000000"
-    [[ -n $WORKSPEEDRATE ]] && config_string+=",WorkSpeedRate=$WORKSPEEDRATE" || config_string+=",WorkSpeedRate=1.000000"
-    [[ -n $BENABLEPLAYERTOPLAYERDAMAGE ]] && config_string+=",bEnablePlayerToPlayerDamage=$BENABLEPLAYERTOPLAYERDAMAGE" || config_string+=",bEnablePlayerToPlayerDamage=False"
-    [[ -n $BENABLEFRIENDLYFIRE ]] && config_string+=",bEnableFriendlyFire=$BENABLEFRIENDLYFIRE" || config_string+=",bEnableFriendlyFire=False"
-    [[ -n $BENABLEINVADERENEMY ]] && config_string+=",bEnableInvaderEnemy=$BENABLEINVADERENEMY" || config_string+=",bEnableInvaderEnemy=True"
-    [[ -n $BACTIVEUNKO ]] && config_string+=",bActiveUNKO=$BACTIVEUNKO" || config_string+=",bActiveUNKO=False"
-    [[ -n $DROPITEMMAXNUMUNKO ]] && config_string+=",DropItemMaxNum_UNKO=$DROPITEMMAXNUMUNKO" || config_string+=",DropItemMaxNum_UNKO=100"
-    [[ -n $BISMULTIPLAY ]] && config_string+=",bIsMultiplay=$BISMULTIPLAY" || config_string+=",bIsMultiplay=False"
-    [[ -n $BISPVP ]] && config_string+=",bIsPvP=$BISPVP" || config_string+=",bIsPvP=False"
-    [[ -n $BCANPICKUPOTHERGUILDDEATHPENALTYDROP ]] && config_string+=",bCanPickupOtherGuildDeathPenaltyDrop=$BCANPICKUPOTHERGUILDDEATHPENALTYDROP" || config_string+=",bCanPickupOtherGuildDeathPenaltyDrop=False"
-    [[ -n $BENABLENONLOGINPENALTY ]] && config_string+=",bEnableNonLoginPenalty=$BENABLENONLOGINPENALTY" || config_string+=",bEnableNonLoginPenalty=True"
-    [[ -n $BENABLEFASTTRAVEL ]] && config_string+=",bEnableFastTravel=$BENABLEFASTTRAVEL" || config_string+=",bEnableFastTravel=True"
-    [[ -n $BISSTARTLOCATIONSELECTBYMAP ]] && config_string+=",bIsStartLocationSelectByMap=$BISSTARTLOCATIONSELECTBYMAP" || config_string+=",bIsStartLocationSelectByMap=True"
-    [[ -n $BEXISTPLAYERAFTERLOGOUT ]] && config_string+=",bExistPlayerAfterLogout=$BEXISTPLAYERAFTERLOGOUT" || config_string+=",bExistPlayerAfterLogout=False"
-    [[ -n $BENABLEDEFENSEOTHERGUILDPLAYER ]] && config_string+=",bEnableDefenseOtherGuildPlayer=$BENABLEDEFENSEOTHERGUILDPLAYER" || config_string+=",bEnableDefenseOtherGuildPlayer=False"
-    config_string+=")"
-    echo $config_string >> $config_file
+    if [[ -z $CURRENT_OPTION_SETTINGS ]]; then
+        echo "ERROR: Existing OptionSettings were not found in $config_file" >&2
+        return 1
+    fi
+
+    # Only apply values that are explicitly set through environment variables.
+    set_option_from_env "SERVER_NAME" "ServerName" "quoted"
+    set_option_from_env "SERVERDESCRIPTION" "ServerDescription" "quoted"
+    set_option_from_env "PASSWORD" "ServerPassword" "quoted"
+    set_option_from_env "ADMINPASSWORD" "AdminPassword" "quoted"
+    set_option_from_env "SERVERPLAYERMAXNUM" "ServerPlayerMaxNum" "raw"
+    set_option_from_env "COOPLAYERMAXNUM" "CoopPlayerMaxNum" "raw"
+    set_option_from_env "PORT" "PublicPort" "raw"
+    set_option_from_env "SERVER_IP" "PublicIP" "quoted"
+    set_option_from_env "RCONENABLED" "RCONEnabled" "raw"
+    set_option_from_env "RCONPORT" "RCONPort" "raw"
+    set_option_from_env "REGION" "Region" "quoted"
+    set_option_from_env "BUSEAUTH" "bUseAuth" "raw"
+    set_option_from_env "BANLISTURL" "BanListURL" "quoted"
+    set_option_from_env "DIFFICULTY" "Difficulty" "raw"
+    set_option_from_env "DAYTIMESPEEDRATE" "DayTimeSpeedRate" "raw"
+    set_option_from_env "NIGHTTIMESPEEDRATE" "NightTimeSpeedRate" "raw"
+    set_option_from_env "EXPRATE" "ExpRate" "raw"
+    set_option_from_env "PALCAPTURERATE" "PalCaptureRate" "raw"
+    set_option_from_env "PALSPAWNNUMRATE" "PalSpawnNumRate" "raw"
+    set_option_from_env "PALDAMAGERATEATTACK" "PalDamageRateAttack" "raw"
+    set_option_from_env "PALDAMAGERATEDEFENSE" "PalDamageRateDefense" "raw"
+    set_option_from_env "PLAYERDAMAGERATEATTACK" "PlayerDamageRateAttack" "raw"
+    set_option_from_env "PLAYERDAMAGERATEDEFENSE" "PlayerDamageRateDefense" "raw"
+    set_option_from_env "PLAYERSTOMACHDECREACERATE" "PlayerStomachDecreaceRate" "raw"
+    set_option_from_env "PLAYERSTAMINADECREACERATE" "PlayerStaminaDecreaceRate" "raw"
+    set_option_from_env "PLAYERAUTOHPREGENERATE" "PlayerAutoHPRegeneRate" "raw"
+    set_option_from_env "PLAYERAUTOHPREGENERATEINSLEEP" "PlayerAutoHpRegeneRateInSleep" "raw"
+    set_option_from_env "PALSTOMACHDECREACERATE" "PalStomachDecreaceRate" "raw"
+    set_option_from_env "PALSTAMINADECREACERATE" "PalStaminaDecreaceRate" "raw"
+    set_option_from_env "PALAUTOHPREGENERATE" "PalAutoHPRegeneRate" "raw"
+    set_option_from_env "PALAUTOHPREGENERATEINSLEEP" "PalAutoHpRegeneRateInSleep" "raw"
+    set_option_from_env "BUILDOBJECTDAMAGERATE" "BuildObjectDamageRate" "raw"
+    set_option_from_env "BUILDOBJECTDETERIORATIONDAMAGERATE" "BuildObjectDeteriorationDamageRate" "raw"
+    set_option_from_env "COLLECTIONDROPRATE" "CollectionDropRate" "raw"
+    set_option_from_env "COLLECTIONOBJECTHPRATE" "CollectionObjectHpRate" "raw"
+    set_option_from_env "COLLECTIONOBJECTRESPAWNSPEEDRATE" "CollectionObjectRespawnSpeedRate" "raw"
+    set_option_from_env "ENEMYDROPITEMRATE" "EnemyDropItemRate" "raw"
+    set_option_from_env "DEATHPENALTY" "DeathPenalty" "quoted"
+    set_option_from_env "BENABLEAIMASSISTPAD" "bEnableAimAssistPad" "raw"
+    set_option_from_env "BENABLEAIMASSISTKEYBOARD" "bEnableAimAssistKeyboard" "raw"
+    set_option_from_env "DROPITEMMAXNUM" "DropItemMaxNum" "raw"
+    set_option_from_env "BASECAMPMAXNUM" "BaseCampMaxNum" "raw"
+    set_option_from_env "BASECAMPWORKERMAXNUM" "BaseCampWorkerMaxNum" "raw"
+    set_option_from_env "DROPITEMALIVEMAXHOURS" "DropItemAliveMaxHours" "raw"
+    set_option_from_env "BAUTORESETGUILDNOONLINEPLAYERS" "bAutoResetGuildNoOnlinePlayers" "raw"
+    set_option_from_env "AUTORESETGUILDTIMENOONLINEPLAYERS" "AutoResetGuildTimeNoOnlinePlayers" "raw"
+    set_option_from_env "GUILDPLAYERMAXNUM" "GuildPlayerMaxNum" "raw"
+    set_option_from_env "PALEGGDEFAULTHATCHINGTIME" "PalEggDefaultHatchingTime" "raw"
+    set_option_from_env "WORKSPEEDRATE" "WorkSpeedRate" "raw"
+    set_option_from_env "BENABLEPLAYERTOPLAYERDAMAGE" "bEnablePlayerToPlayerDamage" "raw"
+    set_option_from_env "BENABLEFRIENDLYFIRE" "bEnableFriendlyFire" "raw"
+    set_option_from_env "BENABLEINVADERENEMY" "bEnableInvaderEnemy" "raw"
+    set_option_from_env "BACTIVEUNKO" "bActiveUNKO" "raw"
+    set_option_from_env "DROPITEMMAXNUMUNKO" "DropItemMaxNum_UNKO" "raw"
+    set_option_from_env "BISMULTIPLAY" "bIsMultiplay" "raw"
+    set_option_from_env "BISPVP" "bIsPvP" "raw"
+    set_option_from_env "BCANPICKUPOTHERGUILDDEATHPENALTYDROP" "bCanPickupOtherGuildDeathPenaltyDrop" "raw"
+    set_option_from_env "BENABLENONLOGINPENALTY" "bEnableNonLoginPenalty" "raw"
+    set_option_from_env "BENABLEFASTTRAVEL" "bEnableFastTravel" "raw"
+    set_option_from_env "BISSTARTLOCATIONSELECTBYMAP" "bIsStartLocationSelectByMap" "raw"
+    set_option_from_env "BEXISTPLAYERAFTERLOGOUT" "bExistPlayerAfterLogout" "raw"
+    set_option_from_env "BENABLEDEFENSEOTHERGUILDPLAYER" "bEnableDefenseOtherGuildPlayer" "raw"
+
+    {
+        echo "[/Script/Pal.PalGameWorldSettings]"
+        echo "OptionSettings=(${CURRENT_OPTION_SETTINGS})"
+    } > "$config_file"
 }
