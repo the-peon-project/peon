@@ -1,13 +1,13 @@
 #!/bin/bash
-echo "###### Server Satisfactory.$SERVER_NAME [STARTING]"
+source /init/lib/server_start_lib.sh
+peon_server_starting "Satisfactory"
 cd $INSTALL_DIR
 ##### Server Config
 echo $QUERYPORT > /home/steam/config/port
 ##### CONTENTS OF server_start.sh
-export templdpath=$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=./linux64:$LD_LIBRARY_PATH
+peon_steam_ld_path_enter
 export SteamAppId=1690800
 
 ./FactoryServer.sh -ServerQueryPort=$QUERYPORT -BeaconPort=$BEACONPORT -Port=$PORT -multihome=$IP
 
-export LD_LIBRARY_PATH=$templdpath
+peon_steam_ld_path_exit

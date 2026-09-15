@@ -1,5 +1,6 @@
 #!/bin/bash
-echo "###### Server Ark.$SERVER_NAME [STARTING]"
+source /init/lib/server_start_lib.sh
+peon_server_starting "Ark"
 cd $INSTALL_DIR
 ##### Server Config
 echo $PORT > /home/steam/config/port
@@ -8,10 +9,9 @@ echo $SERVER_NAME > /home/steam/config/server_name
 echo $PASSWORD > /home/steam/config/password
 
 ##### CONTENTS OF server_start.sh
-export templdpath=$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=./linux64:$LD_LIBRARY_PATH
+peon_steam_ld_path_enter
 export SteamAppId=376030
 
 ./ShooterGame/Binaries/Linux/ShooterGameServer TheIsland?listen?SessionName=$SERVER_NAME?ServerPassword=$PASSWORD?ServerAdminPassword=$ADMIN_PASSWORD?Port=$PORT?QueryPort=$PORT_QUERY?RCONEnabled=True?RCONPort=$PORT_RCON -nosteamclient -game -server -log -crossplay
 
-export LD_LIBRARY_PATH=$templdpath
+peon_steam_ld_path_exit

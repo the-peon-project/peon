@@ -1,7 +1,8 @@
 #!/bin/bash
+source /init/lib/server_start_lib.sh
 source /actions/configure_settings
 
-echo "###### Server Palworld.$SERVER_NAME [STARTING]"
+peon_server_starting "Palworld"
 cd $INSTALL_DIR
 ##### Server Config
 echo $PORT > /home/steam/config/port
@@ -14,8 +15,7 @@ pin_dedicated_server_name "$dedicated_server_name"
 update_server_settings
 
 ##### CONTENTS OF server_start.sh
-export templdpath=$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=./linux64:$LD_LIBRARY_PATH
+peon_steam_ld_path_enter
 export SteamAppId=2394010
 
 
@@ -24,4 +24,4 @@ export SteamAppId=2394010
 echo -n "STARTED" > $STATE_FILE
 ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS 
 
-export LD_LIBRARY_PATH=$templdpath
+peon_steam_ld_path_exit
