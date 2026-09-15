@@ -366,6 +366,12 @@ async def get_servers(orch_id: str, current_user: dict = Depends(get_current_use
                         if response.status == 200:
                             servers = await response.json()
 
+                            if not isinstance(servers, list):
+                                raise HTTPException(
+                                    status_code=502,
+                                    detail="Orchestrator returned a non-list server collection"
+                                )
+
                             try:
                                 for server in servers:
                                     OrcServer.model_validate(server)
@@ -559,7 +565,7 @@ async def deploy_server(
                     # requested, a bare {"status": "success", "info": ...} ack with
                     # no server fields at all -- only validate the shape when it's
                     # actually claiming to be a server object.
-                    if isinstance(result, dict) and 'game_uid' in result:
+                    if isinstance(result, dict) and ('game_uid' in result or 'servername' in result):
                         try:
                             OrcServer.model_validate(result)
                         except ValidationError as exc:
