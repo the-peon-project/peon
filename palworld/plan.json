@@ -78,6 +78,13 @@
         "BENABLEDEFENSEOTHERGUILDPLAYER"    : null,
         "DEDICATEDSERVERNAME"               : null
     },
+    "environment_autopin" : [
+        {
+            "env_var" : "DEDICATEDSERVERNAME",
+            "selector" : "largest_subdir",
+            "source_path" : "user/SaveGames/0"
+        }
+    ],
     "volumes" : {
         "~!/actions"       : "/actions",
         "~!/data"          : "/home/steam/steamcmd/data",

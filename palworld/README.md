@@ -33,6 +33,8 @@ You can change any of the settings according to your needs.
 
 The recipe preserves the current world/server settings by default and only updates values that are explicitly provided as environment variables.
 
+This plan also includes an `environment_autopin` policy in `plan.json` so the orchestrator can generically auto-fill `DEDICATEDSERVERNAME` from the largest existing world folder when no GUID is explicitly configured.
+
 ```yml
 
 services:
