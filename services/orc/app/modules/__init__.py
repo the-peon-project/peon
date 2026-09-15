@@ -1,7 +1,8 @@
 import json
+import os
 import docker
 
-install_path = "/app"
+install_path = os.environ.get("PEON_INSTALL_PATH", "/app")
 schedule_file="/home/peon/servers/schedule.json"
 
 # Settings file

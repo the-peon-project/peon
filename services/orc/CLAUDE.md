@@ -9,6 +9,7 @@ This directory owns the core PEON orchestration API. It is the control plane tha
 - Server lifecycle logic: `app/modules/servers.py`
 - Scheduler logic: `app/modules/scheduler.py`
 - Plan ingestion and updates: `app/modules/plans.py`, `app/modules/github.py`
+- Automated tests: `tests/`
 
 ## Runtime Map
 
@@ -40,7 +41,7 @@ cd /home/richard/development/peon/services/orc
 python3 -m py_compile app/main.py
 ```
 
-Use targeted syntax checks or module-level verification around touched files when possible. There is no committed narrow automated test suite in this directory.
+Use targeted syntax checks or module-level verification around touched files when possible. A pytest suite exists at `tests/` covering the `/api/v1/plans` and `/api/v1/server` routes — run it with `python3 -m pip install -r requirements-dev.txt && python3 -m pytest tests` before considering an API-layer change validated. If the host's system Python is externally managed (PEP 668, `error: externally-managed-environment`), use a local venv instead: `python3 -m venv .venv && .venv/bin/python -m pip install -r requirements-dev.txt && .venv/bin/python -m pytest tests` (`.venv/` is gitignored).
 
 ## Important Files
 
@@ -52,6 +53,7 @@ Use targeted syntax checks or module-level verification around touched files whe
 - Scheduler: `app/modules/scheduler.py`
 - Plans integration: `app/modules/plans.py`, `app/modules/github.py`
 - Repo dependencies: `requirements.txt`
+- Test suite: `tests/` (dev dependencies in `requirements-dev.txt`)
 
 ## Warplan Source (post-consolidation change)
 
