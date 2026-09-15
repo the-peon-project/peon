@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Bongo Cat.
 
 ## Paths
 
-- Recipe path: `peon-warplans/bongocat/`
+- Recipe path: `warplans/bongocat/`

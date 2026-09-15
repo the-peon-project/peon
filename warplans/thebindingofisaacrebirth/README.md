@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for The Binding of Isaac: Rebirth.
 
 ## Paths
 
-- Recipe path: `peon-warplans/thebindingofisaacrebirth/`
+- Recipe path: `warplans/thebindingofisaacrebirth/`

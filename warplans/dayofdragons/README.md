@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Day of Dragons.
 
 ## Paths
 
-- Recipe path: `peon-warplans/dayofdragons/`
+- Recipe path: `warplans/dayofdragons/`

@@ -8,7 +8,7 @@ The PEON war plan that PEON uses to deploy your game server.
 
 ## Code Repo
 
-- [GitHub Project](https://github.com/the-peon-project/peon-warplans/tree/main/windrose)
+- [GitHub Project](https://github.com/the-peon-project/peon/tree/main/warplans/windrose)
 
 ## Runtime Notes
 

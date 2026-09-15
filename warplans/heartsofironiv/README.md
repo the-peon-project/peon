@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Hearts of Iron IV.
 
 ## Paths
 
-- Recipe path: `peon-warplans/heartsofironiv/`
+- Recipe path: `warplans/heartsofironiv/`

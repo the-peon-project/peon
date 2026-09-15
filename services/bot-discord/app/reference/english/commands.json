@@ -96,7 +96,7 @@
         "symbol": ":police_officer:"
     },
     "bad.code": {
-        "note": "Please consider logging a ticket @ https://github.com/the-peon-project/peon-bot-discord/issues/new/choose",
+        "note": "Please consider logging a ticket @ https://github.com/the-peon-project/peon/issues/new/choose",
         "user": null,
         "admin": null,
         "symbol": ":pirate_flag:"

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Blade Symphony.
 
 ## Paths
 
-- Recipe path: `peon-warplans/bladesymphony/`
+- Recipe path: `warplans/bladesymphony/`

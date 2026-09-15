@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for FINAL FANTASY XIV Online.
 
 ## Paths
 
-- Recipe path: `peon-warplans/ffxivonline/`
+- Recipe path: `warplans/ffxivonline/`

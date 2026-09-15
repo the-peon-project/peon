@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Forza Horizon 6.
 
 ## Paths
 
-- Recipe path: `peon-warplans/forzahorizon6/`
+- Recipe path: `warplans/forzahorizon6/`

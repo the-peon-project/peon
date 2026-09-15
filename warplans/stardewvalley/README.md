@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Stardew Valley.
 
 ## Paths
 
-- Recipe path: `peon-warplans/stardewvalley/`
+- Recipe path: `warplans/stardewvalley/`

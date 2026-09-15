@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Insurgency.
 
 ## Paths
 
-- Recipe path: `peon-warplans/insurgency/`
+- Recipe path: `warplans/insurgency/`

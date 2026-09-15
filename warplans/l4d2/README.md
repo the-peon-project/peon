@@ -5,7 +5,7 @@ The PEON war plan used to deploy a Left 4 Dead 2 dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/l4d2/`
+- Recipe path: `warplans/l4d2/`
 
 ## Notes
 

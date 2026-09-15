@@ -11,7 +11,7 @@ The PEON war plan that Peon uses to deploy your game server.
 
 ## Code Repo
 
-- [GitHub Project](https://github.com/the-peon-project/peon-warplans/tree/main/ark)
+- [GitHub Project](https://github.com/the-peon-project/peon/tree/main/warplans/ark)
 
 ## Features
 

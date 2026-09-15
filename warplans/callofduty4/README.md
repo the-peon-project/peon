@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Call of Duty 4.
 
 ## Paths
 
-- Recipe path: `peon-warplans/callofduty4/`
+- Recipe path: `warplans/callofduty4/`

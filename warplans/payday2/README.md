@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for PAYDAY 2.
 
 ## Paths
 
-- Recipe path: `peon-warplans/payday2/`
+- Recipe path: `warplans/payday2/`

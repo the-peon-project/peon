@@ -5,7 +5,7 @@ The PEON war plan used to deploy a classic Counter-Strike dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/counterstrike/`
+- Recipe path: `warplans/counterstrike/`
 
 ## Notes
 

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Minecraft: Java Edition.
 
 ## Paths
 
-- Recipe path: `peon-warplans/minecraftjavaedition/`
+- Recipe path: `warplans/minecraftjavaedition/`

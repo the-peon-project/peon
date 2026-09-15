@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Black Desert.
 
 ## Paths
 
-- Recipe path: `peon-warplans/blackdesert/`
+- Recipe path: `warplans/blackdesert/`

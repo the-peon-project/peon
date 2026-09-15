@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Mount & Blade II: Bannerlord.
 
 ## Paths
 
-- Recipe path: `peon-warplans/bannerlord2/`
+- Recipe path: `warplans/bannerlord2/`

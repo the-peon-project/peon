@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Street Fighter™ 6.
 
 ## Paths
 
-- Recipe path: `peon-warplans/streetfighter6/`
+- Recipe path: `warplans/streetfighter6/`

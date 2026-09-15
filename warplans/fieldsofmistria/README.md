@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Fields of Mistria.
 
 ## Paths
 
-- Recipe path: `peon-warplans/fieldsofmistria/`
+- Recipe path: `warplans/fieldsofmistria/`

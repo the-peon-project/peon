@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Natural Selection.
 
 ## Paths
 
-- Recipe path: `peon-warplans/naturalselection/`
+- Recipe path: `warplans/naturalselection/`

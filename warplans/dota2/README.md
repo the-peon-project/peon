@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Dota 2.
 
 ## Paths
 
-- Recipe path: `peon-warplans/dota2/`
+- Recipe path: `warplans/dota2/`

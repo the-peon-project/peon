@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for ARK: Survival Ascended.
 
 ## Paths
 
-- Recipe path: `peon-warplans/arksurvivalascended/`
+- Recipe path: `warplans/arksurvivalascended/`

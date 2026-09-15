@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Farming Simulator 25.
 
 ## Paths
 
-- Recipe path: `peon-warplans/farmingsimulator25/`
+- Recipe path: `warplans/farmingsimulator25/`

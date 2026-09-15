@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Battlefield™ 6.
 
 ## Paths
 
-- Recipe path: `peon-warplans/battlefield6/`
+- Recipe path: `warplans/battlefield6/`

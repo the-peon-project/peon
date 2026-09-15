@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for ARMA 3.
 
 ## Paths
 
-- Recipe path: `peon-warplans/arma3/`
+- Recipe path: `warplans/arma3/`

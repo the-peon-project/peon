@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Age of Empires II: Definitive 
 
 ## Paths
 
-- Recipe path: `peon-warplans/ageofempiresiidefinitiveedition/`
+- Recipe path: `warplans/ageofempiresiidefinitiveedition/`

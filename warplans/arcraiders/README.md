@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for ARC Raiders.
 
 ## Paths
 
-- Recipe path: `peon-warplans/arcraiders/`
+- Recipe path: `warplans/arcraiders/`

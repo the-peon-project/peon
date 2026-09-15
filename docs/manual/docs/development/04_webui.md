@@ -69,7 +69,7 @@ Server management now adds two navigation improvements:
 Future UI elements should follow the shared brand rules in the WebUI README before introducing new styling patterns.
 
 Game logos are now served through a backend resolver at `/game-logos/<game_uid>.<ext>`.
-When a plan list is fetched or a server is deployed from a recipe, WebUI will automatically hydrate and cache missing logos (including formats like `logo.webp` from `peon-warplans`).
+When a plan list is fetched or a server is deployed from a recipe, WebUI will automatically hydrate and cache missing logos (including formats like `logo.webp` from the monorepo's `warplans/` directory).
 
 ---
 
@@ -77,8 +77,8 @@ When a plan list is fetched or a server is deployed from a recipe, WebUI will au
 
 Links to various project-related resources.
 
-[![github](../images/buttons/button_github.svg)](https://github.com/the-peon-project/peon-webui)
-[![github](../images/buttons/button_bug.svg)](https://github.com/the-peon-project/peon-webui/issues/new/choose)
+[![github](../images/buttons/button_github.svg)](https://github.com/the-peon-project/peon/tree/main/services/webui)
+[![github](../images/buttons/button_bug.svg)](https://github.com/the-peon-project/peon/issues/new/choose)
 [![github](../images/buttons/button_changelog.svg)](../development/04_webui.md#release-notes)
 [![github](../images/buttons/button_docker.svg)](https://hub.docker.com/repository/docker/umlatt/peon.webui/general)
 

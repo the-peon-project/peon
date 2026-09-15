@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for FiveM.
 
 ## Paths
 
-- Recipe path: `peon-warplans/fivem/`
+- Recipe path: `warplans/fivem/`

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Hurtworld.
 
 ## Paths
 
-- Recipe path: `peon-warplans/hurtworld/`
+- Recipe path: `warplans/hurtworld/`

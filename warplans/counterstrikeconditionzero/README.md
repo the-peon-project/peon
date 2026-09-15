@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Counter-Strike: Condition Zero
 
 ## Paths
 
-- Recipe path: `peon-warplans/counterstrikeconditionzero/`
+- Recipe path: `warplans/counterstrikeconditionzero/`

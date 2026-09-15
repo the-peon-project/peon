@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Call of Duty: World at War.
 
 ## Paths
 
-- Recipe path: `peon-warplans/callofdutyworldatwar/`
+- Recipe path: `warplans/callofdutyworldatwar/`

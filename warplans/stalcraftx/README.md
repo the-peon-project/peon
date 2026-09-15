@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for STALCRAFT: X.
 
 ## Paths
 
-- Recipe path: `peon-warplans/stalcraftx/`
+- Recipe path: `warplans/stalcraftx/`

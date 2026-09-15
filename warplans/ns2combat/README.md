@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for NS2: Combat.
 
 ## Paths
 
-- Recipe path: `peon-warplans/ns2combat/`
+- Recipe path: `warplans/ns2combat/`

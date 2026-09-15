@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Core Keeper.
 
 ## Paths
 
-- Recipe path: `peon-warplans/corekeeper/`
+- Recipe path: `warplans/corekeeper/`

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Avorion.
 
 ## Paths
 
-- Recipe path: `peon-warplans/avorion/`
+- Recipe path: `warplans/avorion/`

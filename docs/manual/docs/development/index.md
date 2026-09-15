@@ -129,8 +129,8 @@ python -m pytest tests/e2e/
 export PEON_DEBUG=true
 
 # View logs
-docker logs peon-orchestrator
-docker logs peon-discord-bot
+docker logs peon.orc
+docker logs peon.bot.discord
 
 # Interactive debugging
 python -m pdb app/main.py
@@ -209,7 +209,7 @@ type(scope): brief description
 
 2. **Create war plan**
    ```bash
-   cd peon-warplans
+   cd peon/warplans
    mkdir my-game
    cp template/plan.json my-game/
    # Edit configuration
@@ -228,7 +228,7 @@ type(scope): brief description
 
 4. **Submit for review**
    ```bash
-   git add peon-warplans/my-game/
+   git add warplans/my-game/
    git commit -m "feat: add support for My Game"
    git push origin feature/my-game-support
    ```

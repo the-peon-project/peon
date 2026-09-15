@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for VRChat.
 
 ## Paths
 
-- Recipe path: `peon-warplans/vrchat/`
+- Recipe path: `warplans/vrchat/`

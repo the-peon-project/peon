@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for War Thunder.
 
 ## Paths
 
-- Recipe path: `peon-warplans/warthunder/`
+- Recipe path: `warplans/warthunder/`

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Codename CURE.
 
 ## Paths
 
-- Recipe path: `peon-warplans/codenamecure/`
+- Recipe path: `warplans/codenamecure/`

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Chivalry: Medieval Warfare.
 
 ## Paths
 
-- Recipe path: `peon-warplans/chivalrymedievalwarfare/`
+- Recipe path: `warplans/chivalrymedievalwarfare/`

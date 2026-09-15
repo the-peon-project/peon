@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for R.E.P.O..
 
 ## Paths
 
-- Recipe path: `peon-warplans/repo/`
+- Recipe path: `warplans/repo/`

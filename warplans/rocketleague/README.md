@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Rocket League.
 
 ## Paths
 
-- Recipe path: `peon-warplans/rocketleague/`
+- Recipe path: `warplans/rocketleague/`

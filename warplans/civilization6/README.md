@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Sid Meier's Civilization VI.
 
 ## Paths
 
-- Recipe path: `peon-warplans/civilization6/`
+- Recipe path: `warplans/civilization6/`

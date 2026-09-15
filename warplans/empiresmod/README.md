@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Empires Mod.
 
 ## Paths
 
-- Recipe path: `peon-warplans/empiresmod/`
+- Recipe path: `warplans/empiresmod/`

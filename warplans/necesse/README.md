@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Necesse.
 
 ## Paths
 
-- Recipe path: `peon-warplans/necesse/`
+- Recipe path: `warplans/necesse/`

@@ -231,7 +231,7 @@ ENABLE_LEGACY_COMMANDS=false
     - Verify bot has "Use Slash Commands" permission
     - Check bot is online in Discord member list
     - Re-invite bot with updated permissions
-    - Restart bot container: `docker restart peon-bot-1`
+    - Restart bot container: `docker restart peon.bot.discord`
 
 ??? question "Commands return 'No orchestrators registered'"
     **Solutions:**
@@ -251,7 +251,7 @@ ENABLE_LEGACY_COMMANDS=false
     **Solutions:**
     - Commands must complete within 15 minutes
     - For long operations, use Web UI instead
-    - Check Discord bot logs: `docker logs peon-bot-1`
+    - Check Discord bot logs: `docker logs peon.bot.discord`
     - Verify stable network connection
 
 ### Debug Commands
@@ -265,8 +265,8 @@ ENABLE_LEGACY_COMMANDS=false
 
 **Bot Logs:**
 ```bash
-docker logs peon-bot-1 -f     # Follow bot logs
-docker logs peon-orc-1 -f     # Follow orchestrator logs  
+docker logs peon.bot.discord -f     # Follow bot logs
+docker logs peon.orc -f             # Follow orchestrator logs  
 ```
 
 **Common Log Patterns:**

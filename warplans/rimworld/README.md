@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for RimWorld.
 
 ## Paths
 
-- Recipe path: `peon-warplans/rimworld/`
+- Recipe path: `warplans/rimworld/`

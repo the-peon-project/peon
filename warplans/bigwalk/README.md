@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Big Walk.
 
 ## Paths
 
-- Recipe path: `peon-warplans/bigwalk/`
+- Recipe path: `warplans/bigwalk/`

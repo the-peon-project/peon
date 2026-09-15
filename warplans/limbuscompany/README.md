@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Limbus Company.
 
 ## Paths
 
-- Recipe path: `peon-warplans/limbuscompany/`
+- Recipe path: `warplans/limbuscompany/`

@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Arena Breakout: Infinite.
 
 ## Paths
 
-- Recipe path: `peon-warplans/arenabreakoutinfinite/`
+- Recipe path: `warplans/arenabreakoutinfinite/`

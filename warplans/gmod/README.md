@@ -5,7 +5,7 @@ The PEON war plan used to deploy a Garry's Mod dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/gmod/`
+- Recipe path: `warplans/gmod/`
 
 ## Notes
 

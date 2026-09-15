@@ -12,7 +12,7 @@ All server files can be found in the local PEON server path:
 
 ## Stand-alone mode
 
-[Guide on GitHub](https://github.com/the-peon-project/peon-warplans/tree/main/windrose#guide)
+[Guide on GitHub](https://github.com/the-peon-project/peon/tree/main/warplans/windrose#guide)
 
 > Or... just use PEON. it should do all the heavy lifting for you.
 
@@ -25,4 +25,4 @@ All server files can be found in the local PEON server path:
 ## Links
 
 - [Development Docs](../../development/games/windrose.md)
-- [GitHub Project](https://github.com/the-peon-project/peon-warplans/tree/main/windrose)
+- [GitHub Project](https://github.com/the-peon-project/peon/tree/main/warplans/windrose)

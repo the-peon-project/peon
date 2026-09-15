@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Colony Survival.
 
 ## Paths
 
-- Recipe path: `peon-warplans/colonysurvival/`
+- Recipe path: `warplans/colonysurvival/`

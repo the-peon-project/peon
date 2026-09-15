@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for tModLoader.
 
 ## Paths
 
-- Recipe path: `peon-warplans/tmodloader/`
+- Recipe path: `warplans/tmodloader/`

@@ -5,7 +5,7 @@
 
 ## Peon SteamCMD
 
-The [GitHub](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmd) repo for developing the container.
+The [GitHub](https://github.com/the-peon-project/peon/tree/main/wartable/containers/steamcmd) repo for developing the container.
 
 ## State
 
@@ -35,13 +35,13 @@ This container has been built as part of [the PEON project](http://docs.warcamp.
 
 ### Stand-alone mode
 
-Please just go to the [GitHub for *The PEON Projects* game servers](https://github.com/the-peon-project/peon-warplans) and get the contents of the appropriate game (or clone a game folder and use it as the basis for your build).
+Please just go to the [GitHub for *The PEON Projects* game servers](https://github.com/the-peon-project/peon/tree/main/warplans) and get the contents of the appropriate game (or clone a game folder and use it as the basis for your build).
 
 #### Example
 
 Running a `Counter Strike: Global Offensive` server
 
-1. Download the following files from the PEON recipes [GitHub location](https://github.com/the-peon-project/peon-warplans/tree/main/csgo)
+1. Download the following files from the PEON recipes [GitHub location](https://github.com/the-peon-project/peon/tree/main/warplans/csgo)
     - .env.example
     - docker-compose.yml
     - server_start

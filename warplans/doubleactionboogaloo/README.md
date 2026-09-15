@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Double Action: Boogaloo.
 
 ## Paths
 
-- Recipe path: `peon-warplans/doubleactionboogaloo/`
+- Recipe path: `warplans/doubleactionboogaloo/`

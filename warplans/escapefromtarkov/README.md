@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Escape from Tarkov.
 
 ## Paths
 
-- Recipe path: `peon-warplans/escapefromtarkov/`
+- Recipe path: `warplans/escapefromtarkov/`

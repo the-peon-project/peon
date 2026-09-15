@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Hunt: Showdown 1896.
 
 ## Paths
 
-- Recipe path: `peon-warplans/huntshowdown1896/`
+- Recipe path: `warplans/huntshowdown1896/`

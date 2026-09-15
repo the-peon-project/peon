@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Action: Source.
 
 ## Paths
 
-- Recipe path: `peon-warplans/actionsource/`
+- Recipe path: `warplans/actionsource/`

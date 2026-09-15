@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Mordhau.
 
 ## Paths
 
-- Recipe path: `peon-warplans/mordhau/`
+- Recipe path: `warplans/mordhau/`

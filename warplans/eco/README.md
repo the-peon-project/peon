@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Eco.
 
 ## Paths
 
-- Recipe path: `peon-warplans/eco/`
+- Recipe path: `warplans/eco/`

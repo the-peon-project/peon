@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Geometry Dash.
 
 ## Paths
 
-- Recipe path: `peon-warplans/geometrydash/`
+- Recipe path: `warplans/geometrydash/`

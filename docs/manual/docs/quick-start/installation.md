@@ -87,10 +87,10 @@ docker compose ps
 
 You should see:
 ```
-NAME           SERVICE      STATUS       PORTS
-peon-orc-1     orc         running      0.0.0.0:5000->5000/tcp
-peon-bot-1     bot         running      
-peon-webui-1   webapp      running      0.0.0.0:80->80/tcp
+NAME               SERVICE      STATUS       PORTS
+peon.orc           orc         running      0.0.0.0:5000->5000/tcp
+peon.bot.discord   bot         running      
+peon.webui         webapp      running      0.0.0.0:80->80/tcp
 ```
 
 For API documentation:
@@ -146,7 +146,7 @@ Run each component separately:
 ```bash
 # Orchestrator
 docker run -d \
-  --name peon-orc \
+  --name peon.orc \
   -p 5000:5000 \
   -e LOCAL_API_KEY=your_api_key \
   -v $(pwd)/config:/app/config \
@@ -155,7 +155,7 @@ docker run -d \
 
 # Discord Bot
 docker run -d \
-  --name peon-bot \
+  --name peon.bot.discord \
   -e DISCORD_TOKEN=your_token \
   -e LOCAL_API_KEY=your_api_key \
   -v $(pwd)/config:/app/config \
@@ -163,7 +163,7 @@ docker run -d \
 
 # Web UI
 docker run -d \
-  --name peon-webui \
+  --name peon.webui \
   -p 80:80 \
   -e REACT_APP_BACKEND_URL=http://localhost \
   umlatt/peon.webui:latest
@@ -183,12 +183,12 @@ See the [development documentation](../development/index.md) for native installa
 **Bot not responding:**
 - Check Discord token in `.env` file
 - Verify bot permissions in Discord server
-- Check bot container logs: `docker logs peon-bot-1`
+- Check bot container logs: `docker logs peon.bot.discord`
 
 **API errors:**
 - Verify orchestrator is running: `curl http://localhost:5000/api/v1/orchestrator`
 - Check API key configuration
-- Review orchestrator logs: `docker logs peon-orc-1`
+- Review orchestrator logs: `docker logs peon.orc`
 
 **Container startup issues:**
 - Ensure Docker daemon is running

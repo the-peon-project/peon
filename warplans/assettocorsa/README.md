@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Assetto Corsa.
 
 ## Paths
 
-- Recipe path: `peon-warplans/assettocorsa/`
+- Recipe path: `warplans/assettocorsa/`

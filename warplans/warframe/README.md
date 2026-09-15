@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Warframe.
 
 ## Paths
 
-- Recipe path: `peon-warplans/warframe/`
+- Recipe path: `warplans/warframe/`

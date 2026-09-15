@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Sid Meier's Civilization V.
 
 ## Paths
 
-- Recipe path: `peon-warplans/sidmeierscivilizationv/`
+- Recipe path: `warplans/sidmeierscivilizationv/`

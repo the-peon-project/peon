@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Scrap Mechanic.
 
 ## Paths
 
-- Recipe path: `peon-warplans/scrapmechanic/`
+- Recipe path: `warplans/scrapmechanic/`

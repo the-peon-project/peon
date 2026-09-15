@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Brainbread.
 
 ## Paths
 
-- Recipe path: `peon-warplans/brainbread/`
+- Recipe path: `warplans/brainbread/`

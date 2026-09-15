@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for American Truck Simulator.
 
 ## Paths
 
-- Recipe path: `peon-warplans/americantrucksimulator/`
+- Recipe path: `warplans/americantrucksimulator/`

@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Overwatch®.
 
 ## Paths
 
-- Recipe path: `peon-warplans/overwatch/`
+- Recipe path: `warplans/overwatch/`

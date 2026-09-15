@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for TBH: Task Bar Hero.
 
 ## Paths
 
-- Recipe path: `peon-warplans/tbhtaskbarhero/`
+- Recipe path: `warplans/tbhtaskbarhero/`

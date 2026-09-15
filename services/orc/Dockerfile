@@ -23,7 +23,7 @@ RUN apt-get update && apt-get -y install procps iputils-ping dnsutils vim
 COPY ./app /app
 WORKDIR /app
 ENV PATH="/app/bin:${PATH}"
-# BUILD ERROR NOTE: Requires peon-cli/bin to be mounted into ./app build directory (e.g. `/home/USER/development/peon-cli/bin /home/USER/development/peon-orc/app/bin none bind 0 0`)
+# BUILD ERROR NOTE: historically required peon-cli/bin to be bind-mounted into ./app build directory (e.g. `/home/USER/development/peon-cli/bin /home/USER/development/peon-orc/app/bin none bind 0 0`); app/bin now ships committed copies of peon/cli/bin instead, so this mount is no longer needed (see peon/services/orc/CLAUDE.md, "Warplan Source" section, for the known duplication this leaves behind)
 RUN mkdir /app/bin/config && echo "/home/peon/servers/" > /app/bin/config/peon_dir 
 # BACKWARDS COMPATIBILITY
 RUN echo "alias docker-compose='docker compose'" >> /etc/bash.bashrc

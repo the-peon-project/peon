@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for The Isle.
 
 ## Paths
 
-- Recipe path: `peon-warplans/theisle/`
+- Recipe path: `warplans/theisle/`

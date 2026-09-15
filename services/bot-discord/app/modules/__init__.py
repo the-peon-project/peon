@@ -15,7 +15,7 @@ CONFIG_DIR = os.environ.get("PEON_CONFIG_DIR") or (
 
 # Settings
 base_url = "https://raw.githubusercontent.com/the-peon-project"
-games_url = f"{base_url}/peon-docs/refs/heads/main/manual/docs/games.md"
+games_url = f"{base_url}/peon/refs/heads/main/docs/manual/docs/games.md"
 bot_image = f"{base_url}/peon/refs/heads/main/media/PEON_L2R_medium.png"
 bot_thumbnail = f"{base_url}/peon/refs/heads/main/media/PEON_R2L_small.png"
 

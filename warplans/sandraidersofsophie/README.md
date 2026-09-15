@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for SAND: Raiders of Sophie.
 
 ## Paths
 
-- Recipe path: `peon-warplans/sandraidersofsophie/`
+- Recipe path: `warplans/sandraidersofsophie/`

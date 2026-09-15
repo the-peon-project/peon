@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for HYPERCHARGE: Unboxed.
 
 ## Paths
 
-- Recipe path: `peon-warplans/hyperchargeunboxed/`
+- Recipe path: `warplans/hyperchargeunboxed/`

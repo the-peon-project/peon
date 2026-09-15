@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Deathmatch Classic.
 
 ## Paths
 
-- Recipe path: `peon-warplans/deathmatchclassic/`
+- Recipe path: `warplans/deathmatchclassic/`

@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for EA SPORTS FC™ 26.
 
 ## Paths
 
-- Recipe path: `peon-warplans/easportsfc26/`
+- Recipe path: `warplans/easportsfc26/`

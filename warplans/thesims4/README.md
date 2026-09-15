@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for The Sims™ 4.
 
 ## Paths
 
-- Recipe path: `peon-warplans/thesims4/`
+- Recipe path: `warplans/thesims4/`

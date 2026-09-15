@@ -5,7 +5,7 @@ The PEON war plan used to deploy a Squad dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/squad/`
+- Recipe path: `warplans/squad/`
 
 ## Notes
 

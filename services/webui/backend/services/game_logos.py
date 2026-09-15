@@ -15,8 +15,8 @@ _PROJECT_ROOT = Path(__file__).resolve().parents[2]
 _CACHE_DIR = Path("/data/game-logos")
 
 _LOCAL_WARPLANS_DIRS = [
-    Path("/app/peon-warplans"),
-    _PROJECT_ROOT.parent / "peon-warplans",
+    Path("/app/warplans"),
+    _PROJECT_ROOT.parent / "warplans",
 ]
 
 _STATIC_LOGO_DIRS = [
@@ -71,8 +71,8 @@ def _download_remote_logo(game_uid: str, preferred_extensions: Optional[list[str
     for branch in REMOTE_WARPLANS_BRANCHES:
         for ext in extensions:
             remote_url = (
-                f"https://raw.githubusercontent.com/the-peon-project/peon-warplans/"
-                f"{branch}/{game_uid}/logo.{ext}"
+                f"https://raw.githubusercontent.com/the-peon-project/peon/"
+                f"{branch}/warplans/{game_uid}/logo.{ext}"
             )
             target = cache_dir / f"{game_uid}.{ext}"
             try:

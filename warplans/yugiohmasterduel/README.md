@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Yu-Gi-Oh! Master Duel.
 
 ## Paths
 
-- Recipe path: `peon-warplans/yugiohmasterduel/`
+- Recipe path: `warplans/yugiohmasterduel/`

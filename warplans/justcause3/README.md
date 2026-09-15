@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Just Cause 3.
 
 ## Paths
 
-- Recipe path: `peon-warplans/justcause3/`
+- Recipe path: `warplans/justcause3/`

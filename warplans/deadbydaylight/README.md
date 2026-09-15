@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Dead by Daylight.
 
 ## Paths
 
-- Recipe path: `peon-warplans/deadbydaylight/`
+- Recipe path: `warplans/deadbydaylight/`

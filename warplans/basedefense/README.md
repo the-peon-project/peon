@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Base Defense.
 
 ## Paths
 
-- Recipe path: `peon-warplans/basedefense/`
+- Recipe path: `warplans/basedefense/`

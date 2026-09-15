@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Jedi Knight II: Jedi Outcast.
 
 ## Paths
 
-- Recipe path: `peon-warplans/jediknightiijedioutcast/`
+- Recipe path: `warplans/jediknightiijedioutcast/`

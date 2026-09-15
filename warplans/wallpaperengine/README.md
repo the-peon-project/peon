@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Wallpaper Engine.
 
 ## Paths
 
-- Recipe path: `peon-warplans/wallpaperengine/`
+- Recipe path: `warplans/wallpaperengine/`

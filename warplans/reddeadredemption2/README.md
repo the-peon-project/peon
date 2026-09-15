@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Red Dead Redemption 2.
 
 ## Paths
 
-- Recipe path: `peon-warplans/reddeadredemption2/`
+- Recipe path: `warplans/reddeadredemption2/`

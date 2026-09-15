@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Action Half-Life.
 
 ## Paths
 
-- Recipe path: `peon-warplans/actionhalflife/`
+- Recipe path: `warplans/actionhalflife/`

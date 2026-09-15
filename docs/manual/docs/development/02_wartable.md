@@ -10,9 +10,9 @@ The WineHQ and Proton base images currently track Debian trixie package metadata
 
 ## Projects
 
-[*Contained Steam*](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmd) (steamcmd) are scripts to automate/update `steamcmd` and the game server files (within a `steamcmd`-based docker container), as part of the PEON automation services.
+[*Contained Steam*](https://github.com/the-peon-project/peon/tree/main/wartable/containers/steamcmd) (steamcmd) are scripts to automate/update `steamcmd` and the game server files (within a `steamcmd`-based docker container), as part of the PEON automation services.
 
-[*Steamed Wine*](https://github.com/the-peon-project/peon-wartable/tree/master/containers/steamcmd-wine) (steamcmd+winhq) is a custom container to facilitate game servers that are only built for Windows OS, within the PEON tool suite.
+[*Steamed Wine*](https://github.com/the-peon-project/peon/tree/main/wartable/containers/steamcmd-wine) (steamcmd+winhq) is a custom container to facilitate game servers that are only built for Windows OS, within the PEON tool suite.
 
 ### Modes
 
@@ -46,8 +46,8 @@ Modes are just unique names that help the recipe inform the server which mechani
 
 Links to various project-related resources.
 
-[![GitHub](../images/buttons/button_github.svg)](https://github.com/the-peon-project/peon-wartable)
-[![GitHub](../images/buttons/button_bug.svg)](https://github.com/the-peon-project/peon-wartable/issues/new/choose)
+[![GitHub](../images/buttons/button_github.svg)](https://github.com/the-peon-project/peon/tree/main/wartable)
+[![GitHub](../images/buttons/button_bug.svg)](https://github.com/the-peon-project/peon/issues/new/choose)
 [![GitHub](../images/buttons/button_changelog.svg)](../development/02_wartable.md#release-notes)
 
 ---

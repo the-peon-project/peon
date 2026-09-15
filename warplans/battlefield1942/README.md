@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Battlefield 1942.
 
 ## Paths
 
-- Recipe path: `peon-warplans/battlefield1942/`
+- Recipe path: `warplans/battlefield1942/`

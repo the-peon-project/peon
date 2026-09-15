@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Cyberpunk 2077.
 
 ## Paths
 
-- Recipe path: `peon-warplans/cyberpunk2077/`
+- Recipe path: `warplans/cyberpunk2077/`

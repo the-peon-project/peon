@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Warhammer 40,000: Space Marine
 
 ## Paths
 
-- Recipe path: `peon-warplans/warhammer40000spacemarine2/`
+- Recipe path: `warplans/warhammer40000spacemarine2/`

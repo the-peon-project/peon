@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Soundpad.
 
 ## Paths
 
-- Recipe path: `peon-warplans/soundpad/`
+- Recipe path: `warplans/soundpad/`

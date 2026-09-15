@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Barotrauma.
 
 ## Paths
 
-- Recipe path: `peon-warplans/barotrauma/`
+- Recipe path: `warplans/barotrauma/`

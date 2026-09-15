@@ -16,7 +16,7 @@ The PEON war plan that Peon uses to deploy your game server.
 
 ## Code Repo
 
-- [GitHub Project](https://github.com/the-peon-project/peon-warplans/tree/main/assettocorsacompetizione)
+- [GitHub Project](https://github.com/the-peon-project/peon/tree/main/warplans/assettocorsacompetizione)
 
 ## Features
 

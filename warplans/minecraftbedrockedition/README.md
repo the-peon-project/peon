@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Minecraft: Bedrock Edition.
 
 ## Paths
 
-- Recipe path: `peon-warplans/minecraftbedrockedition/`
+- Recipe path: `warplans/minecraftbedrockedition/`

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Dystopia.
 
 ## Paths
 
-- Recipe path: `peon-warplans/dystopia/`
+- Recipe path: `warplans/dystopia/`

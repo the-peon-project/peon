@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Ballistic Overkill.
 
 ## Paths
 
-- Recipe path: `peon-warplans/ballisticoverkill/`
+- Recipe path: `warplans/ballisticoverkill/`

@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for The Elder Scrolls V: Skyrim Sp
 
 ## Paths
 
-- Recipe path: `peon-warplans/skyrimse/`
+- Recipe path: `warplans/skyrimse/`

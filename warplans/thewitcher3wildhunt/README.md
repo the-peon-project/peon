@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for The Witcher 3: Wild Hunt.
 
 ## Paths
 
-- Recipe path: `peon-warplans/thewitcher3wildhunt/`
+- Recipe path: `warplans/thewitcher3wildhunt/`

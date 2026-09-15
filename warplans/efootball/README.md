@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for eFootball™.
 
 ## Paths
 
-- Recipe path: `peon-warplans/efootball/`
+- Recipe path: `warplans/efootball/`

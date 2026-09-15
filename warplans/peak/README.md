@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for PEAK.
 
 ## Paths
 
-- Recipe path: `peon-warplans/peak/`
+- Recipe path: `warplans/peak/`

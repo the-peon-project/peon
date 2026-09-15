@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Humanitz.
 
 ## Paths
 
-- Recipe path: `peon-warplans/humanitz/`
+- Recipe path: `warplans/humanitz/`

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Call of Duty: United Offensive
 
 ## Paths
 
-- Recipe path: `peon-warplans/callofdutyunitedoffensive/`
+- Recipe path: `warplans/callofdutyunitedoffensive/`

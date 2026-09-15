@@ -5,7 +5,7 @@ The PEON war plan used to deploy a Project Zomboid dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/projectzomboid/`
+- Recipe path: `warplans/projectzomboid/`
 
 ## Notes
 

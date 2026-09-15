@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Crosshair X.
 
 ## Paths
 
-- Recipe path: `peon-warplans/crosshairx/`
+- Recipe path: `warplans/crosshairx/`

@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Destiny 2.
 
 ## Paths
 
-- Recipe path: `peon-warplans/destiny2/`
+- Recipe path: `warplans/destiny2/`

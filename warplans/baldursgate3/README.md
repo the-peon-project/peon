@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Baldur's Gate 3.
 
 ## Paths
 
-- Recipe path: `peon-warplans/baldursgate3/`
+- Recipe path: `warplans/baldursgate3/`

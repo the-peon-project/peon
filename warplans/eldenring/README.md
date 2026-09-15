@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for ELDEN RING.
 
 ## Paths
 
-- Recipe path: `peon-warplans/eldenring/`
+- Recipe path: `warplans/eldenring/`

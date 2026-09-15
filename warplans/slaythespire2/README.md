@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Slay the Spire 2.
 
 ## Paths
 
-- Recipe path: `peon-warplans/slaythespire2/`
+- Recipe path: `warplans/slaythespire2/`

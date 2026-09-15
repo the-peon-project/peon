@@ -5,7 +5,7 @@ The PEON war plan used to deploy a Rust dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/rust/`
+- Recipe path: `warplans/rust/`
 
 ## Notes
 

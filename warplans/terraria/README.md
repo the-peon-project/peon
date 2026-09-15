@@ -5,7 +5,7 @@ The PEON war plan used to deploy a Terraria dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/terraria/`
+- Recipe path: `warplans/terraria/`
 
 ## Notes
 

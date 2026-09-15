@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Mumble.
 
 ## Paths
 
-- Recipe path: `peon-warplans/mumble/`
+- Recipe path: `warplans/mumble/`

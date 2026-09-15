@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Football Manager 2024.
 
 ## Paths
 
-- Recipe path: `peon-warplans/footballmanager2024/`
+- Recipe path: `warplans/footballmanager2024/`

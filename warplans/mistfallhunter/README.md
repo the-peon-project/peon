@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Mistfall Hunter.
 
 ## Paths
 
-- Recipe path: `peon-warplans/mistfallhunter/`
+- Recipe path: `warplans/mistfallhunter/`

@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Path of Exile 2.
 
 ## Paths
 
-- Recipe path: `peon-warplans/pathofexile2/`
+- Recipe path: `warplans/pathofexile2/`

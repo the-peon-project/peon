@@ -5,7 +5,7 @@ The PEON war plan used to deploy a 7 Days to Die dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/7dtd/`
+- Recipe path: `warplans/7dtd/`
 
 ## Notes
 

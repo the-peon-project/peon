@@ -35,7 +35,7 @@ You can obtain `DUKE3D.GRP` from:
 
 ## Stand-alone mode
 
-[Guide on GitHub](https://github.com/the-peon-project/peon-warplans/tree/main/dukenukem#Guide)
+[Guide on GitHub](https://github.com/the-peon-project/peon/tree/main/warplans/dukenukem#Guide)
 
 > Or... just use PEON. It should do all the heavy lifting for you.
 
@@ -44,7 +44,7 @@ You can obtain `DUKE3D.GRP` from:
 If you want to dig a bit deeper, here are the links:
 
 - [Development Docs](../../development/games/dukenukem.md)
-- [GitHub Project](https://github.com/the-peon-project/peon-warplans/tree/main/dukenukem)
+- [GitHub Project](https://github.com/the-peon-project/peon/tree/main/warplans/dukenukem)
 - [EDuke32 Official Site](https://www.eduke32.com/)
 
 ## Credits

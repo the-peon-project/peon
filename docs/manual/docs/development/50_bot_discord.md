@@ -139,8 +139,8 @@ graph TB
 
 ```bash
 # Clone repository
-git clone https://github.com/the-peon-project/peon-bot-discord.git
-cd peon-bot-discord
+git clone https://github.com/the-peon-project/peon.git
+cd peon/services/bot-discord
 
 # Setup Python environment
 python -m venv venv
@@ -442,9 +442,9 @@ async def process_queue():
 - **[Game Plans](03_warplans.md)** - Server templates
 
 ### Project Links
-- **[GitHub Repository](https://github.com/the-peon-project/peon-bot-discord)**
+- **[GitHub Repository](https://github.com/the-peon-project/peon/tree/main/services/bot-discord)**
 - **[Docker Hub](https://hub.docker.com/repository/docker/umlatt/peon.bot.discord)**
-- **[Issue Tracker](https://github.com/the-peon-project/peon-bot-discord/issues)**
+- **[Issue Tracker](https://github.com/the-peon-project/peon/issues)**
 - **[Discord Community](https://discord.gg/KJFVyayH8g)**
 
 **1.2.6**

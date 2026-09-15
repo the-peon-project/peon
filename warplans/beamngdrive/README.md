@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for BeamNG.drive.
 
 ## Paths
 
-- Recipe path: `peon-warplans/beamngdrive/`
+- Recipe path: `warplans/beamngdrive/`

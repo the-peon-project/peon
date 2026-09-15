@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Where Winds Meet.
 
 ## Paths
 
-- Recipe path: `peon-warplans/wherewindsmeet/`
+- Recipe path: `warplans/wherewindsmeet/`

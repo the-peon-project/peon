@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Schedule I.
 
 ## Paths
 
-- Recipe path: `peon-warplans/schedulei/`
+- Recipe path: `warplans/schedulei/`

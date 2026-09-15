@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for IOSoccer.
 
 ## Paths
 
-- Recipe path: `peon-warplans/iosoccer/`
+- Recipe path: `warplans/iosoccer/`

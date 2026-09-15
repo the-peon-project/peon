@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Apex Legends™.
 
 ## Paths
 
-- Recipe path: `peon-warplans/apexlegends/`
+- Recipe path: `warplans/apexlegends/`

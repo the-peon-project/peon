@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Crusader Kings III.
 
 ## Paths
 
-- Recipe path: `peon-warplans/crusaderkingsiii/`
+- Recipe path: `warplans/crusaderkingsiii/`

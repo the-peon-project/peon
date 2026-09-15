@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Nuclear Dawn.
 
 ## Paths
 
-- Recipe path: `peon-warplans/nucleardawn/`
+- Recipe path: `warplans/nucleardawn/`

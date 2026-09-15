@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for THE FINALS.
 
 ## Paths
 
-- Recipe path: `peon-warplans/thefinals/`
+- Recipe path: `warplans/thefinals/`

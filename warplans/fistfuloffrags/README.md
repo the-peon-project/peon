@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Fistful of Frags.
 
 ## Paths
 
-- Recipe path: `peon-warplans/fistfuloffrags/`
+- Recipe path: `warplans/fistfuloffrags/`

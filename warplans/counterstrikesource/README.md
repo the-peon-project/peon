@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Counter-Strike: Source.
 
 ## Paths
 
-- Recipe path: `peon-warplans/counterstrikesource/`
+- Recipe path: `warplans/counterstrikesource/`

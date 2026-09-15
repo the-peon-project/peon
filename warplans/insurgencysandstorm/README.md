@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Insurgency: Sandstorm.
 
 ## Paths
 
-- Recipe path: `peon-warplans/insurgencysandstorm/`
+- Recipe path: `warplans/insurgencysandstorm/`

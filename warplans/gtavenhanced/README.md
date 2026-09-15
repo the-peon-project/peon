@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Grand Theft Auto V Enhanced.
 
 ## Paths
 
-- Recipe path: `peon-warplans/gtavenhanced/`
+- Recipe path: `warplans/gtavenhanced/`

@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for HELLDIVERS™ 2.
 
 ## Paths
 
-- Recipe path: `peon-warplans/helldivers2/`
+- Recipe path: `warplans/helldivers2/`

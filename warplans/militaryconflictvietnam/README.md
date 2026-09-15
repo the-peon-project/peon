@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Military Conflict: Vietnam.
 
 ## Paths
 
-- Recipe path: `peon-warplans/militaryconflictvietnam/`
+- Recipe path: `warplans/militaryconflictvietnam/`

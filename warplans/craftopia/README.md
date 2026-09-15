@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Craftopia.
 
 ## Paths
 
-- Recipe path: `peon-warplans/craftopia/`
+- Recipe path: `warplans/craftopia/`

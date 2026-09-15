@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Spacewar.
 
 ## Paths
 
-- Recipe path: `peon-warplans/spacewar/`
+- Recipe path: `warplans/spacewar/`

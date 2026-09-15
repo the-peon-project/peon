@@ -5,7 +5,7 @@ The PEON war plan used to deploy a Team Fortress 2 dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/tf2/`
+- Recipe path: `warplans/tf2/`
 
 ## Notes
 

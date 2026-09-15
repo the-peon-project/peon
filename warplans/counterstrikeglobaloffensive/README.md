@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Counter-Strike: Global Offensi
 
 ## Paths
 
-- Recipe path: `peon-warplans/counterstrikeglobaloffensive/`
+- Recipe path: `warplans/counterstrikeglobaloffensive/`

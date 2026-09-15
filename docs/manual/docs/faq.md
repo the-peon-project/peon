@@ -211,7 +211,7 @@ However, once set up, game servers can run without internet (though players need
 **Debug Steps:**
 ```bash
 # Check PEON logs
-docker logs peon-orchestrator
+docker logs peon.orc
 
 # Check specific server logs  
 docker logs game_server_container_name
@@ -325,7 +325,7 @@ Better alternatives:
 - **[Report Bugs](https://github.com/the-peon-project/peon/issues/new?template=bug_report.md)** - Help us fix issues
 - **[Request Features](https://github.com/the-peon-project/peon/issues/new?template=feature_request.md)** - Suggest improvements  
 - **[Add Games](development/index.md#game-development)** - Create support for new games
-- **[Improve Documentation](https://github.com/the-peon-project/peon-docs)** - Help others learn
+- **[Improve Documentation](https://github.com/the-peon-project/peon/tree/main/docs)** - Help others learn
 - **[Write Code](development/index.md#contributing)** - Contribute features and fixes
 - **[Join Discord](https://discord.gg/KJFVyayH8g)** - Help other users
 

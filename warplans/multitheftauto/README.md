@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Multi Theft Auto.
 
 ## Paths
 
-- Recipe path: `peon-warplans/multitheftauto/`
+- Recipe path: `warplans/multitheftauto/`

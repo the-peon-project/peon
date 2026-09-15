@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Bloons TD 6.
 
 ## Paths
 
-- Recipe path: `peon-warplans/bloonstd6/`
+- Recipe path: `warplans/bloonstd6/`

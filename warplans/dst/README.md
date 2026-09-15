@@ -5,7 +5,7 @@ The PEON war plan used to deploy a Don't Starve Together dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/dst/`
+- Recipe path: `warplans/dst/`
 
 ## Notes
 

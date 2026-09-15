@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Marvel Rivals.
 
 ## Paths
 
-- Recipe path: `peon-warplans/marvelrivals/`
+- Recipe path: `warplans/marvelrivals/`

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for ET: Legacy.
 
 ## Paths
 
-- Recipe path: `peon-warplans/etlegacy/`
+- Recipe path: `warplans/etlegacy/`

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Half-Life 2: Deathmatch.
 
 ## Paths
 
-- Recipe path: `peon-warplans/halflife2deathmatch/`
+- Recipe path: `warplans/halflife2deathmatch/`

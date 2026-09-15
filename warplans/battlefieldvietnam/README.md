@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Battlefield: Vietnam.
 
 ## Paths
 
-- Recipe path: `peon-warplans/battlefieldvietnam/`
+- Recipe path: `warplans/battlefieldvietnam/`

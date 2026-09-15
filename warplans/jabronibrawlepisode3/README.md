@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Jabroni Brawl: Episode 3.
 
 ## Paths
 
-- Recipe path: `peon-warplans/jabronibrawlepisode3/`
+- Recipe path: `warplans/jabronibrawlepisode3/`

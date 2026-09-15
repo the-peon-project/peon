@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Killing Floor 2.
 
 ## Paths
 
-- Recipe path: `peon-warplans/killingfloor2/`
+- Recipe path: `warplans/killingfloor2/`

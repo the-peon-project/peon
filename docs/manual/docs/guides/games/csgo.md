@@ -22,7 +22,7 @@ All of these files can be found and edited in the server's local storage path.
 
 ## Stand-alone mode
 
-[Guide on GitHub](https://github.com/the-peon-project/peon-warplans/tree/main/csgo#Guide)
+[Guide on GitHub](https://github.com/the-peon-project/peon/tree/main/warplans/csgo#Guide)
 
 > Or... just use PEON. it should do all the heavy lifting for you.
 
@@ -31,4 +31,4 @@ All of these files can be found and edited in the server's local storage path.
 If you want to dig a bit deeper, here are the links
 
 - [Development Docs](../../development/games/csgo.md)
-- [GitHub Project](https://github.com/the-peon-project/peon-warplans/tree/main/csgo)
+- [GitHub Project](https://github.com/the-peon-project/peon/tree/main/warplans/csgo)

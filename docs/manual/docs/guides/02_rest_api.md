@@ -14,7 +14,7 @@ This keeps API docs inside the main dashboard surface, and removes the need for 
 
 We are using a RESTful API as it is quite easy and there are plenty of guides on how to use REST as a technology.
 
-A [Postman collection file](https://github.com/the-peon-project/peon-docs/blob/main/api/v1/peon-api-v1.0-postman.json) can be used for convenience.
+A [Postman collection file](https://github.com/the-peon-project/peon/blob/main/docs/api/v1/peon-api-v1.0-postman.json) can be used for convenience.
 
 ---
 

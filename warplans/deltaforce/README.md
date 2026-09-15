@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Delta Force.
 
 ## Paths
 
-- Recipe path: `peon-warplans/deltaforce/`
+- Recipe path: `warplans/deltaforce/`

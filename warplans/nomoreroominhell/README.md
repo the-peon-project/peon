@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for No More Room in Hell.
 
 ## Paths
 
-- Recipe path: `peon-warplans/nomoreroominhell/`
+- Recipe path: `warplans/nomoreroominhell/`

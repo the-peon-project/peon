@@ -5,7 +5,7 @@ The PEON war plan used to deploy a Factorio dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/factorio/`
+- Recipe path: `warplans/factorio/`
 
 ## Notes
 

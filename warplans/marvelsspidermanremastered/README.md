@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Marvel’s Spider-Man Remaster
 
 ## Paths
 
-- Recipe path: `peon-warplans/marvelsspidermanremastered/`
+- Recipe path: `warplans/marvelsspidermanremastered/`

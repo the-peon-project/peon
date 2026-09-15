@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Memories of Mars.
 
 ## Paths
 
-- Recipe path: `peon-warplans/memoriesofmars/`
+- Recipe path: `warplans/memoriesofmars/`

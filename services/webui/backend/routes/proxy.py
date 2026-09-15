@@ -150,7 +150,7 @@ async def get_orchestrator_swagger_ui(
 async def get_plans(current_user: dict = Depends(get_current_user)):
     """Get all available game plans from local warplans"""
     plans = []
-    warplans_dir = "/app/peon-warplans"
+    warplans_dir = "/app/warplans"
     
     if os.path.exists(warplans_dir):
         for item in sorted(os.listdir(warplans_dir)):

@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Tom Clancy's Rainbow Six Siege
 
 ## Paths
 
-- Recipe path: `peon-warplans/rainbowsixsiege/`
+- Recipe path: `warplans/rainbowsixsiege/`

@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for NARAKA: BLADEPOINT.
 
 ## Paths
 
-- Recipe path: `peon-warplans/narakabladepoint/`
+- Recipe path: `warplans/narakabladepoint/`

@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Day of Defeat.
 
 ## Paths
 
-- Recipe path: `peon-warplans/dayofdefeat/`
+- Recipe path: `warplans/dayofdefeat/`

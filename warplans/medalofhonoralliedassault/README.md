@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Medal of Honor: Allied Assault
 
 ## Paths
 
-- Recipe path: `peon-warplans/medalofhonoralliedassault/`
+- Recipe path: `warplans/medalofhonoralliedassault/`

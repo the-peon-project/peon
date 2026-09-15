@@ -4,12 +4,12 @@ A handy CLI to manage PEON services remotely (as well as to provide extended acc
 
 ## Installation
 
-If not installed via installation script, the `peon-cli` can be installed manually.
+If not installed via the installation script, the CLI (`peon/cli/`) can be installed manually.
 
-1. Download & copy the `peon-cli` folder into your preferred path.
-2. Create a folder/file `./config/peon_dir` in the root path of the `peon-cli` scripts folder.
-3. Input the full path of the `peon` installation directory (e.g. `/home/myuser/peon`) into the `peon_dir` file in the `peon-cli` scripts folder.
-4. Add your `peon-cli` script folder to your path (if you wish)
+1. Copy the `cli/` folder from the `peon` monorepo into your preferred path.
+2. Create a folder/file `./config/peon_dir` in the root path of that `cli/` folder.
+3. Input the full path of the `peon` installation directory (e.g. `/home/myuser/peon`) into the `peon_dir` file in the `cli/` folder.
+4. Add the `cli/bin` folder to your path (if you wish)
 
 ## Usage
 
@@ -20,7 +20,7 @@ Just run `./peon`
 
 ### Non-Interactive mode
 
-Some standard peon-cli tools can be executed programmatically using flags.
+Some standard CLI tools can be executed programmatically using flags.
 Just run `./peon [flags]`
 
 #### Supported Flags

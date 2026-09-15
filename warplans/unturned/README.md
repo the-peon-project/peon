@@ -5,7 +5,7 @@ The PEON war plan used to deploy an Unturned dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/unturned/`
+- Recipe path: `warplans/unturned/`
 
 ## Notes
 

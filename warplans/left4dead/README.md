@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Left 4 Dead.
 
 ## Paths
 
-- Recipe path: `peon-warplans/left4dead/`
+- Recipe path: `warplans/left4dead/`

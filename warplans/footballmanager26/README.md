@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Football Manager 26.
 
 ## Paths
 
-- Recipe path: `peon-warplans/footballmanager26/`
+- Recipe path: `warplans/footballmanager26/`

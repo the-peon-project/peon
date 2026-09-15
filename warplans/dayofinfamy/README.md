@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Day of Infamy.
 
 ## Paths
 
-- Recipe path: `peon-warplans/dayofinfamy/`
+- Recipe path: `warplans/dayofinfamy/`

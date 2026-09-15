@@ -5,7 +5,7 @@ The PEON war plan used to deploy an Arma Reforger dedicated server.
 ## Documentation
 
 - PEON docs: http://docs.warcamp.org/games/
-- Recipe path: `peon-warplans/armareforger/`
+- Recipe path: `warplans/armareforger/`
 
 ## Notes
 

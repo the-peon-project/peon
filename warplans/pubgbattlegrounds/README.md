@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for PUBG: BATTLEGROUNDS.
 
 ## Paths
 
-- Recipe path: `peon-warplans/pubgbattlegrounds/`
+- Recipe path: `warplans/pubgbattlegrounds/`

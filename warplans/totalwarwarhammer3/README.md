@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for Total War: WARHAMMER III.
 
 ## Paths
 
-- Recipe path: `peon-warplans/totalwarwarhammer3/`
+- Recipe path: `warplans/totalwarwarhammer3/`

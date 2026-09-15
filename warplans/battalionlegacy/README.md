@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for BATTALION: Legacy.
 
 ## Paths
 
-- Recipe path: `peon-warplans/battalionlegacy/`
+- Recipe path: `warplans/battalionlegacy/`

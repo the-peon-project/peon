@@ -16,4 +16,4 @@ This is an **untested** PEON warplan scaffold for OBS Studio.
 
 ## Paths
 
-- Recipe path: `peon-warplans/obsstudio/`
+- Recipe path: `warplans/obsstudio/`

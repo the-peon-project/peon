@@ -14,4 +14,4 @@ This is an **untested** PEON warplan scaffold for Black Mesa: Deathmatch.
 
 ## Paths
 
-- Recipe path: `peon-warplans/blackmesadeathmatch/`
+- Recipe path: `warplans/blackmesadeathmatch/`
