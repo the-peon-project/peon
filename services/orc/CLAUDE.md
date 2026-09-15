@@ -55,12 +55,13 @@ Use targeted syntax checks or module-level verification around touched files whe
 - Repo dependencies: `requirements.txt`
 - Test suite: `tests/` (dev dependencies in `requirements-dev.txt`)
 
-## Warplan Source (post-consolidation change)
+## Warplan Source
 
-- Game plan definitions now live at `peon/warplans/` in this same repo (formerly the standalone `peon-warplans` repo).
-- `app/config.json`'s `plans_url`/`plan_url` point at `raw.githubusercontent.com/the-peon-project/peon/main/warplans/...`.
-- `app/modules/github.py` clones `peon.git` and sparse-checks-out just the `warplans/` subdirectory into `/home/peon/plans`, then flattens it up so `plan_path` keeps the flat layout every consumer in `plans.py` expects (`plan_path/plans.json`, `plan_path/<game_uid>/plan.json`). This mechanism was written during the consolidation and has not been exercised against a live orchestrator/Docker environment yet — validate it in a real deployment before depending on it.
-- Known pre-existing duplication (not introduced by consolidation, not fixed): `app/bin/` contains committed copies of the same scripts that live in `peon/cli/bin/` (the Dockerfile comment about mounting `peon-cli/bin` at build time predates the copies already being committed here). Worth deduping at some point but out of scope for this pass.
+- Game plan definitions live at `peon/warplans/` in this same repo.
+- `config/docker-compose/02_orc.yml` bind-mounts `warplans/` read-only directly into the orc container at `/home/peon/plans` — this repo is always checked out as a full monorepo wherever `deploy_peon.sh` runs (it reads `./config/docker-compose/*.yml` via a relative path), so the plans are always already on disk and always current with no separate fetch step.
+- `app/modules/github.py`'s `get_plans_from_github`/`update_plans_from_github` are now no-ops kept only so `PUT /api/v1/plans` (called by webui/bot-discord's "refresh plans" actions) still returns `{"status": "success"}` — refreshing plans now means updating the host's `warplans/` checkout (e.g. `git pull`) rather than triggering an in-container fetch.
+- `services/webui/backend/routes/proxy.py`'s `GET /proxy/plans` also reads `warplans/` directly (mounted at `/app/warplans` via `config/docker-compose/03_webui.yml`) — previously this mount didn't exist and the endpoint silently returned an empty list.
+- Known pre-existing duplication (not fixed by this change): `app/bin/` contains committed copies of the same scripts that live in `peon/cli/bin/`. Worth deduping at some point but out of scope for this pass.
 
 ## Cross-Directory Dependencies (within this repo)
 

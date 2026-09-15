@@ -13,7 +13,7 @@
       - '5000:5000'
     volumes:
       - $PWD/servers:/home/peon/servers
-      - $PWD/plans:/home/peon/plans
+      - $PWD/warplans:/home/peon/plans:ro
       - $PWD/backup:/home/peon/backup
       - $PWD/certs:/home/peon/certs
       - ${DOCKER_SOCKET_PATH}:/var/run/docker.sock

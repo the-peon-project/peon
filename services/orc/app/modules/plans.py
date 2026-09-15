@@ -2,7 +2,6 @@
 import logging
 import json
 import yaml
-import requests
 import sys
 import shutil
 import glob
@@ -49,15 +48,6 @@ def update_latest_plans_from_repository(repo='github', force=True):
     else:
         return { "status" : "error", "info" : f"The repository [{repo}] is not yet supported." }
 
-def get_remote_plan_version(config_peon,game_uid):
-    try:
-        game_plan_url = config_peon['settings']['plan_url'].format(game_uid)
-        if (response := requests.get(game_plan_url)).status_code == 200:
-            return (json.loads(response.content))['metadata']['version']
-    except Exception as e:
-            logging.warning(f"[get_remote_plan_version] A plan definition file for [{game_uid}] was not found at [{game_plan_url}]. {e}")
-    return None
-
 def get_plans_local(config_peon):
     try:
         with open(f"{config_peon['path']['plans']}/plans.json") as json_file:
@@ -66,25 +56,6 @@ def get_plans_local(config_peon):
     except Exception as e:
         logging.error(f"[get_plans_local] Could not get the local plans file. {e}")
         return None
-
-def get_plans_remote(config_peon):
-    try:
-        response = requests.get(config_peon['settings']['plans_url'])
-        with open(f"{config_peon['path']['plans']}/plans.json", mode='wb') as f:
-            f.write(response.content)
-        return get_plans_local(config_peon=config_peon)
-    except Exception as e:
-        logging.error(f"[get_plans_remote] There was an issue getting the latest plans from the GitHub repo. {e}")
-        return None
-
-def configure_plan_permissions():
-    try:
-        logging.error("Setting folder permissions...")
-        execute_shell(cmd_as_string=f"chown -R 1000:1000 {settings['path']['plans']}")
-        return { "status" : "success" }
-    except Exception as e:
-        logging.error("--- FAILED")
-        return {"status" : "error", "info" : "Could not set permissions on plans folder.", "exception" : f"{e}" }
 
 # LOCAL PLAN FUNCTIONS
 def get_local_plan_definition(file_path):

@@ -34,6 +34,8 @@
       - PEON_TEST_DASH_EMAIL=${PEON_TEST_DASH_EMAIL:-testadmin@peon.local}
     ports:
       - '${PEON_WEBUI_HOST_PORT:-80}:80'
+    volumes:
+      - $PWD/warplans:/app/warplans:ro
     networks:
       zugnet:
         ipv4_address: 172.20.0.4
