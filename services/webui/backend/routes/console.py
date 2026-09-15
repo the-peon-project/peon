@@ -6,10 +6,10 @@ from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisco
 import asyncio
 import aiohttp
 
-from core.database import get_db
 from core.security import get_current_user, decode_token
 from core.orchestrator_url import resolve_orchestrator_url_candidates
 from services.orchestrator import OrchestratorService
+from services.user import UserService
 
 router = APIRouter(prefix="/console")
 
@@ -91,20 +91,14 @@ async def websocket_console(
     try:
         payload = decode_token(token)
         user_id = payload.get('sub')
-        
-        conn = get_db()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
-        user_row = cursor.fetchone()
-        conn.close()
-        
-        if not user_row:
+
+        user = UserService.get_user_by_id(user_id)
+
+        if not user:
             await websocket.send_json({"error": "Invalid user"})
             await websocket.close()
             return
-            
-        user = dict(user_row)
-        
+
         if not OrchestratorService.check_user_access(user['id'], orch_id, user['role']):
             await websocket.send_json({"error": "Access denied"})
             await websocket.close()

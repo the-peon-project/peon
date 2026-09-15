@@ -1,9 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Request, Query
 from typing import Optional
-import uuid
-from datetime import datetime, timezone
 
-from core.database import get_db, dict_from_row
 from core.security import get_current_admin_user, get_password_hash
 from models.user import UserCreate, UserUpdate, PasswordChange
 from models.access import UserOrchestratorLink, ServerLink
@@ -28,23 +25,12 @@ async def create_user(
     current_user: dict = Depends(get_current_admin_user)
 ):
     """Create a new user"""
-    conn = get_db()
-    cursor = conn.cursor()
-    
-    # Check if username exists
-    cursor.execute("SELECT id FROM users WHERE username = ?", (user_data.username,))
-    if cursor.fetchone():
-        conn.close()
+    if UserService.username_exists(user_data.username):
         raise HTTPException(status_code=400, detail="Username already exists")
-    
-    # Check if email exists
-    cursor.execute("SELECT id FROM users WHERE email = ?", (user_data.email,))
-    if cursor.fetchone():
-        conn.close()
+
+    if UserService.email_exists(user_data.email):
         raise HTTPException(status_code=400, detail="Email already exists")
-    
-    conn.close()
-    
+
     user = UserService.create_user(
         username=user_data.username,
         email=user_data.email,
@@ -166,24 +152,10 @@ async def link_user_orchestrator(
     current_user: dict = Depends(get_current_admin_user)
 ):
     """Link a user to an orchestrator"""
-    conn = get_db()
-    cursor = conn.cursor()
-    
-    link_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).isoformat()
-    
-    try:
-        cursor.execute('''
-            INSERT INTO user_orchestrator_access (id, user_id, orchestrator_id, created_at)
-            VALUES (?, ?, ?, ?)
-        ''', (link_id, link.user_id, link.orchestrator_id, now))
-        conn.commit()
-    except Exception:
-        conn.close()
+    link_id = UserService.link_orchestrator(link.user_id, link.orchestrator_id)
+    if not link_id:
         raise HTTPException(status_code=400, detail="Link already exists or invalid IDs")
-    
-    conn.close()
-    
+
     # Log link creation
     AuditService.log(
         user_id=current_user['id'],
@@ -205,21 +177,9 @@ async def unlink_user_orchestrator(
     current_user: dict = Depends(get_current_admin_user)
 ):
     """Unlink a user from an orchestrator"""
-    conn = get_db()
-    cursor = conn.cursor()
-    
-    cursor.execute('''
-        DELETE FROM user_orchestrator_access
-        WHERE user_id = ? AND orchestrator_id = ?
-    ''', (link.user_id, link.orchestrator_id))
-    
-    if cursor.rowcount == 0:
-        conn.close()
+    if not UserService.unlink_orchestrator(link.user_id, link.orchestrator_id):
         raise HTTPException(status_code=404, detail="Link not found")
-    
-    conn.commit()
-    conn.close()
-    
+
     # Log link deletion
     AuditService.log(
         user_id=current_user['id'],
@@ -240,29 +200,10 @@ async def link_user_server(
     current_user: dict = Depends(get_current_admin_user)
 ):
     """Link a user to a specific server"""
-    conn = get_db()
-    cursor = conn.cursor()
-    
-    link_id = str(uuid.uuid4())
-    now = datetime.now(timezone.utc).isoformat()
-    
-    try:
-        cursor.execute('''
-            INSERT OR IGNORE INTO user_orchestrator_access (id, user_id, orchestrator_id, created_at)
-            VALUES (?, ?, ?, ?)
-        ''', (str(uuid.uuid4()), link.user_id, link.orchestrator_id, now))
-
-        cursor.execute('''
-            INSERT INTO server_links (id, user_id, orchestrator_id, server_uid, permissions, created_at)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (link_id, link.user_id, link.orchestrator_id, link.server_uid, link.permissions, now))
-        conn.commit()
-    except Exception:
-        conn.close()
+    link_id = UserService.link_server(link.user_id, link.orchestrator_id, link.server_uid, link.permissions)
+    if not link_id:
         raise HTTPException(status_code=400, detail="Link already exists or invalid IDs")
-    
-    conn.close()
-    
+
     # Log link creation
     AuditService.log(
         user_id=current_user['id'],
@@ -284,21 +225,9 @@ async def unlink_user_server(
     current_user: dict = Depends(get_current_admin_user)
 ):
     """Unlink a user from a specific server"""
-    conn = get_db()
-    cursor = conn.cursor()
-    
-    cursor.execute('''
-        DELETE FROM server_links
-        WHERE user_id = ? AND orchestrator_id = ? AND server_uid = ?
-    ''', (link.user_id, link.orchestrator_id, link.server_uid))
-    
-    if cursor.rowcount == 0:
-        conn.close()
+    if not UserService.unlink_server(link.user_id, link.orchestrator_id, link.server_uid):
         raise HTTPException(status_code=404, detail="Link not found")
-    
-    conn.commit()
-    conn.close()
-    
+
     # Log link deletion
     AuditService.log(
         user_id=current_user['id'],
@@ -378,14 +307,9 @@ async def delete_user_chat_history(
     user = UserService.get_user_by_id(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-    
-    conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM chat_messages WHERE user_id = ?", (user_id,))
-    deleted_count = cursor.rowcount
-    conn.commit()
-    conn.close()
-    
+
+    deleted_count = UserService.delete_chat_history(user_id)
+
     # Log chat history deletion
     AuditService.log(
         user_id=current_user['id'],

@@ -5,14 +5,13 @@ Discord and Email notification integrations
 from fastapi import APIRouter, Depends, HTTPException, Request
 from typing import Optional, List
 import aiohttp
-import json
 import os
 from datetime import datetime, timezone
 from pydantic import BaseModel, EmailStr
 
-from core.database import get_db
 from core.security import get_current_admin_user, get_current_user
 from services.audit import AuditService
+from services.notifications import NotificationService
 
 router = APIRouter(prefix="/notifications")
 
@@ -52,33 +51,18 @@ class NotificationPayload(BaseModel):
     extra_data: Optional[dict] = None
 
 
-CONFIG_KEY_DISCORD = 'notification_discord'
-CONFIG_KEY_EMAIL = 'notification_email'
+CONFIG_KEY_DISCORD = NotificationService.CONFIG_KEY_DISCORD
+CONFIG_KEY_EMAIL = NotificationService.CONFIG_KEY_EMAIL
 
 
 def get_notification_config(config_key: str) -> Optional[dict]:
     """Get notification configuration from database"""
-    conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute("SELECT value FROM system_config WHERE key = ?", (config_key,))
-    row = cursor.fetchone()
-    conn.close()
-    
-    if row:
-        return json.loads(row['value'])
-    return None
+    return NotificationService.get_config(config_key)
 
 
 def save_notification_config(config_key: str, config: dict):
     """Save notification configuration to database"""
-    conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute('''
-        INSERT OR REPLACE INTO system_config (key, value)
-        VALUES (?, ?)
-    ''', (config_key, json.dumps(config)))
-    conn.commit()
-    conn.close()
+    NotificationService.save_config(config_key, config)
 
 
 # ============ Discord Integration ============

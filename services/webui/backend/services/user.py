@@ -161,3 +161,118 @@ class UserService:
         conn.commit()
         conn.close()
         return True
+
+    @staticmethod
+    def username_exists(username: str) -> bool:
+        """Check whether a username is already taken"""
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute("SELECT id FROM users WHERE username = ?", (username,))
+        exists = cursor.fetchone() is not None
+        conn.close()
+        return exists
+
+    @staticmethod
+    def email_exists(email: str) -> bool:
+        """Check whether an email is already registered"""
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute("SELECT id FROM users WHERE email = ?", (email,))
+        exists = cursor.fetchone() is not None
+        conn.close()
+        return exists
+
+    @staticmethod
+    def link_orchestrator(user_id: str, orchestrator_id: str) -> Optional[str]:
+        """Link a user to an orchestrator. Returns the new link id, or None if
+        the link already exists or the ids are invalid."""
+        conn = get_db()
+        cursor = conn.cursor()
+
+        link_id = str(uuid.uuid4())
+        now = datetime.now(timezone.utc).isoformat()
+
+        try:
+            cursor.execute('''
+                INSERT INTO user_orchestrator_access (id, user_id, orchestrator_id, created_at)
+                VALUES (?, ?, ?, ?)
+            ''', (link_id, user_id, orchestrator_id, now))
+            conn.commit()
+        except Exception:
+            conn.close()
+            return None
+
+        conn.close()
+        return link_id
+
+    @staticmethod
+    def unlink_orchestrator(user_id: str, orchestrator_id: str) -> bool:
+        """Unlink a user from an orchestrator. Returns False if no link existed."""
+        conn = get_db()
+        cursor = conn.cursor()
+
+        cursor.execute('''
+            DELETE FROM user_orchestrator_access
+            WHERE user_id = ? AND orchestrator_id = ?
+        ''', (user_id, orchestrator_id))
+
+        found = cursor.rowcount > 0
+        conn.commit()
+        conn.close()
+        return found
+
+    @staticmethod
+    def link_server(user_id: str, orchestrator_id: str, server_uid: str, permissions: str) -> Optional[str]:
+        """Link a user to a specific server (and ensure orchestrator access
+        exists). Returns the new link id, or None if the link already exists
+        or the ids are invalid."""
+        conn = get_db()
+        cursor = conn.cursor()
+
+        link_id = str(uuid.uuid4())
+        now = datetime.now(timezone.utc).isoformat()
+
+        try:
+            cursor.execute('''
+                INSERT OR IGNORE INTO user_orchestrator_access (id, user_id, orchestrator_id, created_at)
+                VALUES (?, ?, ?, ?)
+            ''', (str(uuid.uuid4()), user_id, orchestrator_id, now))
+
+            cursor.execute('''
+                INSERT INTO server_links (id, user_id, orchestrator_id, server_uid, permissions, created_at)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ''', (link_id, user_id, orchestrator_id, server_uid, permissions, now))
+            conn.commit()
+        except Exception:
+            conn.close()
+            return None
+
+        conn.close()
+        return link_id
+
+    @staticmethod
+    def unlink_server(user_id: str, orchestrator_id: str, server_uid: str) -> bool:
+        """Unlink a user from a specific server. Returns False if no link existed."""
+        conn = get_db()
+        cursor = conn.cursor()
+
+        cursor.execute('''
+            DELETE FROM server_links
+            WHERE user_id = ? AND orchestrator_id = ? AND server_uid = ?
+        ''', (user_id, orchestrator_id, server_uid))
+
+        found = cursor.rowcount > 0
+        conn.commit()
+        conn.close()
+        return found
+
+    @staticmethod
+    def delete_chat_history(user_id: str) -> int:
+        """Delete all chat messages from a user. Returns the number of messages deleted."""
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM chat_messages WHERE user_id = ?", (user_id,))
+        deleted_count = cursor.rowcount
+        conn.commit()
+        conn.close()
+        return deleted_count
