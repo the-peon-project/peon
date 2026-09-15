@@ -88,6 +88,7 @@ Links to various project-related resources.
 
 - [x] Admin user lifecycle controls (create, update, reset password, delete non-self users)
 - [x] Server lifecycle controls from dashboard (start, stop, restart, update, delete)
+- [x] Server-level access delegation from Servers page (owners/admins can grant read/manage access)
 
 ---
 
@@ -122,6 +123,13 @@ When WebUI and ORC are deployed in the same Docker stack, configure the orchestr
 ---
 
 ## Release Notes
+
+**0.1.13**
+
+- Added server-level access management directly in the Servers page for server owners/admins.
+- Added backend access endpoints to list and grant per-server user permissions (`read`, `manage`, `owner`).
+- Server managers can now execute lifecycle actions on servers they manage, without requiring full admin role.
+- Granting server access now also ensures orchestrator visibility for the target user.
 
 **0.1.12**
 
