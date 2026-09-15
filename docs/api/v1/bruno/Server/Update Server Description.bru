@@ -1,0 +1,25 @@
+meta {
+  name: Update Server Description
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{url}}:{{port}}/api/v1/server/description/{{game_uid}}.{{server_name}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Api-Key: {{api-key}}
+}
+
+body:json {
+  {
+    "description": "{{description}}"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

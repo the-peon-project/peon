@@ -1,0 +1,15 @@
+meta {
+  name: Get Server
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}:{{port}}/api/v1/server/get/{{game_uid}}.{{server_name}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  X-Api-Key: {{api-key}}
+}

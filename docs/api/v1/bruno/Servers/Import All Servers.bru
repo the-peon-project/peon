@@ -1,0 +1,15 @@
+meta {
+  name: Import All Servers
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{url}}:{{port}}/api/v1/servers
+  body: none
+  auth: none
+}
+
+headers {
+  X-Api-Key: {{api-key}}
+}

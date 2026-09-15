@@ -1,0 +1,23 @@
+meta {
+  name: Delete Server & Remove Local Files
+  type: http
+  seq: 13
+}
+
+delete {
+  url: {{url}}:{{port}}/api/v1/server/eradicate/{{game_uid}}.{{server_name}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Api-Key: {{api-key}}
+}
+
+body:json {
+  { "eradicate" : true }
+}
+
+settings {
+  encodeUrl: true
+}

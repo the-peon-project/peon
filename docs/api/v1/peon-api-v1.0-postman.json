@@ -1,0 +1,327 @@
+{
+    "info": {
+        "_postman_id": "b9e0121f-88ef-40e0-bc6e-c27f4b234a49",
+        "name": "PEON",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Servers",
+            "item": [
+                {
+                    "name": "Get All Servers",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/servers",
+                            "path": [
+                                "api",
+                                "v1",
+                                "servers"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Server",
+            "item": [
+                {
+                    "name": "Get Server",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/server/get/{{server}}",
+                            "path": [
+                                "api",
+                                "v1",
+                                "server",
+                                "get",
+                                "{{server}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Create Server",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/server/create/{{server}}",
+                            "path": [
+                                "api",
+                                "v1",
+                                "server",
+                                "create",
+                                "{{server}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"SERVER_NAME\": \"deleteme\",\n    \"description\": \"A PEON game server for satisfactory.\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Stop Server",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/server/stop/{{server}}",
+                            "path": [
+                                "api",
+                                "v1",
+                                "server",
+                                "stop",
+                                "{{server}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Start Server",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/server/start/{{server}}",
+                            "path": [
+                                "api",
+                                "v1",
+                                "server",
+                                "start",
+                                "{{server}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Restart Server",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/server/restart/{{server}}",
+                            "path": [
+                                "api",
+                                "v1",
+                                "server",
+                                "restart",
+                                "{{server}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Delete Server",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/server/destroy/{{server}}",
+                            "path": [
+                                "api",
+                                "v1",
+                                "server",
+                                "destroy",
+                                "{{server}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Delete Server & Remove Local Files",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/server/eradicate/{{server}}",
+                            "path": [
+                                "api",
+                                "v1",
+                                "server",
+                                "eradicate",
+                                "{{server}}"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{ \"eradicate\" : true }"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Plans",
+            "item": [
+                {
+                    "name": "Get Plans",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/plans",
+                            "path": [
+                                "api",
+                                "v1",
+                                "plans"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Update Plans",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/plans",
+                            "path": [
+                                "api",
+                                "v1",
+                                "plans"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Plan",
+            "item": [
+                {
+                    "name": "Get A Plan",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{url}}:{{port}}/api/v1/plan/satisfactory",
+                            "path": [
+                                "api",
+                                "v1",
+                                "plan",
+                                "satisfactory"
+                            ],
+                            "host": [
+                                "{{url}}"
+                            ],
+                            "port": "{{port}}"
+                        },
+                        "header": [
+                            {
+                                "key": "X-Api-Key",
+                                "value": "{{api-key}}"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

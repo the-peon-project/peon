@@ -1,0 +1,19 @@
+meta {
+  name: Get Server Stats
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{url}}:{{port}}/api/v1/server/stats/{{game_uid}}.{{server_name}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  X-Api-Key: {{api-key}}
+}
+
+settings {
+  encodeUrl: true
+}

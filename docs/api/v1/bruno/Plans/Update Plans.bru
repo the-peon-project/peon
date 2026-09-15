@@ -1,0 +1,19 @@
+meta {
+  name: Update Plans
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{url}}:{{port}}/api/v1/plans
+  body: none
+  auth: inherit
+}
+
+headers {
+  X-Api-Key: {{api-key}}
+}
+
+settings {
+  encodeUrl: true
+}

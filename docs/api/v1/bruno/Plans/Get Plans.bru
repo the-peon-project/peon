@@ -1,0 +1,19 @@
+meta {
+  name: Get Plans
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}:{{port}}/api/v1/plans
+  body: none
+  auth: inherit
+}
+
+headers {
+  X-Api-Key: {{api-key}}
+}
+
+settings {
+  encodeUrl: true
+}

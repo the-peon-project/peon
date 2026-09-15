@@ -1,0 +1,19 @@
+meta {
+  name: Download Server Files
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{url}}:{{port}}/api/v1/server/save/{{game_uid}}.{{server_name}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  X-Api-Key: {{api-key}}
+}
+
+settings {
+  encodeUrl: true
+}

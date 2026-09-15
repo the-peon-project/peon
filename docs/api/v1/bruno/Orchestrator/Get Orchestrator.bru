@@ -1,0 +1,19 @@
+meta {
+  name: Get Orchestrator
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}:{{port}}/api/v1/orchestrator
+  body: none
+  auth: inherit
+}
+
+headers {
+  X-Api-Key: {{api-key}}
+}
+
+settings {
+  encodeUrl: true
+}

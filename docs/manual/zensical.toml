@@ -1,0 +1,150 @@
+[project]
+site_name = "The PEON Project - Game Server Management Made Easy"
+site_url = "https://the-peon-project.github.io"
+repo_url = "https://github.com/the-peon-project"
+copyright = """&copy; 2024 <a href="https://github.com/the-peon-project" target="_blank" rel="noopener">The PEON Project</a>"""
+
+nav = [
+    {"Home" = "index.md"},
+    {"🚀 Quick Start" = [
+        {"Getting Started" = "quick-start/index.md"},
+        {"Installation" = "quick-start/installation.md"},
+        {"First Server" = "quick-start/first-server.md"},
+    ]},
+    {"📖 User Guide" = [
+        {"Overview" = "guides/index.md"},
+        {"Discord Bot" = "guides/50_bot_discord.md"},
+        {"REST API" = "guides/02_rest_api.md"},
+        {"Game Guides" = [
+            {"Overview" = "guides/games/index.md"},
+            {"Valheim" = "guides/games/valheim.md"},
+            {"Palworld" = "guides/games/palworld.md"},
+            {"Counter-Strike 2" = "guides/games/cs2.md"},
+            {"CS:GO" = "guides/games/csgo.md"},
+            {"Enshrouded" = "guides/games/enshrouded.md"},
+            {"Windrose" = "guides/games/windrose.md"},
+            {"Sons of the Forest" = "guides/games/sof.md"},
+            {"V Rising" = "guides/games/vrising.md"},
+            {"Satisfactory" = "guides/games/satisfactory.md"},
+            {"Duke Nukem 3D" = "guides/games/dukenukem.md"},
+            {"ARK" = "guides/games/ark.md"},
+            {"Assetto Corsa Competizione" = "guides/games/assetto_corsa_competizione.md"},
+            {"Quake 3 Arena" = "guides/games/q3arena.md"},
+            {"Starbound" = "guides/games/starbound.md"},
+        ]},
+    ]},
+    {"🎮 Games" = "games.md"},
+    {"🛠️ Development" = [
+        {"Overview" = "development/index.md"},
+        {"Architecture" = "development/00_peon.md"},
+        {"Orchestrator" = "development/01_orchestrator.md"},
+        {"War Table" = "development/02_wartable.md"},
+        {"War Plans" = "development/03_warplans.md"},
+        {"Web UI" = "development/04_webui.md"},
+        {"CLI Tools" = "development/05_cli.md"},
+        {"Discord Bot" = "development/50_bot_discord.md"},
+        {"Game Servers" = [
+            {"Overview" = "development/games/index.md"},
+            {"ARK" = "development/games/ark.md"},
+            {"Assetto Corsa Competizione" = "development/games/assetto_corsa_competizione.md"},
+            {"Counter-Strike 2" = "development/games/cs2.md"},
+            {"CS:GO" = "development/games/csgo.md"},
+            {"Duke Nukem 3D" = "development/games/dukenukem.md"},
+            {"Enshrouded" = "development/games/enshrouded.md"},
+            {"Windrose" = "development/games/windrose.md"},
+            {"Palworld" = "development/games/palworld.md"},
+            {"Quake 3 Arena" = "development/games/q3arena.md"},
+            {"Satisfactory" = "development/games/satisfactory.md"},
+            {"Soldier of Fortune" = "development/games/sof.md"},
+            {"Starbound" = "development/games/starbound.md"},
+            {"Valheim" = "development/games/valheim.md"},
+            {"V Rising" = "development/games/vrising.md"},
+        ]},
+    ]},
+    {"🔗 API Reference" = [
+        {"REST API" = "api/index.md"},
+    ]},
+    {"❓ FAQ" = "faq.md"},
+    {"ℹ️ About" = "about.md"},
+    {"🆘 Support" = [
+        {"Discord" = "https://discord.gg/KJFVyayH8g"},
+        {"GitHub Issues" = "https://github.com/the-peon-project/peon/issues"},
+    ]},
+]
+
+# ---------------------------------------------------------------------------
+# Theme
+# ---------------------------------------------------------------------------
+[project.theme]
+language = "en"
+features = [
+    "content.code.annotation",
+    "content.code.copy",
+    "content.tabs.link",
+    "navigation.expand",
+    "navigation.indexes",
+    "navigation.instant",
+    "navigation.instant.prefetch",
+    "navigation.instant.progress",
+    "navigation.path",
+    "navigation.prune",
+    "navigation.sections",
+    "navigation.tabs",
+    "navigation.tabs.sticky",
+    "navigation.top",
+    "navigation.tracking",
+    "search.highlight",
+    "search.suggest",
+    "toc.follow",
+    "toc.integrate",
+]
+
+# Dark mode (default)
+[[project.theme.palette]]
+scheme = "slate"
+primary = "green"
+accent = "green"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+# Light mode
+[[project.theme.palette]]
+scheme = "default"
+primary = "green"
+accent = "gray"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[project.theme.icon]
+repo = "fontawesome/brands/github"
+
+# ---------------------------------------------------------------------------
+# Markdown extensions
+# ---------------------------------------------------------------------------
+[project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+    { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+
+# ---------------------------------------------------------------------------
+# Extra
+# ---------------------------------------------------------------------------
+[[project.extra.social]]
+icon = "simple/kofi"
+link = "https://ko-fi.com/umlatt"
+
+[[project.extra.social]]
+icon = "simple/buymeacoffee"
+link = "https://buymeacoffee.com/theplacetof"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/discord"
+link = "https://discord.gg/KJFVyayH8g"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/the-peon-project"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/docker"
+link = "https://hub.docker.com/u/umlatt"
