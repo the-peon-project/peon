@@ -1,0 +1,9 @@
+pipenv
+fastapi
+uvicorn
+docker
+paramiko
+apscheduler
+python-dateutil
+gitpython
+pyyaml
