@@ -5,6 +5,14 @@ import os
 import re
 import sys
 
+APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+REFERENCE_DIR = os.environ.get("PEON_REFERENCE_DIR") or (
+    "/app/reference" if os.path.exists("/app/reference") else os.path.join(APP_ROOT, "app", "reference")
+)
+CONFIG_DIR = os.environ.get("PEON_CONFIG_DIR") or (
+    "/app/config" if os.path.exists("/app/config") else os.path.join(APP_ROOT, "app", "config")
+)
+
 # Settings
 base_url = "https://raw.githubusercontent.com/the-peon-project"
 games_url = f"{base_url}/peon-docs/refs/heads/main/manual/docs/games.md"
@@ -15,7 +23,7 @@ bot_thumbnail = f"{base_url}/peon/refs/heads/main/media/PEON_R2L_small.png"
 prefix = "peon.warcamp."
 
 # Import lookup files
-cmd_aliases = json.load(open(f"/app/reference/aliases.json", "r"))
+cmd_aliases = json.load(open(os.path.join(REFERENCE_DIR, "aliases.json"), "r"))
 settings={}
 settings['language'] = os.environ.get('LANGUAGE', 'english').lower()
 settings['timezone'] = os.environ.get('TIMEZONE', 'UTC')
@@ -24,9 +32,9 @@ settings['control_channel'] = os.environ.get('CONTROL_CHANNEL', 'peon')
 
 # Import relevant language file data
 language=os.environ.get('LANGUAGE', 'english').lower()
-txt_quotes = json.load(open(f"/app/reference/{settings['language']}/quotes.json", "r"))
-txt_commands = json.load(open(f"/app/reference/{settings['language']}/commands.json", "r"))
-txt_errors = json.load(open(f"/app/reference/{settings['language']}/errors.json", "r"))
+txt_quotes = json.load(open(os.path.join(REFERENCE_DIR, settings['language'], "quotes.json"), "r"))
+txt_commands = json.load(open(os.path.join(REFERENCE_DIR, settings['language'], "commands.json"), "r"))
+txt_errors = json.load(open(os.path.join(REFERENCE_DIR, settings['language'], "errors.json"), "r"))
 
 # Create a random quote selector
 def get_quote():

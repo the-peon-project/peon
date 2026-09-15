@@ -7,6 +7,23 @@ import discord
 from . import *
 from .orchestrator import get_peon_orcs, get_orchestrator_details, get_orchestrator_details_async
 
+
+def parse_server_channel_name(channel_name):
+    """Split a server channel into (game_uid, servername) while preserving hyphenated server names."""
+    if not channel_name or not isinstance(channel_name, str):
+        return None
+
+    channel_name = channel_name.strip()
+    if not channel_name or channel_name == settings.get('control_channel'):
+        return None
+
+    parts = channel_name.split('-')
+    if len(parts) < 2:
+        return None
+
+    return parts[0], '-'.join(parts[1:])
+
+
 def identify_channel(channel_request,args=tuple()):
     if channel_request == settings['control_channel']:
         permission='admin'
@@ -33,7 +50,8 @@ def build_card(status='err', message="*HEY DEV, SOMETHING WENT WRONG BUT PEON NE
     return embed
 
 async def build_about_card():
-    with open(f"/app/reference/{settings['language']}/about.md", "r") as file:
+    about_path = os.path.join(REFERENCE_DIR, settings['language'], "about.md")
+    with open(about_path, "r") as file:
         response = file.read()
     response = response.replace('[BOT_VERSION]',os.environ.get('VERSION', '-.-.-'))
     if (orchestrators := get_peon_orcs())['status'] == "success":
@@ -50,8 +68,8 @@ async def build_about_card():
         file_contents = requests.get(games_url, timeout=10).text
         servers = "### Supported Games\nBelow is a list of games that are currently supported by the PEON Project.\n"
         for line in file_contents.splitlines():
-            if re.search('- \[x\]', line):
-                line = re.sub('- \[x\]', '- ', line)
+            if re.search(r'- \[x\]', line):
+                line = re.sub(r'- \[x\]', '- ', line)
                 line = re.sub('./guides/games/', 'https://docs.warcamp.org/guides/games/', line)
                 line = re.sub('.md', '', line)
                 servers += line + '\n'

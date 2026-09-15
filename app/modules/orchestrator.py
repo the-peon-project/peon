@@ -12,6 +12,10 @@ from . import *
 REQUEST_TIMEOUT = 10
 
 
+def _get_config_path(filename: str) -> str:
+    return os.path.join(CONFIG_DIR, filename)
+
+
 def _request_json(method, url, headers=None, json_body=None, timeout=REQUEST_TIMEOUT):
     """Execute an HTTP request and normalize error handling for callers."""
     try:
@@ -28,7 +32,7 @@ def _request_json(method, url, headers=None, json_body=None, timeout=REQUEST_TIM
 # Load orchestrators from disk
 def get_peon_orcs():
     try:
-        config_file = "/app/config/peon.orchestrators.json"
+        config_file = _get_config_path("peon.orchestrators.json")
         logging.debug("Loading orchestrators file")
         with open(config_file, 'r') as file:
             orchestrators = json.load(file)
@@ -49,6 +53,7 @@ def get_peon_orcs():
     except FileNotFoundError:
         logging.debug("No orchestrators file found. Creating one.")
         default_data = []
+        os.makedirs(os.path.dirname(config_file), exist_ok=True)
         with open(config_file, 'w') as file:
             json.dump(default_data, file, indent=4)
         return {"status": "error", "info": "Orchestrators file not found. Created a new one."}
@@ -68,7 +73,8 @@ def register_peon_orc(orc_name, orc_url, orc_key):
         if (orc_responose := get_orchestrator_details(orc_url, orc_key))['status'] != "success":
             return {"status": "error", "info": "Orchestrator not available."}
         orchestrators.append({"name": orc_name, "url": orc_url, "key": orc_key})
-        config_file = "/app/config/peon.orchestrators.json"
+        config_file = _get_config_path("peon.orchestrators.json")
+        os.makedirs(os.path.dirname(config_file), exist_ok=True)
         with open(config_file, 'w') as file:
             json.dump(orchestrators, file, indent=4)
         return {"status": "success", "info": orc_responose['data']}
@@ -111,7 +117,8 @@ def deregister_peon_orc(orc_name):
         updated_orchestrators = [orc for orc in orchestrators if orc["name"] != orc_name]
         if len(updated_orchestrators) == len(orchestrators):
             return {"status": "error", "info": "Orchestrator not found."}
-        config_file = "/app/config/peon.orchestrators.json"
+        config_file = _get_config_path("peon.orchestrators.json")
+        os.makedirs(os.path.dirname(config_file), exist_ok=True)
         with open(config_file, 'w') as file:
             json.dump(updated_orchestrators, file, indent=4)
         return {"status": "success", "info": f"Orchestrator '{orc_name}' has been deregistered."}

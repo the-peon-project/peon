@@ -163,8 +163,7 @@ async def peon_slash(
             channel_type = "admin"
         else:
             try:
-                parts = str(interaction.channel.name).split('-')
-                if len(parts) >= 2:
+                if parse_server_channel_name(str(interaction.channel.name)):
                     channel_type = "server"
                 else:
                     channel_type = "admin"
@@ -186,7 +185,10 @@ async def peon_slash(
     else:
         try:
             channel_name = str(interaction.channel.name)
-            gameuid, servername = channel_name.split('-', 1)
+            parsed = parse_server_channel_name(channel_name)
+            if not parsed:
+                raise ValueError(f"Invalid channel name: {channel_name}")
+            gameuid, servername = parsed
             view = EnhancedUserView(gameuid=gameuid, servername=servername)
             embed.add_field(name="🎮 Server Mode", value=f"Managing **{gameuid}.{servername}**", inline=False)
             await interaction.followup.send(embed=embed, view=view)
@@ -215,7 +217,10 @@ async def server_command(
     if not server:
         try:
             channel_name = str(interaction.channel.name)
-            gameuid, servername = channel_name.split('-', 1)
+            parsed = parse_server_channel_name(channel_name)
+            if not parsed:
+                raise ValueError(f"Invalid channel name: {channel_name}")
+            gameuid, servername = parsed
             server = f"{gameuid}.{servername}"
         except:
             embed = build_card(status='nok', message="❌ Could not auto-detect server from channel name.\nPlease specify server parameter.")
