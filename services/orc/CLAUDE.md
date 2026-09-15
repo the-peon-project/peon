@@ -58,10 +58,9 @@ Use targeted syntax checks or module-level verification around touched files whe
 ## Warplan Source
 
 - Game plan definitions live at `peon/warplans/` in this same repo.
-- `config/docker-compose/02_orc.yml` bind-mounts `warplans/` read-only directly into the orc container at `/home/peon/plans` — this repo is always checked out as a full monorepo wherever `deploy_peon.sh` runs (it reads `./config/docker-compose/*.yml` via a relative path), so the plans are always already on disk and always current with no separate fetch step.
+- `config/docker-compose/02_orc.yml` bind-mounts `warplans/` read-only directly into the orc container at `/home/peon/plans` — `deploy_peon.sh` reads `./config/docker-compose/*.yml` via a relative path, so it requires a full monorepo checkout (including `warplans/`) at the deployment root. This is NOT automatically true of every checkout: a deployment that predates the monorepo consolidation, or was never updated past it, will be missing `warplans/` entirely and must be migrated to a full monorepo checkout before this compose change takes effect. `deploy_peon.sh` now fails loudly with a precondition check if `./warplans` is missing, rather than letting Docker silently bind-mount an empty root-owned directory.
 - `app/modules/github.py`'s `get_plans_from_github`/`update_plans_from_github` are now no-ops kept only so `PUT /api/v1/plans` (called by webui/bot-discord's "refresh plans" actions) still returns `{"status": "success"}` — refreshing plans now means updating the host's `warplans/` checkout (e.g. `git pull`) rather than triggering an in-container fetch.
 - `services/webui/backend/routes/proxy.py`'s `GET /proxy/plans` also reads `warplans/` directly (mounted at `/app/warplans` via `config/docker-compose/03_webui.yml`) — previously this mount didn't exist and the endpoint silently returned an empty list.
-- Known pre-existing duplication (not fixed by this change): `app/bin/` contains committed copies of the same scripts that live in `peon/cli/bin/`. Worth deduping at some point but out of scope for this pass.
 
 ## Cross-Directory Dependencies (within this repo)
 
@@ -70,6 +69,7 @@ Use targeted syntax checks or module-level verification around touched files whe
 - `peon/cli` often mirrors operational actions against the PEON stack directly via Docker (not through this API) -- see `peon/cli/CLAUDE.md`'s Known Constraints for the resulting dual-control risk on the same containers
 - `peon/warplans` defines the recipes this directory consumes
 - `peon/wartable` defines the runtime images referenced by plans
+- Known pre-existing duplication (not fixed by this change): `app/bin/` contains committed copies of the same scripts that live in `peon/cli/bin/`. Worth deduping at some point but out of scope for this pass.
 
 ## Deployment / Release Validation
 
