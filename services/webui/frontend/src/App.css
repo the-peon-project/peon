@@ -1,0 +1,1344 @@
+/* Default + variant themes with Warcraft-inspired palette */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Press+Start+2P&family=VT323&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #38bdf8;
+  --primary-light: #7dd3fc;
+  --primary-dark: #0284c7;
+  --primary-rgb: 56, 189, 248;
+  --primary-light-rgb: 125, 211, 252;
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --border-color: #334155;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+}
+
+body {
+  object-fit: contain;
+  margin-left: auto;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(2, 6, 23, 0.72);
+  overflow-y: auto;
+}
+
+/* ============ Card Styles ============ */
+
+.card-hover {
+  transition: all 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Server card with logo on right */
+.server-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.server-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.server-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.server-card-logo {
+  flex-shrink: 0;
+}
+/* ============ Theme Switcher ============ */
+
+.theme-switcher {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+body.light-mode .theme-switcher {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-color);
+}
+
+.theme-switcher:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.3);
+}
+
+body.light-mode .text-gray-300,
+body.light-mode .text-gray-400,
+body.light-mode .text-gray-500,
+body.light-mode .text-gray-600,
+body.light-mode .text-slate-300,
+body.light-mode .text-slate-400,
+body.light-mode .text-slate-500 {
+  color: #334155 !important;
+}
+
+body.light-mode .border-gray-700,
+body.light-mode .border-gray-800,
+body.light-mode .border-slate-700,
+body.light-mode .border-slate-800 {
+  border-color: #cbd5e1 !important;
+}
+
+body.light-mode .bg-black\/20,
+body.light-mode .bg-black\/30 {
+  background-color: #f8fafc !important;
+}
+
+body.light-mode .shadow-lg,
+body.light-mode .shadow-xl {
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08) !important;
+}
+
+body.light-mode :is(
+  .text-white,
+  .text-gray-100,
+  .text-gray-200,
+  .text-gray-300,
+  .text-gray-400,
+  .text-gray-500,
+  .text-gray-600,
+  .text-slate-100,
+  .text-slate-200,
+  .text-slate-300,
+  .text-slate-400,
+  .text-slate-500
+) {
+  color: #0f172a !important;
+}
+
+body.dark-mode :is(
+  .text-white,
+  .text-gray-100,
+  .text-gray-200,
+  .text-gray-300,
+  .text-gray-400,
+  .text-gray-500,
+  .text-gray-600,
+  .text-slate-100,
+  .text-slate-200,
+  .text-slate-300,
+  .text-slate-400,
+  .text-slate-500
+) {
+  color: #e2e8f0 !important;
+}
+
+body.light-mode :is(
+  .bg-black\/20,
+  .bg-black\/30,
+  .bg-black\/80,
+  .bg-slate-700\/50,
+  .bg-slate-800,
+  .bg-slate-800\/50,
+  .bg-slate-900\/30,
+  .bg-slate-900\/50
+) {
+  background-color: #ffffff !important;
+}
+
+body.light-mode :is(
+  .border-gray-700,
+  .border-gray-800,
+  .border-slate-700,
+  .border-slate-800,
+  .border-slate-600\/50
+) {
+  border-color: #cbd5e1 !important;
+}
+
+/* Theme system */
+
+body:is(.default-theme, .clean-theme, .horde-theme, .alliance-theme) {
+  image-rendering: pixelated;
+  color: var(--text-primary);
+}
+
+body:is(.default-theme, .clean-theme, .horde-theme, .alliance-theme)::before,
+body:is(.default-theme, .clean-theme, .horde-theme, .alliance-theme)::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body:is(.default-theme, .clean-theme, .horde-theme, .alliance-theme) > * {
+  position: relative;
+  z-index: 1;
+}
+
+body.dark-mode:is(.default-theme, .clean-theme) {
+  --primary: #38bdf8;
+  --primary-light: #7dd3fc;
+  --primary-dark: #0284c7;
+  --primary-rgb: 56, 189, 248;
+  --primary-light-rgb: 125, 211, 252;
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --border-color: #334155;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  background: #0f172a;
+}
+
+body.light-mode:is(.default-theme, .clean-theme) {
+  --primary: #0ea5e9;
+  --primary-light: #38bdf8;
+  --primary-dark: #0284c7;
+  --primary-rgb: 14, 165, 233;
+  --primary-light-rgb: 56, 189, 248;
+  --bg-dark: #f8fafc;
+  --bg-card: #ffffff;
+  --border-color: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  background: #f8fafc;
+}
+
+body.dark-mode:is(.default-theme, .clean-theme) .medieval-border,
+body.dark-mode:is(.default-theme, .clean-theme) .stone-texture,
+body.dark-mode:is(.default-theme, .clean-theme) .theme-settings-panel,
+body.dark-mode:is(.default-theme, .clean-theme) .theme-mode-card,
+body.dark-mode:is(.default-theme, .clean-theme) .theme-settings-summary,
+body.dark-mode:is(.default-theme, .clean-theme) .stat-card,
+body.dark-mode:is(.default-theme, .clean-theme) .server-card-panel,
+body.dark-mode:is(.default-theme, .clean-theme) .server-list-item-panel,
+body.dark-mode:is(.default-theme, .clean-theme) .server-view-shell,
+body.dark-mode:is(.default-theme, .clean-theme) .server-orchestrator-shell,
+body.dark-mode:is(.default-theme, .clean-theme) .server-toolbar,
+body.dark-mode:is(.default-theme, .clean-theme) .server-empty-state {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+body.light-mode:is(.default-theme, .clean-theme) .medieval-border,
+body.light-mode:is(.default-theme, .clean-theme) .stone-texture,
+body.light-mode:is(.default-theme, .clean-theme) .theme-settings-panel,
+body.light-mode:is(.default-theme, .clean-theme) .theme-mode-card,
+body.light-mode:is(.default-theme, .clean-theme) .theme-settings-summary,
+body.light-mode:is(.default-theme, .clean-theme) .stat-card,
+body.light-mode:is(.default-theme, .clean-theme) .server-card-panel,
+body.light-mode:is(.default-theme, .clean-theme) .server-list-item-panel,
+body.light-mode:is(.default-theme, .clean-theme) .server-view-shell,
+body.light-mode:is(.default-theme, .clean-theme) .server-orchestrator-shell,
+body.light-mode:is(.default-theme, .clean-theme) .server-toolbar,
+body.light-mode:is(.default-theme, .clean-theme) .server-empty-state {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+body.dark-mode:is(.default-theme, .clean-theme) .theme-mode-card,
+body.dark-mode:is(.default-theme, .clean-theme) .theme-settings-summary,
+body.dark-mode:is(.default-theme, .clean-theme) .step-badge,
+body.dark-mode:is(.default-theme, .clean-theme) .stat-card {
+  color: #e2e8f0;
+}
+
+body.light-mode:is(.default-theme, .clean-theme) .theme-mode-card,
+body.light-mode:is(.default-theme, .clean-theme) .theme-settings-summary,
+body.light-mode:is(.default-theme, .clean-theme) .step-badge,
+body.light-mode:is(.default-theme, .clean-theme) .stat-card {
+  color: #0f172a;
+}
+
+body.dark-mode.horde-theme {
+  --primary: #8bc34a;
+  --primary-light: #b2df76;
+  --primary-dark: #5e8e27;
+  --primary-rgb: 139, 195, 74;
+  --primary-light-rgb: 178, 223, 118;
+  --bg-dark: #1a1210;
+  --bg-card: #2a1a16;
+  --border-color: #7c341c;
+  --text-primary: #f4e3bf;
+  --text-secondary: #d0b88d;
+  background: #1a1210;
+}
+
+body.light-mode.horde-theme {
+  --primary: #4f9d4b;
+  --primary-light: #74bf68;
+  --primary-dark: #357530;
+  --primary-rgb: 79, 157, 75;
+  --primary-light-rgb: 116, 191, 104;
+  --bg-dark: #fff7eb;
+  --bg-card: #ffffff;
+  --border-color: #c98b67;
+  --text-primary: #2a1a14;
+  --text-secondary: #5f4939;
+  background: #fff7eb;
+}
+
+body.dark-mode.alliance-theme {
+  --primary: #8ab6ff;
+  --primary-light: #b8d1ff;
+  --primary-dark: #4a78c2;
+  --primary-rgb: 138, 182, 255;
+  --primary-light-rgb: 184, 209, 255;
+  --bg-dark: #111a27;
+  --bg-card: #1d2a3a;
+  --border-color: #56739f;
+  --text-primary: #eef4ff;
+  --text-secondary: #becbe0;
+  background: #111a27;
+}
+
+body.light-mode.alliance-theme {
+  --primary: #5f8fdb;
+  --primary-light: #86aef0;
+  --primary-dark: #3f6eb8;
+  --primary-rgb: 95, 143, 219;
+  --primary-light-rgb: 134, 174, 240;
+  --bg-dark: #eff6ff;
+  --bg-card: #ffffff;
+  --border-color: #b6c8e6;
+  --text-primary: #10213d;
+  --text-secondary: #4d6488;
+  background: #eff6ff;
+}
+
+body:is(.default-theme, .clean-theme, .horde-theme, .alliance-theme) :is(
+  .theme-settings-panel,
+  .theme-mode-card,
+  .theme-settings-summary,
+  .stat-card,
+  .server-card-panel,
+  .server-list-item-panel,
+  .server-view-shell,
+  .server-orchestrator-shell,
+  .server-empty-state,
+  [data-testid='modal-content']
+) {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+body.light-mode:is(.default-theme, .clean-theme, .horde-theme, .alliance-theme) :is(
+  .theme-switcher,
+  .theme-mode-card,
+  .theme-settings-summary,
+  .stat-card,
+  .server-card-panel,
+  .server-list-item-panel,
+  .server-toolbar,
+  .servers-toolbar,
+  .server-view-shell,
+  .server-orchestrator-shell,
+  .server-empty-state,
+  [data-testid='modal-content']
+) {
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+}
+
+body:is(.default-theme, .clean-theme) .warcraft-title,
+body.horde-theme .warcraft-title,
+body.alliance-theme .warcraft-title {
+  font-family: 'Press Start 2P', cursive;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  line-height: 1.35;
+}
+
+body:is(.default-theme, .clean-theme) .warcraft-title {
+  color: #d9edf9;
+  text-shadow: 1px 1px 0 rgba(15, 23, 42, 0.35);
+}
+
+body.horde-theme .warcraft-title {
+  color: #f6d48b;
+  text-shadow: 2px 2px 0 #4a1f12, 4px 4px 0 rgba(0, 0, 0, 0.35);
+}
+
+body.alliance-theme .warcraft-title {
+  color: #d8e7ff;
+  text-shadow: 2px 2px 0 #20334d, 4px 4px 0 rgba(0, 0, 0, 0.28);
+}
+
+body:is(.default-theme, .clean-theme) .warcraft-subtitle,
+body.horde-theme .warcraft-subtitle,
+body.alliance-theme .warcraft-subtitle,
+body:is(.default-theme, .clean-theme) .gold-button,
+body.horde-theme .gold-button,
+body.alliance-theme .gold-button,
+body:is(.default-theme, .clean-theme) .gray-button,
+body.horde-theme .gray-button,
+body.alliance-theme .gray-button,
+body:is(.default-theme, .clean-theme) .red-button,
+body.horde-theme .red-button,
+body.alliance-theme .red-button,
+body:is(.default-theme, .clean-theme) .blue-button,
+body.horde-theme .blue-button,
+body.alliance-theme .blue-button,
+body:is(.default-theme, .clean-theme) input,
+body.horde-theme input,
+body.alliance-theme input,
+body:is(.default-theme, .clean-theme) textarea,
+body.horde-theme textarea,
+body.alliance-theme textarea,
+body:is(.default-theme, .clean-theme) select,
+body.horde-theme select,
+body.alliance-theme select {
+  font-family: 'VT323', monospace;
+  letter-spacing: 0.7px;
+}
+
+body:is(.default-theme, .clean-theme, .horde-theme, .alliance-theme) .warcraft-subtitle {
+  color: var(--text-primary);
+}
+
+body:is(.default-theme, .clean-theme) .medieval-border,
+body:is(.default-theme, .clean-theme) .stone-texture,
+body:is(.default-theme, .clean-theme) .gold-button,
+body:is(.default-theme, .clean-theme) .gray-button,
+body:is(.default-theme, .clean-theme) .red-button,
+body:is(.default-theme, .clean-theme) .blue-button,
+body:is(.default-theme, .clean-theme) input,
+body:is(.default-theme, .clean-theme) textarea,
+body:is(.default-theme, .clean-theme) select,
+body.horde-theme .medieval-border,
+body.horde-theme .stone-texture,
+body.horde-theme .gold-button,
+body.horde-theme .gray-button,
+body.horde-theme .red-button,
+body.horde-theme .blue-button,
+body.horde-theme input,
+body.horde-theme textarea,
+body.horde-theme select,
+body.alliance-theme .medieval-border,
+body.alliance-theme .stone-texture,
+body.alliance-theme .gold-button,
+body.alliance-theme .gray-button,
+body.alliance-theme .red-button,
+body.alliance-theme .blue-button,
+body.alliance-theme input,
+body.alliance-theme textarea,
+body.alliance-theme select {
+  border-radius: 0;
+  border-width: 2px;
+  box-shadow: inset 0 0 0 1px rgba(255, 245, 220, 0.12), 4px 4px 0 rgba(0, 0, 0, 0.35);
+}
+
+body:is(.default-theme, .clean-theme) .medieval-border {
+  border-color: #cbd5e1;
+}
+
+body.dark-mode:is(.default-theme, .clean-theme) .medieval-border,
+body.dark-mode:is(.default-theme, .clean-theme) .stone-texture {
+  background: #1e293b;
+}
+
+body:is(.default-theme, .clean-theme) .gold-button {
+  background: #38bdf8;
+  border-color: #7dd3fc;
+  color: #082030;
+}
+
+body:is(.default-theme, .clean-theme) .gray-button {
+  background: #334155;
+  border-color: #64748b;
+  color: #f8fafc;
+}
+
+body:is(.default-theme, .clean-theme) .red-button {
+  background: #ef4444;
+  border-color: #fca5a5;
+  color: #fff;
+}
+
+body:is(.default-theme, .clean-theme) .blue-button {
+  background: #0ea5e9;
+  border-color: #7dd3fc;
+  color: #fff;
+}
+
+body.light-mode:is(.default-theme, .clean-theme) .gold-button {
+  background: #0ea5e9;
+  border-color: #7dd3fc;
+  color: #082030;
+}
+
+body.light-mode:is(.default-theme, .clean-theme) .gray-button {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+body.light-mode:is(.default-theme, .clean-theme) .red-button {
+  background: #ef4444;
+  border-color: #fca5a5;
+  color: #fff;
+}
+
+body.light-mode:is(.default-theme, .clean-theme) .blue-button {
+  background: #38bdf8;
+  border-color: #7dd3fc;
+  color: #082030;
+}
+
+body:is(.default-theme, .clean-theme) input,
+body:is(.default-theme, .clean-theme) textarea,
+body:is(.default-theme, .clean-theme) select {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+body:is(.default-theme, .clean-theme) .status-online {
+  color: #22c55e;
+  text-shadow: 0 0 8px rgba(34, 197, 94, 0.35);
+}
+
+body:is(.default-theme, .clean-theme) .status-offline {
+  color: #ef4444;
+  text-shadow: 0 0 6px rgba(239, 68, 68, 0.25);
+}
+
+body:is(.default-theme, .clean-theme) .status-pending {
+  color: #38bdf8;
+  text-shadow: 0 0 6px rgba(56, 189, 248, 0.25);
+}
+
+body:is(.default-theme, .clean-theme) .card-hover:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: inset 0 0 0 1px rgba(255, 245, 220, 0.2), 6px 6px 0 rgba(0, 0, 0, 0.45);
+}
+
+body:is(.default-theme, .clean-theme) .theme-switcher {
+  border-radius: 0;
+  border: 2px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+body.light-mode:is(.default-theme, .clean-theme) .theme-switcher,
+body.light-mode:is(.default-theme, .clean-theme) .theme-mode-card,
+body.light-mode:is(.default-theme, .clean-theme) .theme-settings-summary,
+body.light-mode:is(.default-theme, .clean-theme) .stat-card,
+body.light-mode:is(.default-theme, .clean-theme) .server-card-panel,
+body.light-mode:is(.default-theme, .clean-theme) .server-list-item-panel,
+body.light-mode:is(.default-theme, .clean-theme) .server-toolbar,
+body.light-mode:is(.default-theme, .clean-theme) .server-view-shell,
+body.light-mode:is(.default-theme, .clean-theme) .server-orchestrator-shell,
+body.light-mode:is(.default-theme, .clean-theme) .server-empty-state {
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+}
+
+body.horde-theme {
+  --primary: #8bc34a;
+  --primary-light: #b2df76;
+  --primary-dark: #5e8e27;
+  --primary-rgb: 139, 195, 74;
+  --primary-light-rgb: 178, 223, 118;
+  --bg-dark: #1a1210;
+  --bg-card: #2a1a16;
+  --border-color: #7c341c;
+  --text-primary: #f4e3bf;
+  --text-secondary: #d0b88d;
+  background: #1a1210;
+}
+
+body.horde-theme::before {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 20% 20%, rgba(139, 195, 74, 0.08), transparent 28%),
+    radial-gradient(circle at 80% 15%, rgba(201, 80, 44, 0.1), transparent 22%);
+  background-size: 4px 4px, 4px 4px, auto, auto;
+  opacity: 0.9;
+}
+
+body.horde-theme::after {
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.38) 100%);
+}
+
+body.horde-theme .medieval-border {
+  border-color: #8d5732;
+  background: #2a1a16;
+}
+
+body.horde-theme .stone-texture {
+  background: #241714;
+}
+
+body.light-mode.horde-theme .medieval-border {
+  border-color: #c98b67;
+  background: #ffffff;
+}
+
+body.light-mode.horde-theme .stone-texture {
+  background: #fff1dd;
+}
+
+body.horde-theme .gold-button {
+  background: #7a9f2f;
+  border-color: #b8db7a;
+  color: #14140e;
+}
+
+body.horde-theme .gray-button {
+  background: #4d3a34;
+  border-color: #9e7a6b;
+  color: #f4e3bf;
+}
+
+body.horde-theme .red-button {
+  background: #8f3428;
+  border-color: #d88b7b;
+  color: #fff5ed;
+}
+
+body.horde-theme .blue-button {
+  background: #2f6452;
+  border-color: #8fd1ba;
+  color: #e8fff7;
+}
+
+body.horde-theme input,
+body.horde-theme textarea,
+body.horde-theme select {
+  background: #241714;
+  border-color: #8d6036;
+  color: #f4e3bf;
+}
+
+body.light-mode.horde-theme .gold-button {
+  background: #4f9d4b;
+  border-color: #8dc87c;
+  color: #f6fff2;
+}
+
+body.light-mode.horde-theme .gray-button {
+  background: #ead8c9;
+  border-color: #c98b67;
+  color: #2a1a14;
+}
+
+body.light-mode.horde-theme .red-button {
+  background: #bc5649;
+  border-color: #e6a49d;
+  color: #fff7f5;
+}
+
+body.light-mode.horde-theme .blue-button {
+  background: #5d8372;
+  border-color: #9bc9b6;
+  color: #f4fffb;
+}
+
+body.light-mode.horde-theme input,
+body.light-mode.horde-theme textarea,
+body.light-mode.horde-theme select {
+  background: #fffaf4;
+  border-color: #d3a47e;
+  color: #2a1a14;
+}
+
+body.horde-theme .status-online {
+  color: #8bff5d;
+  text-shadow: 0 0 8px rgba(139, 255, 93, 0.5);
+}
+
+body.horde-theme .status-offline {
+  color: #ff8d79;
+}
+
+body.horde-theme .status-pending {
+  color: #f5d56a;
+}
+
+body.horde-theme .card-hover:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: inset 0 0 0 1px rgba(255, 245, 220, 0.2), 6px 6px 0 rgba(0, 0, 0, 0.45);
+}
+
+body.horde-theme .theme-switcher {
+  border-radius: 0;
+  border: 2px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+body:is(.default-theme, .clean-theme) .theme-switcher--admin,
+body.horde-theme .theme-switcher--admin,
+body.alliance-theme .theme-switcher--admin {
+  min-width: 7.5rem;
+}
+
+body.alliance-theme {
+  --primary: #8ab6ff;
+  --primary-light: #b8d1ff;
+  --primary-dark: #4a78c2;
+  --primary-rgb: 138, 182, 255;
+  --primary-light-rgb: 184, 209, 255;
+  --bg-dark: #111a27;
+  --bg-card: #1d2a3a;
+  --border-color: #56739f;
+  --text-primary: #eef4ff;
+  --text-secondary: #becbe0;
+  background: #111a27;
+}
+
+body.alliance-theme::before {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 30% 25%, rgba(138, 182, 255, 0.1), transparent 25%),
+    radial-gradient(circle at 80% 20%, rgba(255, 210, 128, 0.08), transparent 20%);
+  background-size: 4px 4px, 4px 4px, auto, auto;
+  opacity: 0.85;
+}
+
+body.alliance-theme::after {
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0.32) 100%);
+}
+
+body.alliance-theme .medieval-border {
+  border-color: #5f7ea5;
+  background: #1d2a3a;
+}
+
+body.alliance-theme .stone-texture {
+  background: #223041;
+}
+
+body.light-mode.alliance-theme .medieval-border {
+  border-color: #b6c8e6;
+  background: #ffffff;
+}
+
+body.light-mode.alliance-theme .stone-texture {
+  background: #f3f8ff;
+}
+
+body.alliance-theme .gold-button {
+  background: #d2b46c;
+  border-color: #f0d28f;
+  color: #1e2430;
+}
+
+body.alliance-theme .gray-button {
+  background: #41546f;
+  border-color: #8ea3c3;
+  color: #f3f7ff;
+}
+
+body.alliance-theme .red-button {
+  background: #a24c47;
+  border-color: #e0a19a;
+  color: #fff7f6;
+}
+
+body.alliance-theme .blue-button {
+  background: #4b74b6;
+  border-color: #a8c4ff;
+  color: #f5f9ff;
+}
+
+body.alliance-theme input,
+body.alliance-theme textarea,
+body.alliance-theme select {
+  background: #f7fbff;
+  border-color: #8da2c6;
+  color: #10213d;
+}
+
+body.light-mode.alliance-theme .gold-button {
+  background: #e0c07a;
+  border-color: #f0d28f;
+  color: #1e2430;
+}
+
+body.light-mode.alliance-theme .gray-button {
+  background: #dce7f5;
+  border-color: #b6c8e6;
+  color: #10213d;
+}
+
+body.light-mode.alliance-theme .red-button {
+  background: #bf6660;
+  border-color: #e8b1ab;
+  color: #fff8f7;
+}
+
+body.light-mode.alliance-theme .blue-button {
+  background: #5f8fdb;
+  border-color: #a8c4ff;
+  color: #f5f9ff;
+}
+
+body.light-mode.alliance-theme input,
+body.light-mode.alliance-theme textarea,
+body.light-mode.alliance-theme select {
+  background: #ffffff;
+  border-color: #b6c8e6;
+  color: #10213d;
+}
+
+body.alliance-theme .status-online {
+  color: #8ab6ff;
+  text-shadow: 0 0 8px rgba(138, 182, 255, 0.5);
+}
+
+body.alliance-theme .status-offline {
+  color: #f57a6b;
+}
+
+body.alliance-theme .status-pending {
+  color: #f0d28f;
+}
+
+body.alliance-theme .card-hover:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: inset 0 0 0 1px rgba(255, 245, 220, 0.2), 6px 6px 0 rgba(0, 0, 0, 0.45);
+}
+
+body.alliance-theme .theme-switcher {
+  border-radius: 0;
+  border: 2px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+.servers-page {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 1.6vw, 1.5rem);
+}
+
+.servers-toolbar {
+  gap: clamp(0.5rem, 1vw, 0.875rem);
+}
+
+.servers-toolbar input {
+  width: clamp(13rem, 20vw, 20rem);
+}
+
+.servers-grid {
+  display: grid;
+  gap: clamp(0.9rem, 1.2vw, 1.25rem);
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 17rem));
+  grid-auto-rows: 22rem;
+  justify-content: flex-start;
+}
+
+.servers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.server-running-quicklist {
+  border: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.server-running-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.server-running-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.server-running-chip:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.server-anchor-target {
+  scroll-margin-top: 1rem;
+}
+
+body.light-mode .server-running-quicklist {
+  background: #ffffff;
+}
+
+body.light-mode .server-running-chip {
+  background: #f8fafc;
+}
+
+.server-view-shell,
+.server-orchestrator-shell,
+.server-empty-state {
+  border: 1px solid var(--border-color);
+}
+
+.server-orchestrator-shell {
+  overflow: hidden;
+}
+
+.server-card-panel,
+.server-list-item-panel {
+  min-width: 0;
+}
+
+.server-card-panel {
+  padding: clamp(0.9rem, 1vw, 1.1rem);
+  height: 100%;
+  width: 100%;
+  min-height: 22rem;
+  max-height: 22rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.server-card-panel .game-logo-right {
+  width: clamp(5.5rem, 10vw, 8.5rem);
+  max-height: clamp(3rem, 6vw, 5.5rem);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.game-logo-large {
+  width: clamp(4rem, 8vw, 7rem);
+  max-width: 100%;
+  max-height: clamp(4rem, 8vw, 7rem);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.server-list-item-panel img {
+  width: clamp(2.5rem, 4vw, 3.25rem);
+  height: clamp(2.5rem, 4vw, 3.25rem);
+}
+
+.server-card-panel .stat-card {
+  min-height: clamp(3rem, 5vw, 4rem);
+}
+
+.server-card-actions,
+.server-list-actions {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.server-card-actions {
+  margin-top: auto;
+}
+
+.server-card-actions .gray-button,
+.server-card-actions .gold-button,
+.server-card-actions .red-button,
+.server-card-actions .blue-button,
+.server-list-actions .gray-button,
+.server-list-actions .gold-button,
+.server-list-actions .red-button,
+.server-list-actions .blue-button {
+  width: 100%;
+  min-height: 2.5rem;
+}
+
+.server-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.75rem;
+}
+
+.server-view-shell h4,
+.server-orchestrator-shell h4,
+.server-empty-state h3,
+.server-view-shell p,
+.server-orchestrator-shell p,
+.server-empty-state p {
+  overflow-wrap: anywhere;
+}
+
+.servers-page .medieval-border,
+.servers-page .stone-texture {
+  width: 100%;
+}
+
+.theme-settings-panel {
+  border: 1px solid var(--border-color);
+}
+
+.theme-mode-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  border: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.14);
+  color: var(--text-primary);
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.theme-mode-card:hover {
+  transform: translateY(-1px);
+  border-color: var(--primary);
+}
+
+.theme-mode-card--selected {
+  outline: 2px solid var(--primary);
+  outline-offset: 0;
+}
+
+.theme-mode-card--sky {
+  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.08);
+}
+
+.theme-mode-card--emerald {
+  box-shadow: inset 0 0 0 1px rgba(139, 195, 74, 0.08);
+}
+
+.theme-mode-card--blue {
+  box-shadow: inset 0 0 0 1px rgba(138, 182, 255, 0.08);
+}
+
+.theme-mode-sigil {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  flex-shrink: 0;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.theme-mode-sigil--sky { color: #7dd3fc; }
+.theme-mode-sigil--emerald { color: #b8ef72; }
+.theme-mode-sigil--blue { color: #b8d1ff; }
+
+.theme-sigil-svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.theme-mode-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.theme-mode-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.theme-mode-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.theme-mode-check {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--border-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.theme-mode-check--active {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.theme-settings-summary {
+  border: 1px solid var(--border-color);
+}
+
+.step-badge {
+  background: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+body.dark-mode .step-badge {
+  background: #334155;
+  border-color: #64748b;
+  color: #e2e8f0;
+}
+
+.step-badge--active {
+  background: var(--primary);
+  border-color: var(--primary-light);
+  color: #082030;
+}
+
+body.dark-mode .step-badge--active {
+  color: #f8fafc;
+}
+
+.theme-switcher,
+.theme-mode-card,
+.theme-settings-summary,
+.step-badge,
+.gold-button,
+.gray-button,
+.red-button,
+.blue-button {
+  font-size: clamp(0.92rem, 0.25vw + 0.82rem, 1.05rem);
+}
+
+.theme-mode-card {
+  padding: clamp(0.75rem, 1vw, 1rem);
+  gap: clamp(0.5rem, 0.8vw, 0.75rem);
+}
+
+.theme-mode-sigil {
+  width: clamp(2.75rem, 4vw, 3.25rem);
+  height: clamp(2.75rem, 4vw, 3.25rem);
+}
+
+.theme-mode-title {
+  font-size: clamp(0.92rem, 0.2vw + 0.84rem, 1rem);
+}
+
+.theme-mode-description,
+.theme-settings-summary,
+.theme-switcher--admin {
+  font-size: clamp(0.82rem, 0.18vw + 0.76rem, 0.95rem);
+}
+
+.theme-settings-panel {
+  padding: clamp(1rem, 1.4vw, 1.5rem);
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 17px;
+  }
+
+  .medieval-border,
+  .stone-texture,
+  .theme-settings-panel {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  }
+}
+
+@media (max-width: 1024px) {
+  .theme-settings-panel {
+    padding: 1rem;
+  }
+
+  .theme-mode-card {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: clamp(14px, 2vw, 16px);
+  }
+
+  .servers-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .servers-toolbar input {
+    width: 100%;
+  }
+
+  .servers-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .theme-switcher--admin {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .theme-mode-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .theme-mode-check {
+    align-self: flex-end;
+  }
+
+  .theme-settings-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .warcraft-title {
+    font-size: clamp(1rem, 4vw, 1.35rem);
+  }
+
+  .warcraft-subtitle {
+    font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+  }
+
+  .theme-mode-card,
+  .theme-settings-panel {
+    border-width: 1px;
+  }
+
+  .gold-button,
+  .gray-button,
+  .red-button,
+  .blue-button {
+    padding: 0.7rem 0.9rem;
+  }
+
+  .server-card-panel,
+  .server-list-item-panel {
+    padding: 0.875rem;
+  }
+
+  .server-card-actions,
+  .server-list-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+.theme-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+/* ============ Stats Cards ============ */
+
+.stat-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.stat-card:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+/* ============ Toggle Switch ============ */
+
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.toggle-switch.active {
+  background: var(--primary);
+}
+
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.toggle-switch.active::after {
+  transform: translateX(20px);
+}
+
+/* ============ Utility Classes ============ */
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============ Responsive ============ */
+
+@media (max-width: 768px) {
+  .game-logo {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .game-logo-right {
+    max-height: 48px;
+  }
+
+  .game-logo-large {
+    width: 64px;
+    max-height: 64px;
+  }
+}

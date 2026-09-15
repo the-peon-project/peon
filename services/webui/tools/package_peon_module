@@ -1,0 +1,9 @@
+#!/bin/bash
+current_dir="$(cd "$(dirname "$0")" && pwd)"
+source "$current_dir/modules/shared"
+# SETTINGS #
+version=$1
+container_tag="umlatt/peon.webui"
+dockerfile_path="$(dirname "$current_dir")"
+# EXECUTE SCRIPT #
+build_container_image
