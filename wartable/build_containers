@@ -62,6 +62,8 @@ echo "Getting latest steamcmd containers from cm2network/steamcmd"
 docker pull cm2network/steamcmd:latest
 echo "Building shared SteamCMD base image"
 docker build --build-arg VERSION="$VERSION" -t "umlatt/peon-steamcmd-base:${VERSION}" -t "umlatt/peon-steamcmd-base:latest" "${SCRIPT_DIR}/containers/_base"
+docker image push "umlatt/peon-steamcmd-base:${VERSION}"
+docker image push "umlatt/peon-steamcmd-base:latest"
 build_and_push "steamcmd-wine"   "umlatt/steamcmd-winehq"
 build_and_push "steamcmd-proton" "umlatt/steamcmd-proton"
 build_and_push "steamcmd"        "umlatt/steamcmd"

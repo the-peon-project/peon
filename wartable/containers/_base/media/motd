@@ -1,15 +1,5 @@
 
-                     ▄███████▄    ▄████████  ▄██████▄  ███▄▄▄▄   
-                    ███    ███   ███    ███ ███    ███ ███▀▀▀██▄ 
-                    ███    ███   ███    █▀  ███    ███ ███   ███ 
-                    ███    ███  ▄███▄▄▄     ███    ███ ███   ███ 
-                  ▀█████████▀  ▀▀███▀▀▀     ███    ███ ███   ███ 
-                    ███          ███    █▄  ███    ███ ███   ███ 
-                    ███          ███    ███ ███    ███ ███   ███ 
-                   ▄████▀        ██████████  ▀██████▀   ▀█   █▀  
-                                                        
-                                - The PEON Project -
-  https://github.com/the-peon-project/peon/tree/main/wartable/containers/steamcmd
-                                - Version: 1.2.16 -                                
-                   - Build Date: Sat  7 Mar 15:31:13 UTC 2026 -                   
+                    - The PEON Project - shared SteamCMD base image -
+       (each variant overlays its own versioned motd; if you see this,
+        that overlay is missing)
 
