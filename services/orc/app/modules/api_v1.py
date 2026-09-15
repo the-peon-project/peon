@@ -276,8 +276,7 @@ def put_servers(request: Request):
 def get_plans(request: Request):
     logging.info("APIv1 [GET] plans")
     _require_authorized(request)
-    config_peon = json.load(open("/app/config.json", 'r'))
-    if plans := get_plans_local(config_peon=config_peon):
+    if plans := get_plans_local(config_peon=settings):
         return plans
     raise HTTPException(status_code=404, detail="There was an issue getting the local plans list.")
 
@@ -312,8 +311,7 @@ def get_plan(game_uid: str, request: Request):
     logging.info(f"APIv1 [GET] plans <{game_uid}>")
     _require_authorized(request)
 
-    config_peon = json.load(open("/app/config.json", 'r'))
-    if settings_data := get_all_required_settings(config_peon=config_peon, game_uid=game_uid):
+    if settings_data := get_all_required_settings(config_peon=settings, game_uid=game_uid):
         return settings_data
     raise HTTPException(status_code=404, detail=f"Could not get the settings for [{game_uid}]")
             
