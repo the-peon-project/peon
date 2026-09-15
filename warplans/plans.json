@@ -2,501 +2,501 @@
     {
         "title": "Ark",
         "game_uid": "ark",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/ark"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/ark"
     },
     {
         "title": "Counterstrike Global Offensive (CS:GO)",
         "game_uid": "csgo",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/csgo"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/csgo"
     },
     {
         "title": "Counter Strike 2",
         "game_uid": "cs2",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/cs2"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/cs2"
     },
     {
         "title": "Duke Nukem 3D",
         "game_uid": "dukenukem",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/dukenukem"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/dukenukem"
     },
     {
         "title": "Enshrouded",
         "game_uid": "enshrouded",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/enshrouded"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/enshrouded"
     },
     {
         "title": "Palworld",
         "game_uid": "palworld",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/palworld"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/palworld"
     },
     {
         "title": "Satisfactory",
         "game_uid": "satisfactory",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/satisfactory"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/satisfactory"
     },
     {
         "title": "Sons of the Forest",
         "game_uid": "sof",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/sof"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/sof"
     },
     {
         "title": "Quake 3 Arena",
         "game_uid": "quake3",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/quake3"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/quake3"
     },
     {
         "title": "Starbound",
         "game_uid": "starbound",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/starbound"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/starbound"
     },
     {
         "title": "Valheim",
         "game_uid": "valheim",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/valheim"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/valheim"
     },
     {
         "title": "Windrose",
         "game_uid": "windrose",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/windrose"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/windrose"
     },
     {
         "title": "V Rising",
         "game_uid": "vrising",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/vrising"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/vrising"
     },
     {
         "title": "Counter-Strike",
         "game_uid": "counterstrike",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/counterstrike"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/counterstrike"
     },
     {
         "title": "Team Fortress 2",
         "game_uid": "tf2",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/tf2"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/tf2"
     },
     {
         "title": "Project Zomboid",
         "game_uid": "projectzomboid",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/projectzomboid"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/projectzomboid"
     },
     {
         "title": "Rust",
         "game_uid": "rust",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/rust"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/rust"
     },
     {
         "title": "DayZ",
         "game_uid": "dayz",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/dayz"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/dayz"
     },
     {
         "title": "Euro Truck Simulator 2",
         "game_uid": "ets2",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/ets2"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/ets2"
     },
     {
         "title": "Garry's Mod",
         "game_uid": "gmod",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/gmod"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/gmod"
     },
     {
         "title": "7 Days to Die",
         "game_uid": "7dtd",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/7dtd"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/7dtd"
     },
     {
         "title": "Terraria",
         "game_uid": "terraria",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/terraria"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/terraria"
     },
     {
         "title": "Left 4 Dead 2",
         "game_uid": "l4d2",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/l4d2"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/l4d2"
     },
     {
         "title": "Factorio",
         "game_uid": "factorio",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/factorio"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/factorio"
     },
     {
         "title": "Don't Starve Together",
         "game_uid": "dst",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/dst"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/dst"
     },
     {
         "title": "Squad",
         "game_uid": "squad",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/squad"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/squad"
     },
     {
         "title": "Arma Reforger",
         "game_uid": "armareforger",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/armareforger"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/armareforger"
     },
     {
         "title": "Unturned",
         "game_uid": "unturned",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/unturned"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/unturned"
     },
     {
         "title": "Call of Duty\u00ae",
         "game_uid": "callofduty",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/callofduty"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/callofduty"
     },
     {
         "title": "The Isle",
         "game_uid": "theisle",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/theisle"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/theisle"
     },
     {
         "title": "ARK: Survival Evolved",
         "game_uid": "arksurvivalevolved",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/arksurvivalevolved"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/arksurvivalevolved"
     },
     {
         "title": "ARMA 3",
         "game_uid": "arma3",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/arma3"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/arma3"
     },
     {
         "title": "Action Half-Life",
         "game_uid": "actionhalflife",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/actionhalflife"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/actionhalflife"
     },
     {
         "title": "Action: Source",
         "game_uid": "actionsource",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/actionsource"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/actionsource"
     },
     {
         "title": "American Truck Simulator",
         "game_uid": "americantrucksimulator",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/americantrucksimulator"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/americantrucksimulator"
     },
     {
         "title": "Assetto Corsa",
         "game_uid": "assettocorsa",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/assettocorsa"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/assettocorsa"
     },
     {
         "title": "Avorion",
         "game_uid": "avorion",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/avorion"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/avorion"
     },
     {
         "title": "BATTALION: Legacy",
         "game_uid": "battalionlegacy",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/battalionlegacy"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/battalionlegacy"
     },
     {
         "title": "Ballistic Overkill",
         "game_uid": "ballisticoverkill",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/ballisticoverkill"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/ballisticoverkill"
     },
     {
         "title": "Barotrauma",
         "game_uid": "barotrauma",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/barotrauma"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/barotrauma"
     },
     {
         "title": "Base Defense",
         "game_uid": "basedefense",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/basedefense"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/basedefense"
     },
     {
         "title": "Battlefield 1942",
         "game_uid": "battlefield1942",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/battlefield1942"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/battlefield1942"
     },
     {
         "title": "Battlefield: Vietnam",
         "game_uid": "battlefieldvietnam",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/battlefieldvietnam"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/battlefieldvietnam"
     },
     {
         "title": "Black Mesa: Deathmatch",
         "game_uid": "blackmesadeathmatch",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/blackmesadeathmatch"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/blackmesadeathmatch"
     },
     {
         "title": "Blade Symphony",
         "game_uid": "bladesymphony",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/bladesymphony"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/bladesymphony"
     },
     {
         "title": "BrainBread 2",
         "game_uid": "brainbread2",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/brainbread2"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/brainbread2"
     },
     {
         "title": "Brainbread",
         "game_uid": "brainbread",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/brainbread"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/brainbread"
     },
     {
         "title": "Call of Duty 2",
         "game_uid": "callofduty2",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/callofduty2"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/callofduty2"
     },
     {
         "title": "Call of Duty 4",
         "game_uid": "callofduty4",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/callofduty4"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/callofduty4"
     },
     {
         "title": "Call of Duty: United Offensive",
         "game_uid": "callofdutyunitedoffensive",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/callofdutyunitedoffensive"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/callofdutyunitedoffensive"
     },
     {
         "title": "Call of Duty: World at War",
         "game_uid": "callofdutyworldatwar",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/callofdutyworldatwar"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/callofdutyworldatwar"
     },
     {
         "title": "Chivalry: Medieval Warfare",
         "game_uid": "chivalrymedievalwarfare",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/chivalrymedievalwarfare"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/chivalrymedievalwarfare"
     },
     {
         "title": "Codename CURE",
         "game_uid": "codenamecure",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/codenamecure"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/codenamecure"
     },
     {
         "title": "Colony Survival",
         "game_uid": "colonysurvival",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/colonysurvival"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/colonysurvival"
     },
     {
         "title": "Core Keeper",
         "game_uid": "corekeeper",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/corekeeper"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/corekeeper"
     },
     {
         "title": "Counter-Strike: Condition Zero",
         "game_uid": "counterstrikeconditionzero",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/counterstrikeconditionzero"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/counterstrikeconditionzero"
     },
     {
         "title": "Counter-Strike: Global Offensive",
         "game_uid": "counterstrikeglobaloffensive",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/counterstrikeglobaloffensive"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/counterstrikeglobaloffensive"
     },
     {
         "title": "Counter-Strike: Source",
         "game_uid": "counterstrikesource",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/counterstrikesource"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/counterstrikesource"
     },
     {
         "title": "Craftopia",
         "game_uid": "craftopia",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/craftopia"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/craftopia"
     },
     {
         "title": "Day of Defeat",
         "game_uid": "dayofdefeat",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/dayofdefeat"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/dayofdefeat"
     },
     {
         "title": "Day of Defeat: Source",
         "game_uid": "dayofdefeatsource",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/dayofdefeatsource"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/dayofdefeatsource"
     },
     {
         "title": "Day of Dragons",
         "game_uid": "dayofdragons",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/dayofdragons"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/dayofdragons"
     },
     {
         "title": "Day of Infamy",
         "game_uid": "dayofinfamy",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/dayofinfamy"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/dayofinfamy"
     },
     {
         "title": "Deathmatch Classic",
         "game_uid": "deathmatchclassic",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/deathmatchclassic"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/deathmatchclassic"
     },
     {
         "title": "Double Action: Boogaloo",
         "game_uid": "doubleactionboogaloo",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/doubleactionboogaloo"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/doubleactionboogaloo"
     },
     {
         "title": "Dystopia",
         "game_uid": "dystopia",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/dystopia"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/dystopia"
     },
     {
         "title": "ET: Legacy",
         "game_uid": "etlegacy",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/etlegacy"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/etlegacy"
     },
     {
         "title": "Eco",
         "game_uid": "eco",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/eco"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/eco"
     },
     {
         "title": "Empires Mod",
         "game_uid": "empiresmod",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/empiresmod"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/empiresmod"
     },
     {
         "title": "Fistful of Frags",
         "game_uid": "fistfuloffrags",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/fistfuloffrags"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/fistfuloffrags"
     },
     {
         "title": "HYPERCHARGE: Unboxed",
         "game_uid": "hyperchargeunboxed",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/hyperchargeunboxed"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/hyperchargeunboxed"
     },
     {
         "title": "Half-Life 2: Deathmatch",
         "game_uid": "halflife2deathmatch",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/halflife2deathmatch"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/halflife2deathmatch"
     },
     {
         "title": "Half-Life Deathmatch: Source",
         "game_uid": "halflifedeathmatchsource",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/halflifedeathmatchsource"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/halflifedeathmatchsource"
     },
     {
         "title": "Half-Life: Deathmatch",
         "game_uid": "halflifedeathmatch",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/halflifedeathmatch"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/halflifedeathmatch"
     },
     {
         "title": "Humanitz",
         "game_uid": "humanitz",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/humanitz"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/humanitz"
     },
     {
         "title": "Hurtworld",
         "game_uid": "hurtworld",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/hurtworld"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/hurtworld"
     },
     {
         "title": "IOSoccer",
         "game_uid": "iosoccer",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/iosoccer"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/iosoccer"
     },
     {
         "title": "Insurgency",
         "game_uid": "insurgency",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/insurgency"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/insurgency"
     },
     {
         "title": "Insurgency: Sandstorm",
         "game_uid": "insurgencysandstorm",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/insurgencysandstorm"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/insurgencysandstorm"
     },
     {
         "title": "Jabroni Brawl: Episode 3",
         "game_uid": "jabronibrawlepisode3",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/jabronibrawlepisode3"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/jabronibrawlepisode3"
     },
     {
         "title": "Jedi Knight II: Jedi Outcast",
         "game_uid": "jediknightiijedioutcast",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/jediknightiijedioutcast"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/jediknightiijedioutcast"
     },
     {
         "title": "Just Cause 2",
         "game_uid": "justcause2",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/justcause2"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/justcause2"
     },
     {
         "title": "Just Cause 3",
         "game_uid": "justcause3",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/justcause3"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/justcause3"
     },
     {
         "title": "Killing Floor",
         "game_uid": "killingfloor",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/killingfloor"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/killingfloor"
     },
     {
         "title": "Killing Floor 2",
         "game_uid": "killingfloor2",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/killingfloor2"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/killingfloor2"
     },
     {
         "title": "Left 4 Dead",
         "game_uid": "left4dead",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/left4dead"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/left4dead"
     },
     {
         "title": "Medal of Honor: Allied Assault",
         "game_uid": "medalofhonoralliedassault",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/medalofhonoralliedassault"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/medalofhonoralliedassault"
     },
     {
         "title": "Memories of Mars",
         "game_uid": "memoriesofmars",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/memoriesofmars"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/memoriesofmars"
     },
     {
         "title": "Military Conflict: Vietnam",
         "game_uid": "militaryconflictvietnam",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/militaryconflictvietnam"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/militaryconflictvietnam"
     },
     {
         "title": "Minecraft: Bedrock Edition",
         "game_uid": "minecraftbedrockedition",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/minecraftbedrockedition"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/minecraftbedrockedition"
     },
     {
         "title": "Minecraft: Java Edition",
         "game_uid": "minecraftjavaedition",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/minecraftjavaedition"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/minecraftjavaedition"
     },
     {
         "title": "Mordhau",
         "game_uid": "mordhau",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/mordhau"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/mordhau"
     },
     {
         "title": "Multi Theft Auto",
         "game_uid": "multitheftauto",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/multitheftauto"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/multitheftauto"
     },
     {
         "title": "Mumble",
         "game_uid": "mumble",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/mumble"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/mumble"
     },
     {
         "title": "NS2: Combat",
         "game_uid": "ns2combat",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/ns2combat"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/ns2combat"
     },
     {
         "title": "Natural Selection",
         "game_uid": "naturalselection",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/naturalselection"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/naturalselection"
     },
     {
         "title": "Natural Selection 2",
         "game_uid": "naturalselection2",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/naturalselection2"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/naturalselection2"
     },
     {
         "title": "Necesse",
         "game_uid": "necesse",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/necesse"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/necesse"
     },
     {
         "title": "No More Room in Hell",
         "game_uid": "nomoreroominhell",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/nomoreroominhell"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/nomoreroominhell"
     },
     {
         "title": "Nuclear Dawn",
         "game_uid": "nucleardawn",
-        "plan_url": "https://github.com/the-peon-project/peon-warplans/tree/main/nucleardawn"
+        "plan_url": "https://github.com/the-peon-project/peon/tree/main/warplans/nucleardawn"
     }
 ]

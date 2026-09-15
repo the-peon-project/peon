@@ -1,8 +1,8 @@
 {
     "settings" : {
         "repo" : "github",
-        "plans_url" : "https://raw.githubusercontent.com/the-peon-project/peon-warplans/main/plans.json",
-        "plan_url" : "https://raw.githubusercontent.com/the-peon-project/peon-warplans/main/{0}/plan.json"
+        "plans_url" : "https://raw.githubusercontent.com/the-peon-project/peon/main/warplans/plans.json",
+        "plan_url" : "https://raw.githubusercontent.com/the-peon-project/peon/main/warplans/{0}/plan.json"
     },
     "path": {
         "servers": "/home/peon/servers",

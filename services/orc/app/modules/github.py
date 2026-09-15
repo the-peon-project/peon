@@ -6,17 +6,28 @@ sys.path.insert(0,'/app')
 from modules.shell import execute_shell
 
 plan_path = '/home/peon/plans'
-repo_url = 'https://github.com/the-peon-project/peon-warplans.git'
+repo_url = 'https://github.com/the-peon-project/peon.git'
+# Warplans now live at this subdirectory of the consolidated peon repo (previously
+# a standalone peon-warplans repo). We sparse-checkout just this subdir so plan_path
+# keeps the flat layout consumers expect (plan_path/plans.json, plan_path/<game_uid>/plan.json).
+repo_subdir = 'warplans'
+
+def _flatten_repo_subdir():
+    # Copy the sparse-checked-out subdir's contents up to plan_path root, matching
+    # the flat layout the old standalone peon-warplans clone used to produce there.
+    execute_shell(cmd_as_string=f'cp -r {plan_path}/{repo_subdir}/. {plan_path}/')
 
 def get_plans_from_github():
-    logging.debug(f'[get_plans_from_github] Pulling latest plans from [{repo_url}].')
+    logging.debug(f'[get_plans_from_github] Pulling latest plans from [{repo_url}] (subdirectory: {repo_subdir}).')
     try:
-        Repo.clone_from(repo_url, plan_path)
+        execute_shell(cmd_as_string=f'git clone --no-checkout --filter=blob:none {repo_url} {plan_path}')
+        execute_shell(cmd_as_string=f'cd {plan_path} && git sparse-checkout init --cone && git sparse-checkout set {repo_subdir} && git checkout main')
+        _flatten_repo_subdir()
         return { "status" : "success" }
     except Exception as e:
         logging.error(f'[get_plans_from_github] Could not pull plans from [{repo_url}]. {e}')
         return { "status" : "error", "info" : f"{e}" }
-    
+
 def update_plans_from_github(force=False):
     if not os.listdir(plan_path): # Check if the plans currently exist
         logging.warning(f"[update_plans_from_github] No plans found. Downloading plans from [{repo_url}]")
@@ -34,10 +45,11 @@ def update_plans_from_github(force=False):
         else:
             execute_shell(cmd_as_string=f'cd {plan_path} && git pull')
         # TEMP SOLUTION [END] - as python git is full of sh**
+        _flatten_repo_subdir()
         return { "status" : "success" }
     except Exception as e:
         logging.error(f'[get_plans_from_github] Could not pull plans from [{repo_url}]. {e}')
-        return { "status" : "error", "info" : f"{e}" }    
+        return { "status" : "error", "info" : f"{e}" }
 
 if __name__ == "__main__":
     logging.basicConfig(filename='/var/log/peon/DEV.peon.orc_github.log', filemode='a', format='%(asctime)s %(thread)d [%(levelname)s] - %(message)s', level=logging.DEBUG)
