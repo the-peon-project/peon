@@ -2,7 +2,7 @@
 
 The PEON war plan that Peon uses to deploy your game server.
 
-> **Windrose dedicated server is distributed as a Steam tool (app id `4129620`) and currently ships as a Windows server binary. This plan uses the PEON `steamcmd-proton` image to keep PEON runtime integrations (`state`, `ip`, and server config files) available through the API.**
+> **Windrose dedicated server is distributed as a Steam tool (app id `4129620`) and currently ships as a Windows server binary. This plan uses the PEON `steamcmd-proton:1.2.16` image to keep PEON runtime integrations (`state`, `ip`, and server config files) available through the API.**
 
 ## Documentation
 
@@ -30,7 +30,7 @@ services:
   server:
     container_name: peon.warcamp.windrose.default
     hostname: peon.warcamp.windrose
-    image: umlatt/steamcmd-proton
+    image: umlatt/steamcmd-proton:1.2.16
     ports:
       - 7777:7777/tcp
       - 7777:7777/udp

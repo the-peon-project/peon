@@ -6,7 +6,7 @@
         "description"   : "A PEON Windrose game server.",
         "mode"          : "steamcmd-proton",
         "hostname"      : "peon.warcamp.windrose",
-        "image"         : "umlatt/steamcmd-proton"
+        "image"         : "umlatt/steamcmd-proton:1.2.16"
     },
     "ports" : [
         [ { "PORT" : ["7777", "tcp/udp"] } ]

@@ -47,17 +47,10 @@ if [ -f "/actions/ServerDescription.json" ]; then
         && mv "$INSTALL_DIR/R5/ServerDescription.json.tmp" "$INSTALL_DIR/R5/ServerDescription.json"
 fi
 
-echo "Clean any existing /tmp/.X0-lock"
-rm -rf /tmp/.X0-lock 2>&1
-echo "Start Xvfb"
-Xvfb :0 -screen 0 1024x768x16 &
-
-echo "Start Windrose server using virtual display"
 cd "$(dirname "$windrose_entry")" || exit 1
-export DISPLAY="${DISPLAY:-:0.0}"
-export SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-x11}"
+export SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-dummy}"
 export SDL_AUDIODRIVER="${SDL_AUDIODRIVER:-dummy}"
-DISPLAY=:0.0 /home/steam/steamcmd/compatibilitytools.d/proton/proton run "./$(basename "$windrose_entry")" -batchmode -nographics -log &
+/home/steam/steamcmd/compatibilitytools.d/proton/proton run "./$(basename "$windrose_entry")" -batchmode -nographics -log &
 launcher_pid=$!
 
 for _ in $(seq 1 30); do
