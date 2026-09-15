@@ -367,3 +367,4 @@ MigrationBackup/
 /cache/
 /certs/
 graphify-out/
+.superpowers/
