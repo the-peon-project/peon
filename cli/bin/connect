@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# List all running Docker containers in alphabetical order
+containers=$(docker ps --format "{{.Names}}\t{{.State}}" | sort)
+
+# Check if there are any running containers
+if [[ -z "$containers" ]]; then
+    echo "No running containers found."
+    exit 1
+fi
+
+# Display the list of containers with a TUI using whiptail
+selected_container=""
+while [[ -z "$selected_container" ]]; do
+    selected_container=$(whiptail --title "Select a container" --menu "Choose a container to connect to:" 20 60 10 $containers 3>&1 1>&2 2>&3)
+    exit_status=$?
+
+    # Validate the selected container
+    if [[ $exit_status -eq 1 ]]; then
+        echo "No container selected. Exiting..."
+        exit 1
+    elif [[ $exit_status -eq 255 ]]; then
+        echo "Cancelled. Exiting..."
+        exit 1
+    elif [[ -z "$selected_container" ]]; then
+        echo "Invalid input. Please try again."
+        sleep 2
+    elif ! docker ps -q --filter "name=$selected_container" >/dev/null; then
+        echo "Container not found. Please try again."
+        sleep 2
+        selected_container=""
+    fi
+done
+
+# Connect to the selected container as root with an interactive bash session
+docker exec -it --user root "$selected_container" bash

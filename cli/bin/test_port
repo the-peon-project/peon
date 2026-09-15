@@ -1,0 +1,8 @@
+#!/bin/bash
+nc -uzvw 1 "$1" "$2"
+
+if [ $? -eq 0 ]; then
+    echo "The server is listening on UDP port $port."
+else
+    echo "The server is not listening on UDP port $port."
+fi
