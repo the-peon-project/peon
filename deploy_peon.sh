@@ -268,11 +268,7 @@ fi
 mv docker-compose.yml.tmp docker-compose.yml
 rm -rf docker-compose.yml.tmp
 # SETTINGS
-<<<<<<< HEAD
-cp .env.sample .env
-=======
 ensure_env_defaults
->>>>>>> c1a5c23 (Update deployment stack composition)
 if [[ "$cache" = "true" ]]; then
     sed -i "/PEON_CACHE_ENABLED/s/.*/PEON_CACHE_ENABLED=true/" .env
 else
