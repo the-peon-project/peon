@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 import sys
 import datetime
+import os
+import shutil
 sys.path.insert(0,'/app')
 from modules import client, prefix, schedule_file
 from modules.shell import execute_shell
@@ -159,12 +161,113 @@ def server_update_description(server_uid, description):
 
 def docker_compose_do(action,server_uid):
     working_dir = f"{server_root_path}/{server_uid.replace('.','/')}"
+    container_name = f"{prefix}{server_uid}"
+
     try:
+        if action == 'stop':
+            result = execute_shell(f"docker stop {container_name}")
+            return {"status": "success", "info": f"{server_uid}", "stdout": f"{result}"}
+
+        if action == 'restart':
+            result = execute_shell(f"docker restart {container_name}")
+            return {"status": "success", "info": f"{server_uid}", "stdout": f"{result}"}
+
         result = execute_shell(f"cd {working_dir} && chown -R 1000:1000 . && docker compose -p {server_uid.replace('.','_')} {action}")
         return {"status" : "success", "info" : f"{server_uid}", "stdout" : f"{result}"}
     except Exception as e:
         logging.error(f"docker_compose_do.nok. {e}")
         return {"status" : "error", "info" : f"Could not complete the requested action for [{server_uid}].", "exception" : f"{e}"}
+
+def _directory_size_bytes(path):
+    total = 0
+    for root, _, files in os.walk(path):
+        for filename in files:
+            file_path = os.path.join(root, filename)
+            try:
+                total += os.path.getsize(file_path)
+            except OSError:
+                continue
+    return total
+
+def _resolve_largest_subdir_name(root_path):
+    if not os.path.isdir(root_path):
+        return None
+
+    largest_name = None
+    largest_size = -1
+    for folder_name in os.listdir(root_path):
+        folder_path = os.path.join(root_path, folder_name)
+        if not os.path.isdir(folder_path):
+            continue
+        folder_size = _directory_size_bytes(folder_path)
+        if folder_size > largest_size:
+            largest_name = folder_name
+            largest_size = folder_size
+
+    return largest_name
+
+def _normalized_relative_path(path_value):
+    normalized = os.path.normpath(str(path_value or '').strip())
+    if not normalized or normalized == '.':
+        return None
+    if os.path.isabs(normalized):
+        return None
+    if normalized.startswith('..'):
+        return None
+    return normalized
+
+def _apply_environment_autopin_rules(working_dir, server_config):
+    try:
+        rules = server_config.get('environment_autopin', [])
+        if not isinstance(rules, list) or not rules:
+            return False
+
+        environment = server_config.setdefault('environment', {})
+        has_updates = False
+
+        for rule in rules:
+            if not isinstance(rule, dict):
+                continue
+
+            env_var = str(rule.get('env_var', '')).strip()
+            selector = str(rule.get('selector', '')).strip().lower()
+            source_path = _normalized_relative_path(rule.get('source_path'))
+
+            if not env_var or not selector or not source_path:
+                continue
+
+            # Do not overwrite explicit user-defined values.
+            configured_value = str(environment.get(env_var, '') or '').strip()
+            if configured_value:
+                continue
+
+            source_root = os.path.join(working_dir, source_path)
+            resolved_value = None
+            if selector == 'largest_subdir':
+                resolved_value = _resolve_largest_subdir_name(source_root)
+
+            if not resolved_value:
+                continue
+
+            environment[env_var] = resolved_value
+            has_updates = True
+            logging.warning(
+                f"Auto-pinned environment variable [{env_var}] to [{resolved_value}] "
+                f"using selector [{selector}] from [{source_path}]"
+            )
+
+        if not has_updates:
+            return False
+
+        config_file = os.path.join(working_dir, 'config.json')
+        backup_file = f"{config_file}.bak-{datetime.datetime.now().strftime('%Y%m%d-%H%M%S')}"
+        shutil.copy2(config_file, backup_file)
+        with open(config_file, 'w') as json_file:
+            json.dump(server_config, json_file, indent=4)
+        return True
+    except Exception as e:
+        logging.error(f"environment.autopin.nok. {e}")
+        return False
 
 def server_refresh_manifest(server_uid):
     working_dir = f"{server_root_path}/{server_uid.replace('.','/')}"
@@ -172,6 +275,7 @@ def server_refresh_manifest(server_uid):
     try:
         with open(config_file, 'r') as json_file:
             server_config = json.load(json_file)
+        _apply_environment_autopin_rules(working_dir, server_config)
         return update_build_file(server_path=working_dir, config_warcamp=server_config)
     except Exception as e:
         logging.error(f"server_refresh_manifest.nok. {e}")
