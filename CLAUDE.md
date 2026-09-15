@@ -131,7 +131,7 @@ Inspect the compose fragments in `config/docker-compose/` before editing `deploy
 
 - Deployment composition wires together `services/orc`, `services/webui`, `docs`, and `services/bot-discord`
 - `services/orc` is the control plane every other service and `cli` calls into
-- `services/orc` now reads `warplans/` directly in-repo (raw.githubusercontent.com paths and a sparse-checkout of the `warplans/` subdir) rather than syncing a separate `peon-warplans` clone — see `services/orc/CLAUDE.md` for the mechanism, which is unverified against a live deployment
+- `services/orc` now reads `warplans/` directly in-repo via a read-only Docker bind mount (`config/docker-compose/02_orc.yml` mounts `warplans/` to `/home/peon/plans`), rather than the earlier raw.githubusercontent.com/sparse-checkout mechanism, which has been deleted from this branch — see `services/orc/CLAUDE.md`'s "Warplan Source" section for the mechanism and its caveats (this bind mount requires a full monorepo checkout at the deployment root, which is not automatically true of every checkout)
 - `warplans/` recipes reference `wartable/` images as contract points
 
 ## Deployment / Release Validation

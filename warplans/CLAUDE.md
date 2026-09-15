@@ -8,6 +8,7 @@ This directory defines supported games and their deployment recipes. Treat each 
 - Per-game configuration: `<game>/plan.json`
 - Per-game documentation: `<game>/README.md`
 - Per-game helper assets: `<game>/actions/`, optional `data/`, and logos
+- One-off migration tooling: `tools/` (e.g. `migrate_server_start.py`, used to extract the shared `server_start` boilerplate into the sourced library — see the note under Cross-Directory Dependencies)
 
 ## Structure
 
@@ -55,7 +56,8 @@ No build or run commands apply to this directory directly; validation is limited
 
 ## Cross-Directory Dependencies (within this repo)
 
-- `peon/services/orc` consumes these plans to create and manage servers. Its `app/modules/github.py` and `app/config.json` now read warplans directly from this in-repo location — via `raw.githubusercontent.com/.../peon/main/warplans/...` and a sparse-checkout of the `warplans/` subdirectory — instead of cloning a separate `peon-warplans` repo. Changes made here take effect for the orchestrator with no separate repo-sync step.
+- `peon/services/orc` consumes these plans to create and manage servers. It now reads `warplans/` directly via a read-only Docker bind mount (`config/docker-compose/02_orc.yml` mounts this directory to `/home/peon/plans`) instead of the earlier raw.githubusercontent.com/sparse-checkout mechanism, which has been deleted — see `services/orc/CLAUDE.md`'s "Warplan Source" section for the mechanism and its deployment-checkout caveat. Changes made here take effect for the orchestrator with no separate repo-sync step, provided the deployment checkout is a full monorepo checkout.
+- `<game>/actions/server_start` scripts may `source` a shared helper library baked into the wartable base image at `/init/lib/server_start_lib.sh` (see `peon/wartable/CLAUDE.md`); the migrated scripts guard this with an existence check so they still work when run against an image that predates that base image.
 - `peon/wartable` may need updates when modes or images change.
 - `peon/docs` should reflect supported games and configuration behavior.
 
