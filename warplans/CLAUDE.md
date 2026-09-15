@@ -1,6 +1,6 @@
 # PEON Warplans Guide
 
-This repo defines supported games and their deployment recipes. Treat each game directory as a discrete configuration surface.
+This directory defines supported games and their deployment recipes. Treat each game directory as a discrete configuration surface. Formerly the standalone `peon-warplans` repo, now `peon/warplans/` in the consolidated `peon` monorepo (see the root `CLAUDE.md` for the overall map).
 
 ## Scope
 
@@ -22,21 +22,30 @@ Each supported game normally follows this pattern:
 
 Some games also carry additional assets such as `data/`.
 
+`plans.json` entries point `plan_url` at `https://github.com/the-peon-project/peon/tree/main/warplans/<game_uid>` — the monorepo path, not a standalone repo URL. This is already updated; do not edit `plans.json` as part of routine per-game work.
+
 ## Working Rules
 
 1. Keep `plans.json` aligned with per-game directories.
 2. Keep each game's `README.md` aligned with its `plan.json` when behavior changes.
 3. Treat `metadata.mode`, image references, ports, environment variables, and mounted volumes as externally significant contract points.
-4. If a plan change implies a new runtime image or base behavior, inspect `peon-wartable/containers/`.
-5. If orchestration assumptions change, inspect `peon-orc/`.
-6. If user-facing setup or supported-game docs change, update `peon-docs/` source docs.
+4. If a plan change implies a new runtime image or base behavior, inspect `peon/wartable/containers/`.
+5. If orchestration assumptions change, inspect `peon/services/orc/`.
+6. If user-facing setup or supported-game docs change, update `peon/docs/` source docs.
+7. Keep changes minimal and directory-local unless the task is explicitly cross-directory.
+8. Prefer non-destructive validation first; do not request or print secrets, and do not edit generated docs outputs directly.
+
+## Commands
+
+No build or run commands apply to this directory directly; validation is limited to JSON/document checks (see below).
 
 ## Validation Expectations
 
-- Confirm changed `plan.json` files remain valid JSON.
+- Validate `plans.json` and each touched `plan.json` with `python -m json.tool`.
 - Confirm referenced sibling paths such as `actions/` or `data/` actually exist.
 - Confirm the game stays present and correctly named in `plans.json`.
 - Prefer targeted checks over broad repo-wide rewrites.
+- For deployment or release validation, build updated images from source under `/home/richard/development/peon`, then upgrade the UAT stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off — do not run this as routine validation.
 
 ## Important Files
 
@@ -44,11 +53,11 @@ Some games also carry additional assets such as `data/`.
 - Example game plan: `valheim/plan.json`
 - Example game docs: `valheim/README.md`
 
-## Cross-Repo Dependencies
+## Cross-Directory Dependencies (within this repo)
 
-- `peon-orc` consumes these plans to create and manage servers
-- `peon-wartable` may need updates when modes or images change
-- `peon-docs` should reflect supported games and configuration behavior
+- `peon/services/orc` consumes these plans to create and manage servers. Its `app/modules/github.py` and `app/config.json` now read warplans directly from this in-repo location — via `raw.githubusercontent.com/.../peon/main/warplans/...` and a sparse-checkout of the `warplans/` subdirectory — instead of cloning a separate `peon-warplans` repo. Changes made here take effect for the orchestrator with no separate repo-sync step.
+- `peon/wartable` may need updates when modes or images change.
+- `peon/docs` should reflect supported games and configuration behavior.
 
 ## Default Workflow
 
@@ -56,4 +65,4 @@ Some games also carry additional assets such as `data/`.
 2. Read `plan.json` and the sibling `README.md`.
 3. Make the smallest valid configuration change.
 4. Validate JSON shape and referenced assets.
-5. Update docs in this repo and `peon-docs/` as needed.
+5. Update docs in this directory and `peon/docs/` as needed.
