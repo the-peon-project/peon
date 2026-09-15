@@ -10,10 +10,10 @@ def test_get_server_returns_server_info(client, auth_headers, fake_docker_client
     from modules import api_v1
     fake_container = MagicMock()
     fake_docker_client.containers.get.return_value = fake_container
-    monkeypatch.setattr(api_v1, "server_get_server", lambda container: {"server_uid": "ark.warcamp1", "state": "running"})
+    monkeypatch.setattr(api_v1, "server_get_server", lambda container: {"game_uid": "ark", "servername": "warcamp1", "state": "running"})
     response = client.get("/api/v1/server/info/ark.warcamp1", headers=auth_headers)
     assert response.status_code == 200
-    assert response.json() == {"server_uid": "ark.warcamp1", "state": "running"}
+    assert response.json() == {"game_uid": "ark", "servername": "warcamp1", "state": "running"}
 
 
 def test_get_server_404s_when_container_missing(client, auth_headers, fake_docker_client):

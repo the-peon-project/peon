@@ -286,12 +286,14 @@ def put_plans(request: Request):
     logging.info("APIv1 [PUT] plans <update>")
     _require_authorized(request)
 
-    old_plans = get_plans_local(settings)
+    old_plans = get_plans_local(settings) or []
     result = update_latest_plans_from_repository()
     if 'success' not in result['status']:
         raise HTTPException(status_code=404, detail=result)
 
     new_plans = get_plans_local(settings)
+    if new_plans is None:
+        raise HTTPException(status_code=404, detail={"status": "error", "info": "There was an issue getting the local plans list."})
     differences = {}
     for new_dict in new_plans:
         game_uid = new_dict['game_uid']

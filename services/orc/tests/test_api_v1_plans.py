@@ -39,3 +39,21 @@ def test_get_plan_404s_for_unknown_game(client, auth_headers, monkeypatch):
     monkeypatch.setattr(api_v1, "get_all_required_settings", lambda config_peon, game_uid: None)
     response = client.get("/api/v1/plan/does-not-exist", headers=auth_headers)
     assert response.status_code == 404
+
+
+def test_put_plans_404s_when_local_plans_missing(client, auth_headers, monkeypatch):
+    from modules import api_v1
+    monkeypatch.setattr(api_v1, "get_plans_local", lambda config_peon: None)
+    monkeypatch.setattr(api_v1, "update_latest_plans_from_repository", lambda: {"status": "success"})
+    response = client.put("/api/v1/plans", headers=auth_headers)
+    assert response.status_code == 404
+
+
+def test_put_plans_happy_path(client, auth_headers, monkeypatch):
+    from modules import api_v1
+    fake_plans = [{"title": "Ark", "game_uid": "ark"}]
+    monkeypatch.setattr(api_v1, "get_plans_local", lambda config_peon: fake_plans)
+    monkeypatch.setattr(api_v1, "update_latest_plans_from_repository", lambda: {"status": "success"})
+    response = client.put("/api/v1/plans", headers=auth_headers)
+    assert response.status_code == 200
+    assert response.json() == {"new_recipies": {}}
