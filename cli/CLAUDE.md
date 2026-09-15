@@ -56,6 +56,10 @@ bash -n bin/peon
 - Game operations: `bin/modules/game.sh`
 - Connection/logging/port helpers: `bin/connect`, `bin/logs`, `bin/test_port`
 
+## Known Constraints
+
+- `bin/modules/game.sh`'s `game_start_container`/`game_stop_container`/`game_restart_container`/`game_delete_container` operate on containers directly via `docker`/`docker-compose`, independent of `peon/services/orc`'s API. orc manages the same containers (start/stop/restart/scheduler) through its own Docker calls. The two are not coordinated -- a CLI action and an orc-triggered action (e.g. the scheduler) can race on the same container. Be aware of this when diagnosing an "unexpected" server state change.
+
 ## Cross-Directory Dependencies (within this repo)
 
 - Targets deployed PEON infrastructure composed from the repo root (`peon/`, `deploy_peon.sh`, `config/docker-compose/`).

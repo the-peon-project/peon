@@ -67,7 +67,7 @@ Use targeted syntax checks or module-level verification around touched files whe
 
 - `peon/services/webui` depends on this API for orchestrator and server control
 - `peon/services/bot-discord` depends on this API for Discord command behavior
-- `peon/cli` often mirrors operational actions against the PEON stack
+- `peon/cli` often mirrors operational actions against the PEON stack directly via Docker (not through this API) -- see `peon/cli/CLAUDE.md`'s Known Constraints for the resulting dual-control risk on the same containers
 - `peon/warplans` defines the recipes this directory consumes
 - `peon/wartable` defines the runtime images referenced by plans
 

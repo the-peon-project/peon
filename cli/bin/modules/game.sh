@@ -8,13 +8,19 @@ game_get_metrics() {
 game_connect_container() {
     echo -e "Connecting to ${BLUE}$1${STD}"
         read -p " Root user? y/[n] " -t 5 choice
-    if [[ "${choice,,}" == "y" ]]; then 
+    if [[ "${choice,,}" == "y" ]]; then
         docker exec -it -u root $1 bash
     else
         docker exec -it $1 bash
     fi
 }
 
+# NOTE: These functions control containers directly via docker/docker-compose and
+# do not go through peon/services/orc's API. orc (the control plane other services
+# call) manages the same containers independently -- e.g. orc's scheduler can stop
+# a server this CLI just started, or an orc-triggered action can race a CLI action
+# on the same container. There is currently no coordination between the two. See
+# peon/services/orc/CLAUDE.md's Cross-Directory Dependencies section.
 game_start_container() {
     echo -e "[${GREEN}Starting${STD}] $1"
     docker-compose up -d
