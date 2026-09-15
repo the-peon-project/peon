@@ -1,0 +1,6 @@
+pipenv
+discord.py
+python-dotenv
+requests
+aiohttp
+pytz

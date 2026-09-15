@@ -1,0 +1,12 @@
+{
+    "peon": [
+        "peonbot",
+        "poke",
+        "start",
+        "get",
+        "stop"
+    ],
+    "clear": [
+        "clean"
+    ]
+}

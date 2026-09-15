@@ -1,0 +1,110 @@
+{
+    "poke": {
+        "note": "Test the bot.",
+        "user": "!poke",
+        "admin": "!poke",
+        "symbol": ":point_up:"
+    },
+    "get": {
+        "note": "Get a game server's details.",
+        "user": "!get time*",
+        "admin": "!get time* <servername> <gameuid*> <orchestrator*>",
+        "symbol": ":tent:"
+    },
+    "getall": {
+        "note": "View all registered servers.",
+        "user": null,
+        "admin": "!getall",
+        "symbol": ":european_castle:"
+    },
+    "plan": {
+        "note": "Get the requirements for a specific game plan.",
+        "user": null,
+        "admin": "!plan <gameuid>",
+        "symbol": ":scroll:"
+    },
+    "plans": {
+        "note": "Get available game recipes",
+        "user": "!plans",
+        "admin": "!plans",
+        "symbol": ":books:"
+    },
+    "register": {
+        "note": "Register an Orchestrator.",
+        "user": null,
+        "admin": "!register",
+        "symbol": ":pick:"
+    },
+    "deregister": {
+        "note": "Deregister an Orchestrator.",
+        "user": null,
+        "admin": "!deregister>",
+        "symbol": ":fire:"
+    },
+    "refresh": {
+        "note": "Pull the latest available game plans for PEON",
+        "user": "",
+        "admin": "!refresh",
+        "symbol": ":construction_site:"
+    },
+    "import": {
+        "note": "Import all warcamps.",
+        "user": null,
+        "admin": "!import",
+        "symbol": ":crossed_swords:"
+    },
+    "start": {
+        "note": "Start a server (*optional duration/stop time).",
+        "user": "!start <session_duration*> <autostop_time*>",
+        "admin": "!start <servername> <gameuid*> <orchestrator*> <session_duration*> <autostop_time*>",
+        "symbol": ":white_check_mark:"
+    },
+    "stop": {
+        "note": "Stop a server (*optional duration/stop time).",
+        "user": "!stop <session_duration*> <shutoff_time*>",
+        "admin": "!stop <servername> <gameuid*> <orchestrator*> <session_duration*> <autostop_time*>",
+        "symbol": ":stop_sign:"
+    },
+    "restart": {
+        "note": "Restart a server.",
+        "user": "!restart",
+        "admin": "!restart <servername> <gameuid*> <orchestrator*>",
+        "symbol": ":recycle:"
+    },
+    "update": {
+        "note": "Update a server (will stop/start server).",
+        "user": "!update",
+        "admin": "!update",
+        "symbol": ":tools:"
+    },
+    "usage": {
+        "note": "How to use the Peon Discord bot.",
+        "user": "!usage",
+        "admin": "!usage",
+        "symbol": ":information_source:"
+    },
+    "about": {
+        "note": "PEON general information (and software versions).",
+        "user": "!about",
+        "admin": "!about",
+        "symbol": ":speech_balloon:"
+    },
+    "~admin": {
+        "note": "PEON Admin required",
+        "user": "*You will need an admin to assist with this problem.*",
+        "admin": "!stop",
+        "symbol": ":police_officer:"
+    },
+    "bad.code": {
+        "note": "Please consider logging a ticket @ https://github.com/the-peon-project/peon-bot-discord/issues/new/choose",
+        "user": null,
+        "admin": null,
+        "symbol": ":pirate_flag:"
+    },
+    "auth" : {
+        "note": "Channel not authorized for this command.",
+        "user": null,
+        "admin": null,
+        "symbol": ":no_entry_sign:"
+    }
+}
