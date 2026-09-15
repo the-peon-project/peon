@@ -45,7 +45,7 @@ No build or run commands apply to this directory directly; validation is limited
 - Confirm referenced sibling paths such as `actions/` or `data/` actually exist.
 - Confirm the game stays present and correctly named in `plans.json`.
 - Prefer targeted checks over broad repo-wide rewrites.
-- For deployment or release validation, build updated images from source under `/home/richard/development/peon`, then upgrade the UAT stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off — do not run this as routine validation.
+- The docker compose flow is the only sanctioned way to build and ship a feature — never treat a native run or a hand-copied file as shipped. For deployment or release validation, build updated images from source under `/home/richard/development/peon`, then upgrade the UAT/prod stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off — do not run this as routine validation.
 
 ## Important Files
 

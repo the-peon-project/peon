@@ -28,7 +28,7 @@ This directory owns the Discord bot interface for PEON. Formerly the standalone 
 6. If command behavior changes, inspect likely API assumptions against `peon/services/orc`.
 7. If user-visible bot workflows change, update `peon/docs/` source docs.
 8. Do not edit generated docs outputs directly.
-9. For deployment or release validation, build updated images from source under this directory, then upgrade the UAT stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off.
+9. The docker compose flow is the only sanctioned way to build and ship a feature — running `python3 app/main.py` locally is for iteration only and never counts as shipped. For deployment or release validation, build updated images from source under this directory, then upgrade the UAT/prod stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off.
 
 ## Commands
 

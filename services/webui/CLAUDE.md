@@ -29,7 +29,7 @@ This directory owns the PEON dashboard application. It is the busiest applicatio
 5. Keep changes minimal and directory-local unless the task is explicitly cross-directory; prefer non-destructive validation first.
 6. If user-visible behavior changes, update `peon/docs` source docs in the same pass.
 7. Do not request or print secrets, and do not hand-edit generated docs outputs directly.
-8. For deployment or release validation, build updated images from source under this directory, then upgrade the UAT stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off.
+8. The docker compose flow is the only sanctioned way to build and ship a feature — running `python3 server.py` / `yarn start` locally is for iteration only and never counts as shipped. For deployment or release validation, build updated images from source under this directory, then upgrade the UAT/prod stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off.
 
 ## Commands
 

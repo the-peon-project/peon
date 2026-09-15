@@ -3,15 +3,7 @@
 Read this file first at chat start for this repository.
 
 ## Startup Checklist
-- Read CLAUDE.md in this repository.
-- Apply workspace rules from /home/richard/development/.github/copilot-instructions.md.
+- Read `AGENTS.md` in this repository — the canonical, tool-agnostic source for workspace layout, working rules, commands, validation, the deployment/docker-compose mandate, and safety notes.
+- Read `CLAUDE.md` in this repository for Claude-oriented supplementary detail (it also points to `AGENTS.md`).
 - Keep changes minimal and repo-local unless the task is explicitly cross-repo.
 - Use non-destructive validation first.
-
-## Deployment Rule
-- For deployment or release validation, build updated images from source under /home/richard/development and deploy through /home/richard/peon before sign-off.
-
-## Safety
-- Do not run deploy_peon.sh unless explicitly requested.
-- Do not request or print secrets.
-- Do not edit generated docs outputs directly.

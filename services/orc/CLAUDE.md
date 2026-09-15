@@ -70,7 +70,7 @@ Use targeted syntax checks or module-level verification around touched files whe
 
 ## Deployment / Release Validation
 
-For deployment or release validation, build updated images from source under this directory, then upgrade the UAT stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off. Do not treat local-only startup as final release validation when deployment outcomes are part of the task.
+**The docker compose flow is the only sanctioned way to build and ship a feature** — running `python3 app/main.py` locally is for iteration only and never counts as shipped. For deployment or release validation, build updated images from source under this directory, then upgrade the UAT/prod stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off. Do not treat local-only startup as final release validation when deployment outcomes are part of the task.
 
 ## Safety Notes
 

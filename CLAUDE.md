@@ -136,6 +136,8 @@ Inspect the compose fragments in `config/docker-compose/` before editing `deploy
 
 ## Deployment / Release Validation
 
+**The docker compose flow is the only sanctioned way to build and ship a feature.** A feature is not shipped until it has been built into image(s) and deployed through `deploy_peon.sh` (which composes the fragments in `config/docker-compose/`) to the UAT/prod stack at `/home/richard/peon/`. Running a service natively (`python3 app/main.py`, `yarn start`, etc.), hand-copying files into `/home/richard/peon/`, or standing up containers outside this compose flow is for local iteration only and never counts as shipped.
+
 For any task that includes deployment, release validation, or final runtime verification: build updated service image(s) from source under this dev checkout, then upgrade the UAT stack at `/home/richard/peon/` (a separate deployed instance from this repo, reachable at `https://server.warcamp.org`) to those images via `deploy_peon.sh`, and validate behavior against that upgraded UAT instance. Local unit/syntax checks are useful for iteration, but final sign-off for release-tagged work should be based on the upgraded UAT runtime, not local-only execution. Only take this operational step when explicitly requested.
 
 ## Safety Notes
@@ -165,4 +167,14 @@ Repo-local nested guides:
 - `wartable/CLAUDE.md`
 - `docs/CLAUDE.md`
 
-Workspace-wide instructions live one level up at `/home/richard/development/CLAUDE.md`, `.github/instructions/`, and `.claude/commands/`.
+Workspace-wide instructions live in this repo at `AGENTS.md` — the canonical, tool-agnostic source. `CLAUDE.md`, `.github/copilot-instructions.md`, and `QWEN.md` one level up at the workspace root (`/home/richard/development/`) are thin wrappers that point here rather than duplicating its content. Also see `.github/instructions/` and `.claude/commands/` one level up for pattern-specific and slash-command guidance.
+
+## graphify
+
+This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+
+Rules:
+- For codebase questions, first run `graphify query "<question>"` when graphify-out/graph.json exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
+- If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
+- Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
+- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).

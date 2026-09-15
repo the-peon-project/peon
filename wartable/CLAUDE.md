@@ -27,7 +27,7 @@ cd /home/richard/development/peon/wartable
 ./build_containers <version> [--overwrite]
 ```
 
-Treat that as a release-oriented action, not default validation. For deployment or release validation, build updated images from source under this directory, then upgrade the UAT stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off.
+Treat that as a release-oriented action, not default validation. The docker compose flow is the only sanctioned way to build and ship a feature — never treat a native run or a hand-copied file as shipped. For deployment or release validation, build updated images from source under this directory, then upgrade the UAT/prod stack at `/home/richard/peon/` (a separate deployed instance, distinct from this dev checkout — reachable at `https://server.warcamp.org`) via `peon/deploy_peon.sh` before sign-off.
 
 ## Important Files
 

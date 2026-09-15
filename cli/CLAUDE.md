@@ -27,7 +27,7 @@ This directory owns the host-side shell CLI for managing a PEON installation. It
 6. If CLI behavior changes, check whether docs in `peon/docs/` should also change.
 7. Do not request or print secrets.
 8. Do not edit generated docs outputs directly.
-9. For deployment or release validation, build updated images from source under `/home/richard/development` and deploy through `/home/richard/peon` (the deployed instance, distinct from this development checkout) before sign-off.
+9. The docker compose flow is the only sanctioned way to build and ship a feature — never treat a native run or a hand-copied file as shipped. For deployment or release validation, build updated images from source under `/home/richard/development/peon` and deploy through `deploy_peon.sh` to `/home/richard/peon` (the UAT/prod deployed instance, distinct from this development checkout) before sign-off.
 
 ## Commands
 
