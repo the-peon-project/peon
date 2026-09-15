@@ -1,0 +1,140 @@
+#!/usr/bin/env bash
+#
+# deploy_graphify.sh
+# Installs and configures Graphify (knowledge-graph codebase indexing) for Claude Code
+# on a server, then builds the graph for a target project.
+#
+# Usage:
+#   ./deploy_graphify.sh /path/to/your/project
+#
+# Docs: https://github.com/safishamsi/graphify
+
+set -euo pipefail
+
+PROJECT_DIR="${1:-$(pwd)}"
+LOG() { printf '\n[graphify-deploy] %s\n' "$1"; }
+
+if [ ! -d "$PROJECT_DIR" ]; then
+  echo "Error: project directory '$PROJECT_DIR' does not exist." >&2
+  exit 1
+fi
+
+# ---------------------------------------------------------------------------
+# 1. Check prerequisites
+# ---------------------------------------------------------------------------
+LOG "Checking Python version (need 3.10+)..."
+PYTHON_BIN="$(command -v python3 || true)"
+if [ -z "$PYTHON_BIN" ]; then
+  echo "Error: python3 not found. Install Python 3.10+ first." >&2
+  exit 1
+fi
+PYTHON_VERSION="$("$PYTHON_BIN" -c 'import sys; print("%d.%d" % sys.version_info[:2])')"
+LOG "Found Python $PYTHON_VERSION"
+
+LOG "Checking for Claude Code CLI..."
+if ! command -v claude >/dev/null 2>&1; then
+  echo "Error: 'claude' CLI not found on PATH. Install Claude Code first, then re-run." >&2
+  exit 1
+fi
+
+# ---------------------------------------------------------------------------
+# 2. Install the graphifyy package (prefer uv, isolated env)
+# ---------------------------------------------------------------------------
+if command -v uv >/dev/null 2>&1; then
+  LOG "Installing graphifyy via uv (isolated tool env)..."
+  uv tool install graphifyy
+  # Ensure the uv tool bin dir is on PATH for this shell/session
+  export PATH="$HOME/.local/bin:$PATH"
+  if ! command -v graphify >/dev/null 2>&1; then
+    LOG "Running 'uv tool update-shell' to fix PATH..."
+    uv tool update-shell || true
+  fi
+elif command -v pipx >/dev/null 2>&1; then
+  LOG "Installing graphifyy via pipx..."
+  pipx install graphifyy
+  export PATH="$HOME/.local/bin:$PATH"
+else
+  LOG "Neither uv nor pipx found."
+  if command -v apt-get >/dev/null 2>&1; then
+    LOG "Debian/Ubuntu detected — installing pipx via apt (avoids PEP 668 'externally-managed-environment' errors)..."
+    sudo apt-get update -y
+    sudo apt-get install -y pipx
+    pipx ensurepath
+    export PATH="$HOME/.local/bin:$PATH"
+    LOG "Installing graphifyy via pipx..."
+    pipx install graphifyy
+  else
+    LOG "apt not found — falling back to pip install --user --break-system-packages."
+    LOG "WARNING: this bypasses PEP 668 protection for the system Python. Prefer installing uv or pipx instead if possible."
+    "$PYTHON_BIN" -m pip install --user --break-system-packages graphifyy
+    export PATH="$HOME/.local/bin:$PATH"
+  fi
+fi
+
+if ! command -v graphify >/dev/null 2>&1; then
+  echo "Error: 'graphify' CLI still not found on PATH after install. Open a new shell or add ~/.local/bin to PATH manually." >&2
+  exit 1
+fi
+
+LOG "graphify CLI version: $(graphify --help | head -n 1)"
+
+# ---------------------------------------------------------------------------
+# 3. Register the Claude Code skill (user-global) and project-scoped skill
+# ---------------------------------------------------------------------------
+LOG "Registering Graphify skill with Claude Code (global)..."
+graphify install
+
+LOG "Registering Graphify skill scoped to this project as well..."
+(cd "$PROJECT_DIR" && graphify install --project)
+
+LOG "Wiring Claude Code hooks so the agent always consults the graph before grepping..."
+(cd "$PROJECT_DIR" && graphify claude install)
+
+# ---------------------------------------------------------------------------
+# 4. Build the initial knowledge graph for the project
+#    'extract' does headless AST + semantic LLM extraction.
+#    --backend claude uses your already-authenticated Claude Code CLI session
+#    (no separate API key needed) since that's the default dev agent here.
+#    Falls back to --code-only (pure AST, no LLM calls) if that backend
+#    isn't reachable, so the script still produces a usable graph.
+# ---------------------------------------------------------------------------
+LOG "Building the knowledge graph for: $PROJECT_DIR (backend: claude)"
+if ! (cd "$PROJECT_DIR" && graphify extract . --backend claude); then
+  LOG "claude backend extraction failed — falling back to --code-only (AST-only, no LLM semantic layer)."
+  (cd "$PROJECT_DIR" && graphify extract . --code-only)
+fi
+
+# ---------------------------------------------------------------------------
+# 5. Keep graphify-out/ out of version control unless you want to commit it
+# ---------------------------------------------------------------------------
+if [ -d "$PROJECT_DIR/.git" ]; then
+  GITIGNORE="$PROJECT_DIR/.gitignore"
+  if ! grep -qs '^graphify-out/' "$GITIGNORE" 2>/dev/null; then
+    LOG "Adding graphify-out/ to .gitignore..."
+    echo "graphify-out/" >> "$GITIGNORE"
+  fi
+
+  LOG "Installing git hooks so the graph auto-rebuilds on commit/checkout..."
+  (cd "$PROJECT_DIR" && graphify hook install) || \
+    LOG "Note: 'graphify hook install' not available in this version — skipping auto-rebuild hooks."
+fi
+
+# ---------------------------------------------------------------------------
+# Done
+# ---------------------------------------------------------------------------
+LOG "Done. Summary:"
+echo "  - graphify CLI installed and on PATH"
+echo "  - Claude Code skill registered (global + project)"
+echo "  - Knowledge graph built at: $PROJECT_DIR/graphify-out/"
+echo "  - Open Claude Code in $PROJECT_DIR and run: /graphify"
+echo ""
+echo "Next steps:"
+echo "  1. cd $PROJECT_DIR && claude"
+echo "  2. Claude Code will now check the graph automatically before grepping (PreToolUse hook)."
+echo "  3. You can also query the graph directly from the shell, e.g.:"
+echo "       graphify explain \"SomeClassOrFunctionName\""
+echo "       graphify query \"how does auth work in this codebase\""
+echo "       graphify affected \"SomeFunctionName\""
+echo "       graphify god-nodes            # most-connected files/symbols"
+echo "       graphify benchmark            # measure token reduction vs. naive full-corpus reads"
+echo "  4. Keep the graph fresh: 'graphify update .' after big refactors, or rely on the git hooks."
