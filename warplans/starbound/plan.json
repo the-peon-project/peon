@@ -1,0 +1,23 @@
+{
+    "metadata" : {
+        "game_uid"      : "starbound",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Starbound game server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.starbound",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT_A" : ["8766", "tcp"] }, { "PORT_B" : ["21025", "all"] } , { "PORT_C" : ["27016", "udp"] }]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "533830"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions"                                      ,
+        "~!/data"          : "/home/steam/steamcmd/data"                     ,
+        "~!/config"        : "/home/steam/config"                            ,
+        "~!/user"          : "/home/steam/.config"                                 
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "metadata" : {
+        "game_uid"      : "rust",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Rust dedicated server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.rust",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["28015", "udp"] }, { "RCON_PORT" : ["28016", "tcp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "258550",
+        "SERVER_NAME"    : null,
+        "WORLD_NAME"     : "Procedural Map",
+        "WORLD_SIZE"     : "3000",
+        "MAXPLAYERS"     : "50"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/steamcmd/data/server"
+    }
+}

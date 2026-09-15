@@ -1,0 +1,28 @@
+{
+    "metadata" : {
+        "game_uid"      : "ark",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON ark game server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.ark",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["7777", "udp"] },{ "PORT_RAW" : ["7778", "udp"] }, { "PORT_QUERY" : ["27015", "udp"] },{ "PORT_RCON" : ["27020", "tcp"] } ],
+            [ { "PORT" : ["7779", "udp"] },{ "PORT_RAW" : ["7780", "udp"] }, { "PORT_QUERY" : ["27016", "udp"] },{ "PORT_RCON" : ["27021", "tcp"] } ],
+            [ { "PORT" : ["7781", "udp"] },{ "PORT_RAW" : ["7782", "udp"] }, { "PORT_QUERY" : ["27017", "udp"] },{ "PORT_RCON" : ["27022", "tcp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "376030",
+        "SERVER_NAME"    : null,
+        "ADMIN_PASSWORD" : null,
+        "PASSWORD"       : null
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data"                     ,
+        "~!/config"        : "/home/steam/config"                            ,
+        "~!/user"          : "/home/steam/steamcmd/data/ShooterGame/Saved"                                 
+    }
+}

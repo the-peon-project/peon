@@ -1,0 +1,26 @@
+{
+    "metadata" : {
+        "game_uid"      : "counterstrike",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Counter-Strike dedicated server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.counterstrike",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["27015", "tcp/udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "90",
+        "SERVER_NAME"    : null,
+        "MAP"            : "de_dust2",
+        "MAXPLAYERS"     : "16"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/steamcmd/data/cstrike"
+    }
+}

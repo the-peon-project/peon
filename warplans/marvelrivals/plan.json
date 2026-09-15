@@ -1,0 +1,33 @@
+{
+    "metadata": {
+        "game_uid": "marvelrivals",
+        "warcamp": "default",
+        "version": "0.1.0-untested",
+        "description": "Untested PEON recipe scaffold for Marvel Rivals.",
+        "mode": "steamcmd",
+        "hostname": "peon.warcamp.marvelrivals",
+        "image": "umlatt/steamcmd"
+    },
+    "ports": [
+        [
+            {
+                "PORT": [
+                    "27015",
+                    "tcp/udp"
+                ]
+            }
+        ]
+    ],
+    "environment": {
+        "STEAM_ID": "2767030",
+        "SERVER_NAME": null,
+        "STARTUP_COMMAND": "./start-server.sh",
+        "NOTES": "Untested scaffold - adjust dedicated-server app id and command as needed."
+    },
+    "volumes": {
+        "~!/actions": "/actions",
+        "~!/data": "/home/steam/steamcmd/data",
+        "~!/config": "/home/steam/config",
+        "~!/user": "/home/steam/steamcmd/data"
+    }
+}

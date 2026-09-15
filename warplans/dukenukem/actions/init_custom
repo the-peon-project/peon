@@ -1,0 +1,29 @@
+#!/bin/bash
+echo "##### Updating repo"
+apt-get update
+echo "##### Processing additional dependencies [Duke Nukem 3D - EDuke32]"
+PACKAGES=("build-essential" "git" "libgl1-mesa-dev" "libglu1-mesa-dev" "libsdl2-dev" "libsdl2-mixer-dev" "libflac-dev" "libvorbis-dev" "libvpx-dev" "libgtk2.0-dev" "freepats" "nasm")
+for pkg in "${PACKAGES[@]}"
+do
+    if dpkg -s "$pkg" >/dev/null 2>&1; then
+        echo "$pkg is already installed"
+    else
+        echo "$pkg is not installed. Installing..."
+        apt-get install -y "$pkg"
+    fi
+done
+
+echo "##### Building EDuke32 from source"
+if [ ! -f "/home/steam/eduke32/eduke32" ]; then
+    cd /home/steam
+    git clone https://voidpoint.io/terminx/eduke32.git eduke32-src
+    cd eduke32-src
+    make -j$(nproc) NETCODE=1 SDL_TARGET=2 WITHOUT_GTK=1
+    mkdir -p /home/steam/eduke32
+    cp eduke32 /home/steam/eduke32/
+    cd /home/steam
+    rm -rf eduke32-src
+    echo "##### EDuke32 build complete"
+else
+    echo "##### EDuke32 already built"
+fi

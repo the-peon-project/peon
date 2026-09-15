@@ -1,0 +1,24 @@
+{
+    "metadata" : {
+        "game_uid"      : "factorio",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Factorio dedicated server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.factorio",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["34197", "udp"] }, { "RCON_PORT" : ["27015", "tcp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "427520",
+        "SERVER_NAME"    : null
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/.factorio"
+    }
+}

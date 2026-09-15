@@ -1,0 +1,24 @@
+{
+    "metadata" : {
+        "game_uid"      : "projectzomboid",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Project Zomboid dedicated server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.projectzomboid",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["16261", "udp"] }, { "PORT_P2P" : ["16262", "udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "380870",
+        "SERVER_NAME"    : "servertest"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/Zomboid"
+    }
+}

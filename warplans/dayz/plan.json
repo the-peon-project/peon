@@ -1,0 +1,24 @@
+{
+    "metadata" : {
+        "game_uid"      : "dayz",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON DayZ dedicated server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.dayz",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["2302", "udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "223350",
+        "SERVER_NAME"    : null
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/steamcmd/data/profiles"
+    }
+}

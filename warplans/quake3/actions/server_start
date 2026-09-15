@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "###### Server QUAKE3 [STARTING]"
+cd $INSTALL_DIR
+##### Server Config
+echo $PORT > /home/steam/config/port
+
+./q3ded +set dedicated 2 +set net_port $PORT +exec server.cfg

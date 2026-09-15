@@ -1,0 +1,26 @@
+{
+    "metadata" : {
+        "game_uid"      : "gmod",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Garry's Mod dedicated server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.gmod",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["27015", "tcp/udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "4020",
+        "SERVER_NAME"    : null,
+        "MAP"            : "gm_construct",
+        "MAXPLAYERS"     : "16"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/steamcmd/data/garrysmod"
+    }
+}

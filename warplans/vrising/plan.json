@@ -1,0 +1,31 @@
+{
+    "metadata" : {
+        "game_uid"      : "vrising",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON vrising game server.",
+        "mode"          : "steamcmd-winehq",
+        "hostname"      : "peon.warcamp.vrising",
+        "image"         : "umlatt/steamcmd-winehq"
+    },
+    "ports" : [
+        [ { "PORT" : ["9876", "udp"] }, { "QUERYPORT" : ["9877", "udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "1829350",
+        "SERVER_NAME"    : null     ,
+        "WORLD_NAME"     : null     ,
+        "PASSWORD"       : null      
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data"   ,
+        "~!/config"        : "/home/steam/config"          ,
+        "~!/user"          : "/home/steam/server_user_data"
+    },
+    "files" : {
+        "~!/ServerGameSettings.json" : "/home/steam/steamcmd/data/VRisingServer_Data/StreamingAssets/Settings/ServerGameSettings.json",
+        "~!/ServerHostSettings.json" : "/home/steam/steamcmd/data/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json"
+    }
+}
+

@@ -1,0 +1,25 @@
+{
+    "metadata" : {
+        "game_uid"      : "dukenukem",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A Duke Nukem 3D (EDuke32) game server for PEON.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.dukenukem",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+        [ { "PORT" : ["23513", "udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "434050",
+        "SERVER_NAME"    : null,
+        "MAX_PLAYERS"    : null,
+        "PASSWORD"       : null
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config"
+    }
+}

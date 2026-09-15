@@ -1,0 +1,26 @@
+{
+    "metadata" : {
+        "game_uid"      : "dst",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Don't Starve Together dedicated server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.dst",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["10999", "udp"] }, { "PORT_CAVES" : ["11000", "udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "343050",
+        "SERVER_NAME"    : null,
+        "CLUSTER_NAME"   : "Cluster_1",
+        "SHARD_NAME"     : "Master"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/.klei"
+    }
+}

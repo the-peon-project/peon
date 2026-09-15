@@ -1,0 +1,33 @@
+{
+    "metadata": {
+        "game_uid": "farmingsimulator25",
+        "warcamp": "default",
+        "version": "0.1.0-untested",
+        "description": "Untested PEON recipe scaffold for Farming Simulator 25.",
+        "mode": "steamcmd",
+        "hostname": "peon.warcamp.farmingsimulator25",
+        "image": "umlatt/steamcmd"
+    },
+    "ports": [
+        [
+            {
+                "PORT": [
+                    "27015",
+                    "tcp/udp"
+                ]
+            }
+        ]
+    ],
+    "environment": {
+        "STEAM_ID": "2300320",
+        "SERVER_NAME": null,
+        "STARTUP_COMMAND": "./start-server.sh",
+        "NOTES": "Untested scaffold - adjust dedicated-server app id and command as needed."
+    },
+    "volumes": {
+        "~!/actions": "/actions",
+        "~!/data": "/home/steam/steamcmd/data",
+        "~!/config": "/home/steam/config",
+        "~!/user": "/home/steam/steamcmd/data"
+    }
+}

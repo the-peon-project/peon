@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "###### Server TF2.$SERVER_NAME [STARTING]"
+cd "$INSTALL_DIR" || exit 1
+
+echo "$PORT" > /home/steam/config/port
+echo "$TV_PORT" > /home/steam/config/tv_port
+echo "$SERVER_NAME" > /home/steam/config/server_name
+
+./srcds_run -game tf -console -usercon +sv_setsteamaccount "$STEAM_GSLT" +maxplayers "$MAXPLAYERS" +map "$MAP" -port "$PORT"

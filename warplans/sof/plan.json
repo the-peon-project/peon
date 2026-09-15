@@ -1,0 +1,39 @@
+{
+    "metadata" : {
+        "game_uid"      : "sof",
+        "server_name"   : "default",
+        "version"       : "1.0.0",
+        "description"   : "A Sons of the Forest game server for PEON.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.steamcmd.sof",
+        "image"         : "jammsen/sons-of-the-forest-dedicated-server"
+    },
+    "ports" : [
+        [ { "GAME_PORT" : ["8766","udp"] }, { "QUERY_PORT" : ["27016","udp"] }, { "BLOB_SYNC_PORT" : ["9700","udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"                    : "2465200",
+        "SERVER_NAME"                 : null,
+        "PASSWORD"                    : null,
+        "PASSWORD_ADMIN"              : null,
+        "MAX_PLAYERS"                 : "8",
+        "DIFFICULTY"                  : "Hard",
+        "SAVE_SLOT"                   : "1",
+        "SAVE_MODE"                   : "New",
+        "AUTO_SAVE_INTERVAL"          : "30",
+        "ENABLE_VAC"                  : "true",
+        "SERVER_CONTACT"              : null,
+        "TREE_REGROW_MODE"            : "true",
+        "ALLOW_BUILDING_DESTRUCTION"  : "true",
+        "ALLOW_ENEMIES_CREATIVE"      : "false",
+        "ENABLE_ENEMIES"              : "true"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/sof",
+        "~!/config"        : "/home/steam/.config/unity3d/Endnight/SonsOfTheForestDS"
+    },
+    "files" : {
+        "~!/server.cfg" : "/home/steam/.config/unity3d/Endnight/SonsOfTheForestDS/dedicatedserver.cfg"
+    }
+}

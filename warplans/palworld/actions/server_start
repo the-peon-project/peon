@@ -1,0 +1,27 @@
+#!/bin/bash
+source /actions/configure_settings
+
+echo "###### Server Palworld.$SERVER_NAME [STARTING]"
+cd $INSTALL_DIR
+##### Server Config
+echo $PORT > /home/steam/config/port
+echo $SERVER_NAME > /home/steam/config/server_name 
+echo $PASSWORD > /home/steam/config/password
+
+check_config_file
+dedicated_server_name=$(resolve_dedicated_server_name)
+pin_dedicated_server_name "$dedicated_server_name"
+update_server_settings
+
+##### CONTENTS OF server_start.sh
+export templdpath=$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=./linux64:$LD_LIBRARY_PATH
+export SteamAppId=2394010
+
+
+# NOTE: Minimum password length is 5 characters & Password cant be in the server name.
+# NOTE: You need to make sure the ports are being forwarded to your server through your local router & firewall.
+echo -n "STARTED" > $STATE_FILE
+./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS 
+
+export LD_LIBRARY_PATH=$templdpath

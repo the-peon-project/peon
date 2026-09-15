@@ -1,0 +1,19 @@
+#!/bin/bash
+echo "###### Server Duke Nukem 3D.$SERVER_NAME [STARTING]"
+##### Server Config
+echo $PORT > /home/steam/config/port
+echo $SERVER_NAME > /home/steam/config/server_name
+echo $PASSWORD > /home/steam/config/password
+
+##### Set defaults
+MAX_PLAYERS=${MAX_PLAYERS:-8}
+PORT=${PORT:-23513}
+
+##### Launch EDuke32 dedicated server
+cd /home/steam/eduke32
+./eduke32 -server \
+    -port $PORT \
+    -j $INSTALL_DIR \
+    -name "$SERVER_NAME" \
+    -pname "$SERVER_NAME" \
+    -maxplayers $MAX_PLAYERS

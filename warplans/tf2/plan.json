@@ -1,0 +1,27 @@
+{
+    "metadata" : {
+        "game_uid"      : "tf2",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Team Fortress 2 game server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.tf2",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["27015", "tcp/udp"] }, { "TV_PORT" : ["27020", "udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "232250",
+        "SERVER_NAME"    : null,
+        "STEAM_GSLT"     : null,
+        "MAP"            : "ctf_2fort",
+        "MAXPLAYERS"     : "24"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/steamcmd/data/tf"
+    }
+}

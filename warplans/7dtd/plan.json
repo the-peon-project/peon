@@ -1,0 +1,24 @@
+{
+    "metadata" : {
+        "game_uid"      : "7dtd",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON 7 Days to Die dedicated server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.7dtd",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["26900", "tcp/udp"] }, { "PORT_2" : ["26901", "udp"] }, { "PORT_3" : ["26902", "udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "294420",
+        "SERVER_NAME"    : null
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/steamcmd/data/7DaysToDieServer"
+    }
+}

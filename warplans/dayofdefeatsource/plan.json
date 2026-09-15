@@ -1,0 +1,33 @@
+{
+    "metadata": {
+        "game_uid": "dayofdefeatsource",
+        "warcamp": "default",
+        "version": "0.1.0-untested",
+        "description": "Untested PEON recipe scaffold for Day of Defeat: Source.",
+        "mode": "steamcmd",
+        "hostname": "peon.warcamp.dayofdefeatsource",
+        "image": "umlatt/steamcmd"
+    },
+    "ports": [
+        [
+            {
+                "PORT": [
+                    "27015",
+                    "tcp/udp"
+                ]
+            }
+        ]
+    ],
+    "environment": {
+        "STEAM_ID": null,
+        "SERVER_NAME": null,
+        "STARTUP_COMMAND": "./start-server.sh",
+        "NOTES": "Untested scaffold - set dedicated server app id, command, ports, and volumes."
+    },
+    "volumes": {
+        "~!/actions": "/actions",
+        "~!/data": "/home/steam/steamcmd/data",
+        "~!/config": "/home/steam/config",
+        "~!/user": "/home/steam/steamcmd/data"
+    }
+}

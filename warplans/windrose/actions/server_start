@@ -1,0 +1,74 @@
+#!/bin/bash
+echo "###### Server Windrose.$SERVER_NAME [STARTING]"
+echo "$PORT" > /home/steam/config/port
+echo "$SERVER_NAME" > /home/steam/config/server_name
+echo "$PASSWORD" > /home/steam/config/password
+
+launcher_pid=""
+windrose_process_pattern="WindroseServer(-Win64-Shipping)?\\.exe"
+cleanup() {
+    echo -n "OFFLINE" > "$STATE_FILE"
+    if [ -n "$launcher_pid" ] && kill -0 "$launcher_pid" 2>/dev/null; then
+        kill "$launcher_pid" 2>/dev/null || true
+    fi
+}
+trap cleanup TERM INT EXIT
+
+windrose_entry=$(find "$INSTALL_DIR" -maxdepth 3 -type f -name "StartServerForeground.bat" | head -n 1)
+if [ -z "$windrose_entry" ]; then
+    windrose_entry=$(find "$INSTALL_DIR" -maxdepth 4 -type f -name "WindroseServer.exe" | head -n 1)
+fi
+if [ -z "$windrose_entry" ]; then
+    echo " [x] Could not locate WindroseServer.exe after Steam update."
+    exit 1
+fi
+
+if [ -f "/actions/ServerDescription.json" ]; then
+    mkdir -p "$INSTALL_DIR/R5"
+    if [ ! -f "$INSTALL_DIR/R5/ServerDescription.json" ]; then
+        cp /actions/ServerDescription.json "$INSTALL_DIR/R5/ServerDescription.json"
+    fi
+
+    jq \
+        --arg server_name "${SERVER_NAME:-windrose-peon}" \
+        --arg password "${PASSWORD:-}" \
+        --arg max_players "${MAX_PLAYERS:-8}" \
+        --arg port "${PORT:-7777}" \
+        '
+        .ServerDescription_Persistent.ServerName = $server_name
+        | .ServerDescription_Persistent.Password = $password
+        | .ServerDescription_Persistent.IsPasswordProtected = ($password != "")
+        | .ServerDescription_Persistent.MaxPlayerCount = ($max_players | tonumber)
+        | .ServerDescription_Persistent.UseDirectConnection = true
+        | .ServerDescription_Persistent.DirectConnectionServerPort = ($port | tonumber)
+        | .ServerDescription_Persistent.DirectConnectionProxyAddress = "0.0.0.0"
+        ' \
+        "$INSTALL_DIR/R5/ServerDescription.json" > "$INSTALL_DIR/R5/ServerDescription.json.tmp" \
+        && mv "$INSTALL_DIR/R5/ServerDescription.json.tmp" "$INSTALL_DIR/R5/ServerDescription.json"
+fi
+
+cd "$(dirname "$windrose_entry")" || exit 1
+export SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-dummy}"
+export SDL_AUDIODRIVER="${SDL_AUDIODRIVER:-dummy}"
+/home/steam/steamcmd/compatibilitytools.d/proton/proton run "./$(basename "$windrose_entry")" -batchmode -nographics -log &
+launcher_pid=$!
+
+for _ in $(seq 1 30); do
+    if pgrep -f "$windrose_process_pattern" >/dev/null; then
+        echo -n "STARTED" > "$STATE_FILE"
+        break
+    fi
+    sleep 2
+done
+
+if ! pgrep -f "$windrose_process_pattern" >/dev/null; then
+    echo " [x] Windrose server process did not start."
+    wait "$launcher_pid"
+    exit 1
+fi
+
+while pgrep -f "$windrose_process_pattern" >/dev/null; do
+    sleep 10
+done
+
+wait "$launcher_pid"

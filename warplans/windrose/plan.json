@@ -1,0 +1,26 @@
+{
+    "metadata" : {
+        "game_uid"      : "windrose",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Windrose game server.",
+        "mode"          : "steamcmd-proton",
+        "hostname"      : "peon.warcamp.windrose",
+        "image"         : "umlatt/steamcmd-proton:1.2.16"
+    },
+    "ports" : [
+        [ { "PORT" : ["7777", "tcp/udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "4129620",
+        "SERVER_NAME"    : null,
+        "PASSWORD"       : null,
+        "MAX_PLAYERS"    : "8"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/steamcmd/data/R5/Saved"
+    }
+}

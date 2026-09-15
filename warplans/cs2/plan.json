@@ -1,0 +1,60 @@
+{
+    "metadata" : {
+        "game_uid"      : "cs2",
+        "server_name"   : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON cs2 game server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.steamcmd.cs2",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+        [ { "CS2_PORT" : ["27015","tcp/udp"] }, { "TV_PORT" : ["27020","udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"                : "730",
+        "SERVER_NAME"             : null,
+        "STEAM_GSLT"              : null,
+        "STEAMAPP"                : "cs2",
+        "STEAMAPPDIR"             : "/home/steam/steamcmd/data",
+        "STEAMAPPVALIDATE"        : "0",
+        "CS2_CHEATS"              : "0",
+        "CS2_SERVER_HIBERNATE"    : "0",
+        "CS2_RCON_PORT"           : "",
+        "CS2_LAN"                 : "0",
+        "CS2_RCONPW"              : "",                 
+        "CS2_PW"                  : "",
+        "CS2_MAXPLAYERS"          : "10",
+        "CS2_ADDITIONAL_ARGS"     : "",
+        "CS2_CFG_URL"             : "",
+        "CS2_GAMEALIAS"           : "",
+        "CS2_GAMETYPE"            : "0",
+        "CS2_GAMEMODE"            : "1",
+        "CS2_MAPGROUP"            : "mg_active",
+        "CS2_STARTMAP"            : "de_inferno",
+        "CS2_BOT_DIFFICULTY"      : "",
+        "CS2_BOT_QUOTA"           : "6",
+        "CS2_BOT_QUOTA_MODE"      : "",
+        "TV_AUTORECORD"           : "0",
+        "TV_ENABLE"               : "0",
+        "TV_PW"                   : "",
+        "TV_RELAY_PW"             : "",
+        "TV_MAXRATE"              : "0",
+        "TV_DELAY"                : "0",
+        "CS2_LOG"                 : "on",
+        "CS2_LOG_MONEY"           : "0",
+        "CS2_LOG_DETAIL"          : "0",
+        "CS2_LOG_ITEMS"           : "0"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config"
+    },
+    "files" : {
+        "~!/autoexec.cfg"          : "/home/steam/data/cs2/cfg/autoexec.cfg",
+        "~!/server.cfg"            : "/home/steam/data/cs2/cfg/server.cfg",
+        "~!/gamemodes.txt"         : "/home/steam/data/cs2/gamemodes.txt",
+        "~!/gamemodes_server.txt"  : "/home/steam/data/cs2/gamemodes_server.txt"
+    }
+}

@@ -1,0 +1,12 @@
+#!/bin/bash
+source /actions/configure_settings
+
+echo "###### Server Enshrouded.$SERVER_NAME [STARTING]"
+##### Server Config
+echo $PORT > /home/steam/config/port
+echo $SERVER_NAME > /home/steam/config/server_name 
+echo $PASSWORD > /home/steam/config/password
+cd $INSTALL_DIR
+update_server_settings || { echo " [x] Failed to update server settings."; exit 1; }
+# CUSTOM GAME SERVER COMMAND
+/home/steam/steamcmd/compatibilitytools.d/proton/proton run enshrouded_server.exe

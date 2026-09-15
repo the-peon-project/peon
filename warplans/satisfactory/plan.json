@@ -1,0 +1,24 @@
+{
+    "metadata" : {
+        "game_uid"      : "satisfactory",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Satisfactory game server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.satisfactory",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "QUERYPORT" : ["15777", "udp"] }, { "BEACONPORT" : ["15000", "udp"] }, { "PORT" : ["7777", "udp"] }, { "PORT" : ["7777", "tcp"] }, { "PORT" : ["8888", "udp"] }, { "PORT" : ["8888", "tcp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "1690800",
+        "SERVER_NAME"    : null
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data"                             ,
+        "~!/config"        : "/home/steam/config"                                    ,
+        "~!/user"          : "/home/steam/.config/Epic/FactoryGame/Saved/SaveGames"  
+    }
+}

@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+echo "###### Server ${SERVER_NAME} [STARTING - UNTESTED]"
+cd "$INSTALL_DIR" || exit 1
+
+echo "$PORT" > /home/steam/config/port
+echo "$SERVER_NAME" > /home/steam/config/server_name
+
+if [ -z "$STARTUP_COMMAND" ]; then
+    echo "[x] STARTUP_COMMAND is not set. Configure this recipe before use."
+    exit 1
+fi
+
+bash -lc "$STARTUP_COMMAND"

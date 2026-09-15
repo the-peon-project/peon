@@ -1,0 +1,25 @@
+{
+    "metadata" : {
+        "game_uid"      : "squad",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Squad dedicated server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.squad",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["7787", "udp"] }, { "QUERYPORT" : ["27165", "udp"] }, { "RCON_PORT" : ["21114", "tcp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "403240",
+        "SERVER_NAME"    : null,
+        "MAXPLAYERS"     : "80"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/steamcmd/data/SquadGame/Saved"
+    }
+}

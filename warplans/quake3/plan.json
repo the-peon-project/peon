@@ -1,0 +1,25 @@
+{
+    "metadata" : {
+        "game_uid"       : "quake3",
+        "server_name"   : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON quake3 game server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.steamcmd.quake3",
+        "image"         : "ich777/ioquake3"
+    },
+    "ports" : [
+        [ { "PORT" : ["27960","tcp/udp"] }, { "PORT" : ["8080","tcp/udp"] }]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "2200",
+        "STEAM_USER"     : null,
+        "STEAM_PASSWORD" : null
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config"
+    }
+}
+

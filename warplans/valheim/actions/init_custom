@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "##### Updating repo"
+apt-get update
+echo "##### Processing additional dependancies [Valheim]"
+PACKAGES=("libatomic1" "libpulse-dev" "libpulse0")
+for pkg in "${PACKAGES[@]}"
+do
+    if dpkg -s "$pkg" >/dev/null 2>&1; then
+        echo "$pkg is already installed"
+    else
+        echo "$pkg is not installed. Installing..."
+        apt-get install -y "$pkg"
+    fi
+done

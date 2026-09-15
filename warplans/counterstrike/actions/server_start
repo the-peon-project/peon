@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "###### Server CounterStrike.$SERVER_NAME [STARTING]"
+cd "$INSTALL_DIR" || exit 1
+
+echo "$PORT" > /home/steam/config/port
+echo "$SERVER_NAME" > /home/steam/config/server_name
+
+./hlds_run -game cstrike +maxplayers "$MAXPLAYERS" +map "$MAP" +port "$PORT"

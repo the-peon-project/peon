@@ -1,0 +1,14 @@
+#!/bin/bash
+config_file_source="/home/steam/steamcmd/data/savegame/enshrouded_server.json"
+config_file="/home/steam/steamcmd/data/enshrouded_server.json"
+
+update_server_settings(){
+    failed=false
+    [[ -n $SERVER_NAME ]] && sed -i "s/\[SERVER_NAME\]/$SERVER_NAME/g" $config_file_source || failed=true
+    [[ -n $PASSWORD ]] && sed -i "s/\[PASSWORD\]/$PASSWORD/g" $config_file_source || failed=true
+    if [ "$failed" = true ]; then
+        echo "Failed to update server settings. Server Name='$SERVER_NAME', Password='$PASSWORD'"
+        exit 1
+    fi
+    cp $config_file_source $config_file
+}

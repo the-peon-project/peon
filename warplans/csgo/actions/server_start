@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "###### Server CSGO.$SERVERNAME [STARTING]"
+cd $INSTALL_DIR
+##### Server Config
+echo $CSGO_GAME_TYPE > /home/steam/config/game_type
+echo $CSGO_GAME_MODE > /home/steam/config/game_mode
+echo $CSGO_MAP_GROUP > /home/steam/config/map_group
+echo $CSGO_MAP       > /home/steam/config/map
+
+./srcds_run -game csgo -console -usercon +game_type $CSGO_GAME_TYPE +game_mode $CSGO_GAME_MODE +mapgroup $CSGO_MAP_GROUP +map $CSGO_MAP +sv_setsteamaccount $STEAM_GSLT

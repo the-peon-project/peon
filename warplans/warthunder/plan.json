@@ -1,0 +1,33 @@
+{
+    "metadata": {
+        "game_uid": "warthunder",
+        "warcamp": "default",
+        "version": "0.1.0-untested",
+        "description": "Untested PEON recipe scaffold for War Thunder.",
+        "mode": "steamcmd",
+        "hostname": "peon.warcamp.warthunder",
+        "image": "umlatt/steamcmd"
+    },
+    "ports": [
+        [
+            {
+                "PORT": [
+                    "27015",
+                    "tcp/udp"
+                ]
+            }
+        ]
+    ],
+    "environment": {
+        "STEAM_ID": "236390",
+        "SERVER_NAME": null,
+        "STARTUP_COMMAND": "./start-server.sh",
+        "NOTES": "Untested scaffold - adjust dedicated-server app id and command as needed."
+    },
+    "volumes": {
+        "~!/actions": "/actions",
+        "~!/data": "/home/steam/steamcmd/data",
+        "~!/config": "/home/steam/config",
+        "~!/user": "/home/steam/steamcmd/data"
+    }
+}

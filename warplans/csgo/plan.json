@@ -1,0 +1,35 @@
+{
+    "metadata" : {
+        "game_uid"       : "csgo",
+        "server_name"   : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON csgo game server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.steamcmd.csgo",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+        [ { "PORT_GAME" : ["27015","tcp/udp"] }, { "PORT_RCON" : ["37015","tcp/udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "730",
+        "SERVER_NAME"    : null,
+        "STEAM_GSLT"     : null,
+        "CSGO_GAME_TYPE" : "0",
+        "CSGO_GAME_MODE" : "0",
+        "CSGO_MAP_GROUP" : "mg_active",
+        "CSGO_MAP"       : "de_dust2" 
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config"
+    },
+    "files" : {
+        "~!/autoexec.cfg"          : "/home/steam/data/csgo/cfg/autoexec.cfg",
+        "~!/server.cfg"            : "/home/steam/data/csgo/cfg/server.cfg",
+        "~!/gamemodes.txt"         : "/home/steam/data/csgo/gamemodes.txt",
+        "~!/gamemodes_server.txt"  : "/home/steam/data/csgo/gamemodes_server.txt"
+    }
+}
+

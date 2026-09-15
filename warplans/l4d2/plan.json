@@ -1,0 +1,26 @@
+{
+    "metadata" : {
+        "game_uid"      : "l4d2",
+        "warcamp"       : "default",
+        "version"       : "1.0.0",
+        "description"   : "A PEON Left 4 Dead 2 dedicated server.",
+        "mode"          : "steamcmd",
+        "hostname"      : "peon.warcamp.l4d2",
+        "image"         : "umlatt/steamcmd"
+    },
+    "ports" : [
+            [ { "PORT" : ["27015", "tcp/udp"] } ]
+    ],
+    "environment" : {
+        "STEAM_ID"       : "222860",
+        "SERVER_NAME"    : null,
+        "MAP"            : "c1m1_hotel",
+        "MAXPLAYERS"     : "8"
+    },
+    "volumes" : {
+        "~!/actions"       : "/actions",
+        "~!/data"          : "/home/steam/steamcmd/data",
+        "~!/config"        : "/home/steam/config",
+        "~!/user"          : "/home/steam/steamcmd/data/left4dead2"
+    }
+}

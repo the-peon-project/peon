@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "###### Server 7DaysToDie.$SERVER_NAME [STARTING]"
+cd "$INSTALL_DIR" || exit 1
+
+echo "$PORT" > /home/steam/config/port
+echo "$SERVER_NAME" > /home/steam/config/server_name
+
+./startserver.sh -configfile=serverconfig.xml -port="$PORT" -quit -batchmode -nographics

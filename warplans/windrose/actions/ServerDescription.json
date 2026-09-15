@@ -1,0 +1,21 @@
+{
+    "Version": 1,
+    "DeploymentId": "0.10.0.0.251-master-9f800c33",
+    "ServerDescription_Persistent": {
+        "PersistentServerId": "1B80182E460F727CEA080C8EEBB1EA0A",
+        "InviteCode": "windrose1",
+        "IsPasswordProtected": false,
+        "Password": "",
+        "ServerName": "windrose-peon",
+        "WorldIslandId": "DB57768A8A7746899683D0EEE91F97BF",
+        "MaxPlayerCount": 8,
+        "UserSelectedRegion": "EU",
+        "P2pProxyAddress": "0.0.0.0",
+        "UseDirectConnection": true,
+        "DirectConnectionServerAddress": "",
+        "DirectConnectionServerPort": 7777,
+        "DirectConnectionProxyAddress": "0.0.0.0",
+        "AutoLoadLatestBackupIfHasBroken": true,
+        "CanLaunchMultipleServerInstances": false
+    }
+}

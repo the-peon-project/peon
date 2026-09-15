@@ -1,0 +1,31 @@
+#!/bin/bash
+echo "###### Server VRising.$SERVER_NAME [STARTING]"
+user_data='/home/steam/server_user_data'
+##### Server Config
+echo $PORT > /home/steam/config/port
+echo $SERVER_NAME > /home/steam/config/server_name 
+echo $WORLD_NAME > /home/steam/config/world_name
+echo $PASSWORD > /home/steam/config/password
+echo "THIS SERVER IS KNOWN TO TAKE UP TO 15 MINUTES TO START." > /home/steam/config/notice
+# Create if not already created
+if [ ! -d "$user_data" ]; then
+    mkdir -p "$user_data"
+fi
+# Init ServerGameSettings.json
+if [ ! -f "$user_data/ServerGameSettings.json" ]; then
+    echo "ServerGameSettings.json not found. Copying default file."
+    cp "/home/steam/steamcmd/data/VRisingServer_Data/StreamingAssets/Settings/ServerGameSettings.json" "$user_data" 2>&1
+fi 
+# Init ServerHostSettings.json
+if [ ! -f "$user_data/ServerHostSettings.json" ]; then
+    echo "ServerHostSettings.json not found. Copying default file."
+    cp "/home/steam/steamcmd/data/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json" "$user_data" 2>&1
+fi
+# CUSTOM GAME SERVER COMMAND
+echo "Clean any existing /tmp/.X0-lock"
+rm -rf /tmp/.X0-lock 2>&1
+echo "Start Xvfb"
+Xvfb :0 -screen 0 1024x768x16 &
+echo "Start game server (Using 'DISPLAY=:0.0 ' as a prefix to wine)"
+cd $INSTALL_DIR
+DISPLAY=:0.0 wine64 ./VRisingServer.exe -persistentDataPath $user_data -serverName "$SERVER_NAME" -saveName "$WORLD_NAME" -password "$PASSWORD" -logFile "$user_data/vrising_server.log" -gamePort "$PORT" -queryPort "$QUERYPORT"

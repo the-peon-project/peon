@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "###### Server GarrysMod.$SERVER_NAME [STARTING]"
+cd "$INSTALL_DIR" || exit 1
+
+echo "$PORT" > /home/steam/config/port
+echo "$SERVER_NAME" > /home/steam/config/server_name
+
+./srcds_run -game garrysmod -console -usercon +maxplayers "$MAXPLAYERS" +map "$MAP" -port "$PORT"
