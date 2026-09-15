@@ -8,6 +8,7 @@ import re
 import json
 import os
 from . import *
+from .orchestrator_types import OrcServer
 
 REQUEST_TIMEOUT = 10
 
@@ -16,7 +17,7 @@ def _get_config_path(filename: str) -> str:
     return os.path.join(CONFIG_DIR, filename)
 
 
-def _request_json(method, url, headers=None, json_body=None, timeout=REQUEST_TIMEOUT):
+def _request_json(method, url, headers=None, json_body=None, timeout=REQUEST_TIMEOUT) -> dict:
     """Execute an HTTP request and normalize error handling for callers."""
     try:
         response = requests.request(method, url, headers=headers, json=json_body, timeout=timeout)
@@ -82,7 +83,7 @@ def register_peon_orc(orc_name, orc_url, orc_key):
         logging.error(f"An error occurred: {e}")
         return {"status": "error", "info": str(e)}
 
-def get_orchestrator_details(url, api_key):
+def get_orchestrator_details(url, api_key) -> dict:
     url = f"{url}/api/v1/orchestrator"
     headers = { 'Accept': 'application/json', 'X-Api-Key': api_key }
     result = _request_json("GET", url, headers=headers)
@@ -90,7 +91,7 @@ def get_orchestrator_details(url, api_key):
         return {"status": "success", "data": result["data"]}
     return result
 
-async def get_orchestrator_details_async(url, api_key):
+async def get_orchestrator_details_async(url, api_key) -> dict:
     """Async version of get_orchestrator_details for use in Discord callbacks"""
     endpoint_url = f"{url}/api/v1/orchestrator"
     headers = { 'Accept': 'application/json', 'X-Api-Key': api_key }
@@ -126,7 +127,7 @@ def deregister_peon_orc(orc_name):
         logging.error(f"An error occurred: {e}")
         return {"status": "error", "info": str(e)}
 
-def get_servers(url, api_key):
+def get_servers(url, api_key) -> list[OrcServer]:
     url = f"{url}/api/v1/servers"
     headers = { 'Accept': 'application/json', 'X-Api-Key': api_key }
     result = _request_json("GET", url, headers=headers)
@@ -136,22 +137,22 @@ def get_servers(url, api_key):
         return result["data"]
     return []
 
-def import_servers(url, api_key):
+def import_servers(url, api_key) -> dict:
     url = f"{url}/api/v1/servers"
     headers = { 'Accept': 'application/json', 'X-Api-Key': api_key }
     return _request_json("PUT", url, headers=headers)
 
-def get_all_plans(url, api_key):
+def get_all_plans(url, api_key) -> dict:
     url = f"{url}/api/v1/plans"
     headers = { 'Accept': 'application/json', 'X-Api-Key': api_key }
     return _request_json("GET", url, headers=headers)
 
-def update_plans(url, api_key):
+def update_plans(url, api_key) -> dict:
     url = f"{url}/api/v1/plans"
     headers = { 'Accept': 'application/json', 'X-Api-Key': api_key }
     return _request_json("PUT", url, headers=headers)
 
-def server_create(url, api_key, game_uid, warcamp_name, user_settings=None):
+def server_create(url, api_key, game_uid, warcamp_name, user_settings=None) -> dict:
     if user_settings is None:
         user_settings = {}
     server_uid = f"{game_uid}.{warcamp_name}"
@@ -199,13 +200,13 @@ def test_orchestrator_connectivity(url, api_key):
         logging.error(f"Error testing orchestrator connectivity: {e}")
         return {"status": "error", "message": str(e)}
 
-def server_delete(url, api_key, server_uid, action="destroy", eradicate=False):
+def server_delete(url, api_key, server_uid, action="destroy", eradicate=False) -> dict:
     url = f"{url}/api/v1/server/{action}/{server_uid}"
     headers = { 'Accept': 'application/json', 'X-Api-Key': api_key }
     body = {"eradicate": eradicate} if eradicate else {}
     return _request_json("DELETE", url, headers=headers, json_body=body)
 
-def server_get_save_download(url, api_key, server_uid):
+def server_get_save_download(url, api_key, server_uid) -> dict:
     url = f"{url}/api/v1/server/save/{server_uid}"
     headers = { 'Accept': 'application/json', 'X-Api-Key': api_key }
     result = _request_json("GET", url, headers=headers)
@@ -213,7 +214,7 @@ def server_get_save_download(url, api_key, server_uid):
         return {"status": "success", "download_url": url}
     return result
 
-def server_update_description(url, api_key, server_uid, description):
+def server_update_description(url, api_key, server_uid, description) -> dict:
     url = f"{url}/api/v1/server/description/{server_uid}"
     headers = { 'Accept': 'application/json', 'X-Api-Key': api_key }
     body = {"description": description}
@@ -291,7 +292,7 @@ def server_backup(url, api_key, server_uid):
     headers = { 'Accept': 'application/json', 'X-Api-Key': api_key }
     return (requests.put(url, headers=headers, timeout=REQUEST_TIMEOUT)).json()
 
-def server_action(url, api_key, server_uid, action, body=None):
+def server_action(url, api_key, server_uid, action, body=None) -> dict:
     if body is None:
         body = {}
     logging.debug(f'[server_action] - {action} requested for {server_uid}: body {body}')

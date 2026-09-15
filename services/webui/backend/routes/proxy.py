@@ -9,7 +9,7 @@ import asyncio
 import aiohttp
 from urllib.parse import quote_plus
 from datetime import datetime, timezone
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from core.database import get_db, dict_from_row
@@ -18,6 +18,7 @@ from core.orchestrator_url import resolve_orchestrator_url, resolve_orchestrator
 from services.orchestrator import OrchestratorService
 from services.audit import AuditService
 from services.game_logos import ensure_png_logo_for_game
+from models.orc_responses import OrcServer
 
 router = APIRouter(prefix="/proxy")
 docs_security = HTTPBearer(auto_error=False)
@@ -364,6 +365,16 @@ async def get_servers(orch_id: str, current_user: dict = Depends(get_current_use
                     async with session.get(url, headers=headers) as response:
                         if response.status == 200:
                             servers = await response.json()
+
+                            try:
+                                for server in servers:
+                                    OrcServer.model_validate(server)
+                            except ValidationError as exc:
+                                raise HTTPException(
+                                    status_code=502,
+                                    detail=f"Orchestrator returned an unexpected server shape: {exc}"
+                                )
+
                             user_server_permissions = OrchestratorService.get_user_server_link_permissions(
                                 current_user['id'], orch_id
                             )
@@ -417,6 +428,8 @@ async def get_servers(orch_id: str, current_user: dict = Depends(get_current_use
                 raise HTTPException(status_code=500, detail=f"Error fetching servers: {str(last_error)}")
 
             raise HTTPException(status_code=504, detail="Orchestrator request timeout")
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching servers: {str(e)}")
 
@@ -439,9 +452,19 @@ async def get_server_info(orch_id: str, server_uid: str, current_user: dict = De
             
             async with session.get(url, headers=headers) as response:
                 if response.status == 200:
-                    return await response.json()
+                    payload = await response.json()
+                    try:
+                        OrcServer.model_validate(payload)
+                    except ValidationError as exc:
+                        raise HTTPException(
+                            status_code=502,
+                            detail=f"Orchestrator returned an unexpected server shape: {exc}"
+                        )
+                    return payload
                 else:
                     raise HTTPException(status_code=response.status, detail="Failed to get server info")
+    except HTTPException:
+        raise
     except asyncio.TimeoutError:
         raise HTTPException(status_code=504, detail="Request timeout")
     except Exception as e:
@@ -531,6 +554,20 @@ async def deploy_server(
                     result = {"detail": result_text or "Deploy failed"}
                 
                 if response.status in [200, 201]:
+                    # orc's create action either returns the freshly-created server
+                    # object (game_uid/servername present) or, when start_later is
+                    # requested, a bare {"status": "success", "info": ...} ack with
+                    # no server fields at all -- only validate the shape when it's
+                    # actually claiming to be a server object.
+                    if isinstance(result, dict) and 'game_uid' in result:
+                        try:
+                            OrcServer.model_validate(result)
+                        except ValidationError as exc:
+                            raise HTTPException(
+                                status_code=502,
+                                detail=f"Orchestrator returned an unexpected server shape: {exc}"
+                            )
+
                     # Log deployment
                     AuditService.log(
                         user_id=current_user['id'],
