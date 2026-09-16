@@ -46,6 +46,9 @@ RUN echo '╔══════════════════════�
     echo "cat /etc/motd" >> /etc/bash.bashrc
 
 # OS: Update and install required packages
+# Debian bullseye is EOL; deb.debian.org no longer serves it. Pin apt to a snapshot.
+RUN printf 'deb http://snapshot.debian.org/archive/debian/20250721T000000Z bullseye main\ndeb http://snapshot.debian.org/archive/debian-security/20250721T000000Z bullseye-security main\ndeb http://snapshot.debian.org/archive/debian/20250721T000000Z bullseye-updates main\n' > /etc/apt/sources.list
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     procps \
