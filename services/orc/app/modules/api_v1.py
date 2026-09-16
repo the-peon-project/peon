@@ -304,6 +304,7 @@ def put_plans(request: Request):
                 break
         if not found:
             differences[game_uid] = new_dict
+    configure_plan_permissions()
     return {"new_recipies": differences}
 
 

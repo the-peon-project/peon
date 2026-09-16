@@ -35,7 +35,7 @@
     ports:
       - '${PEON_WEBUI_HOST_PORT:-80}:80'
     volumes:
-      - $PWD/warplans:/app/warplans:ro
+      - $PWD/plans:/app/warplans:ro
     networks:
       zugnet:
         ipv4_address: 172.20.0.4

@@ -57,10 +57,11 @@ Use targeted syntax checks or module-level verification around touched files whe
 
 ## Warplan Source
 
-- Game plan definitions live at `peon/warplans/` in this same repo.
-- `config/docker-compose/02_orc.yml` bind-mounts `warplans/` read-only directly into the orc container at `/home/peon/plans` — `deploy_peon.sh` reads `./config/docker-compose/*.yml` via a relative path, so it requires a full monorepo checkout (including `warplans/`) at the deployment root. This is NOT automatically true of every checkout: a deployment that predates the monorepo consolidation, or was never updated past it, will be missing `warplans/` entirely and must be migrated to a full monorepo checkout before this compose change takes effect. `deploy_peon.sh` now fails loudly with a precondition check if `./warplans` is missing, rather than letting Docker silently bind-mount an empty root-owned directory.
-- `app/modules/github.py`'s `get_plans_from_github`/`update_plans_from_github` are now no-ops kept only so `PUT /api/v1/plans` (called by webui/bot-discord's "refresh plans" actions) still returns `{"status": "success"}` — refreshing plans now means updating the host's `warplans/` checkout (e.g. `git pull`) rather than triggering an in-container fetch.
-- `services/webui/backend/routes/proxy.py`'s `GET /proxy/plans` also reads `warplans/` directly (mounted at `/app/warplans` via `config/docker-compose/03_webui.yml`) — previously this mount didn't exist and the endpoint silently returned an empty list.
+- Game plan definitions live at `peon/warplans/` in this repo.
+- A real deployment host is typically a thin checkout — it has `deploy_peon.sh` and `config/docker-compose/`, but not the application source trees (`services/`, `warplans/`, `cli/`, `wartable/`), since it pulls application code as pre-built Docker images. So the orc container cannot rely on `warplans/` being present on disk next to `deploy_peon.sh`.
+- Instead, `app/modules/github.py` clones `https://github.com/the-peon-project/peon.git` and sparse-checks-out just the `warplans/` subdirectory, flattening it into `/home/peon/plans` inside the container (`get_plans_from_github`/`update_plans_from_github`, called via `download_latest_plans_from_repository`/`update_latest_plans_from_repository` in `plans.py`). `config/docker-compose/02_orc.yml` mounts `$PWD/plans:/home/peon/plans` (writable, not read-only) so this clone/pull persists across container restarts in a real `plans/` runtime directory at the deployment root — a directory populated by this fetch, not checked into the monorepo.
+- `PUT /api/v1/plans` (called by webui/bot-discord's "refresh plans" actions) triggers `update_latest_plans_from_repository`, which does a `git pull` (or initial `git clone` if `plans/` is empty) against the consolidated monorepo, then `configure_plan_permissions()` fixes ownership on the `plans/` directory.
+- `services/webui/backend/routes/proxy.py`'s `GET /proxy/plans` also reads this same `plans/` directory, mounted read-only at `/app/warplans` via `config/docker-compose/03_webui.yml` (`$PWD/plans:/app/warplans:ro`).
 
 ## Cross-Directory Dependencies (within this repo)
 

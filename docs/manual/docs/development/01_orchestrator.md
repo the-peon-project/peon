@@ -27,7 +27,7 @@ It is what manages the process of game server deployment for users.
 
 [HTML Response Codes](https://www.restapitutorial.com/httpstatuscodes.html)
 
-`PUT /api/v1/plans` no longer fetches plans over the network — `warplans/` is bind-mounted directly into the orc container, so it's always current. Refreshing plans now means updating the host checkout, not calling this endpoint (which is kept only for backward compatibility with existing webui/bot-discord "refresh" actions).
+`PUT /api/v1/plans` still fetches the latest plans over the network: it git-clones/pulls `https://github.com/the-peon-project/peon.git` and sparse-checks-out the consolidated monorepo's `warplans/` subdirectory into the orc container's runtime `plans/` directory.
 
 ---
 

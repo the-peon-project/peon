@@ -68,11 +68,6 @@ help_information() {
 }
 
 # APP START
-if [ ! -d "./warplans" ]; then
-    echo "ERROR: ./warplans directory not found. This deployment checkout is missing the warplans/ directory that services/orc and the webui now require (bind-mounted read-only into their containers). Ensure you are running this from a full, up-to-date monorepo checkout that includes warplans/, not a pre-consolidation or partial checkout." >&2
-    exit 1
-fi
-
 config_file_location="./config/docker-compose"
 orc=false
 web=false

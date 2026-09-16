@@ -57,6 +57,15 @@ def get_plans_local(config_peon):
         logging.error(f"[get_plans_local] Could not get the local plans file. {e}")
         return None
 
+def configure_plan_permissions():
+    try:
+        logging.error("Setting folder permissions...")
+        execute_shell(cmd_as_string=f"chown -R 1000:1000 {settings['path']['plans']}")
+        return { "status" : "success" }
+    except Exception as e:
+        logging.error("--- FAILED")
+        return {"status" : "error", "info" : "Could not set permissions on plans folder.", "exception" : f"{e}" }
+
 # LOCAL PLAN FUNCTIONS
 def get_local_plan_definition(file_path):
     try:
