@@ -7,6 +7,9 @@ LABEL "maintainer"="Umlatt <richard@lazylionconsulting.com>"
 COPY ./media/motd /etc/motd
 RUN echo "cat /etc/motd" >> /etc/bash.bashrc
 # OS: Prepare the OS and middleware
+# Debian bullseye is EOL; deb.debian.org no longer serves it. Pin apt to a snapshot.
+RUN printf 'deb http://snapshot.debian.org/archive/debian/20250721T000000Z bullseye main\ndeb http://snapshot.debian.org/archive/debian-security/20250721T000000Z bullseye-security main\ndeb http://snapshot.debian.org/archive/debian/20250721T000000Z bullseye-updates main\n' > /etc/apt/sources.list
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until
 RUN apt-get update
 # DOCKER
 RUN apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release subversion bsdmainutils zip
@@ -24,7 +27,7 @@ COPY ./app /app
 WORKDIR /app
 ENV PATH="/app/bin:${PATH}"
 # BUILD ERROR NOTE: historically required peon-cli/bin to be bind-mounted into ./app build directory (e.g. `/home/USER/development/peon-cli/bin /home/USER/development/peon-orc/app/bin none bind 0 0`); app/bin now ships committed copies of peon/cli/bin instead, so this mount is no longer needed (see peon/services/orc/CLAUDE.md, "Warplan Source" section, for the known duplication this leaves behind)
-RUN mkdir /app/bin/config && echo "/home/peon/servers/" > /app/bin/config/peon_dir 
+RUN mkdir -p /app/bin/config && echo "/home/peon/servers/" > /app/bin/config/peon_dir 
 # BACKWARDS COMPATIBILITY
 RUN echo "alias docker-compose='docker compose'" >> /etc/bash.bashrc
 RUN echo "alias docker-compose='docker compose'" >> /etc/profile
