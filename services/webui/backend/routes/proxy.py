@@ -342,6 +342,37 @@ async def grant_server_access(
         "permissions": requested_permission,
     }
 
+@router.put("/{orch_id}/servers")
+async def scan_for_servers(orch_id: str, current_user: dict = Depends(get_current_admin_user)):
+    """Trigger the orchestrator to crawl its server path for valid, unregistered servers and import them."""
+    if not OrchestratorService.check_user_access(current_user['id'], orch_id, current_user['role']):
+        raise HTTPException(status_code=403, detail="Access denied to this orchestrator")
+
+    orch = OrchestratorService.get_by_id(orch_id)
+    if not orch or not orch.get('is_active'):
+        raise HTTPException(status_code=404, detail="Orchestrator not found or inactive")
+
+    try:
+        timeout = aiohttp.ClientTimeout(total=90, connect=10, sock_read=80)
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            headers = {"X-Api-Key": orch['api_key']}
+            base_url = resolve_orchestrator_url(orch['base_url'])
+            async with session.put(f"{base_url}/api/v1/servers", headers=headers) as response:
+                if response.status == 401:
+                    raise HTTPException(status_code=401, detail="Invalid API key")
+                if response.status not in (200, 201):
+                    detail = await response.text()
+                    raise HTTPException(status_code=response.status, detail=detail or "Server scan failed")
+                servers = await response.json()
+                return {"success": True, "servers": servers}
+    except HTTPException:
+        raise
+    except asyncio.TimeoutError:
+        raise HTTPException(status_code=504, detail="Orchestrator request timeout")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error scanning for servers: {str(e)}")
+
+
 @router.get("/{orch_id}/servers")
 async def get_servers(orch_id: str, current_user: dict = Depends(get_current_user)):
     """Get servers from specific orchestrator (live fetch)"""

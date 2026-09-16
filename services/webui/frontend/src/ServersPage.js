@@ -349,6 +349,8 @@ const OrchestratorSection = ({
   onManageAccess,
   onEdit,
   onDelete,
+  onScanServers,
+  scanningServers,
   viewMode,
   searchTerm,
   canManageServers,
@@ -436,6 +438,16 @@ const OrchestratorSection = ({
         </div>
         
         <div className="flex items-center gap-2">
+          {canManageServers && (
+            <button
+              onClick={(e) => { e.stopPropagation(); onScanServers(orchestrator.id); }}
+              disabled={scanningServers}
+              className="text-sky-400 hover:text-sky-300 p-2 hover:bg-sky-900/30 rounded transition-colors disabled:opacity-50"
+              title="Scan for servers (crawl this orchestrator's server path for unregistered servers)"
+            >
+              {scanningServers ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
+            </button>
+          )}
           {canManageOrchestrators && (
             <>
               <button
@@ -1135,6 +1147,7 @@ const ServerAccessModal = ({ orchId, server, onClose, onSaved }) => {
 export const ServersPage = ({ orchestrators, onOrchestratorsChange, permissions, initialFilter }) => {
   const [serversData, setServersData] = useState({});
   const [loading, setLoading] = useState({});
+  const [scanningServers, setScanningServers] = useState({});
   const [actionLoading, setActionLoading] = useState({});
   const [searchTerm, setSearchTerm] = useState(initialFilter?.serverUid ? initialFilter.serverUid.split('.').pop() : '');
   const [viewMode, setViewMode] = useState('grid');
@@ -1170,6 +1183,20 @@ export const ServersPage = ({ orchestrators, onOrchestratorsChange, permissions,
       }
     }
   }, [orchestrators]);
+
+  // Trigger the orchestrator to crawl its server path for valid, unregistered servers
+  const handleScanServers = useCallback(async (orchId) => {
+    setScanningServers(prev => ({ ...prev, [orchId]: true }));
+    try {
+      await api.put(`/proxy/${orchId}/servers`);
+      await loadServers();
+    } catch (err) {
+      console.error('Failed to scan for servers:', err);
+      alert('Failed to scan for servers: ' + (err.response?.data?.detail || err.message));
+    } finally {
+      setScanningServers(prev => ({ ...prev, [orchId]: false }));
+    }
+  }, [loadServers]);
 
   useEffect(() => {
     if (orchestrators.length > 0) {
@@ -1377,6 +1404,8 @@ export const ServersPage = ({ orchestrators, onOrchestratorsChange, permissions,
             onManageAccess={(orchId, server) => { setCurrentOrchId(orchId); setAccessServer(server); }}
             onEdit={(orch) => { setEditingOrch(orch); setShowOrchModal(true); }}
             onDelete={handleDeleteOrchestrator}
+            onScanServers={handleScanServers}
+            scanningServers={scanningServers[orch.id]}
             viewMode={viewMode}
             searchTerm={searchTerm}
             canManageServers={canManageServers}

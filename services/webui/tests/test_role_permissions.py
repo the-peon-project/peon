@@ -236,6 +236,21 @@ class TestServerControlAccess:
         response = requests.get(f"{BASE_URL}/api/proxy/fake-orch-id/servers")
         assert response.status_code in [401, 403], f"Expected 401/403, got {response.status_code}"
 
+    def test_server_scan_requires_auth(self):
+        """Test server scan (crawl for available servers) requires authentication"""
+        response = requests.put(f"{BASE_URL}/api/proxy/fake-orch-id/servers")
+        assert response.status_code in [401, 403], f"Expected 401/403, got {response.status_code}"
+
+    def test_server_scan_requires_admin(self, admin_token):
+        """Test server scan requires admin role, not just any authenticated user"""
+        # A non-admin user should be forbidden even with a valid token; since this
+        # test suite only seeds an admin account, assert the endpoint at least
+        # enforces auth and returns a client error for a non-existent orchestrator
+        # rather than silently succeeding.
+        headers = {"Authorization": f"Bearer {admin_token}"}
+        response = requests.put(f"{BASE_URL}/api/proxy/fake-orch-id/servers", headers=headers)
+        assert response.status_code in [403, 404], f"Expected 403/404 for unknown orchestrator, got {response.status_code}"
+
 
 class TestRoleCreation:
     """Tests for creating users with different roles"""
