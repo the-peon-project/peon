@@ -8,6 +8,9 @@ COPY ./media/motd /etc/motd
 RUN echo "cat /etc/motd" >> /etc/bash.bashrc
 # Install python requirements
 COPY ./requirements.txt /app/requirements.txt
+# Debian bullseye is EOL; deb.debian.org no longer serves it. Pin apt to a snapshot.
+RUN printf 'deb http://snapshot.debian.org/archive/debian/20250721T000000Z bullseye main\ndeb http://snapshot.debian.org/archive/debian-security/20250721T000000Z bullseye-security main\ndeb http://snapshot.debian.org/archive/debian/20250721T000000Z bullseye-updates main\n' > /etc/apt/sources.list
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until
 # Update pip and install required python modules
 RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip3 install --no-cache-dir --upgrade -r /app/requirements.txt
