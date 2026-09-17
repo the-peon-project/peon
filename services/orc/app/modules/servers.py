@@ -361,11 +361,19 @@ def servers_import():
         # Check if the length of parts is equal to the length of base_path plus 2
         # This indicates a second level folder
         if len(parts) == len(base_path.split(os.sep)) + 2:
-            docker_project = f"{root.split('/')[-2]}_{root.split('/')[-1]}"
+            game_uid, warcamp = root.split('/')[-2], root.split('/')[-1]
+            docker_project = f"{game_uid}_{warcamp}"
             # Check if there is a file called `docker-compose.yml` in the root directory
             if "docker-compose.yml" in files:
-                execute_shell(f"cd {root} && docker compose -p {docker_project} create")
-    
+                if server_check(f"{game_uid}.{warcamp}") != "error":
+                    # Already has a container (registered or previously imported); nothing to do.
+                    continue
+                try:
+                    execute_shell(f"cd {root} && docker compose -p {docker_project} create")
+                except Exception as e:
+                    # One broken/stale server directory must not abort the scan for every other server.
+                    logging.error(f"[servers_import] Failed to create server from [{root}]. {e}")
+
 def add_envs(env_vars, content):
     for key in content.keys():
         env_vars[key] = content[key]
