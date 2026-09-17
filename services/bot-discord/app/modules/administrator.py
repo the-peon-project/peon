@@ -5,11 +5,10 @@ from . import *
 from .orchestrator import *
 from .shared import *
 
-# NOTE: main.py's /report (or equivalent) admin-mode branch constructs
-# `EnhancedAdministratorView()`, but no such class is defined anywhere in this
-# module (or the rest of the codebase) -- that code path raises a NameError at
-# runtime. This is a separate, pre-existing bug, not addressed here; the
-# now-removed `PersistentAdministratorView` stub that used to live in this file
-# was an empty placeholder (no buttons, not correctly configured for
-# persistence either) and registering it achieved nothing, so it was deleted
-# rather than patched.
+# NOTE: this module used to define `PersistentAdministratorView`, an empty
+# placeholder (no buttons, not correctly configured for persistence either)
+# that achieved nothing when registered, so it was deleted rather than
+# patched. main.py's /peon admin-mode branch used to construct a
+# corresponding `EnhancedAdministratorView()` that was never defined anywhere
+# in the codebase (a NameError on every use) -- that branch now sends its
+# embed without a view instead, until a real admin button panel is designed.

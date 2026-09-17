@@ -176,12 +176,21 @@ async def peon_slash(
         color=discord.Color.green()
     )
     embed.set_image(url=bot_image)
-    embed.set_footer(text="Use the buttons below or try /help for more commands")
-    
+
     if channel_type == "admin":
-        view = EnhancedAdministratorView()
-        embed.add_field(name="🔧 Admin Mode", value="Full administrative controls available", inline=False)
-        await interaction.followup.send(embed=embed, view=view)
+        # NOTE: there is no dedicated admin button panel (yet) -- the administrative
+        # actions available today are the /server, /create, /list, and /debug slash
+        # commands. This branch used to reference an EnhancedAdministratorView class
+        # that was never defined anywhere in the codebase, which raised a NameError
+        # on every use; send the informational embed without a view instead of
+        # inventing button actions nobody has specified.
+        embed.add_field(
+            name="🔧 Admin Mode",
+            value="Use `/server`, `/create`, `/list`, or `/debug` for administrative actions.",
+            inline=False,
+        )
+        embed.set_footer(text="Try /help for the full command list")
+        await interaction.followup.send(embed=embed)
     else:
         try:
             channel_name = str(interaction.channel.name)
@@ -191,6 +200,7 @@ async def peon_slash(
             gameuid, servername = parsed
             view = build_persistent_user_panel(gameuid, servername)
             embed.add_field(name="🎮 Server Mode", value=f"Managing **{gameuid}.{servername}**", inline=False)
+            embed.set_footer(text="Use the buttons below or try /help for more commands")
             await interaction.followup.send(embed=embed, view=view)
         except:
             embed = build_card(status='nok', message="❌ This doesn't look like a warcamp channel!\n\nChannels should be named: `game-servername`")
