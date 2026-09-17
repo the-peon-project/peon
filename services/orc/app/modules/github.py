@@ -14,8 +14,11 @@ repo_subdir = 'warplans'
 
 def _flatten_repo_subdir():
     # Copy the sparse-checked-out subdir's contents up to plan_path root, matching
-    # the flat layout the old standalone peon-warplans clone used to produce there.
-    execute_shell(cmd_as_string=f'cp -r {plan_path}/{repo_subdir}/. {plan_path}/')
+    # the flat layout the old standalone peon-warplans clone used to produce there,
+    # then remove the now-redundant nested copy. Safe to delete: a subsequent
+    # refresh's `git reset --hard` (see update_plans_from_github) restores it from
+    # the sparse-checkout before this function copies it up again.
+    execute_shell(cmd_as_string=f'cp -r {plan_path}/{repo_subdir}/. {plan_path}/ && rm -rf {plan_path}/{repo_subdir}')
 
 def get_plans_from_github():
     logging.debug(f'[get_plans_from_github] Pulling latest plans from [{repo_url}] (subdirectory: {repo_subdir}).')
