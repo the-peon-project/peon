@@ -30,13 +30,13 @@ class PeonBot(commands.Bot):
     
     async def setup_hook(self):
         """Called when the bot is starting up"""
-        # Register persistent views only when they satisfy discord.py persistence requirements.
-        try:
-            self.add_view(PersistentAdministratorView())
-            self.add_view(PersistentUserView())
-            logging.info("Added persistent views")
-        except ValueError as exc:
-            logging.warning(f"Skipping persistent view registration: {exc}")
+        # The per-server control panel's buttons encode gameuid/servername/action in their
+        # custom_id, so this registers the *class* once (not a per-server instance) and
+        # discord.py reconstructs+dispatches the right button via PersistentServerButton
+        # .from_custom_id whenever an interaction arrives with no live view in memory
+        # (e.g. after this exact restart). See modules/user.py for the implementation.
+        self.add_dynamic_items(PersistentServerButton)
+        logging.info("Registered persistent server-panel buttons")
     
     async def on_ready(self):
         if self._startup_tasks_done:
@@ -189,7 +189,7 @@ async def peon_slash(
             if not parsed:
                 raise ValueError(f"Invalid channel name: {channel_name}")
             gameuid, servername = parsed
-            view = EnhancedUserView(gameuid=gameuid, servername=servername)
+            view = build_persistent_user_panel(gameuid, servername)
             embed.add_field(name="🎮 Server Mode", value=f"Managing **{gameuid}.{servername}**", inline=False)
             await interaction.followup.send(embed=embed, view=view)
         except:

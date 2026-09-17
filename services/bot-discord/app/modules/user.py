@@ -1,251 +1,271 @@
 import logging
+import re
 import discord
 from typing import Optional
 from . import *
 from .shared import *
 from .orchestrator import *
 
-class PersistentUserView(discord.ui.View):
-    """Persistent view that survives bot restarts"""
-    def __init__(self):
-        super().__init__(timeout=None)
+async def _server_action_embed(gameuid: str, servername: str, action: str, requested_by: str) -> discord.Embed:
+    """Run a server action against the orchestrator and build the resulting embed."""
+    server_name = f"{gameuid}.{servername}"
+    logging.info(f"Server {action.upper()} triggered by @{requested_by} for {server_name}")
 
-class EnhancedUserView(discord.ui.View):
-    """Enhanced user interface with better UX, dynamic buttons, and visual feedback"""
-    def __init__(self, gameuid: str, servername: str):
-        self.gameuid = gameuid
-        self.servername = servername
-        super().__init__(timeout=300)  # 5 minute timeout
-        
-        # Get current server status to set dynamic button states
-        self._update_button_states()
-        
-    def _update_button_states(self):
-        """Update button states based on current server status"""
-        try:
-            if 'error' in (result := get_peon_orcs())['status']:
-                return
-            
-            # Get current server status
-            args = [self.gameuid, self.servername]
-            response = server_actions(action='get', args=args)
-            
-            if response['status'] == 'success':
-                # This could be used to disable/enable buttons based on server state
-                # For now, we'll keep all buttons enabled
-                pass
-        except:
-            pass
-    
-    def _disable_all_buttons(self):
-        for item in self.children:
-            if isinstance(item, discord.ui.Button):
-                item.disabled = True
+    response = server_actions(action=action, args=[gameuid, servername])
 
-    async def _handle_server_action(self, interaction: discord.Interaction, action: str, show_feedback: bool = True):
-        """Enhanced server action handler with better feedback"""
-        if show_feedback:
-            self._disable_all_buttons()
-            await interaction.response.edit_message(view=self)
-        
-        username = str(interaction.user.display_name)
-        server_name = f"{self.gameuid}.{self.servername}"
-        
-        logging.info(f"Server {action.upper()} triggered by <@{interaction.user}> for {server_name}")
-        
-        response = server_actions(action=action, args=[self.gameuid, self.servername])
-        
-        if response['status'] == 'success':
-            if action == 'get':
-                embed = discord.Embed(
-                    title=f"📊 {server_name} Status",
-                    description=response['data'],
-                    color=discord.Color.blue()
-                )
-                # Add server status emoji to title based on content
-                if "running" in response['data'].lower():
-                    embed.title = f"🟢 {server_name} Status"
-                elif "exited" in response['data'].lower() or "stopped" in response['data'].lower():
-                    embed.title = f"🔴 {server_name} Status"
-                else:
-                    embed.title = f"🟡 {server_name} Status"
-            else:
-                # Action-specific emojis and messages
-                action_info = {
-                    'start': {'emoji': '🚀', 'desc': 'Server is starting up!'},
-                    'stop': {'emoji': '🛑', 'desc': 'Server is shutting down!'},
-                    'restart': {'emoji': '🔄', 'desc': 'Server is restarting!'},
-                    'update': {'emoji': '⬆️', 'desc': 'Server is updating!'}
-                }
-                
-                info = action_info.get(action, {'emoji': '✅', 'desc': f'{action.title()} completed!'})
-                
-                embed = discord.Embed(
-                    title=f"{info['emoji']} {action.title()} Initiated",
-                    description=f"**{server_name}** - {info['desc']}\n\n*Requested by @{username}*",
-                    color=discord.Color.green()
-                )
-        else:
-            error_messages = {
-                'srv.param': 'Invalid server parameters provided',
-                'orc.none': 'No orchestrators are registered',
-                'srv.dne': 'Server not found',
-                'srv.notexplicit': 'Multiple servers found - be more specific',
-                'orc.notavailable': 'Orchestrator is not available'
-            }
-            
-            error_msg = error_messages.get(
-                response.get('err_code'), 
-                response.get('err_code', 'Unknown error occurred')
-            )
-            
+    if response['status'] == 'success':
+        if action == 'get':
             embed = discord.Embed(
-                title=f"❌ {action.title()} Failed",
-                description=f"**{server_name}**\n\n{error_msg}",
-                color=discord.Color.red()
-            )
-            embed.add_field(
-                name="💡 Troubleshooting",
-                value="• Check server name spelling\n• Verify orchestrator is online\n• Try `/list servers` to see available servers",
-                inline=False
-            )
-        
-        if show_feedback:
-            await replace_interaction_with_result(interaction, embed)
-        else:
-            return embed
-
-    @discord.ui.button(label="🚀 Start", style=discord.ButtonStyle.success, row=0)
-    async def server_start(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await self._handle_server_action(interaction, 'start')
-        
-    @discord.ui.button(label="🔄 Restart", style=discord.ButtonStyle.secondary, row=0)
-    async def server_restart(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await self._handle_server_action(interaction, 'restart')
-
-    @discord.ui.button(label="🛑 Stop", style=discord.ButtonStyle.danger, row=0)
-    async def server_stop(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_modal(EnhancedStopTimerModal(self.gameuid, self.servername))
-        await remove_interactions(interaction)
-    
-    @discord.ui.button(label="📊 Info", style=discord.ButtonStyle.secondary, row=1)
-    async def server_info(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await self._handle_server_action(interaction, 'get')
-    
-    @discord.ui.button(label="⬆️ Update", style=discord.ButtonStyle.secondary, row=1)
-    async def server_update(self, interaction: discord.Interaction, button: discord.ui.Button):
-        self._disable_all_buttons()
-        await interaction.response.edit_message(view=self)
-        
-        view = discord.ui.View(timeout=60)
-        view.add_item(EnhancedUpdateModeSelect(self.gameuid, self.servername))
-        
-        embed = discord.Embed(
-            title="⬆️ Server Update Options",
-            description=f"Select update type for **{self.gameuid}.{self.servername}**:",
-            color=discord.Color.orange()
-        )
-        embed.add_field(
-            name="⚠️ Important",
-            value="Updates may require the server to be stopped. Choose the appropriate update type:",
-            inline=False
-        )
-        
-        await interaction.followup.send(embed=embed, view=view)
-
-    @discord.ui.button(label="📦 Backup", style=discord.ButtonStyle.primary, row=1)
-    async def server_backup(self, interaction: discord.Interaction, button: discord.ui.Button):
-        self._disable_all_buttons()
-        await interaction.response.edit_message(view=self)
-        
-        # Get orchestrator info
-        if 'error' in (result := get_peon_orcs())['status']:
-            embed = build_card(status='nok', message="No orchestrators registered")
-            await interaction.channel.send(embed=embed)
-            await remove_interactions(interaction)
-            return
-        
-        server_uid = f"{self.gameuid}.{self.servername}"
-        orchestrator = result['data'][0]  # Use first orchestrator for now
-        
-        backup_result = server_get_save_download(
-            orchestrator['url'],
-            orchestrator['key'],
-            server_uid
-        )
-        
-        if backup_result['status'] == 'success':
-            embed = discord.Embed(
-                title="📦 Server Backup Ready",
-                description=f"Backup for **{server_uid}** has been prepared!",
+                title=f"📊 {server_name} Status",
+                description=response['data'],
                 color=discord.Color.blue()
             )
-            embed.add_field(
-                name="📥 Download",
-                value=f"[Click here to download backup]({backup_result['download_url']})",
-                inline=False
-            )
-            embed.add_field(
-                name="📋 Contents",
-                value="• Server configuration files\n• Player data and progress\n• World/map files",
-                inline=False
-            )
-            embed.set_footer(text="Backup files are compressed and ready for download")
+            # Add server status emoji to title based on content
+            if "running" in response['data'].lower():
+                embed.title = f"🟢 {server_name} Status"
+            elif "exited" in response['data'].lower() or "stopped" in response['data'].lower():
+                embed.title = f"🔴 {server_name} Status"
+            else:
+                embed.title = f"🟡 {server_name} Status"
         else:
+            # Action-specific emojis and messages
+            action_info = {
+                'start': {'emoji': '🚀', 'desc': 'Server is starting up!'},
+                'stop': {'emoji': '🛑', 'desc': 'Server is shutting down!'},
+                'restart': {'emoji': '🔄', 'desc': 'Server is restarting!'},
+                'update': {'emoji': '⬆️', 'desc': 'Server is updating!'}
+            }
+
+            info = action_info.get(action, {'emoji': '✅', 'desc': f'{action.title()} completed!'})
+
             embed = discord.Embed(
-                title="❌ Backup Failed",
-                description=f"Could not create backup for **{server_uid}**",
-                color=discord.Color.red()
+                title=f"{info['emoji']} {action.title()} Initiated",
+                description=f"**{server_name}** - {info['desc']}\n\n*Requested by @{requested_by}*",
+                color=discord.Color.green()
             )
-            embed.add_field(
-                name="Error Details",
-                value=backup_result.get('message', 'Unknown error occurred'),
-                inline=False
-            )
-        
-        await replace_interaction_with_result(interaction, embed)
-        
-    @discord.ui.button(label="📝 Edit Description", style=discord.ButtonStyle.secondary, row=2)
-    async def edit_description(self, interaction: discord.Interaction, button: discord.ui.Button):
-        modal = EnhancedEditDescriptionModal(self.gameuid, self.servername)
-        await interaction.response.send_modal(modal)
-        await remove_interactions(interaction)
-        
-    @discord.ui.button(label="🗑️ Delete Server", style=discord.ButtonStyle.danger, row=2)
-    async def delete_server(self, interaction: discord.Interaction, button: discord.ui.Button):
-        self._disable_all_buttons()
-        await interaction.response.edit_message(view=self)
-        
-        view = EnhancedDeleteConfirmView(self.gameuid, self.servername)
+    else:
+        error_messages = {
+            'srv.param': 'Invalid server parameters provided',
+            'orc.none': 'No orchestrators are registered',
+            'srv.dne': 'Server not found',
+            'srv.notexplicit': 'Multiple servers found - be more specific',
+            'orc.notavailable': 'Orchestrator is not available'
+        }
+
+        error_msg = error_messages.get(
+            response.get('err_code'),
+            response.get('err_code', 'Unknown error occurred')
+        )
+
         embed = discord.Embed(
-            title="⚠️ DANGER ZONE ⚠️",
-            description=f"You are about to **DELETE** server:\n\n🎮 **{self.gameuid}.{self.servername}**",
+            title=f"❌ {action.title()} Failed",
+            description=f"**{server_name}**\n\n{error_msg}",
             color=discord.Color.red()
         )
         embed.add_field(
-            name="🚨 Warning",
-            value="This action cannot be undone! Choose your deletion type carefully:",
+            name="💡 Troubleshooting",
+            value="• Check server name spelling\n• Verify orchestrator is online\n• Try `/list servers` to see available servers",
+            inline=False
+        )
+
+    return embed
+
+
+async def _handle_simple_server_action(interaction: discord.Interaction, gameuid: str, servername: str, action: str):
+    """start/restart/info (action='get'): disable the panel, run the action, replace the message with the result."""
+    await interaction.response.edit_message(view=build_persistent_user_panel(gameuid, servername, disabled=True))
+    embed = await _server_action_embed(gameuid, servername, action, str(interaction.user.display_name))
+    await replace_interaction_with_result(interaction, embed)
+
+
+async def _handle_stop_button(interaction: discord.Interaction, gameuid: str, servername: str):
+    await interaction.response.send_modal(EnhancedStopTimerModal(gameuid, servername))
+    await remove_interactions(interaction)
+
+
+async def _handle_update_button(interaction: discord.Interaction, gameuid: str, servername: str):
+    await interaction.response.edit_message(view=build_persistent_user_panel(gameuid, servername, disabled=True))
+
+    view = discord.ui.View(timeout=60)
+    view.add_item(EnhancedUpdateModeSelect(gameuid, servername))
+
+    embed = discord.Embed(
+        title="⬆️ Server Update Options",
+        description=f"Select update type for **{gameuid}.{servername}**:",
+        color=discord.Color.orange()
+    )
+    embed.add_field(
+        name="⚠️ Important",
+        value="Updates may require the server to be stopped. Choose the appropriate update type:",
+        inline=False
+    )
+
+    await interaction.followup.send(embed=embed, view=view)
+
+
+async def _handle_backup_button(interaction: discord.Interaction, gameuid: str, servername: str):
+    await interaction.response.edit_message(view=build_persistent_user_panel(gameuid, servername, disabled=True))
+
+    # Get orchestrator info
+    if 'error' in (result := get_peon_orcs())['status']:
+        embed = build_card(status='nok', message="No orchestrators registered")
+        await interaction.channel.send(embed=embed)
+        await remove_interactions(interaction)
+        return
+
+    server_uid = f"{gameuid}.{servername}"
+    orchestrator = result['data'][0]  # Use first orchestrator for now
+
+    backup_result = server_get_save_download(
+        orchestrator['url'],
+        orchestrator['key'],
+        server_uid
+    )
+
+    if backup_result['status'] == 'success':
+        embed = discord.Embed(
+            title="📦 Server Backup Ready",
+            description=f"Backup for **{server_uid}** has been prepared!",
+            color=discord.Color.blue()
+        )
+        embed.add_field(
+            name="📥 Download",
+            value=f"[Click here to download backup]({backup_result['download_url']})",
             inline=False
         )
         embed.add_field(
-            name="🗃️ Container Only",
-            value="Removes only the server container. Player data and configs are preserved.",
-            inline=True
+            name="📋 Contents",
+            value="• Server configuration files\n• Player data and progress\n• World/map files",
+            inline=False
+        )
+        embed.set_footer(text="Backup files are compressed and ready for download")
+    else:
+        embed = discord.Embed(
+            title="❌ Backup Failed",
+            description=f"Could not create backup for **{server_uid}**",
+            color=discord.Color.red()
         )
         embed.add_field(
-            name="💥 Complete Deletion",
-            value="Removes EVERYTHING including all player data, saves, and configurations.",
-            inline=True
+            name="Error Details",
+            value=backup_result.get('message', 'Unknown error occurred'),
+            inline=False
         )
-        
-        await interaction.followup.send(embed=embed, view=view)
 
-    @discord.ui.button(label="ℹ️ About", style=discord.ButtonStyle.secondary, row=2)
-    async def server_about(self, interaction: discord.Interaction, button: discord.ui.Button):
-        self._disable_all_buttons()
-        await interaction.response.edit_message(content="*Getting system information...*", view=self)
-        message = await interaction.channel.send(embed=await build_about_card())
-        await remove_interactions(interaction, keep=message.id)
+    await replace_interaction_with_result(interaction, embed)
+
+
+async def _handle_edit_description_button(interaction: discord.Interaction, gameuid: str, servername: str):
+    modal = EnhancedEditDescriptionModal(gameuid, servername)
+    await interaction.response.send_modal(modal)
+    await remove_interactions(interaction)
+
+
+async def _handle_delete_button(interaction: discord.Interaction, gameuid: str, servername: str):
+    await interaction.response.edit_message(view=build_persistent_user_panel(gameuid, servername, disabled=True))
+
+    view = EnhancedDeleteConfirmView(gameuid, servername)
+    embed = discord.Embed(
+        title="⚠️ DANGER ZONE ⚠️",
+        description=f"You are about to **DELETE** server:\n\n🎮 **{gameuid}.{servername}**",
+        color=discord.Color.red()
+    )
+    embed.add_field(
+        name="🚨 Warning",
+        value="This action cannot be undone! Choose your deletion type carefully:",
+        inline=False
+    )
+    embed.add_field(
+        name="🗃️ Container Only",
+        value="Removes only the server container. Player data and configs are preserved.",
+        inline=True
+    )
+    embed.add_field(
+        name="💥 Complete Deletion",
+        value="Removes EVERYTHING including all player data, saves, and configurations.",
+        inline=True
+    )
+
+    await interaction.followup.send(embed=embed, view=view)
+
+
+async def _handle_about_button(interaction: discord.Interaction, gameuid: str, servername: str):
+    await interaction.response.edit_message(
+        content="*Getting system information...*",
+        view=build_persistent_user_panel(gameuid, servername, disabled=True),
+    )
+    message = await interaction.channel.send(embed=await build_about_card())
+    await remove_interactions(interaction, keep=message.id)
+
+
+# Button spec: action -> (label, style, row). Order matches the original EnhancedUserView layout.
+USER_PANEL_BUTTON_SPECS = {
+    "start": ("🚀 Start", discord.ButtonStyle.success, 0),
+    "restart": ("🔄 Restart", discord.ButtonStyle.secondary, 0),
+    "stop": ("🛑 Stop", discord.ButtonStyle.danger, 0),
+    "info": ("📊 Info", discord.ButtonStyle.secondary, 1),
+    "update": ("⬆️ Update", discord.ButtonStyle.secondary, 1),
+    "backup": ("📦 Backup", discord.ButtonStyle.primary, 1),
+    "edit_description": ("📝 Edit Description", discord.ButtonStyle.secondary, 2),
+    "delete_server": ("🗑️ Delete Server", discord.ButtonStyle.danger, 2),
+    "about": ("ℹ️ About", discord.ButtonStyle.secondary, 2),
+}
+
+USER_PANEL_HANDLERS = {
+    "start": lambda interaction, gameuid, servername: _handle_simple_server_action(interaction, gameuid, servername, "start"),
+    "restart": lambda interaction, gameuid, servername: _handle_simple_server_action(interaction, gameuid, servername, "restart"),
+    "info": lambda interaction, gameuid, servername: _handle_simple_server_action(interaction, gameuid, servername, "get"),
+    "stop": _handle_stop_button,
+    "update": _handle_update_button,
+    "backup": _handle_backup_button,
+    "edit_description": _handle_edit_description_button,
+    "delete_server": _handle_delete_button,
+    "about": _handle_about_button,
+}
+
+
+class PersistentServerButton(
+    discord.ui.DynamicItem[discord.ui.Button],
+    template=r"peon:userpanel:(?P<action>[a-z_]+):(?P<gameuid>[^:]+):(?P<servername>[^:]+)",
+):
+    """A server-panel button whose gameuid/servername/action are encoded in its custom_id,
+    so discord.py can reconstruct and dispatch it after a bot restart with no live Python
+    object in memory (see DynamicItem.from_custom_id). Registered once via
+    bot.add_dynamic_items(PersistentServerButton) in main.py's setup_hook -- never via
+    per-instance add_view(), which only works for views whose exact shape is known and
+    unchanging at startup.
+    """
+
+    def __init__(self, gameuid: str, servername: str, action: str, *, disabled: bool = False):
+        label, style, row = USER_PANEL_BUTTON_SPECS[action]
+        super().__init__(
+            discord.ui.Button(
+                label=label,
+                style=style,
+                row=row,
+                disabled=disabled,
+                custom_id=f"peon:userpanel:{action}:{gameuid}:{servername}",
+            )
+        )
+        self.gameuid = gameuid
+        self.servername = servername
+        self.action = action
+
+    @classmethod
+    async def from_custom_id(cls, interaction: discord.Interaction, item: discord.ui.Item, match: re.Match, /):
+        return cls(match["gameuid"], match["servername"], match["action"])
+
+    async def callback(self, interaction: discord.Interaction):
+        await USER_PANEL_HANDLERS[self.action](interaction, self.gameuid, self.servername)
+
+
+def build_persistent_user_panel(gameuid: str, servername: str, *, disabled: bool = False) -> discord.ui.View:
+    """Build the per-server control panel. Safe to call both when first posting the panel
+    and when reconstructing it (e.g. to show a disabled state) -- it never depends on any
+    prior view instance."""
+    view = discord.ui.View(timeout=None)
+    for action in USER_PANEL_BUTTON_SPECS:
+        view.add_item(PersistentServerButton(gameuid, servername, action, disabled=disabled))
+    return view
 
 # Enhanced Modal Classes
 
