@@ -1,3 +1,4 @@
+import logging
 import uuid
 from datetime import datetime, timezone
 from typing import Optional, List
@@ -198,7 +199,12 @@ class UserService:
                 VALUES (?, ?, ?, ?)
             ''', (link_id, user_id, orchestrator_id, now))
             conn.commit()
-        except Exception:
+        except Exception as e:
+            # Expected case: the link already exists (UNIQUE constraint) -- callers
+            # treat None as "already exists or invalid IDs" per this method's docstring.
+            # Logged at debug so a genuinely unexpected DB failure is still traceable
+            # without changing the API's documented behavior for the expected case.
+            logging.debug(f"link_orchestrator({user_id}, {orchestrator_id}) failed: {e}")
             conn.close()
             return None
 
@@ -243,7 +249,10 @@ class UserService:
                 VALUES (?, ?, ?, ?, ?, ?)
             ''', (link_id, user_id, orchestrator_id, server_uid, permissions, now))
             conn.commit()
-        except Exception:
+        except Exception as e:
+            # Same rationale as link_orchestrator() above: expected on a duplicate
+            # link, logged at debug so an unexpected DB failure is still traceable.
+            logging.debug(f"link_server({user_id}, {orchestrator_id}, {server_uid}) failed: {e}")
             conn.close()
             return None
 
