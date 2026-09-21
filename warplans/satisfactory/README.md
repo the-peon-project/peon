@@ -39,11 +39,11 @@ services:
     hostname: peon.steamcmd.satisfactory
     image: umlatt/steamcmd
     ports:
-      - 15777:15777/udp
-      - 15000:15000/udp
+      - 7777:7777/tcp
       - 7777:7777/udp
+      - 8888:8888/tcp
     environment:
-      - STEAMID=1690800
+      - STEAM_ID=1690800
       # GAME SERVER VARIABLES
       - SERVER_NAME=server01
     volumes:
@@ -52,3 +52,5 @@ services:
       - ./config:/home/steam/config
       - ./user:/home/steam/.config/Epic/FactoryGame/Saved/SaveGames
 ```
+
+> **Ports (Satisfactory 1.1+):** the server uses a main port (default `7777`, TCP + UDP: game traffic, Lightweight Query API, HTTPS API) and a reliable messaging port (default `8888`, TCP). Both must be forwarded and reachable from the internet; if the reliable port is blocked, players start the connection but stay stuck on the loading screen. The old ports `15000` (beacon) and `15777` (query) are unused since Satisfactory 1.0.

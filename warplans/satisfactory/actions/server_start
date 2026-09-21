@@ -9,11 +9,23 @@ fi
 peon_server_starting "Satisfactory"
 cd $INSTALL_DIR
 ##### Server Config
-echo $QUERYPORT > /home/steam/config/port
+echo $PORT > /home/steam/config/port
+echo $RELIABLEPORT > /home/steam/config/port_reliable
 ##### CONTENTS OF server_start.sh
 peon_steam_ld_path_enter
 export SteamAppId=1690800
 
-./FactoryServer.sh -ServerQueryPort=$QUERYPORT -BeaconPort=$BEACONPORT -Port=$PORT -multihome=$IP
+# Satisfactory 1.1 requires a main port (-Port: UDP game traffic + Lightweight
+# Query API, TCP HTTPS API) and a reliable messaging TCP port (-ReliablePort);
+# the old -ServerQueryPort/-BeaconPort (15777/15000) are unused since 1.0.
+# If the reliable port is not reachable, clients stall on the loading screen.
+# The loop keeps the container alive if the game process exits (e.g. the
+# in-game daily "Server Restart Interval"), since containers have no restart
+# policy.
+while true; do
+    ./FactoryServer.sh -Port=$PORT -ReliablePort=$RELIABLEPORT -multihome=$IP
+    echo "###### Server Satisfactory.$SERVER_NAME process exited (code $?). Restarting in 5s."
+    sleep 5
+done
 
 peon_steam_ld_path_exit
