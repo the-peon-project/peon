@@ -54,3 +54,5 @@ services:
 ```
 
 > **Ports (Satisfactory 1.1+):** the server uses a main port (default `7777`, TCP + UDP: game traffic, Lightweight Query API, HTTPS API) and a reliable messaging port (default `8888`, TCP). Both must be forwarded and reachable from the internet; if the reliable port is blocked, players start the connection but stay stuck on the loading screen. The old ports `15000` (beacon) and `15777` (query) are unused since Satisfactory 1.0.
+
+> **Daily session restart + watchdog:** Satisfactory performs a daily in-place session reboot at the time of day set by the in-game *Server Restart Schedule* option (00:00–24:00, default 24:00/midnight — there is no off switch). That reboot can occasionally hang, leaving the process alive but the world dead. `server_start` runs the game in a restart loop with a background watchdog that polls the server's unauthenticated `HealthCheck` HTTPS endpoint (first probe 180 s after boot, then every 60 s); after 4 consecutive missed probes it kills the game process and the loop restarts it, so a hung session recovers on its own in a few minutes.

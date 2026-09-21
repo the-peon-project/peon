@@ -19,13 +19,67 @@ export SteamAppId=1690800
 # Query API, TCP HTTPS API) and a reliable messaging TCP port (-ReliablePort);
 # the old -ServerQueryPort/-BeaconPort (15777/15000) are unused since 1.0.
 # If the reliable port is not reachable, clients stall on the loading screen.
-# The loop keeps the container alive if the game process exits (e.g. the
-# in-game daily "Server Restart Interval"), since containers have no restart
-# policy.
+# The loop keeps the container alive if the game process exits, since the
+# container has no restart policy.
+
+WATCHDOG_GRACE=180   # seconds after boot before the first health probe (boot takes ~40s)
+WATCHDOG_INTERVAL=60 # seconds between health probes
+WATCHDOG_MAXFAILS=4  # consecutive failed probes before the game process is killed
+
+# Satisfactory's unauthenticated HTTPS API health endpoint (main TCP port).
+# Answered by the server net driver; times out while the session is hung.
+peon_health_check() {
+    local resp
+    resp=$(curl -sk --max-time 15 -X POST -H 'Content-Type: application/json' \
+        -d '{"function":"HealthCheck","data":{"clientCustomData":"peon-watchdog"}}' \
+        "https://127.0.0.1:${PORT}/api/v1/" 2>/dev/null)
+    case "$resp" in *'"health":"healthy"'*) return 0 ;; esac
+    return 1
+}
+
+# The in-game "Server Restart Schedule" (time-of-day, 00:00-24:00, default
+# 24:00, no off switch) does a daily in-place session reboot that can hang:
+# process alive, world dead, API silent (that left a server down for 3 days on
+# 2026-09-18). The watchdog kills the game process after WATCHDOG_MAXFAILS
+# consecutive missed probes so the loop below restarts it. A normal session
+# reboot (well under 2 minutes) cannot rack up 4 consecutive missed probes.
+peon_watchdog() {
+    local game_pid=$1 fails=0
+    echo "###### Satisfactory watchdog: armed (grace=${WATCHDOG_GRACE}s, probe=${WATCHDOG_INTERVAL}s, maxfails=${WATCHDOG_MAXFAILS})"
+    sleep $WATCHDOG_GRACE
+    while true; do
+        if kill -0 "$game_pid" 2>/dev/null && ! peon_health_check; then
+            fails=$((fails + 1))
+            echo "###### Satisfactory watchdog: server API unresponsive ($fails/$WATCHDOG_MAXFAILS)"
+            if [ "$fails" -ge "$WATCHDOG_MAXFAILS" ]; then
+                echo "###### Satisfactory watchdog: killing hung game process (pid $game_pid), loop will restart it"
+                pkill -TERM -P "$game_pid" 2>/dev/null # FactoryServer-Linux-Shipping child
+                kill -TERM "$game_pid" 2>/dev/null     # FactoryServer.sh wrapper
+                # allow up to 60s for a clean shutdown (world save), then force it
+                for _ in $(seq 1 60); do
+                    kill -0 "$game_pid" 2>/dev/null || break
+                    sleep 1
+                done
+                pkill -KILL -P "$game_pid" 2>/dev/null
+                kill -KILL "$game_pid" 2>/dev/null
+                fails=0
+            fi
+        else
+            if [ "$fails" -gt 0 ]; then echo "###### Satisfactory watchdog: server API responsive again"; fi
+            fails=0
+        fi
+        sleep $WATCHDOG_INTERVAL
+    done
+}
+
 while true; do
-    ./FactoryServer.sh -Port=$PORT -ReliablePort=$RELIABLEPORT -multihome=$IP
-    echo "###### Server Satisfactory.$SERVER_NAME process exited (code $?). Restarting in 5s."
+    ./FactoryServer.sh -Port=$PORT -ReliablePort=$RELIABLEPORT -multihome=$IP &
+    game_pid=$!
+    peon_watchdog "$game_pid" &
+    watchdog_pid=$!
+    wait "$game_pid"
+    exit_code=$?
+    kill "$watchdog_pid" 2>/dev/null
+    echo "###### Server Satisfactory.$SERVER_NAME process exited (code $exit_code). Restarting in 5s."
     sleep 5
 done
-
-peon_steam_ld_path_exit
