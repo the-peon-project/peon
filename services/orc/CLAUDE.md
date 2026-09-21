@@ -70,7 +70,6 @@ Use targeted syntax checks or module-level verification around touched files whe
 - `peon/cli` often mirrors operational actions against the PEON stack directly via Docker (not through this API) -- see `peon/cli/CLAUDE.md`'s Known Constraints for the resulting dual-control risk on the same containers
 - `peon/warplans` defines the recipes this directory consumes
 - `peon/wartable` defines the runtime images referenced by plans
-- Known pre-existing duplication (not fixed by this change): `app/bin/` contains committed copies of the same scripts that live in `peon/cli/bin/`. Worth deduping at some point but out of scope for this pass.
 
 ## Deployment / Release Validation
 

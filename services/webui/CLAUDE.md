@@ -1,6 +1,6 @@
 # PEON Web UI Guide
 
-This directory owns the PEON dashboard application. It is the busiest application surface in the monorepo and the only directory with a clear committed automated test suite. Formerly the standalone `peon-webui` repo, now `peon/services/webui/` in the consolidated `peon` monorepo (see the root `CLAUDE.md` for the overall map).
+This directory owns the PEON dashboard application. It is the busiest application surface in the monorepo and the one with the broadest committed automated test coverage (backend pytest in `tests/` plus a frontend test runner). Formerly the standalone `peon-webui` repo, now `peon/services/webui/` in the consolidated `peon` monorepo (see the root `CLAUDE.md` for the overall map).
 
 ## Scope
 
@@ -8,7 +8,7 @@ This directory owns the PEON dashboard application. It is the busiest applicatio
 - Frontend app: `frontend/`
 - Python tests: `tests/`
 - Docker packaging: `Dockerfile`, `docker-compose.example.yml`
-- Only 329 files are tracked in git under this directory; `frontend/node_modules` (493M) is gitignored and not part of the repo.
+- Only 332 files are tracked in git under this directory; `frontend/node_modules` is gitignored and not part of the repo.
 
 ## Runtime Map
 

@@ -6,9 +6,9 @@ This directory owns the Discord bot interface for PEON. Formerly the standalone 
 
 - Main bot entrypoint: `app/main.py`
 - Discord command and UI helpers: `app/modules/`
-- Config: `app/config/`
+- Config: resolved at runtime — `PEON_CONFIG_DIR` env, else `/app/config` in the container (the deployment root's `peon/config/`, including the `peon.orchestrators.json` registry, is mounted there by `config/docker-compose/20_bots.yml`). There is no committed `app/config/` directory in the source tree.
 - Reference data: `app/reference/`
-- Tests: `tests/test_server_channel_parsing.py`
+- Tests: `tests/` (`test_server_channel_parsing.py`, `test_persistent_user_panel.py`)
 - Runtime dependencies: `requirements.txt`
 
 ## Runtime Map
@@ -50,11 +50,12 @@ python3 -m py_compile app/main.py
 - Bot startup and slash commands: `app/main.py`
 - Admin flows: `app/modules/administrator.py`
 - Orchestrator integration: `app/modules/orchestrator.py`
+- Typed orc response parsing: `app/modules/orchestrator_types.py`
 - User flows: `app/modules/user.py`
 - Shared helpers: `app/modules/shared.py`
-- Config: `app/config/`
+- Config: runtime-resolved (see Scope) — in-container `/app/config` from the deployment root's `peon/config/`
 - Reference data: `app/reference/`
-- Tests: `tests/test_server_channel_parsing.py`
+- Tests: `tests/`
 - Directory dependencies: `requirements.txt`
 
 ## Validation Expectations
