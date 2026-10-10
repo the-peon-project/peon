@@ -68,6 +68,14 @@ Here you can see what the future holds.
 
 A PEON implementation of vanilla `SteamCMD`.
 
+**1.3.1**
+
+- [x] CHANGE :tools: Base image `dist-upgrade`d to current Debian trixie stable (openssl, gnutls, krb5, curl security updates)
+
+**1.3.1**
+
+- [x] CHANGE :tools: Base image `dist-upgrade`d to current Debian trixie stable; `winehq-stable` re-resolved to latest (wine 11.0)
+
 **1.3.0**
 
 - [x] CHANGE :tools: Switched to debian-trixie base
@@ -296,6 +304,11 @@ Current builds track the Debian trixie package set.
 A PEON implementation of vanilla `SteamCMD` with the Proton layer added to more closely mirror steams emulation layers.
 
 Current builds track the Debian trixie package set.
+
+**1.3.1**
+
+- [x] CHANGE :tools: Base image `dist-upgrade`d to current Debian trixie stable
+- [x] CHANGE :tools: Moved to proton GE 11.7
 
 **1.3.0**
 
