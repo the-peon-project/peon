@@ -1,5 +1,11 @@
 # PEON UI - Changelog
 
+## 0.2.0
+
+- Base: Python 3.11 → 3.14 (`python:3.14-slim`, trixie) — latest stable.
+- Dependencies: trimmed the backend requirements from a 123-entry freeze to the 11 direct deps the code actually imports (dropped unused tooling, LLM client SDKs, boto3, numpy/pandas/pillow, etc.); transitive deps now resolve fresh at build time. All MIT/Apache-2.0/BSD.
+- Frontend build stage unchanged (`node:20-alpine`).
+
 ## 0.1.12
 
 - Base Image Update: Runtime stage moved off EOL `python:3.11-slim-bullseye` to `python:3.11-slim` (Debian trixie). Dropped the obsolete `snapshot.debian.org` apt pin in favour of the image's native trixie sources. Frontend build stage unchanged (`node:20-alpine`); app code unchanged.

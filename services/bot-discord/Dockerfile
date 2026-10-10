@@ -1,5 +1,5 @@
 # Base image: debian slim (trixie)
-FROM python:3.11-slim
+FROM python:3.14-slim
 # Build information
 LABEL "com.peon.description"="Peon Bot - Discord"
 LABEL "maintainer"="Umlatt <richard@lazylionconsulting.com>"

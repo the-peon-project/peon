@@ -1,5 +1,5 @@
 # BASE: Base image - Python (Debian + slim)
-FROM python:3.11-slim
+FROM python:3.14-slim
 # CONTAINER: Configuration
 LABEL "com.peon.description"="Peon Orchestrator"
 LABEL "maintainer"="Umlatt <richard@lazylionconsulting.com>"

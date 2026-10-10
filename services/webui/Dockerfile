@@ -22,7 +22,7 @@ RUN npm run build
 
 # =============================================================================
 # RUNTIME: Python for backend + static frontend
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 # CONTAINER: Configuration labels
 LABEL "com.peon.description"="PEON Dashboard - Game Server Management"
