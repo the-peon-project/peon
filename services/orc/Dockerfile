@@ -1,18 +1,15 @@
 # BASE: Base image - Python (Debian + slim)
-FROM python:3.11-slim-bullseye
+FROM python:3.11-slim
 # CONTAINER: Configuration
 LABEL "com.peon.description"="Peon Orchestrator"
 LABEL "maintainer"="Umlatt <richard@lazylionconsulting.com>"
 # BRANDING: Copy branding into container
 COPY ./media/motd /etc/motd
 RUN echo "cat /etc/motd" >> /etc/bash.bashrc
-# OS: Prepare the OS and middleware
-# Debian bullseye is EOL; deb.debian.org no longer serves it. Pin apt to a snapshot.
-RUN printf 'deb http://snapshot.debian.org/archive/debian/20250721T000000Z bullseye main\ndeb http://snapshot.debian.org/archive/debian-security/20250721T000000Z bullseye-security main\ndeb http://snapshot.debian.org/archive/debian/20250721T000000Z bullseye-updates main\n' > /etc/apt/sources.list
-RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until
+# OS: Prepare the OS and middleware (trixie: use the image's native sources.list)
 RUN apt-get update
 # DOCKER
-RUN apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release subversion bsdmainutils zip
+RUN apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release subversion zip
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io

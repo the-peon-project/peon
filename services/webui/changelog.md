@@ -1,5 +1,9 @@
 # PEON UI - Changelog
 
+## 0.1.12
+
+- Base Image Update: Runtime stage moved off EOL `python:3.11-slim-bullseye` to `python:3.11-slim` (Debian trixie). Dropped the obsolete `snapshot.debian.org` apt pin in favour of the image's native trixie sources. Frontend build stage unchanged (`node:20-alpine`); app code unchanged.
+
 ## 0.1.10-dev
 
 - Modal behavior: Fixed shared dialog backdrops so server console and other overlays render over the viewport instead of inline in page flow.

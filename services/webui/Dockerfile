@@ -22,7 +22,7 @@ RUN npm run build
 
 # =============================================================================
 # RUNTIME: Python for backend + static frontend
-FROM python:3.11-slim-bullseye
+FROM python:3.11-slim
 
 # CONTAINER: Configuration labels
 LABEL "com.peon.description"="PEON Dashboard - Game Server Management"
@@ -45,10 +45,7 @@ RUN echo '╔══════════════════════�
     echo '╚═══════════════════════════════════════════════════════════╝' >> /etc/motd && \
     echo "cat /etc/motd" >> /etc/bash.bashrc
 
-# OS: Update and install required packages
-# Debian bullseye is EOL; deb.debian.org no longer serves it. Pin apt to a snapshot.
-RUN printf 'deb http://snapshot.debian.org/archive/debian/20250721T000000Z bullseye main\ndeb http://snapshot.debian.org/archive/debian-security/20250721T000000Z bullseye-security main\ndeb http://snapshot.debian.org/archive/debian/20250721T000000Z bullseye-updates main\n' > /etc/apt/sources.list
-RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until
+# OS: Update and install required packages (trixie: use the image's native sources.list)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     procps \
