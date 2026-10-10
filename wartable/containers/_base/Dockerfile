@@ -8,14 +8,15 @@ USER root
 COPY ./media/motd /etc/motd
 RUN echo "cat /etc/motd" >> /etc/bash.bashrc
 ENV LD_LIBRARY_PATH=/root/.steam/sdk32:$LD_LIBRARY_PATH
-# Refresh indexes AND bring the trixie base to current stable, then layer the
-# PEON-specific tools on top. DEBIAN_FRONTEND keeps the build non-interactive.
+# Refresh indexes, bring the trixie base to current stable, then layer the
+# PEON-specific tools — all in one layer so the lists are present for the
+# install. DEBIAN_FRONTEND keeps the build non-interactive.
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends dist-upgrade \
+    && apt-get -y install procps iputils-ping dnsutils vim \
     && apt-get -y autoremove --purge \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
-RUN apt-get -y install procps iputils-ping dnsutils vim
 ARG VERSION
 ENV VERSION=${VERSION}
 RUN echo VERSION=${VERSION} >> /etc/environment
