@@ -21,23 +21,23 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.55">
+      <meta name="generator" content="zensical-0.0.69">
     
     
       
-        <title>Installation Guide - The PEON Project - Game Server Management Made Easy</title>
+        <title>Installation - The PEON Project - Game Server Management Made Easy</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.20815dad.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.e15858d4.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.b27955a4.min.css">
       
       
 
@@ -77,14 +77,11 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#installation-guide" class="md-skip">
-          Skip to content
-        </a>
-      
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
     </div>
     <div data-md-component="announce">
       
@@ -117,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installation Guide
+              Installation
             
           </span>
         </div>
@@ -564,20 +561,21 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   🚀 Quick Start
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+              
+                
+                  
   
   
     
@@ -859,10 +857,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -886,10 +884,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -934,6 +933,7 @@
   
   
   
+  
     <a href="../../guides/" class="md-nav__link">
       
   
@@ -941,7 +941,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  📖 User Guide
 
     
   </span>
@@ -1034,6 +1034,7 @@
   
   
   
+  
     <a href="../../development/" class="md-nav__link">
       
   
@@ -1041,7 +1042,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  🛠️ Development
 
     
   </span>
@@ -1092,6 +1093,7 @@
   
   
   
+  
     <a href="../../api/" class="md-nav__link">
       
   
@@ -1099,15 +1101,13 @@
   <span class="md-ellipsis">
     
   
-  REST API
+  🔗 API Reference
 
     
   </span>
   
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
       
     </a>
   
@@ -1199,6 +1199,7 @@
     <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
       
         
+  
   
   
   
@@ -1302,8 +1303,10 @@
 
               
               <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
                 
                   
+
   
   
 
@@ -1340,7 +1343,7 @@ PEON_CACHE_ENABLED=true
 PEON_CACHE_URL=http://host.docker.internal:3128
 PEON_CACHE_BYPASS=localhost,127.0.0.1,host.docker.internal,peon.orc,peon.webui,peon.db
 
-# Optional HTTPS reverse proxy (Caddy + Let&#39;s Encrypt)
+# Optional HTTPS reverse proxy (Caddy + Let's Encrypt)
 PEON_PROXY_ENABLED=false
 PEON_PROXY_DOMAIN=server.example.com
 PEON_PROXY_EMAIL=ops@example.com
@@ -1371,11 +1374,17 @@ DISCORD_TOKEN=your_discord_bot_token_here
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps
 </code></pre></div>
 <p>You should see:
-<div class="highlight"><pre><span></span><code>NAME           SERVICE      STATUS       PORTS
-peon-orc-1     orc         running      0.0.0.0:5000-&gt;5000/tcp
-peon-bot-1     bot         running      
-peon-webui-1   webapp      running      0.0.0.0:80-&gt;80/tcp
+<div class="highlight"><pre><span></span><code>NAME               SERVICE      STATUS       PORTS
+peon.orc           orc         running      0.0.0.0:5000-&gt;5000/tcp
+peon.bot.discord   bot         running      
+peon.webui         webapp      running      0.0.0.0:80-&gt;80/tcp
 </code></pre></div></p>
+<p>:::warning{title="Updating containers: keep the service aliases"}
+The reverse proxy (and the Web UI / Discord bot) reach each other by <strong>Docker Compose service name</strong> (<code>webapp</code>, <code>orc</code>, …), which Compose registers as a DNS alias on the shared network. If you ever recreate a container with a plain <code>docker run</code> instead of <code>docker compose</code>, those aliases are dropped and the proxy will return <strong>502</strong> even though every container is healthy. Re-add an alias with:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>network<span class="w"> </span>connect<span class="w"> </span>--alias<span class="w"> </span>webapp<span class="w"> </span>--ip<span class="w"> </span>&lt;container-ip&gt;<span class="w"> </span>peon_zugnet<span class="w"> </span>peon.webui
+</code></pre></div>
+<p>See the <a href="../../faq/">FAQ — I get a 502 (Bad Gateway) from the web UI</a> for diagnosis and the full fix.
+:::</p>
 <p>For API documentation:</p>
 <ul>
 <li>WebUI API docs: <code>http://localhost/docs</code></li>
@@ -1414,7 +1423,7 @@ peon-webui-1   webapp      running      0.0.0.0:80-&gt;80/tcp
 <p>Run each component separately:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Orchestrator</span>
 docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--name<span class="w"> </span>peon-orc<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>peon.orc<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-e<span class="w"> </span><span class="nv">LOCAL_API_KEY</span><span class="o">=</span>your_api_key<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/config:/app/config<span class="w"> </span><span class="se">\</span>
@@ -1423,7 +1432,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 
 <span class="c1"># Discord Bot</span>
 docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--name<span class="w"> </span>peon-bot<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>peon.bot.discord<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-e<span class="w"> </span><span class="nv">DISCORD_TOKEN</span><span class="o">=</span>your_token<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-e<span class="w"> </span><span class="nv">LOCAL_API_KEY</span><span class="o">=</span>your_api_key<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/config:/app/config<span class="w"> </span><span class="se">\</span>
@@ -1431,7 +1440,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 
 <span class="c1"># Web UI</span>
 docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--name<span class="w"> </span>peon-webui<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>peon.webui<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-e<span class="w"> </span><span class="nv">REACT_APP_BACKEND_URL</span><span class="o">=</span>http://localhost<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>umlatt/peon.webui:latest
@@ -1445,11 +1454,11 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 <p><strong>Bot not responding:</strong>
 - Check Discord token in <code>.env</code> file
 - Verify bot permissions in Discord server
-- Check bot container logs: <code>docker logs peon-bot-1</code></p>
+- Check bot container logs: <code>docker logs peon.bot.discord</code></p>
 <p><strong>API errors:</strong>
 - Verify orchestrator is running: <code>curl http://localhost:5000/api/v1/orchestrator</code>
 - Check API key configuration
-- Review orchestrator logs: <code>docker logs peon-orc-1</code></p>
+- Review orchestrator logs: <code>docker logs peon.orc</code></p>
 <p><strong>Container startup issues:</strong>
 - Ensure Docker daemon is running
 - Check available disk space
@@ -1575,20 +1584,25 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 </footer>
       
     </div>
-    <div class="md-dialog" data-md-component="dialog">
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+      
+<div class="md-progress" data-md-component="progress" role="progressbar" aria-label="Loading"></div>
     
     
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.annotation","content.code.copy","content.tabs.link","navigation.expand","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","search.suggest","toc.follow","toc.integrate"],"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.annotation","content.code.copy","content.tabs.link","navigation.expand","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","search.suggest","toc.follow","toc.integrate"],"redirect":null,"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.e886cdf1.min.js"></script>
+      <script src="../../assets/javascripts/bundle.8b1c90bd.min.js"></script>
       
     
   </body>

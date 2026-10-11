@@ -21,23 +21,23 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.55">
+      <meta name="generator" content="zensical-0.0.69">
     
     
       
-        <title>❓ Frequently Asked Questions - The PEON Project - Game Server Management Made Easy</title>
+        <title>❓ FAQ - The PEON Project - Game Server Management Made Easy</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/modern/main.20815dad.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.e15858d4.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.b27955a4.min.css">
       
       
 
@@ -77,14 +77,11 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#frequently-asked-questions" class="md-skip">
-          Skip to content
-        </a>
-      
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
     </div>
     <div data-md-component="announce">
       
@@ -117,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ❓ Frequently Asked Questions
+              ❓ FAQ
             
           </span>
         </div>
@@ -537,6 +534,7 @@
   
   
   
+  
     <a href="../quick-start/" class="md-nav__link">
       
   
@@ -544,7 +542,7 @@
   <span class="md-ellipsis">
     
   
-  Getting Started
+  🚀 Quick Start
 
     
   </span>
@@ -601,6 +599,7 @@
   
   
   
+  
     <a href="../guides/" class="md-nav__link">
       
   
@@ -608,7 +607,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  📖 User Guide
 
     
   </span>
@@ -701,6 +700,7 @@
   
   
   
+  
     <a href="../development/" class="md-nav__link">
       
   
@@ -708,7 +708,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  🛠️ Development
 
     
   </span>
@@ -759,6 +759,7 @@
   
   
   
+  
     <a href="../api/" class="md-nav__link">
       
   
@@ -766,15 +767,13 @@
   <span class="md-ellipsis">
     
   
-  REST API
+  🔗 API Reference
 
     
   </span>
   
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
       
     </a>
   
@@ -1082,6 +1081,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         How do I update game servers?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-get-a-502-bad-gateway-from-the-web-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        I get a 502 (Bad Gateway) from the web UI
       </span>
     </span>
   </a>
@@ -1476,6 +1486,7 @@
   
   
   
+  
     <a href="https://discord.gg/KJFVyayH8g" class="md-nav__link">
       
   
@@ -1521,8 +1532,10 @@
 
               
               <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
                 
                   
+
   
   
 
@@ -1619,7 +1632,7 @@
 - Apply changes</p>
 <p><strong>API:</strong>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>/api/v1/servers/valheim_001/config<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;max_players&quot;: 8, &quot;password&quot;: &quot;secret&quot;}&#39;</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"max_players": 8, "password": "secret"}'</span>
 </code></pre></div></p>
 <h3 id="how-do-i-backup-my-game-data">How do I backup my game data?</h3>
 <p>PEON includes automatic backups:
@@ -1646,6 +1659,30 @@
 <p><strong>Bulk Updates:</strong>
 <div class="highlight"><pre><span></span><code>/update all
 </code></pre></div></p>
+<h3 id="i-get-a-502-bad-gateway-from-the-web-ui">I get a 502 (Bad Gateway) from the web UI</h3>
+<p>A 502 means the reverse proxy (Caddy) could not get a response from the Web UI. In a default PEON deployment the Caddyfile proxies to the <strong>Docker Compose service name</strong> (<code>webapp</code>), not the container name (<code>peon.webui</code>):</p>
+<div class="highlight"><pre><span></span><code>{$PEON_PROXY_DOMAIN} {
+    tls {$PEON_PROXY_EMAIL}
+    encode gzip
+    reverse_proxy webapp:80
+}
+</code></pre></div>
+<p>This matters when a container is <strong>recreated outside of <code>docker compose</code></strong> (e.g. a manual <code>docker run</code> during an image upgrade). Compose normally registers each service name as a DNS alias on the shared network; a manual recreate only registers the container name, so <code>webapp</code> stops resolving and Caddy returns 502 even though the Web UI container itself is healthy.</p>
+<p>Symptoms and diagnosis:
+<div class="highlight"><pre><span></span><code><span class="c1"># Caddy logs show the failing upstream lookup:</span>
+docker<span class="w"> </span>logs<span class="w"> </span>peon.proxy<span class="w"> </span>--tail<span class="w"> </span><span class="m">20</span>
+<span class="c1">#   "dial tcp: lookup webapp on 127.0.0.11:53: server misbehaving"</span>
+
+<span class="c1"># Confirm the alias is missing on the container:</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>peon.webui<span class="w"> </span>--format<span class="w"> </span><span class="s1">'{{(index .NetworkSettings.Networks "peon_zugnet").Aliases}}'</span>
+<span class="c1">#   []   ← aliases were dropped</span>
+</code></pre></div></p>
+<p>Fix — re-attach the network <strong>with the service alias</strong> (no container recreate, data untouched):
+<div class="highlight"><pre><span></span><code><span class="nv">IP</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>inspect<span class="w"> </span>peon.webui<span class="w"> </span>--format<span class="w"> </span><span class="s1">'{{(index .NetworkSettings.Networks "peon_zugnet").IPAddress}}'</span><span class="k">)</span>
+docker<span class="w"> </span>network<span class="w"> </span>disconnect<span class="w"> </span>peon_zugnet<span class="w"> </span>peon.webui
+docker<span class="w"> </span>network<span class="w"> </span>connect<span class="w"> </span>--alias<span class="w"> </span>webapp<span class="w"> </span>--ip<span class="w"> </span><span class="s2">"</span><span class="nv">$IP</span><span class="s2">"</span><span class="w"> </span>peon_zugnet<span class="w"> </span>peon.webui
+</code></pre></div></p>
+<p>The same applies to any other service referenced by name on the network (e.g. the <code>orc</code> alias used by the Web UI backend and the Discord bot). Prefer <code>docker compose up -d</code> for container updates so service aliases are managed for you.</p>
 <h2 id="security-privacy">🔒 Security &amp; Privacy</h2>
 <h3 id="is-peon-secure">Is PEON secure?</h3>
 <p>PEON implements multiple security layers:
@@ -1689,7 +1726,7 @@
 5. <strong>Network Problems</strong>: Check firewall settings</p>
 <p><strong>Debug Steps:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Check PEON logs</span>
-docker<span class="w"> </span>logs<span class="w"> </span>peon-orchestrator
+docker<span class="w"> </span>logs<span class="w"> </span>peon.orc
 
 <span class="c1"># Check specific server logs  </span>
 docker<span class="w"> </span>logs<span class="w"> </span>game_server_container_name
@@ -1813,7 +1850,7 @@ docker<span class="w"> </span>logs<span class="w"> </span>game_server_container_
 - <strong><a href="https://github.com/the-peon-project/peon/issues/new?template=bug_report.md">Report Bugs</a></strong> - Help us fix issues
 - <strong><a href="https://github.com/the-peon-project/peon/issues/new?template=feature_request.md">Request Features</a></strong> - Suggest improvements<br />
 - <strong><a href="../development/#game-development">Add Games</a></strong> - Create support for new games
-- <strong><a href="https://github.com/the-peon-project/peon-docs">Improve Documentation</a></strong> - Help others learn
+- <strong><a href="https://github.com/the-peon-project/peon/tree/main/docs">Improve Documentation</a></strong> - Help others learn
 - <strong><a href="../development/#contributing">Write Code</a></strong> - Contribute features and fixes
 - <strong><a href="https://discord.gg/KJFVyayH8g">Join Discord</a></strong> - Help other users</p>
 <h3 id="is-there-commercial-support-available">Is there commercial support available?</h3>
@@ -1988,20 +2025,25 @@ docker<span class="w"> </span>logs<span class="w"> </span>game_server_container_
 </footer>
       
     </div>
-    <div class="md-dialog" data-md-component="dialog">
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+      
+<div class="md-progress" data-md-component="progress" role="progressbar" aria-label="Loading"></div>
     
     
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.annotation","content.code.copy","content.tabs.link","navigation.expand","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","search.suggest","toc.follow","toc.integrate"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.annotation","content.code.copy","content.tabs.link","navigation.expand","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","search.suggest","toc.follow","toc.integrate"],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.e886cdf1.min.js"></script>
+      <script src="../assets/javascripts/bundle.8b1c90bd.min.js"></script>
       
     
   </body>
