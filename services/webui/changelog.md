@@ -1,5 +1,14 @@
 # PEON UI - Changelog
 
+## 0.2.1
+
+- Friend-group multi-tenancy (Task 1): database schema migration.
+  - New tables: `friend_groups`, `group_members`, `group_servers`, `group_announcements`, `admin_alerts`.
+  - `chat_messages` gains a `group_id` column (migrated in-place, idempotent).
+  - One-time migration guarded by `system_config` key `migration_v3_done`: wipes `chat_messages` and downgrades `moderator` roles to `user` (per approved friend-group design).
+  - `get_db()` now resolves `DATABASE_PATH` per connection (container-safe, test-friendly).
+  - Test harness: pytest fixtures + 8 schema/migration tests.
+
 ## 0.2.0
 
 - Base: Python 3.11 → 3.14 (`python:3.14-slim`, trixie) — latest stable.
