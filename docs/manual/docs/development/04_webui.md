@@ -124,6 +124,12 @@ When WebUI and ORC are deployed in the same Docker stack, configure the orchestr
 
 ## Release Notes
 
+**0.2.0**
+
+- Base image: Python 3.11 → 3.14 (latest stable, `python:3.14-slim` on Debian trixie); EOL `bullseye` snapshot pin retired.
+- Backend requirements trimmed from a 123-entry freeze to the 10 direct dependencies the code imports; transitive deps resolve fresh at build.
+- Password hashing moved from unmaintained `passlib` to `bcrypt` directly (same `$2b$` format — existing password hashes still verify).
+
 **0.1.13**
 
 - Added server-level access management directly in the Servers page for server owners/admins.

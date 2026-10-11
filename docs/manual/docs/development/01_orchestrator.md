@@ -69,6 +69,10 @@ Here are some planned features
 
 ## Release Notes
 
+**1.4.0**
+
+- [x] CHANGE :tools: Base image: Python 3.11 → 3.14 (latest stable, `python:3.14-slim` on Debian trixie); EOL `bullseye` snapshot pin retired. Unpinned requirements (fastapi, uvicorn, docker, paramiko, apscheduler, gitpython) re-resolve fresh at build.
+
 **1.3.0 - DEVELOPMENT**
 
 **:zap: IMPACT RELEASE :zap:**

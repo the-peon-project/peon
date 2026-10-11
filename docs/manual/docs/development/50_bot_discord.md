@@ -22,7 +22,7 @@ The Discord Bot module provides an intuitive Discord interface for the PEON plat
 
 **Core Technologies:**
 - **Discord.py v2.0+**: Modern Discord API wrapper
-- **Python 3.11+**: Async/await patterns
+- **Python 3.14+**: Async/await patterns
 - **Docker**: Containerized deployment
 - **REST API**: Communicates with PEON Orchestrator
 
@@ -446,6 +446,10 @@ async def process_queue():
 - **[Docker Hub](https://hub.docker.com/repository/docker/umlatt/peon.bot.discord)**
 - **[Issue Tracker](https://github.com/the-peon-project/peon/issues)**
 - **[Discord Community](https://discord.gg/KJFVyayH8g)**
+
+**2.2.0**
+
+- [x] CHANGE :tools: Base image: Python 3.11 → 3.14 (latest stable, `python:3.14-slim` on Debian trixie); EOL `bullseye` snapshot pin retired. Unpinned deps (discord.py, aiohttp, requests, pytz) re-resolve fresh at build.
 
 **1.2.6**
 

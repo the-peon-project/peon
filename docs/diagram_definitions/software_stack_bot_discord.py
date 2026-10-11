@@ -10,7 +10,7 @@ comms_http = "orange"
 comms_container_service = "red"
 comms_container = "darkgray"
 
-with Diagram("Peon Discord Bot Software Stack", show=False):
+with Diagram("Peon Discord Bot Software Stack", filename="../manual/docs/images/diagrams/diagram_bot_discord", show=False):
     with Cluster("Container"):
         Docker("umlatt/peon.bot.discord")
         with Cluster("Application"):
@@ -18,7 +18,7 @@ with Diagram("Peon Discord Bot Software Stack", show=False):
             application = Python("Peon Codebase")
             module = Python("requests")
             with Cluster("Base Image"):
-                os = Debian("python:3.11-slim-bullseye")
+                os = Debian("python:3.14-slim")
             framework - Edge(color=comms_container, style="dotted") - application
             application - Edge(color=comms_container, style="dotted") - module
     endpoint = Discord("Discord")
