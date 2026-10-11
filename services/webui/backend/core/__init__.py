@@ -1,6 +1,6 @@
 # Core module exports
 from .config import settings, SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
-from .database import get_db, dict_from_row, init_db, DB_PATH
+from .database import get_db, dict_from_row, init_db
 from .security import (
     verify_password, 
     get_password_hash, 
