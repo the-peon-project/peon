@@ -93,6 +93,16 @@ peon.bot.discord   bot         running
 peon.webui         webapp      running      0.0.0.0:80->80/tcp
 ```
 
+:::warning{title="Updating containers: keep the service aliases"}
+The reverse proxy (and the Web UI / Discord bot) reach each other by **Docker Compose service name** (`webapp`, `orc`, …), which Compose registers as a DNS alias on the shared network. If you ever recreate a container with a plain `docker run` instead of `docker compose`, those aliases are dropped and the proxy will return **502** even though every container is healthy. Re-add an alias with:
+
+```bash
+docker network connect --alias webapp --ip <container-ip> peon_zugnet peon.webui
+```
+
+See the [FAQ — I get a 502 (Bad Gateway) from the web UI](../faq.md) for diagnosis and the full fix.
+:::
+
 For API documentation:
 
 - WebUI API docs: `http://localhost/docs`

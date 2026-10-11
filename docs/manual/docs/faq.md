@@ -157,6 +157,39 @@ Yes! PEON supports advanced customization:
 /update all
 ```
 
+### I get a 502 (Bad Gateway) from the web UI
+A 502 means the reverse proxy (Caddy) could not get a response from the Web UI. In a default PEON deployment the Caddyfile proxies to the **Docker Compose service name** (`webapp`), not the container name (`peon.webui`):
+
+```
+{$PEON_PROXY_DOMAIN} {
+    tls {$PEON_PROXY_EMAIL}
+    encode gzip
+    reverse_proxy webapp:80
+}
+```
+
+This matters when a container is **recreated outside of `docker compose`** (e.g. a manual `docker run` during an image upgrade). Compose normally registers each service name as a DNS alias on the shared network; a manual recreate only registers the container name, so `webapp` stops resolving and Caddy returns 502 even though the Web UI container itself is healthy.
+
+Symptoms and diagnosis:
+```bash
+# Caddy logs show the failing upstream lookup:
+docker logs peon.proxy --tail 20
+#   "dial tcp: lookup webapp on 127.0.0.11:53: server misbehaving"
+
+# Confirm the alias is missing on the container:
+docker inspect peon.webui --format '{{(index .NetworkSettings.Networks "peon_zugnet").Aliases}}'
+#   []   ← aliases were dropped
+```
+
+Fix — re-attach the network **with the service alias** (no container recreate, data untouched):
+```bash
+IP=$(docker inspect peon.webui --format '{{(index .NetworkSettings.Networks "peon_zugnet").IPAddress}}')
+docker network disconnect peon_zugnet peon.webui
+docker network connect --alias webapp --ip "$IP" peon_zugnet peon.webui
+```
+
+The same applies to any other service referenced by name on the network (e.g. the `orc` alias used by the Web UI backend and the Discord bot). Prefer `docker compose up -d` for container updates so service aliases are managed for you.
+
 ## 🔒 Security & Privacy
 
 ### Is PEON secure?

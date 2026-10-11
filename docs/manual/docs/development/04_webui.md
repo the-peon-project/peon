@@ -110,6 +110,8 @@ When enabled, startup ensures both admin users exist and updates their password/
 
 When WebUI and ORC are deployed in the same Docker stack, configure the orchestrator in WebUI as `http://peon.orc:5000` so backend API requests resolve through Docker service networking.
 
+> **Note:** the upstream Caddy proxy addresses the Web UI by its Compose **service name** (`webapp`), not the container name. Recreating the container outside of `docker compose` (e.g. a manual `docker run`) drops that alias and the proxy will return 502 — re-attach it with `docker network connect --alias webapp` (see the FAQ: "I get a 502 (Bad Gateway) from the web UI").
+
 ---
 
 ## Roadmap
