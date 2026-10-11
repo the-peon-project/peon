@@ -12,7 +12,7 @@ import json
 import logging
 from datetime import datetime, timezone
 
-# Core imports
+# Core imports (absolute)
 from core.config import setup_logging, CORS_ORIGINS, SYNC_INTERVAL
 from core.database import init_db, get_db, dict_from_row
 from core.security import decode_token
